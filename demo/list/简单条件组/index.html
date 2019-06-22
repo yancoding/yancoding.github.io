@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>条件组组件展示</title>
+	<script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		#app{
+			background-color: #F5F6FA;
+			padding: 50px;
+		}
+		form{
+			padding: 20px;
+			margin: 20px auto;
+			max-width: 1000px;
+			min-width: 500px;
+			background-color: #fff;
+			border: 1px dashed grey;
+			border-radius: 5px;
+			font-size: 16px;
+		}
+		form p{
+			padding: 5px 0;
+		}
+		form span.warning{
+			color: #F08982;
+			font-weight: bolder;
+		}
+		form select,input{
+			width: 25%;
+			padding: 5px;
+			margin: 5px;
+		}
+		form a{
+			text-decoration: none;
+		}
+		form .add-btn{
+			color: #4385DD;
+		}
+		form a.close-btn{
+			color: #fff;
+			padding: 0 5px;
+			background-color: #ddd;
+			border-radius: 10px;
+		}
+		form div.line{
+			border-bottom: 1px dashed grey;
+			margin: 10px 0;
+		}
+		form button{
+			font-size: 16px;
+			padding: 5px 15px;
+			margin: 0 10px;
+			float: right;
+			border-radius: 5px;
+		}
+		form button:hover{
+			box-shadow: 0px 0px 1px rgba(0,0,0,0.5);
+		}
+		form button.submit-btn{
+			color: #fff;
+			border: none;
+			background-color: #4287E6;
+		}
+		form button.reset-btn{
+			color: #000;
+			border: 1px solid grey;
+			background-color: #fff;
+		}
+		form:after{
+			content: '';
+			display: block;
+			clear: both;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<condition-group 
+		v-bind:field-list="fieldList"
+		v-bind:operator-map="operatorMap"
+		v-bind:max="5"
+		></condition-group>
+		<condition-group 
+		v-bind:field-list="fieldList"
+		v-bind:operator-map="operatorMap"
+		v-bind:init-conditions="initConditions"
+		></condition-group>
+	</div>
+	<script>
+		//注册conditionGroup组件
+		Vue.component('condition-group', {
+			data:function(){
+				return {
+					conditions: [],
+					nextId: this.initConditions.length+1
+				}
+			},
+			props: {
+				fieldList: {
+					type: Array,
+					required: true
+				},
+				operatorMap: {
+					type: Object,
+					required: true
+				},
+				max: {
+					type: Number,
+					default: 10
+				},
+				initConditions: {
+					type: Array,
+					default: [{
+						id: 1,
+						fieldValue: '',
+						mapValue: '',
+						value: ''
+					}]
+				}
+			},
+			methods: {
+				addCondition: function(){
+					if (this.conditions.length<this.max) {
+						this.conditions.push({id: this.nextId++,fieldValue: '',mapValue: '',value: ''});
+					}
+				},
+				removeCondition: function(index){
+					if(this.conditions.length>1){
+						this.conditions.splice(index,1);
+					}	
+				},
+				resetCondition: function(){
+					this.conditions =[];
+					for(i in this.initConditions){
+						this.conditions.push({id: i,fieldValue: '',mapValue: '',value: ''});
+						this.conditions[i].id = this.initConditions[i].id;
+						this.conditions[i].fieldValue = this.initConditions[i].fieldValue;
+						this.conditions[i].mapValue = this.initConditions[i].mapValue;
+						this.conditions[i].value = this.initConditions[i].value;
+					}
+				},
+				computedFieldType: function(condition){
+					for(field in this.fieldList){
+						if(this.fieldList[field].value === condition.fieldValue){
+							return this.fieldList[field].type;
+						}
+					}
+				},
+				validateSubmit: function(event){
+					for(i in this.conditions){
+						if(this.conditions[i].fieldValue && !this.conditions[i].value){
+							alert("填写不完整！");
+							event.preventDefault();
+						}
+					}
+				}
+			},
+			created: function(){
+
+				if(this.initConditions.length == 1){
+					this.initConditions[0].fieldValue = this.fieldList[0].value;
+					this.initConditions[0].mapValue = this.operatorMap[this.computedFieldType(this.initConditions[0])][0].value;
+				}
+				this.resetCondition();
+			},
+			template: '\
+			<form action="" method="" @submit="validateSubmit"">\
+				<p><span class="warning"> * </span>筛选条件</p>\
+				<template v-for="(condition,index) in conditions" v-bind:key="condition.id">\
+					<select v-model="condition.fieldValue" @change="condition.mapValue=operatorMap[computedFieldType(condition)][0].value">\
+						<option v-for="field in fieldList" v-bind:value="field.value">{{field.label}}</option>\
+					</select>\
+					<select v-model="condition.mapValue">\
+						<option v-for="map in operatorMap[computedFieldType(condition)]" v-bind:value="map.value">{{map.label}}</option>\
+					</select>\
+					<input type="text" v-model="condition.value">\
+					<a class="close-btn" href="" v-on:click.prevent="removeCondition(index)">X</a><br>\
+				</template>\
+				<a class="add-btn" href="" v-on:click.prevent="addCondition()">+添加筛选条件</a><br>\
+				<div class="line"></div>\
+				<button class="reset-btn" @click.prevent="resetCondition()">重 置</button>\
+				<button class="submit-btn" type="submit">提 交</button>\
+			</form>'
+		});
+		
+		//创建根实例
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				fieldList: [{
+					value: 'text1',
+					label: '陈列上报编号',
+					type: 'text'
+				},{
+					value: 'text2',
+					label: '负责人',
+					type: 'text'
+				},{
+					value: 'text3',
+					label: '负责人所在部门',
+					type: 'text'
+				},{
+					value: 'text4',
+					label: '产品',
+					type: 'text'
+				},{
+					value: 'num1',
+					label: '排面数',
+					type: 'number'
+				},{
+					value: 'num2',
+					label: '割箱数',
+					type: 'number'
+				},{
+					value: 'num3',
+					label: '整箱数',
+					type: 'number'
+				},{
+					value: 'num4',
+					label: '堆头数',
+					type: 'number'
+				}],
+				operatorMap: {
+					text: [{
+						value: 'include',
+						label: '包含'
+					},{
+						value: 'notInclude',
+						label: '不包含'
+					},{
+						value: 'equal',
+						label: '等于'
+					},{
+						value: 'notEqual',
+						label: '不等于'
+					},{
+						value: 'empty',
+						label: '为空（未填写）'
+					},{
+						value: 'notEmpty',
+						label: '不为空'
+					}],
+					number: [{
+						value: 'equal',
+						label: '等于'
+					},{
+						value: 'gt',
+						label: '大于'
+					},{
+						value: 'lt',
+						label: '小于'
+					}]
+				},
+				initConditions:[{
+					id: 1,
+					fieldValue: 'text1',
+					mapValue: 'equal',
+					value: '110'
+				},{
+					id: 2,
+					fieldValue: 'text3',
+					mapValue: 'equal',
+					value: '技术部'
+				},{
+					id: 3,
+					fieldValue: 'num4',
+					mapValue: 'gt',
+					value: '100'
+				}]
+			}
+		})
+	</script>
+</body>
+</html>

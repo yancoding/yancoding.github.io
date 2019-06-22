@@ -1,0 +1,138 @@
+/*main.css为公共样式*/
+/*清除默认样式*/
+*{
+	padding: 0;
+	margin: 0;
+}
+a{
+	text-decoration: none;
+}
+li{
+	list-style: none;
+}
+/*页面布局*/
+#app-container{
+	min-width: 1250px;
+	min-height: 700px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background-color: #F3F7F8;
+}
+#app-header{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 74px;
+	background: linear-gradient(to right,#3F99B1,#2F77A9);
+}
+#app-aside{
+	position: absolute;
+	top: 74px;
+	left: 0;
+	bottom: 0;
+	width: 155px;
+	height: auto;
+	background-color: #fff;
+}
+#app-main{
+	position: absolute;
+	top: 94px;
+	left: 177px;
+	bottom: 25px;
+	right: 28px;
+	background-color: #fff;
+	border: 1px solid #EFEFEF; 
+}
+#app-main-aside{
+	position: absolute;
+	top: 0;
+	left: 1px;
+	bottom: 1px;
+	width: 190px;
+	border-right: 1px solid #EFEFEF;
+}
+#app-main-content{
+	position: absolute;
+	top: 1px;
+	left: 192px;
+	bottom: 1px;
+	right: 1px;
+}
+/*#app-header内样式*/
+#logo{
+	position: absolute;
+	top: 26px;
+	left: 24px;
+}
+#logo img{
+	width: 95px;
+}
+#title{
+	position: absolute;
+	top: 50%;
+	left: 150px;
+	transform: translate(0, -50%);
+	color: #fff;
+	font-size: 19px;
+}
+#nav{
+	position: absolute;
+	top: 50%;
+	left: 393px;
+	transform: translate(0, -50%);
+	color: #fff;
+}
+#nav ul li{
+	display: inline-block;
+}
+#nav ul li a{
+	font-size: 16px;
+	color: #A7C6D8;
+	margin: 0 30px 0 0;
+}
+#nav ul li a:hover{
+	color: #fff;
+}
+#nav ul li.active a{
+	color: #fff;
+}
+#nav ul li.active i{
+	display: block;
+	width: 30px;
+	border: 2px solid #fff;
+	border-radius: 2px;
+	position: relative;
+	top: 5px;
+	left: 15px;
+}
+
+#message a{
+	position: absolute;
+	top: 50%;
+	right: 100px;
+	transform: translate(0, -50%);
+	padding-left: 17px;
+	color: #fff;
+	font-size: 12px;
+	background-image: url(../images/消息.png);
+	background-size: 15px 15px;
+	background-repeat: no-repeat;
+	background-position: 0 2px;
+}
+#admin a{
+	position: absolute;
+	top: 50%;
+	right: 25px;
+	transform: translate(0, -50%);
+	padding-right: 17px;
+	color: #fff;
+	font-size: 12px;
+	background-image: url(../images/箭头.png);
+	background-size: 15px 15px;
+	background-repeat: no-repeat;
+	background-position: 40px 2px;
+}

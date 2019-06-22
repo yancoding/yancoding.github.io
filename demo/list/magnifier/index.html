@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片放大镜</title>
+	<link rel="stylesheet" href="css/main.css">
+	<style>
+		ul{margin: 0;padding: 0;}
+		li{list-style: none;}
+		.clearfloat:after{
+			content: '';
+			display: block;
+			clear: both;
+		}
+		.container{
+			position: relative;
+			width: 1000px;
+			margin: 100px auto 10px;
+			border: 1px dotted rgba(0,0,0,.7);
+			border-radius: 3px;
+		}
+		.gallery{
+			float: left;
+			width: 460px;
+		}
+		.current_pic{
+			position: relative;
+			margin: 0 15px 10px;
+			font-size: 0;
+		}
+		.current_pic img{
+			width: 430px;
+			height: 430px;
+			
+		}
+		.current_pic .dots{
+			position: absolute;
+			top: 0;
+			left: 0;
+			display: none;
+			width: 232px;
+			height: 232px;
+			background-image: url(images/dot.png);
+			/*border: 1px dotted #ddd;*/
+
+			cursor: move;
+		}
+
+		.thumb_content{
+			width: 460px;
+			font-size: 0;
+			text-align: center;
+			/*border: 1px dotted #ddd;*/
+
+		}
+		.thumb_content li{
+			display: inline-block;
+			margin: 0 10px;
+			font-size: 0;
+			cursor: pointer;
+		}
+		.thumb_content li img{
+			position: relative;
+			width: 60px;
+			height: 60px;
+		}
+		.thumb_content li.selected{
+			width: 56px;
+			height: 56px;
+			border: 2px solid #000;
+			overflow: hidden;
+		}
+		.thumb_content li.selected img{
+			top: -2px;
+			left: -2px;
+		}
+		.enlarge_pic{
+			position: relative;
+			float: left;
+			width: 430px;
+			height: 430px;
+			overflow: hidden;
+			/*border: 1px dotted #ddd;*/
+		}
+		.enlarge_pic img{
+			position: absolute;
+			top: 0;
+			left: 0;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="container clearfloat">
+		<div class="gallery">
+			<div class="current_pic" id="current_pic">
+				<img src="images/pic1.jpg" alt="" id="pic">
+				<div class="dots" id="dots"></div>
+			</div>
+			<div class="thumb_content">
+				<ul>
+					<li class="selected"><img src="images/pic1_thumb.jpg" alt=""></li>
+					<li><img src="images/pic2_thumb.jpg" alt=""></li>
+					<li><img src="images/pic3_thumb.jpg" alt=""></li>
+					<li><img src="images/pic4_thumb.jpg" alt=""></li>
+					<li><img src="images/pic5_thumb.jpg" alt=""></li>
+				</ul>
+			</div>
+		</div>
+		<div class="enlarge_pic">
+			<img src="images/pic1_enlarged.jpg" alt="" id="enlarged">
+		</div>
+	</div>
+	<div class="footer">
+		<time datetime="2017/11/29">2017/11/29</time>
+		<address><a class="author" href="http://yancoding.com">By yancoding.com</a></address>
+	</div>
+	<script>
+		var pic = [{
+			thumb   : 'images/pic1_thumb.jpg',
+			pic     : 'images/pic1.jpg',
+			enlarged: 'images/pic1_enlarged.jpg'
+		},{
+			thumb   : 'images/pic2_thumb.jpg',
+			pic     : 'images/pic2.jpg',
+			enlarged: 'images/pic2_enlarged.jpg'
+		},{
+			thumb   : 'images/pic3_thumb.jpg',
+			pic     : 'images/pic3.jpg',
+			enlarged: 'images/pic3_enlarged.jpg'
+		},{
+			thumb   : 'images/pic4_thumb.jpg',
+			pic     : 'images/pic4.jpg',
+			enlarged: 'images/pic4_enlarged.jpg'
+		},{
+			thumb   : 'images/pic5_thumb.jpg',
+			pic     : 'images/pic5.jpg',
+			enlarged: 'images/pic5_enlarged.jpg'
+		}];
+		var thumb = document.getElementsByClassName('thumb_content')[0].getElementsByTagName('li');
+		for(let l in thumb){
+			thumb[l].onmouseover = function(){
+				for(let i in thumb){
+				thumb[i].className = '';
+				}
+				this.className = 'selected';
+				document.getElementById('pic').src = pic[l].pic;
+				document.getElementById('enlarged').src = pic[l].enlarged;
+			}
+		}
+		document.getElementById('current_pic').onmouseover = function(ev){
+			document.getElementById('dots').style.display = 'block';
+			document.getElementById('enlarged').style.display = 'block';
+			var dots = document.getElementById('dots');
+			var enlarged = document.getElementById('enlarged');
+			var dotX = 0,
+				dotY = 0;
+			document.getElementById('current_pic').onmousemove = function(ev){
+			var ev = ev || window.event;
+			//	注意：此处应累加
+			dotX += ev.offsetX - 116;
+			dotY += ev.offsetY - 116;
+			dotX = Math.min(Math.max(dotX, 0), 198);
+			dotY = Math.min(Math.max(dotY, 0), 198);
+			// console.log(ev.offsetX, dotX);
+			
+			
+			enlarged.style.left = -dotX/430*800 + 'px';
+			enlarged.style.top = -dotY/430*800 + 'px';
+			dots.style.left = dotX + 'px';
+			dots.style.top = dotY + 'px';
+
+			}
+		}
+		document.getElementById('current_pic').onmouseout = function(ev){
+			document.getElementById('dots').style.display = 'none';
+			document.getElementById('enlarged').style.display = 'none';
+		}
+	</script>
+</body>
+</html>
