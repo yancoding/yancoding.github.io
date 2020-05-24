@@ -1,76 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>SEO优化学习笔记</title>
-    <url>/2018/03/10/SEO%E4%BC%98%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h2 id="SEO与SEM的区别"><a href="#SEO与SEM的区别" class="headerlink" title="SEO与SEM的区别"></a>SEO与SEM的区别</h2><p>SEO (Search Engine Optimization 搜索引擎优化)<br>SEM (Search Engine Marketing 搜索引擎营销)</p>
-<p>SEO 通过免费的方式提高网站排名<br>SEM 通过向搜索引擎付费的方式来提高网站的排名</p>
-<h2 id="SEO与SEM的对比"><a href="#SEO与SEM的对比" class="headerlink" title="SEO与SEM的对比"></a>SEO与SEM的对比</h2><p>SEO投入较低，SEM投入较高</p>
-<p>SEO短期投入，效益快；SEM长期投入，增长慢</p>
-<p>新广告法对搜索引擎广告位做了一定的限制，广告位减少，SEM投入，竞争加大；SEO有了更大的效用空间</p>
-<h2 id="IP、PV、UV"><a href="#IP、PV、UV" class="headerlink" title="IP、PV、UV"></a>IP、PV、UV</h2><p>IP ：独立IP访问的用户数(一个家庭或公司使用一个IP访问该网站，只能计作一个IP)</p>
-<p>PV ：页面浏览量或点击量(刷新页面也统计在内)</p>
-<p>UV ：独立访客数(不同的设备都会统计在内)</p>
-<h2 id="搜索引擎的发展历史"><a href="#搜索引擎的发展历史" class="headerlink" title="搜索引擎的发展历史"></a>搜索引擎的发展历史</h2><p>搜索引擎的前身是导航网址(导航网址所能容纳的链接有限，互联网高速发展，网站也越来越多，搜索引擎应运而生)</p>
-<p>早期的搜索引擎有：1995年大卫·费罗和美籍华人杨致远创建了全球第一家因特网导航服务网站雅虎；之后的1998年谷歌成立；2000年从硅谷回来的李彦宏创办了百度</p>
-<p>搜索引擎占有率: <a href="http://gs.statcounter.com/search-engine-market-share" target="_blank" rel="noopener">http://gs.statcounter.com/search-engine-market-share</a></p>
-<h2 id="SEO的排名机制"><a href="#SEO的排名机制" class="headerlink" title="SEO的排名机制"></a>SEO的排名机制</h2><p>搜索引擎通过蜘蛛爬取网站内容，再将内容分类后存储再数据库中，所以通过搜索引擎显示的搜索内容并不一定是最新的，会有一定的时间间隔</p>
-<p>搜索引擎会通过算法评估网站内容质量，并给网站分配不同的权重，权重越高，蜘蛛抓取网站内容的频率越高，排名越靠前</p>
-<h2 id="搜索引擎提交入口"><a href="#搜索引擎提交入口" class="headerlink" title="搜索引擎提交入口"></a>搜索引擎提交入口</h2><p>百度搜索网站提交入口</p>
-<p>Google搜索网站提交入口</p>
-<p>360搜索网站提交入口</p>
-<p>搜狗搜索网站提交入口</p>
-<p>必应搜索网站提交入口</p>
-<h2 id="SEO优化的最重要的三个要素"><a href="#SEO优化的最重要的三个要素" class="headerlink" title="SEO优化的最重要的三个要素"></a>SEO优化的最重要的三个要素</h2><p>标题</p>
-<p>关键字</p>
-<p>描述</p>
-<h2 id="外链与内链"><a href="#外链与内链" class="headerlink" title="外链与内链"></a>外链与内链</h2><p>外链是指网站与网站之间的链接(例如友情链接，与权重较高的网站交换友情链接有助于提高自身的权重)</p>
-<p>友情链接交换的注意事项：<br>1.要和内容相近的网站进行交换<br>2.外链分为单向外链和双向外链(单向外链若指向自己的网站，则爬虫单向进入自己的网站，不会反回，更有利于抓取自己的网站，提高权重；双向外链则双方共同成长，一同进步)<br>3.灌水式外链：在各大论坛发布的内容中植入自己的网站链接(单向外链，损人利己者)，是一种不友好的SEO优化方式</p>
-<p>内链是指网站内的链接</p>
-<p>内链有助于提高搜索引擎对网站各页面的抓取率</p>
-<h2 id="内容质量"><a href="#内容质量" class="headerlink" title="内容质量"></a>内容质量</h2><p>1.更新(不断地更新网站内容有助于搜索引擎的抓取，如果一个网站更新较少或不再更新内容，搜索引擎便会减少抓取频率)</p>
-<p>2.质量(网站的内容质量越高，搜索引擎的抓取频率也会越高)</p>
-<p>3.原创(搜索引擎会对抓取的内容进行比对、查重，如果网站内容原创内容较少，或只是一些伪原创，则搜索引擎会降低对该网站的抓取频率，降低权重)</p>
-<p>4.关键词密度(2% ~ 8%)不要关键词堆砌</p>
-<h2 id="黑帽与沙盒"><a href="#黑帽与沙盒" class="headerlink" title="黑帽与沙盒"></a>黑帽与沙盒</h2><p>黑帽是指采用一些作弊或违规的手段来优化网站的SEO</p>
-<img src="/2018/03/10/SEO优化学习笔记/黑帽SEO.jpg">
-<p>搜索引擎会对一些采用黑帽手段来提升网站权重，增加效益的网站进行惩罚，列入黑名单，降低权重，减少抓取或不在抓取，不再显示在搜索页面，称之为网站被放入了沙盒</p>
-<h2 id="话术设置"><a href="#话术设置" class="headerlink" title="话术设置"></a>话术设置</h2><p>好的话术会吸引更多的点击量，特别是对内容的标题和描述，但不要只为了点击量而故意更改标题，而使文题不符，会使读者产生一种欺骗感，会加大读者对网站的反感 (而自媒体的快速发展，每个人都可以在网上发布内容，成为“小编”，但也有内容较差，并带有欺诈性质标题的自媒体存在，当然这些并不会长存)</p>
-<h2 id="关键词的挖掘"><a href="#关键词的挖掘" class="headerlink" title="关键词的挖掘"></a>关键词的挖掘</h2><p>1.头脑风暴(集思广益)</p>
-<p>2.利用搜索引擎相关搜索(可以通过相关搜索查看排名靠前的网站关键词，来优化自己网站的关键词，还有下方的相关搜索项)</p>
-<p>3.利用工具(例如:百度指数<a href="http://index.baidu.com/查看相关关键词的搜索频率" target="_blank" rel="noopener">http://index.baidu.com/查看相关关键词的搜索频率</a>)</p>
-<p>4.利用长尾关键词(在有相同关键词时，搜索引擎会最先显示权重较高的网站，对于权重较低的网站想要在搜索页面排名靠前，与权重较高的网站使用相同的关键词并不占优势，这时我们可以使用长尾关键词。长尾关键词搜索率并不稳定，但更有目的性，一旦用户进行了长尾关键词的搜索，那我们的网站将会排名靠前，优先显示，前期网站可采用长尾关键词来引入流量，提高权重，当我们的网站权重已经较高时，我们便可以使用搜索频率较高的短关键词与同类网站竞争)</p>
-<h2 id="选择域名"><a href="#选择域名" class="headerlink" title="选择域名"></a>选择域名</h2><p>1.后缀的选择<br>.com(公司或商业组织)<br>.top(国际通用的顶级域名)<br>.org(非盈利的组织)<br>.gov(政府部门)<br>.edu(教育组织)<br>.net(网络服务提供商) </p>
-<p>2.短域名(更易记忆)</p>
-<p>3.语义(易于联想记忆)</p>
-<p>4.域名的历史使用记录(不要使用有不良记录的域名，会影响网站的后期发展，可以先在搜索引擎中搜索域名，查看是否有不良内容)</p>
-<h2 id="服务器的选择"><a href="#服务器的选择" class="headerlink" title="服务器的选择"></a>服务器的选择</h2><p>1.要响应速度快</p>
-<p>2.要稳定</p>
-<h2 id="代码优化"><a href="#代码优化" class="headerlink" title="代码优化"></a>代码优化</h2><p>1.代码去冗余(减少冗余代码、代码精简化、模块化)</p>
-<p>2.自动化(工具：grunt、gulp、webPack、tinyPNG…)</p>
-<p>3.语义化</p>
-<h2 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h2><p>1.200 (2开头的表示网页响应成功)</p>
-<p>2.300 (302、304表示重定向)</p>
-<p>3.404 (网页不存在)</p>
-<p>4.500 (5、6开头的表示服务器错误)</p>
-<h2 id="站群模式"><a href="#站群模式" class="headerlink" title="站群模式"></a>站群模式</h2><p>例如淘宝客、镜像网站(共享流量)</p>
-<h2 id="其他的一些优化手段"><a href="#其他的一些优化手段" class="headerlink" title="其他的一些优化手段"></a>其他的一些优化手段</h2><p>1.提升客户体验 (易用性、UI优化等等)</p>
-<p>2.内容形式的多样性 (视频，社区)</p>
-<p>3.代码属性的优化 (alt:简介；title；logo等)</p>
-<p>4.相关搜索引擎的产品的协助 (例如文库、问答等这些网站具有很高的权重，植入的单向外链会带来很大的流量)</p>
-<h2 id="日志分析"><a href="#日志分析" class="headerlink" title="日志分析"></a>日志分析</h2><p>1.每个搜索引擎的总体取量</p>
-<p>2.记录搜索引擎蜘蛛的不重复取量</p>
-<p>3.每个目录、每个搜索引擎的抓取量</p>
-<p>4.统计搜索引擎抓取的状态码</p>
-<p>5.统计搜索引擎抓取的次数，时间</p>
-<h2 id="统计工具"><a href="#统计工具" class="headerlink" title="统计工具"></a>统计工具</h2><p>1.CNZZ</p>
-<p>2.爱站网<a href="https://www.aizhan.com/、站长工具http://tool.chinaz.com/" target="_blank" rel="noopener">https://www.aizhan.com/、站长工具http://tool.chinaz.com/</a></p>
-]]></content>
-      <tags>
-        <tag>SEO</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MongoDB笔记</title>
     <url>/2019/07/06/MongoDB%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="安装MongoDB服务"><a href="#安装MongoDB服务" class="headerlink" title="安装MongoDB服务"></a>安装MongoDB服务</h2><p>这里下载的时MongoDB 4 Windows社区版本，4之后的版本跟之前的有很大的不同，不需要自行指定数据库和日志目录了，这里安装过程只修改了安装目录，从默认的c盘自定义为d盘，其他均为默认选项，一并安装了compass，这里大多人都不推荐安装compass，说是会卡住，这里安装确实看起来像是卡住了，但就如安装信息说的这里可能需要 a few minutes，事实上这里安装进度不变保持了10分钟左右就安装好了，所以不用太担心，只是网络原因，假死而已</p>
@@ -154,147 +84,74 @@
       </tags>
   </entry>
   <entry>
-    <title>centos安装socks5服务</title>
-    <url>/2020/05/10/centos%E5%AE%89%E8%A3%85socks5%E6%9C%8D%E5%8A%A1/</url>
-    <content><![CDATA[<h2 id="1-安装依赖"><a href="#1-安装依赖" class="headerlink" title="1.安装依赖"></a>1.安装依赖</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum -y install gcc gcc-c++ automake make pam-devel openldap-deve</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-安装socks5"><a href="#2-安装socks5" class="headerlink" title="2.安装socks5"></a>2.安装socks5</h2><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget https://jaist.dl.sourceforge.net/project/ss5/ss5/3.8.9-8/ss5-3.8.9-8.tar.gz</span><br></pre></td></tr></table></figure>
-
-<h3 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">tar -zxvf ss5-3.8.9-8.tar.gz</span><br></pre></td></tr></table></figure>
-
-<h3 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd ss5-3.8.9</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-启动服务"><a href="#3-启动服务" class="headerlink" title="3.启动服务"></a>3.启动服务</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">service ss5 start</span><br></pre></td></tr></table></figure>
-
-<p>echo “env: /etc/init.d/ss5: Permission denied”</p>
-<p>修改权限后再次启动</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chmod a+x /etc/init.d/ss5</span><br><span class="line">service ss5 start</span><br></pre></td></tr></table></figure>
-
-<p>此时服务已启动，但还不能正常使用，需要进行服务配置</p>
-<h2 id="4-服务配置"><a href="#4-服务配置" class="headerlink" title="4.服务配置"></a>4.服务配置</h2><p>找到 <code>auth</code> 和 <code>permit</code>, 取消注释，如下</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> ///////////////////////////////////////////////////////////////////////////////////</span></span><br><span class="line"><span class="meta">#</span><span class="bash">       SHost           SPort           Authentication</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">auth    0.0.0.0/0               -               -</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> /////////////////////////////////////////////////////////////////////////////////////////////////</span></span><br><span class="line"><span class="meta">#</span><span class="bash">      Auth     SHost           SPort   DHost           DPort   Fixup   Group   Band    ExpDate</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">permit -        0.0.0.0/0       -       0.0.0.0/0       -       -       -       -       -</span><br></pre></td></tr></table></figure>
-
-<p>重启服务</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">service ss5 restart</span><br></pre></td></tr></table></figure>
-
-<p>socks5默认服务端口为<code>1080</code>, 查看系统端口列表</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">firewall-cmd --zone=public --list-ports</span><br></pre></td></tr></table></figure>
-
-<p>如果还没有开启, 则开启1080端口</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">firewall-cmd --add-port=1080/tcp --permanent</span><br><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
-
-<p>至此，服务已可以连接，任何用户均可连接</p>
-<h2 id="5-配置用户"><a href="#5-配置用户" class="headerlink" title="5.配置用户"></a>5.配置用户</h2><p>编辑</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vi /etc/opt/ss5/ss5.conf</span><br></pre></td></tr></table></figure>
-
-<p>找到 <code>auth</code> 和 <code>permit</code>, 修改如下</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> ///////////////////////////////////////////////////////////////////////////////////</span></span><br><span class="line"><span class="meta">#</span><span class="bash">       SHost           SPort           Authentication</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">auth    0.0.0.0/0               -               u</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> /////////////////////////////////////////////////////////////////////////////////////////////////</span></span><br><span class="line"><span class="meta">#</span><span class="bash">      Auth     SHost           SPort   DHost           DPort   Fixup   Group   Band    ExpDate</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">permit u        0.0.0.0/0       -       0.0.0.0/0       -       -       -       -       -</span><br></pre></td></tr></table></figure>
-
-<p>编辑</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim /etc/opt/ss5/ss5.passwd</span><br></pre></td></tr></table></figure>
-
-<p>添加一行用户，账户与密码空格隔开</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">username password</span><br></pre></td></tr></table></figure>
-
-<p>重启服务</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">service ss5 restart</span><br></pre></td></tr></table></figure>
-
-<p>此时在连接代理服务则需要账户密码才可连接成功</p>
-<p>参考文章</p>
-<ul>
-<li><a href="https://blog.csdn.net/zjiang1994/article/details/74925039" target="_blank" rel="noopener">CentOS7 配置SOCKS5代理服务</a></li>
-</ul>
+    <title>SEO优化学习笔记</title>
+    <url>/2018/03/10/SEO%E4%BC%98%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="SEO与SEM的区别"><a href="#SEO与SEM的区别" class="headerlink" title="SEO与SEM的区别"></a>SEO与SEM的区别</h2><p>SEO (Search Engine Optimization 搜索引擎优化)<br>SEM (Search Engine Marketing 搜索引擎营销)</p>
+<p>SEO 通过免费的方式提高网站排名<br>SEM 通过向搜索引擎付费的方式来提高网站的排名</p>
+<h2 id="SEO与SEM的对比"><a href="#SEO与SEM的对比" class="headerlink" title="SEO与SEM的对比"></a>SEO与SEM的对比</h2><p>SEO投入较低，SEM投入较高</p>
+<p>SEO短期投入，效益快；SEM长期投入，增长慢</p>
+<p>新广告法对搜索引擎广告位做了一定的限制，广告位减少，SEM投入，竞争加大；SEO有了更大的效用空间</p>
+<h2 id="IP、PV、UV"><a href="#IP、PV、UV" class="headerlink" title="IP、PV、UV"></a>IP、PV、UV</h2><p>IP ：独立IP访问的用户数(一个家庭或公司使用一个IP访问该网站，只能计作一个IP)</p>
+<p>PV ：页面浏览量或点击量(刷新页面也统计在内)</p>
+<p>UV ：独立访客数(不同的设备都会统计在内)</p>
+<h2 id="搜索引擎的发展历史"><a href="#搜索引擎的发展历史" class="headerlink" title="搜索引擎的发展历史"></a>搜索引擎的发展历史</h2><p>搜索引擎的前身是导航网址(导航网址所能容纳的链接有限，互联网高速发展，网站也越来越多，搜索引擎应运而生)</p>
+<p>早期的搜索引擎有：1995年大卫·费罗和美籍华人杨致远创建了全球第一家因特网导航服务网站雅虎；之后的1998年谷歌成立；2000年从硅谷回来的李彦宏创办了百度</p>
+<p>搜索引擎占有率: <a href="http://gs.statcounter.com/search-engine-market-share" target="_blank" rel="noopener">http://gs.statcounter.com/search-engine-market-share</a></p>
+<h2 id="SEO的排名机制"><a href="#SEO的排名机制" class="headerlink" title="SEO的排名机制"></a>SEO的排名机制</h2><p>搜索引擎通过蜘蛛爬取网站内容，再将内容分类后存储再数据库中，所以通过搜索引擎显示的搜索内容并不一定是最新的，会有一定的时间间隔</p>
+<p>搜索引擎会通过算法评估网站内容质量，并给网站分配不同的权重，权重越高，蜘蛛抓取网站内容的频率越高，排名越靠前</p>
+<h2 id="搜索引擎提交入口"><a href="#搜索引擎提交入口" class="headerlink" title="搜索引擎提交入口"></a>搜索引擎提交入口</h2><p>百度搜索网站提交入口</p>
+<p>Google搜索网站提交入口</p>
+<p>360搜索网站提交入口</p>
+<p>搜狗搜索网站提交入口</p>
+<p>必应搜索网站提交入口</p>
+<h2 id="SEO优化的最重要的三个要素"><a href="#SEO优化的最重要的三个要素" class="headerlink" title="SEO优化的最重要的三个要素"></a>SEO优化的最重要的三个要素</h2><p>标题</p>
+<p>关键字</p>
+<p>描述</p>
+<h2 id="外链与内链"><a href="#外链与内链" class="headerlink" title="外链与内链"></a>外链与内链</h2><p>外链是指网站与网站之间的链接(例如友情链接，与权重较高的网站交换友情链接有助于提高自身的权重)</p>
+<p>友情链接交换的注意事项：<br>1.要和内容相近的网站进行交换<br>2.外链分为单向外链和双向外链(单向外链若指向自己的网站，则爬虫单向进入自己的网站，不会反回，更有利于抓取自己的网站，提高权重；双向外链则双方共同成长，一同进步)<br>3.灌水式外链：在各大论坛发布的内容中植入自己的网站链接(单向外链，损人利己者)，是一种不友好的SEO优化方式</p>
+<p>内链是指网站内的链接</p>
+<p>内链有助于提高搜索引擎对网站各页面的抓取率</p>
+<h2 id="内容质量"><a href="#内容质量" class="headerlink" title="内容质量"></a>内容质量</h2><p>1.更新(不断地更新网站内容有助于搜索引擎的抓取，如果一个网站更新较少或不再更新内容，搜索引擎便会减少抓取频率)</p>
+<p>2.质量(网站的内容质量越高，搜索引擎的抓取频率也会越高)</p>
+<p>3.原创(搜索引擎会对抓取的内容进行比对、查重，如果网站内容原创内容较少，或只是一些伪原创，则搜索引擎会降低对该网站的抓取频率，降低权重)</p>
+<p>4.关键词密度(2% ~ 8%)不要关键词堆砌</p>
+<h2 id="黑帽与沙盒"><a href="#黑帽与沙盒" class="headerlink" title="黑帽与沙盒"></a>黑帽与沙盒</h2><p>黑帽是指采用一些作弊或违规的手段来优化网站的SEO</p>
+<img src="/2018/03/10/SEO优化学习笔记/黑帽SEO.jpg">
+<p>搜索引擎会对一些采用黑帽手段来提升网站权重，增加效益的网站进行惩罚，列入黑名单，降低权重，减少抓取或不在抓取，不再显示在搜索页面，称之为网站被放入了沙盒</p>
+<h2 id="话术设置"><a href="#话术设置" class="headerlink" title="话术设置"></a>话术设置</h2><p>好的话术会吸引更多的点击量，特别是对内容的标题和描述，但不要只为了点击量而故意更改标题，而使文题不符，会使读者产生一种欺骗感，会加大读者对网站的反感 (而自媒体的快速发展，每个人都可以在网上发布内容，成为“小编”，但也有内容较差，并带有欺诈性质标题的自媒体存在，当然这些并不会长存)</p>
+<h2 id="关键词的挖掘"><a href="#关键词的挖掘" class="headerlink" title="关键词的挖掘"></a>关键词的挖掘</h2><p>1.头脑风暴(集思广益)</p>
+<p>2.利用搜索引擎相关搜索(可以通过相关搜索查看排名靠前的网站关键词，来优化自己网站的关键词，还有下方的相关搜索项)</p>
+<p>3.利用工具(例如:百度指数<a href="http://index.baidu.com/查看相关关键词的搜索频率" target="_blank" rel="noopener">http://index.baidu.com/查看相关关键词的搜索频率</a>)</p>
+<p>4.利用长尾关键词(在有相同关键词时，搜索引擎会最先显示权重较高的网站，对于权重较低的网站想要在搜索页面排名靠前，与权重较高的网站使用相同的关键词并不占优势，这时我们可以使用长尾关键词。长尾关键词搜索率并不稳定，但更有目的性，一旦用户进行了长尾关键词的搜索，那我们的网站将会排名靠前，优先显示，前期网站可采用长尾关键词来引入流量，提高权重，当我们的网站权重已经较高时，我们便可以使用搜索频率较高的短关键词与同类网站竞争)</p>
+<h2 id="选择域名"><a href="#选择域名" class="headerlink" title="选择域名"></a>选择域名</h2><p>1.后缀的选择<br>.com(公司或商业组织)<br>.top(国际通用的顶级域名)<br>.org(非盈利的组织)<br>.gov(政府部门)<br>.edu(教育组织)<br>.net(网络服务提供商) </p>
+<p>2.短域名(更易记忆)</p>
+<p>3.语义(易于联想记忆)</p>
+<p>4.域名的历史使用记录(不要使用有不良记录的域名，会影响网站的后期发展，可以先在搜索引擎中搜索域名，查看是否有不良内容)</p>
+<h2 id="服务器的选择"><a href="#服务器的选择" class="headerlink" title="服务器的选择"></a>服务器的选择</h2><p>1.要响应速度快</p>
+<p>2.要稳定</p>
+<h2 id="代码优化"><a href="#代码优化" class="headerlink" title="代码优化"></a>代码优化</h2><p>1.代码去冗余(减少冗余代码、代码精简化、模块化)</p>
+<p>2.自动化(工具：grunt、gulp、webPack、tinyPNG…)</p>
+<p>3.语义化</p>
+<h2 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h2><p>1.200 (2开头的表示网页响应成功)</p>
+<p>2.300 (302、304表示重定向)</p>
+<p>3.404 (网页不存在)</p>
+<p>4.500 (5、6开头的表示服务器错误)</p>
+<h2 id="站群模式"><a href="#站群模式" class="headerlink" title="站群模式"></a>站群模式</h2><p>例如淘宝客、镜像网站(共享流量)</p>
+<h2 id="其他的一些优化手段"><a href="#其他的一些优化手段" class="headerlink" title="其他的一些优化手段"></a>其他的一些优化手段</h2><p>1.提升客户体验 (易用性、UI优化等等)</p>
+<p>2.内容形式的多样性 (视频，社区)</p>
+<p>3.代码属性的优化 (alt:简介；title；logo等)</p>
+<p>4.相关搜索引擎的产品的协助 (例如文库、问答等这些网站具有很高的权重，植入的单向外链会带来很大的流量)</p>
+<h2 id="日志分析"><a href="#日志分析" class="headerlink" title="日志分析"></a>日志分析</h2><p>1.每个搜索引擎的总体取量</p>
+<p>2.记录搜索引擎蜘蛛的不重复取量</p>
+<p>3.每个目录、每个搜索引擎的抓取量</p>
+<p>4.统计搜索引擎抓取的状态码</p>
+<p>5.统计搜索引擎抓取的次数，时间</p>
+<h2 id="统计工具"><a href="#统计工具" class="headerlink" title="统计工具"></a>统计工具</h2><p>1.CNZZ</p>
+<p>2.爱站网<a href="https://www.aizhan.com/、站长工具http://tool.chinaz.com/" target="_blank" rel="noopener">https://www.aizhan.com/、站长工具http://tool.chinaz.com/</a></p>
 ]]></content>
       <tags>
-        <tag>cenos7</tag>
-        <tag>socks5</tag>
+        <tag>SEO</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>hexo创建自定义页面</title>
-    <url>/2019/05/25/hexo%E5%88%9B%E5%BB%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E9%A1%B5%E9%9D%A2/</url>
-    <content><![CDATA[<h2 id="为什么要在-hexo-中使用自定义页面"><a href="#为什么要在-hexo-中使用自定义页面" class="headerlink" title="为什么要在 hexo 中使用自定义页面"></a>为什么要在 hexo 中使用自定义页面</h2><p>在hexo中我们并不是只是用来写文字文章，有时我们也想自定义一些页面，这些页面是完全独立于主题样式的，比如在hexo中放上自己用html写的个人简历，又或是自己的一些前端Demo。</p>
-<h2 id="如何设置自定义页面"><a href="#如何设置自定义页面" class="headerlink" title="如何设置自定义页面"></a>如何设置自定义页面</h2><p>默认情况下source目录下的post, page等都会进行主题模板的渲染，生成相应的静态页面，但hexo中也提供了相应的配置，阻止模板渲染，实现自定义页面</p>
-<p>这里我们想放上我们的静态Demo，这里我们先新建一个页面用来存放我们的demo list</p>
-<p><code>hexo new page &#39;demo&#39;</code></p>
-<p>新建后，source目录下添加了一个demo目录，demo目录下还有一个index目录和index.md文件，我将index目录名命名为list，用来存放我的demos，index.md用来存放相应的demo链接。</p>
-<h3 id="1-通过-layout-false"><a href="#1-通过-layout-false" class="headerlink" title="1.通过 layout: false"></a>1.通过 <strong>layout: false</strong></h3><p>如果我们想让index.html变成独立页面，我们只需在文件的头部添加一下内容：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">layout: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-
-<p>然后这个页面在 <code>hexo generate</code> 时变不会进行渲染，而是直接移动到public 目录下</p>
-<p>这个方法有一定的局限性，页面过多时就不太适合了，每个都添加也不现实</p>
-<h3 id="2-通过-skip-render"><a href="#2-通过-skip-render" class="headerlink" title="2.通过 skip_render"></a>2.通过 <strong>skip_render</strong></h3><p>通过配置文件 <strong>_config.yml</strong> 的 <strong>skip_render</strong> 选项</p>
-<p>例如我们想要跳过source/demo/list目录下的所有文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">skip_render: demo/list/*</span><br></pre></td></tr></table></figure>
-
-<p>如果想要跳过source/demo/list目录下的所有文件及其子文件夹的所有文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">skip_render: demo/list/**</span><br></pre></td></tr></table></figure>
-
-<p>当然也可以指定某一文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">skip_render: demo/list/test.html</span><br></pre></td></tr></table></figure>
-
-<p>多个指定文件或路径时</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">skip_render: </span><br><span class="line">- demo/list/test.html</span><br><span class="line">- demo/list/demo1/**</span><br></pre></td></tr></table></figure>
-
-<p><strong>注：</strong> 修改配置文件后，并不会立即生效，需要重启服务，重新生成静态页面才行</p>
-<p>参考资料：</p>
-<ul>
-<li><a href="http://blog.fangchengjin.cn/hexo-custom-page.html" target="_blank" rel="noopener">Hexo博客跳过渲染，创建自定义网页</a></li>
-<li><a href="http://xchb.work/2017/04/08/hexo%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6-skip-render-%E9%85%8D%E7%BD%AE/" target="_blank" rel="noopener">hexo忽略文件(skip_render)配置</a></li>
-<li><a href="https://hexo.io/docs/configuration#Directory" target="_blank" rel="noopener">hexo文档-Configuration</a></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>css transition</title>
-    <url>/2019/05/14/css-transition/</url>
-    <content><![CDATA[<h1 id="css-transition"><a href="#css-transition" class="headerlink" title="css transition"></a>css transition</h1><h2 id="ease与ease-in-out的区别"><a href="#ease与ease-in-out的区别" class="headerlink" title="ease与ease-in-out的区别"></a>ease与ease-in-out的区别</h2><p>两者的整体效果都是缓入缓出，只是细节上存在差异</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>贝塞尔曲线</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ease</td>
-<td>cubic-bezier(0.25, 0.1, 0.25,1)</td>
-</tr>
-<tr>
-<td>ease-in-out</td>
-<td>cubic-bezier(0.42, 0, 0.58, 1)</td>
-</tr>
-</tbody></table>
-<p>比较两者的贝塞尔曲线，ease缓入效果较其缓出效果不明显；ease-in-out缓入缓出效果都比价明显</p>
-<h2 id="step-start-和step-end"><a href="#step-start-和step-end" class="headerlink" title="step-start 和step-end"></a>step-start 和step-end</h2><p>step-start 等同于 steps(1, start), 过渡效果分一步完成，在步的起始开始，即直接过渡到效果</p>
-<p>step-end 等同于 steps(1, end)， 过渡效果分一步完成，在步的结束开始，即transition-duration之后完成过渡效果</p>
-<h2 id="steps"><a href="#steps" class="headerlink" title="steps()"></a>steps()</h2><p>语法：steps(&lt; integer &gt;[, [ start | end ] ]?)</p>
-<p>过渡步数为整数，第二个参数默认值为 end</p>
-<p>start：表示过渡从第一步时间的开始开始(会直接看到过渡效果)</p>
-<p>end：表示过渡从第一步时间的结束开始(不会直接看到过渡效果)</p>
-<p><strong>注意：</strong> transition-delay 将包含于步进函数的第一步，即第一步的持续时间为均分时间加上延迟时间</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>json为什么不允许注释</title>
-    <url>/2018/10/30/json%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E5%85%81%E8%AE%B8%E6%B3%A8%E9%87%8A/</url>
-    <content><![CDATA[<h3 id="来看看json之父怎么说"><a href="#来看看json之父怎么说" class="headerlink" title="来看看json之父怎么说"></a>来看看json之父怎么说</h3><img src="/2018/10/30/json为什么不允许注释/14157748-7a92f06db8b373f8.webp">
-
-<blockquote>
-<p>Comments in JSON<br>I removed comments from JSON because I saw people were using them to holdparsing directives, a practice which would have destroyed interoperability. I knowthat the lackl of comments makes some people sad, but it shouldn’t.<br>Suppose you are using JSON to keep configuration files, which you would like toannotate. Go ahead and insert all the comments you like. Then pipe it throughJSMin before handing it to your JSON parser.</p>
-</blockquote>
-<p>谷歌翻译一下：</p>
-<blockquote>
-<p>JSON中的注释<br>我从JSON中删除了注释，因为我看到有人使用它们来保存指令，这种做法会破坏互操作性。 我知道缺乏注释会让一些人感到悲伤，但事实并非如此。<br>假设您使用JSON来保留您想要注释的配置文件。 继续，插入您喜欢的所有注释。 然后将它传递给JSMin，然后将其传递给JSON解析器。</p>
-</blockquote>
-]]></content>
   </entry>
   <entry>
     <title>centos 安装 nginx</title>
@@ -330,482 +187,95 @@
       </tags>
   </entry>
   <entry>
-    <title>mysql 修改登录密码</title>
-    <url>/2019/01/17/mysql-%E4%BF%AE%E6%94%B9%E7%99%BB%E5%BD%95%E5%AF%86%E7%A0%81/</url>
-    <content><![CDATA[<p>先登录mysql</p>
-<p><code>mysql -u root -p</code></p>
-<img src="/2019/01/17/mysql-修改登录密码/14157748-9e35c9a6a31a677b.png">
+    <title>centos安装socks5服务</title>
+    <url>/2020/05/10/centos%E5%AE%89%E8%A3%85socks5%E6%9C%8D%E5%8A%A1/</url>
+    <content><![CDATA[<h2 id="1-安装依赖"><a href="#1-安装依赖" class="headerlink" title="1.安装依赖"></a>1.安装依赖</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum -y install gcc gcc-c++ automake make pam-devel openldap-deve</span><br></pre></td></tr></table></figure>
 
-<p>使用 SET PASSWORD命令设置密码</p>
-<p><code>set password for 用户名@localhost = password(&#39;新密码&#39;);</code></p>
-<p>例如设置root账户密码为root</p>
-<p><code>set password for root@localhost = password(&#39;root&#39;);</code></p>
-<img src="/2019/01/17/mysql-修改登录密码/14157748-8d93906580f4aada.png">
+<h2 id="2-安装socks5"><a href="#2-安装socks5" class="headerlink" title="2.安装socks5"></a>2.安装socks5</h2><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget https://jaist.dl.sourceforge.net/project/ss5/ss5/3.8.9-8/ss5-3.8.9-8.tar.gz</span><br></pre></td></tr></table></figure>
 
-<p>退出登录后用新密码登录测试是否设置成功</p>
-]]></content>
-      <tags>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>koa2文件上传</title>
-    <url>/2019/06/26/koa2%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</url>
-    <content><![CDATA[<h2 id="创建项目目录"><a href="#创建项目目录" class="headerlink" title="创建项目目录"></a>创建项目目录</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir uploadFile</span><br><span class="line"><span class="built_in">cd</span> uploadFile</span><br></pre></td></tr></table></figure>
+<h3 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">tar -zxvf ss5-3.8.9-8.tar.gz</span><br></pre></td></tr></table></figure>
 
-<h2 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init</span><br><span class="line">npm init</span><br></pre></td></tr></table></figure>
+<h3 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd ss5-3.8.9</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
 
-<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install koa koa-router koa-body koa-static</span><br></pre></td></tr></table></figure>
+<h2 id="3-启动服务"><a href="#3-启动服务" class="headerlink" title="3.启动服务"></a>3.启动服务</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">service ss5 start</span><br></pre></td></tr></table></figure>
 
-<h2 id="项目主程序-app-js"><a href="#项目主程序-app-js" class="headerlink" title="项目主程序 app.js"></a>项目主程序 app.js</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"><span class="keyword">const</span> koaBody = <span class="built_in">require</span>(<span class="string">'koa-body'</span>);</span><br><span class="line"><span class="keyword">const</span> Router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>);</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">static</span> = <span class="built_in">require</span>(<span class="string">'koa-static'</span>);</span><br><span class="line"><span class="keyword">const</span> cors = <span class="built_in">require</span>(<span class="string">'koa2-cors'</span>)</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> hostname = <span class="string">'127.0.0.1'</span></span><br><span class="line"><span class="keyword">const</span> port = <span class="number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa()</span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> Router()</span><br><span class="line"></span><br><span class="line">app.use(cors())</span><br><span class="line">app.use(<span class="keyword">static</span>(<span class="string">'.'</span>));</span><br><span class="line"></span><br><span class="line">router</span><br><span class="line">    .get(<span class="string">'/'</span>, (ctx, next) =&gt; &#123;</span><br><span class="line">        ctx.body = <span class="string">'hello world!'</span></span><br><span class="line">    &#125;)</span><br><span class="line">    .post(<span class="string">'/api/upload'</span>, koaBody(&#123;</span><br><span class="line">        multipart: <span class="literal">true</span>,</span><br><span class="line">        formidable: &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;), (ctx, next) =&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> file = ctx.request.files.file</span><br><span class="line">        <span class="keyword">let</span> fileType = file.name.split(<span class="string">'.'</span>).pop()</span><br><span class="line">        <span class="keyword">let</span> fileName = <span class="string">`<span class="subst">$&#123;<span class="built_in">Date</span>.now()&#125;</span>.<span class="subst">$&#123;fileType&#125;</span>`</span></span><br><span class="line">        <span class="keyword">let</span> fileReader = fs.createReadStream(file.path)</span><br><span class="line">        <span class="keyword">let</span> writeStream = fs.createWriteStream(path.join(__dirname, <span class="string">'upload'</span>, <span class="string">`<span class="subst">$&#123;fileName&#125;</span>`</span>))</span><br><span class="line"></span><br><span class="line">        fileReader.pipe(writeStream)</span><br><span class="line">        ctx.body = &#123;</span><br><span class="line">            code: <span class="number">0</span>,</span><br><span class="line">            message: <span class="string">'上传成功'</span>,</span><br><span class="line">            url: <span class="string">`http://<span class="subst">$&#123;hostname&#125;</span>:<span class="subst">$&#123;port&#125;</span>/upload/<span class="subst">$&#123;fileName&#125;</span>`</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">app</span><br><span class="line">    .use(router.routes())</span><br><span class="line">    .use(router.allowedMethods())</span><br><span class="line"></span><br><span class="line">app.listen(port, hostname, () =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`Server running at http://<span class="subst">$&#123;hostname&#125;</span>:<span class="subst">$&#123;port&#125;</span>/`</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>echo “env: /etc/init.d/ss5: Permission denied”</p>
+<p>修改权限后再次启动</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chmod a+x /etc/init.d/ss5</span><br><span class="line">service ss5 start</span><br></pre></td></tr></table></figure>
 
-]]></content>
-      <tags>
-        <tag>Koa2</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>js上传视频图片预览</title>
-    <url>/2019/07/02/js%E4%B8%8A%E4%BC%A0%E8%A7%86%E9%A2%91%E5%9B%BE%E7%89%87%E9%A2%84%E8%A7%88/</url>
-    <content><![CDATA[<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p><a href="demo/list/文件上传预览">文件上传预览</a></p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>HTML</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">legend</span>&gt;</span>上传视频文件<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">accept</span>=<span class="string">"video/*"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>视频预览<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">video</span> <span class="attr">id</span>=<span class="string">"video"</span> <span class="attr">src</span>=<span class="string">""</span> <span class="attr">controls</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">legend</span>&gt;</span>上传图片文件<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">accept</span>=<span class="string">"image/*"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>图片预览<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">"img"</span> <span class="attr">src</span>=<span class="string">""</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>此时服务已启动，但还不能正常使用，需要进行服务配置</p>
+<h2 id="4-服务配置"><a href="#4-服务配置" class="headerlink" title="4.服务配置"></a>4.服务配置</h2><p>找到 <code>auth</code> 和 <code>permit</code>, 取消注释，如下</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span> ///////////////////////////////////////////////////////////////////////////////////</span><br><span class="line"><span class="meta">#</span>       SHost           SPort           Authentication</span><br><span class="line"><span class="meta">#</span></span><br><span class="line">auth    0.0.0.0/0               -               -</span><br></pre></td></tr></table></figure>
 
-<p>CSS</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">video</span>,</span><br><span class="line"><span class="selector-tag">img</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span> /////////////////////////////////////////////////////////////////////////////////////////////////</span><br><span class="line"><span class="meta">#</span>      Auth     SHost           SPort   DHost           DPort   Fixup   Group   Band    ExpDate</span><br><span class="line"><span class="meta">#</span></span><br><span class="line">permit -        0.0.0.0/0       -       0.0.0.0/0       -       -       -       -       -</span><br></pre></td></tr></table></figure>
 
-<p>JS</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> form = <span class="built_in">document</span>.querySelector(<span class="string">'form'</span>)</span><br><span class="line">    <span class="keyword">let</span> videoEl = <span class="built_in">document</span>.getElementById(<span class="string">'video'</span>)</span><br><span class="line">    <span class="keyword">let</span> imgEl = <span class="built_in">document</span>.getElementById(<span class="string">'img'</span>)</span><br><span class="line">    form.addEventListener(<span class="string">'change'</span>, event =&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span>(event.target.type === <span class="string">'file'</span>) &#123;</span><br><span class="line">            <span class="keyword">let</span> file = event.target.files[<span class="number">0</span>]</span><br><span class="line">            <span class="keyword">if</span>(event.target.accept.indexOf(<span class="string">'video'</span>) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                videoEl.src = getObjectURL(file)</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(event.target.accept.indexOf(<span class="string">'image'</span>) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                imgEl.src = getObjectURL(file)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">let</span> getObjectURL = <span class="function"><span class="params">file</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> url = <span class="string">''</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">window</span>.createObjectURL != <span class="literal">undefined</span>) &#123; </span><br><span class="line">            <span class="comment">// basic</span></span><br><span class="line">            url = <span class="built_in">window</span>.createObjectURL(file);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">window</span>.URL != <span class="literal">undefined</span>) &#123; </span><br><span class="line">            <span class="comment">// mozilla(firefox)</span></span><br><span class="line">            url = <span class="built_in">window</span>.URL.createObjectURL(file);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">window</span>.webkitURL != <span class="literal">undefined</span>) &#123; </span><br><span class="line">            <span class="comment">// webkit or chrome</span></span><br><span class="line">            url = <span class="built_in">window</span>.webkitURL.createObjectURL(file);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> url</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>重启服务</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">service ss5 restart</span><br></pre></td></tr></table></figure>
 
-]]></content>
-      <tags>
-        <tag>js</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mysql数据库备份</title>
-    <url>/2019/06/25/mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%87%E4%BB%BD/</url>
-    <content><![CDATA[<h2 id="备份数据库"><a href="#备份数据库" class="headerlink" title="备份数据库"></a>备份数据库</h2><p><code>mysqldump -hhostname -uusername -ppassword databasename &gt; backupfile.sql</code></p>
-]]></content>
-      <tags>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>提交next主题到站点仓库</title>
-    <url>/2019/06/22/%E6%8F%90%E4%BA%A4next%E4%B8%BB%E9%A2%98%E5%88%B0%E7%AB%99%E7%82%B9%E4%BB%93%E5%BA%93/</url>
-    <content><![CDATA[<p>由于安装 next 主题时，使用的时 <code>git clone https://github.com/theme-next/hexo-theme-next themes/next</code>,直接克隆的 next 主题仓库，当我们要提交站点到仓库时，会发现提交的 themes/next/ 是空目录，没有内容，通过 <code>git status</code> 命令查看仓库状态，有条信息是 <code>modified: themes/next (modified content)</code>，并表明该修改在子模块内，要提交的话也要在子模块仓库里提交</p>
-<p>我们可以删除目录 <code>themes/next</code> 的版本控制，使得该目录属于站点仓库的版本控制之内，之后便可以正常提交了</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git rm -rf --cached themes/next/</span><br><span class="line">git add themes/next/*</span><br><span class="line">git commit</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>hexo</tag>
-        <tag>next</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>window实体机ubuntu系统安装</title>
-    <url>/2020/05/12/window%E5%AE%9E%E4%BD%93%E6%9C%BAubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<h2 id="情形"><a href="#情形" class="headerlink" title="情形"></a>情形</h2><ul>
-<li><p>window电脑安装ubuntu系统，非多系统</p>
-</li>
-<li><p>ubuntu-18.04</p>
-</li>
-<li><p>u盘安装</p>
-</li>
-</ul>
-<h2 id="1-正常安装"><a href="#1-正常安装" class="headerlink" title="1.正常安装"></a>1.正常安装</h2><h3 id="下载系统镜像"><a href="#下载系统镜像" class="headerlink" title="下载系统镜像"></a>下载系统镜像</h3><p>下载iso系统镜像，国内在官网下载慢的话，可以到<a href="https://developer.aliyun.com/mirror/" target="_blank" rel="noopener">阿里云镜像站</a>下载</p>
-<p>这里下载的是<code>ubuntu-18.04.4-desktop-amd64.iso</code></p>
-<h3 id="制作启动盘"><a href="#制作启动盘" class="headerlink" title="制作启动盘"></a>制作启动盘</h3><p>这里使用 软碟通 </p>
-<p>打开软碟通 - 启动- 写入硬盘映像</p>
-<p><code>便捷启动</code>选择 <code>写入新的驱动器引导扇区</code>中的<code>Syslinux</code></p>
-<p>配置好后便可以写入到U盘</p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>配置好启动项，从U盘启动即可，正常情况下即可进入系统安装界面，完</p>
-<h2 id="3-ThinkPad-E485安装Ubuntu"><a href="#3-ThinkPad-E485安装Ubuntu" class="headerlink" title="3.ThinkPad E485安装Ubuntu"></a>3.ThinkPad E485安装Ubuntu</h2><p>一般的电脑进入U盘启动后便可正常安装，但这个本子却是不能的，据说是国内这个本子的BIOS存在问题导致（逃</p>
-<p>当然这个问题网上也是有解决办法的，比如这个帖子<a href="https://tieba.baidu.com/p/6009950485" target="_blank" rel="noopener">E485 ( RYZEN )安装linux教程</a></p>
-<p>编辑安装选项，linux行末添加 <code>ivrs=ioapic[32]=00:14.0 spec_store_bypass_disable=prctl iommu=soft</code>,保存后启动后便可以正常进入安装界面</p>
-<p>安装完成重启后会发现还是进不去系统，这里还是跟前面一样需要编辑 添加<code>ivrs=ioapic[32]=00:14.0 spec_store_bypass_disable=prctl iommu=soft</code></p>
-<p>启动后编辑<code>/etc/default/grub</code></p>
-<p>在<code>GRUB_CMDLINE_LINUX_DEFAULT</code>行末添加<code>ivrs=ioapic[32]=00:14.0 spec_store_bypass_disable=prctl iommu=soft</code>即可， 完</p>
+<p>socks5默认服务端口为<code>1080</code>, 查看系统端口列表</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">firewall-cmd --zone=public --list-ports</span><br></pre></td></tr></table></figure>
+
+<p>如果还没有开启, 则开启1080端口</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">firewall-cmd --add-port=1080/tcp --permanent</span><br><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+
+<p>至此，服务已可以连接，任何用户均可连接</p>
+<h2 id="5-配置用户"><a href="#5-配置用户" class="headerlink" title="5.配置用户"></a>5.配置用户</h2><p>编辑</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vi /etc/opt/ss5/ss5.conf</span><br></pre></td></tr></table></figure>
+
+<p>找到 <code>auth</code> 和 <code>permit</code>, 修改如下</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span> ///////////////////////////////////////////////////////////////////////////////////</span><br><span class="line"><span class="meta">#</span>       SHost           SPort           Authentication</span><br><span class="line"><span class="meta">#</span></span><br><span class="line">auth    0.0.0.0/0               -               u</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span> /////////////////////////////////////////////////////////////////////////////////////////////////</span><br><span class="line"><span class="meta">#</span>      Auth     SHost           SPort   DHost           DPort   Fixup   Group   Band    ExpDate</span><br><span class="line"><span class="meta">#</span></span><br><span class="line">permit u        0.0.0.0/0       -       0.0.0.0/0       -       -       -       -       -</span><br></pre></td></tr></table></figure>
+
+<p>编辑</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim /etc/opt/ss5/ss5.passwd</span><br></pre></td></tr></table></figure>
+
+<p>添加一行用户，账户与密码空格隔开</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">username password</span><br></pre></td></tr></table></figure>
+
+<p>重启服务</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">service ss5 restart</span><br></pre></td></tr></table></figure>
+
+<p>此时在连接代理服务则需要账户密码才可连接成功</p>
 <p>参考文章</p>
 <ul>
-<li><a href="https://tieba.baidu.com/p/6009950485" target="_blank" rel="noopener">E485 ( RYZEN )安装linux教程</a></li>
+<li><a href="https://blog.csdn.net/zjiang1994/article/details/74925039" target="_blank" rel="noopener">CentOS7 配置SOCKS5代理服务</a></li>
 </ul>
 ]]></content>
       <tags>
-        <tag>ubuntu</tag>
+        <tag>cenos7</tag>
+        <tag>socks5</tag>
       </tags>
   </entry>
   <entry>
-    <title>ubuntu安装常用软件</title>
-    <url>/2020/05/16/ubuntu%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/</url>
-    <content><![CDATA[<h2 id="安装vscode"><a href="#安装vscode" class="headerlink" title="安装vscode"></a>安装vscode</h2><h3 id="1-下载"><a href="#1-下载" class="headerlink" title="1.下载"></a>1.下载</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget -P Downloads/ https://vscode.cdn.azure.cn/stable/5763d909d5f12fe19f215cbfdd29a91c0fa9208a/code_1.45.1-1589445302_amd64.deb</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-安装"><a href="#2-安装" class="headerlink" title="2.安装"></a>2.安装</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd Downloads/</span><br><span class="line">sudo dpkg -i code_1.45.1-1589445302_amd64.deb</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-查看版本"><a href="#3-查看版本" class="headerlink" title="3.查看版本"></a>3.查看版本</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">code --version</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h2><p>安装nodejs不要使用<code>apt</code>,<code>apt</code>安装的版本较老，不是最新的</p>
-<p>目前nodejs官网长期稳定版本为 12.X</p>
-<p>这里采用官方提供的方式进行安装</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -</span><br><span class="line">sudo apt-get install -y nodejs</span><br></pre></td></tr></table></figure>
-
-<p>安装完成后查看nodejs版本</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">node --version</span><br></pre></td></tr></table></figure>
-
-<p>回显</p>
-<p><code>v12.16.3</code></p>
-<p>其他版本的安装可查看官方提供的二进制安装说明 <a href="https://github.com/nodesource/distributions/blob/master/README.md#nodesource-nodejs-binary-distributions" target="_blank" rel="noopener">NodeSource Node.js Binary Distributions</a></p>
-<h2 id="安装deno"><a href="#安装deno" class="headerlink" title="安装deno"></a>安装deno</h2><h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h3><p>deno官网的<a href="https://deno.land/#installation" target="_blank" rel="noopener">这里</a>提供了linux下的安装方式</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo curl -fsSL https://deno.land/x/install/install.sh | sh</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-环境变量"><a href="#2-环境变量" class="headerlink" title="2.环境变量"></a>2.环境变量</h3><p>从安装完成的回显信息可以知道deno并没有自动配置环境变量，而是提示手动进行配置</p>
-<p>编辑<code>~.profile</code>文件<br>并添加</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">export DENO_INSTALL="/home/yan/.deno"</span><br><span class="line">export PATH="$DENO_INSTALL/bin:$PATH"</span><br></pre></td></tr></table></figure>
-
-<p>也就是deno提示手动配置的内容</p>
-<p>保存后重启</p>
-<p>重启后查看deno版本</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">deno --version</span><br></pre></td></tr></table></figure>
-
-<p>echo</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">deno 1.0.0</span><br><span class="line">v8 8.4.300</span><br><span class="line">typescript 3.9.2</span><br></pre></td></tr></table></figure>
-
-<p>en… deno 1.0.0 一个新的起点</p>
-<h2 id="安装chrome"><a href="#安装chrome" class="headerlink" title="安装chrome"></a>安装chrome</h2><h3 id="1-download"><a href="#1-download" class="headerlink" title="1.download"></a>1.download</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget -P ~/Downloads/ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-install"><a href="#2-install" class="headerlink" title="2.install"></a>2.install</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd Downloads/</span><br><span class="line">sudo dpkg -i google-chrome-stable_current_amd64.deb</span><br></pre></td></tr></table></figure>
-
+    <title>css transition</title>
+    <url>/2019/05/14/css-transition/</url>
+    <content><![CDATA[<h1 id="css-transition"><a href="#css-transition" class="headerlink" title="css transition"></a>css transition</h1><h2 id="ease与ease-in-out的区别"><a href="#ease与ease-in-out的区别" class="headerlink" title="ease与ease-in-out的区别"></a>ease与ease-in-out的区别</h2><p>两者的整体效果都是缓入缓出，只是细节上存在差异</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>贝塞尔曲线</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ease</td>
+<td>cubic-bezier(0.25, 0.1, 0.25,1)</td>
+</tr>
+<tr>
+<td>ease-in-out</td>
+<td>cubic-bezier(0.42, 0, 0.58, 1)</td>
+</tr>
+</tbody></table>
+<p>比较两者的贝塞尔曲线，ease缓入效果较其缓出效果不明显；ease-in-out缓入缓出效果都比价明显</p>
+<h2 id="step-start-和step-end"><a href="#step-start-和step-end" class="headerlink" title="step-start 和step-end"></a>step-start 和step-end</h2><p>step-start 等同于 steps(1, start), 过渡效果分一步完成，在步的起始开始，即直接过渡到效果</p>
+<p>step-end 等同于 steps(1, end)， 过渡效果分一步完成，在步的结束开始，即transition-duration之后完成过渡效果</p>
+<h2 id="steps"><a href="#steps" class="headerlink" title="steps()"></a>steps()</h2><p>语法：steps(&lt; integer &gt;[, [ start | end ] ]?)</p>
+<p>过渡步数为整数，第二个参数默认值为 end</p>
+<p>start：表示过渡从第一步时间的开始开始(会直接看到过渡效果)</p>
+<p>end：表示过渡从第一步时间的结束开始(不会直接看到过渡效果)</p>
+<p><strong>注意：</strong> transition-delay 将包含于步进函数的第一步，即第一步的持续时间为均分时间加上延迟时间</p>
 ]]></content>
-      <tags>
-        <tag>ubuntu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>文本省略号</title>
-    <url>/2019/06/22/%E6%96%87%E6%9C%AC%E7%9C%81%E7%95%A5%E5%8F%B7/</url>
-    <content><![CDATA[<h2 id="单行文本溢出省略"><a href="#单行文本溢出省略" class="headerlink" title="单行文本溢出省略"></a>单行文本溢出省略</h2><p>HTML</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>我是一行很长很长的文字，我是一行很长很长的文字<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>CSS</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">p</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">150px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> dashed;</span><br><span class="line">  <span class="attribute">white-space</span>: nowrap;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>view</p>
-<img src="/2019/06/22/文本省略号/%7B8F04F25F-E1A5-4D87-8EC2-7B7B3EF47BE2%7D.png.jpg">
-
-<h2 id="多行文本溢出"><a href="#多行文本溢出" class="headerlink" title="多行文本溢出"></a>多行文本溢出</h2><h3 id="1-使用css实现"><a href="#1-使用css实现" class="headerlink" title="1.使用css实现"></a>1.使用css实现</h3><p>现行CSS中暂无统一实现该样式的属性</p>
-<p>但针对于webkit内核的浏览器，可以采用下面的方式实现该样式</p>
-<p>HTML</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>我是一段很长很长的多行文本，我是一段很长很长的多行文本，我是一段很长很长的多行文本，我是一段很长很长的多行文本，我是一段很长很长的多行文本<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>CSS</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">p</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> dashed;</span><br><span class="line">  <span class="attribute">display</span>: -webkit-box;</span><br><span class="line">  <span class="attribute">-webkit-line-clamp</span>: <span class="number">3</span>;</span><br><span class="line">  <span class="attribute">-webkit-box-orient</span>: vertical;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>view</p>
-<img src="/2019/06/22/文本省略号/%7B2DD89E03-B757-44CD-81A4-68193E5F86B3%7D.png.jpg">
-
-<h3 id="2-使用js实现"><a href="#2-使用js实现" class="headerlink" title="2.使用js实现"></a>2.使用js实现</h3><p>使用 <a href="https://github.com/josephschmitt/Clamp.js" target="_blank" rel="noopener">Clamp.js</a></p>
-<p>HTML</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>我是一段很长很长的多行文本，我是一段很长很长的多行文本，我是一段很长很长的多行文本，我是一段很长很长的多行文本，我是一段很长很长的多行文本<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>CSS</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">p</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> dashed;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>JS</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> el = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'p'</span>)[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">$clamp(el, &#123;<span class="attr">clamp</span>: <span class="number">2</span>&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>view</p>
-<img src="/2019/06/22/文本省略号/%7B5C6AD337-3220-4A24-ACE2-087581A8974F%7D.png.jpg">
-
-
-<p>参考内容:</p>
-<ul>
-<li><p><a href="https://css-tricks.com/almanac/properties/l/line-clamp/" target="_blank" rel="noopener">line-clamp</a></p>
-</li>
-<li><p><a href="https://joe.sh/clamp-js" target="_blank" rel="noopener">Introducing Clamp.js</a></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>css</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>树莓派3B开箱</title>
-    <url>/2018/01/14/%E6%A0%91%E8%8E%93%E6%B4%BE3B%E5%BC%80%E7%AE%B1/</url>
-    <content><![CDATA[<h2 id="开箱清单"><a href="#开箱清单" class="headerlink" title="开箱清单"></a>开箱清单</h2><ul>
-<li>树莓派3代B型</li>
-<li>2.5A带开关5V电源</li>
-<li>闪迪32G内存卡</li>
-<li>散热片一套</li>
-<li>铝合金外壳一个</li>
-</ul>
-<h2 id="开箱组装"><a href="#开箱组装" class="headerlink" title="开箱组装"></a>开箱组装</h2><h3 id="树莓派3代，B型，E14中国版"><a href="#树莓派3代，B型，E14中国版" class="headerlink" title="树莓派3代，B型，E14中国版"></a>树莓派3代，B型，E14中国版</h3><img src="/2018/01/14/树莓派3B开箱/IMG_20180110_143901.jpg">
-
-<p>3B的外包装盒依然延续上一代简洁大方的特点，并突出板载WiFi和蓝牙功能</p>
-<h3 id="5V-2-5A电源"><a href="#5V-2-5A电源" class="headerlink" title="5V 2.5A电源"></a>5V 2.5A电源</h3><p>以前玩树莓派都是直接用手机电源，有些电源输出电流过小，会造成树莓派不稳定，树莓派3B推荐使用2.5A的电源（这个电源带开关，用起来还是挺方便的，不用频繁拔插电源，也延长了电源口的使用寿命，话说这次买的电源质量挺好的，做工很实）</p>
-<img src="/2018/01/14/树莓派3B开箱/IMG_20180110_143751.jpg">
-
-<h3 id="闪迪32G-class10-内存卡"><a href="#闪迪32G-class10-内存卡" class="headerlink" title="闪迪32G class10 内存卡"></a>闪迪32G class10 内存卡</h3><p>树莓派内存卡一般用8 ~ 64G（那我为什么要用32G呢，当然是为了节约成本，这个性价比最高，太大了也没有多大的用途）</p>
-<img src="/2018/01/14/树莓派3B开箱/IMG_20180110_143936.jpg">
-
-<h3 id="两铜一铝散热片"><a href="#两铜一铝散热片" class="headerlink" title="两铜一铝散热片"></a>两铜一铝散热片</h3><p>树莓派背面内存颗粒散热片还带有树莓派的logo，很不错</p>
-<img src="/2018/01/14/树莓派3B开箱/IMG_20180110_143924.jpg">
-
-<h3 id="铝合金外壳"><a href="#铝合金外壳" class="headerlink" title="铝合金外壳"></a>铝合金外壳</h3><img src="/2018/01/14/树莓派3B开箱/IMG_20180110_144613.jpg">
-
-<p>树莓派3已经发售很久了，可为什么现在才买呢，嗯嗯，原因就是它，金属质感的外表，无可挑剔的做工，简直完美</p>
-<h3 id="防静电包装"><a href="#防静电包装" class="headerlink" title="防静电包装"></a>防静电包装</h3><img src="/2018/01/14/树莓派3B开箱/IMG_20180110_144444.jpg">
-
-<img src="/2018/01/14/树莓派3B开箱/IMG_20180110_144522.jpg">
-
-<img src="/2018/01/14/树莓派3B开箱/IMG_20180110_144539.jpg">
-
-<h3 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h3><img src="/2018/01/14/树莓派3B开箱/IMG_20180110_145536.jpg">
-
-<h3 id="南桥和CPU"><a href="#南桥和CPU" class="headerlink" title="南桥和CPU"></a>南桥和CPU</h3><img src="/2018/01/14/树莓派3B开箱/IMG_20180110_145709.jpg">
-
-<p>外壳的做工很好,板子只有一颗固定螺丝</p>
-<img src="/2018/01/14/树莓派3B开箱/IMG_20180110_150530.jpg">
-
-<p>安装完成</p>
-<img src="/2018/01/14/树莓派3B开箱/IMG_20180110_150808.jpg">
-]]></content>
-      <tags>
-        <tag>树莓派</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>树莓派3B之系统安装</title>
-    <url>/2018/01/14/%E6%A0%91%E8%8E%93%E6%B4%BE3B%E4%B9%8B%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<h2 id="格式化SD卡"><a href="#格式化SD卡" class="headerlink" title="格式化SD卡"></a>格式化SD卡</h2><p>下载SD卡格式化工具 <a href="https://www.sdcard.org/downloads/formatter_4/" target="_blank" rel="noopener">SD Card Formatter</a></p>
-<p>软件界面如下，以默认设置进行格式化即可</p>
-<img src="/2018/01/14/树莓派3B之系统安装/TIM截图20180115231316.png">
-
-<h2 id="下载系统"><a href="#下载系统" class="headerlink" title="下载系统"></a>下载系统</h2><p>下载树莓派系统镜像 <a href="https://www.raspberrypi.org/downloads/" target="_blank" rel="noopener">https://www.raspberrypi.org/downloads/</a></p>
-<h2 id="写入系统镜像"><a href="#写入系统镜像" class="headerlink" title="写入系统镜像"></a>写入系统镜像</h2><p>下载 <a href="http://sourceforge.net/projects/win32diskimager/" target="_blank" rel="noopener">Win32 DiskImager</a>,该工具可以把系统镜像写入SD卡</p>
-<img src="/2018/01/14/树莓派3B之系统安装/TIM截图20180110175647.png">
-
-<p>写入系统后，SD卡被分区</p>
-<img src="/2018/01/14/树莓派3B之系统安装/TIM截图20180115232335.png">
-
-<h2 id="启动系统"><a href="#启动系统" class="headerlink" title="启动系统"></a>启动系统</h2><p>把SD卡插入树莓派，插上电源系统即可启动</p>
-]]></content>
-      <tags>
-        <tag>树莓派</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>树莓派 UPS-18650</title>
-    <url>/2019/11/09/%E6%A0%91%E8%8E%93%E6%B4%BE-UPS-18650/</url>
-    <content><![CDATA[<h2 id="配置时钟"><a href="#配置时钟" class="headerlink" title="配置时钟"></a>配置时钟</h2><p>启用i2c</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo raspi-config</span><br></pre></td></tr></table></figure>
-
-<p>在interfacing options 中选择启用i2c</p>
-<p>运行</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo i2cdetect -l</span><br></pre></td></tr></table></figure>
-
-<p>查看所有的i2c总线</p>
-<p>这里回显</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i2c-1   i2c             bcm2835 I2C adapter                     I2C adapter</span><br></pre></td></tr></table></figure>
-
-<p>查看i2c上连接的设备</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo i2cdetect -y 1</span><br></pre></td></tr></table></figure>
-
-<p>回显</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f</span><br><span class="line">00:          -- -- -- -- -- -- -- -- -- -- -- -- --</span><br><span class="line">10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --</span><br><span class="line">20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --</span><br><span class="line">30: -- -- -- -- -- -- 36 -- -- -- -- -- -- -- -- --</span><br><span class="line">40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --</span><br><span class="line">50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --</span><br><span class="line">60: -- -- -- -- -- -- -- -- 68 -- -- -- -- -- -- --</span><br><span class="line">70: -- -- -- -- -- -- -- --</span><br></pre></td></tr></table></figure>
-
-<p>这里的0x36为MAX17040G的地址; 0x68为DS1307Z+的地址</p>
-<p>加载 i2c 模块</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo modprobe i2c-dev</span><br></pre></td></tr></table></figure>
-
-<p>切换到超级管理 <code>su</code></p>
-<p>在i2cx 新增一个设备, 名字为ds1307, 设备地址为 0x68</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> ds1307 0x68 &gt; /sys/class/i2c-adapter/i2c-1/new_device</span><br></pre></td></tr></table></figure>
-
-<p>查看我们的刚刚添加的硬件时钟的当前时间</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">hwclock -r</span><br></pre></td></tr></table></figure>
-
-<p>回显</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">2000-01-01 08:01:24.321813+0800</span><br></pre></td></tr></table></figure>
-
-<p>很显然这是刚添加的时钟, 还未同步正确的时间</p>
-<p>将系统时间写入到硬件时钟</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">hwclock -w</span><br></pre></td></tr></table></figure>
-
-<p>这时我们再次读取硬件时钟的话</p>
-<p>回显</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">2019-11-09 17:26:30.864206+0800</span><br></pre></td></tr></table></figure>
-
-<p>已经同步到系统时钟</p>
-<h2 id="同步硬件时钟到系统时钟"><a href="#同步硬件时钟到系统时钟" class="headerlink" title="同步硬件时钟到系统时钟"></a>同步硬件时钟到系统时钟</h2><p>当我们的树莓派断电后, 再次启动后, 如果没有网络的话, 她是不能正确同步系统时间的, 但我们的 UPS 上有一颗时钟芯片, 并且一直有纽扣电池供电, 并不会丢失我们上面设置好的日期时间, 所以我们需要在树莓派启动时将硬件时钟的时间写入到树莓派的系统时间.</p>
-<p>打开树莓派的启动文件rc.local</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">nano /etc/rc.local</span><br></pre></td></tr></table></figure>
-
-<p>在exit 0 前添加</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">modprobe i2c-dev</span><br><span class="line"><span class="built_in">echo</span> ds1307 0x68 &gt; /sys/class/i2c-adapter/i2c-1/new_device</span><br><span class="line">hwclock -r</span><br><span class="line">hwclock -s</span><br></pre></td></tr></table></figure>
-
-<p>重启在无网络的情况下可以测试系统时钟是否被正确同步</p>
-<h2 id="读取电量"><a href="#读取电量" class="headerlink" title="读取电量"></a>读取电量</h2><p>这里我们先简单跑一下板方提供的脚本</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"><span class="keyword">import</span> smbus</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readVoltage</span><span class="params">(bus)</span>:</span></span><br><span class="line"></span><br><span class="line">        <span class="string">"This function returns as float the voltage from the Raspi UPS Hat via the provided SMBus object"</span></span><br><span class="line">        address = <span class="number">0x36</span></span><br><span class="line">        read = bus.read_word_data(address, <span class="number">2</span>)</span><br><span class="line">        swapped = struct.unpack(<span class="string">"&lt;H"</span>, struct.pack(<span class="string">"&gt;H"</span>, read))[<span class="number">0</span>]</span><br><span class="line">        voltage = swapped * <span class="number">1.25</span> /<span class="number">1000</span>/<span class="number">16</span></span><br><span class="line">        <span class="keyword">return</span> voltage</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readCapacity</span><span class="params">(bus)</span>:</span></span><br><span class="line">        <span class="string">"This function returns as a float the remaining capacity of the battery connected to the Raspi UPS Hat via the provided SMBus object"</span></span><br><span class="line">        address = <span class="number">0x36</span></span><br><span class="line">        read = bus.read_word_data(address, <span class="number">4</span>)</span><br><span class="line">        swapped = struct.unpack(<span class="string">"&lt;H"</span>, struct.pack(<span class="string">"&gt;H"</span>, read))[<span class="number">0</span>]</span><br><span class="line">        capacity = swapped/<span class="number">256</span></span><br><span class="line">        <span class="keyword">return</span> capacity</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">bus = smbus.SMBus(<span class="number">1</span>)  <span class="comment"># 0 = /dev/i2c-0 (port I2C0), 1 = /dev/i2c-1 (port I2C1)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line"></span><br><span class="line"> <span class="keyword">print</span> <span class="string">"++++++++++++++++++++"</span></span><br><span class="line"> <span class="keyword">print</span> <span class="string">"Voltage:%5.2fV"</span> % readVoltage(bus)</span><br><span class="line"></span><br><span class="line"> <span class="keyword">print</span> <span class="string">"Battery:%5i%%"</span> % readCapacity(bus)</span><br><span class="line"></span><br><span class="line"> <span class="keyword">if</span> readCapacity(bus) == <span class="number">100</span>:</span><br><span class="line"></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"Battery FULL"</span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">if</span> readCapacity(bus) &lt; <span class="number">20</span>:</span><br><span class="line"></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"Battery LOW"</span></span><br><span class="line"> <span class="keyword">print</span> <span class="string">"++++++++++++++++++++"</span></span><br><span class="line"> time.sleep(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-
-<p>回显</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">++++++++++++++++++++</span><br><span class="line">Voltage: 3.64V</span><br><span class="line">Battery:    8%</span><br><span class="line">Battery LOW</span><br><span class="line">++++++++++++++++++++</span><br></pre></td></tr></table></figure>
-
-<p>参考文章</p>
-<ul>
-<li><a href="https://www.cnblogs.com/likai-abc/p/9255039.html" target="_blank" rel="noopener">树莓派UPS-18650，添加时钟</a></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>树莓派</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>树莓派如何截屏</title>
-    <url>/2018/03/08/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%A6%82%E4%BD%95%E6%88%AA%E5%B1%8F/</url>
-    <content><![CDATA[<h2 id="安装scrot"><a href="#安装scrot" class="headerlink" title="安装scrot"></a>安装scrot</h2><p>在终端里输入命令:</p>
-<p><code>scrot -v</code></p>
-<p>查看是否安装了scrot, 已经安装了scrot的会显示其版本信息</p>
-<img src="/2018/03/08/树莓派如何截屏/QQ截图20180308155232.jpg">
-
-<p>没有安装的话，输入以下命令进行安装：</p>
-<p><code>sudo apt-get install scrot</code></p>
-<h2 id="查看scrot帮助"><a href="#查看scrot帮助" class="headerlink" title="查看scrot帮助"></a>查看scrot帮助</h2><p>安装完成后，输入命令</p>
-<p><code>scrot -h</code></p>
-<p>可以查看scrot的使用帮助</p>
-<img src="/2018/03/08/树莓派如何截屏/QQ截图20180308160435.jpg">
-
-
-<p>4.scrot的常用命令</p>
-<p>截取整个窗口:</p>
-<p><code>sudo scrot</code></p>
-<p>效果与键盘上的截屏键Print Scr Sysrq相同</p>
-<p>默认保存在当前目录下</p>
-<p>默认文件名 2018-03-08-161715_1824x984_scrot.png</p>
-<p>自命名截图：</p>
-<p><code>sudo scrot 123.png</code></p>
-<p>截取的图片会以文件名123.png保存到当前目录</p>
-<p>其他命令：</p>
-<p>Usage : scrot [OPTIONS]… [FILE]<br>-h, –help 查看帮助<br>-v, –version 获取版本信息<br>-d, –delay NUM 延时NUM秒后截屏<br>-s, –select 鼠标选择一个区域后截屏<br>-u, –focused 截取当前活动窗口(可以配合 -d 延时后改变活动窗口) </p>
-<p><strong>注意</strong>：scrot只能在窗口存在时才能使用，当putty以ssh连接树莓派时，输入命令sudo scrot会报错 <code>giblib error: Can&#39;t open X display. It *is* running, yeah?</code></p>
-]]></content>
-      <tags>
-        <tag>树莓派</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>树莓派pi和root账户密码</title>
-    <url>/2018/03/11/%E6%A0%91%E8%8E%93%E6%B4%BEpi%E5%92%8Croot%E8%B4%A6%E6%88%B7%E5%AF%86%E7%A0%81/</url>
-    <content><![CDATA[<h2 id="pi账户"><a href="#pi账户" class="headerlink" title="pi账户"></a>pi账户</h2><p>pi是树莓派的默认账户，默认密码为 raspberry</p>
-<p>修改默认密码</p>
-<p><code>sudo raspi-config</code></p>
-<img src="/2018/03/11/树莓派pi和root账户密码/2018-03-11-221228_655x390_scrot.png">
-
-<p>选择的一项 Change User Password，输入两次新密码即可完成密码修改</p>
-<img src="/2018/03/11/树莓派pi和root账户密码/2018-03-11-221635_655x390_scrot.png">
-
-<h2 id="root账户"><a href="#root账户" class="headerlink" title="root账户"></a>root账户</h2><p>树莓派的root账户在默认情况下是禁用的，且密码为空，所以root账户在未启用时，无论输入什么密码均是错误密码</p>
-<p>设置root密码</p>
-<p><code>sudo passwd root</code></p>
-<p>输入两次新设置的密码后提示密码更新成功</p>
-<img src="/2018/03/11/树莓派pi和root账户密码/2018-03-11-222638_655x390_scrot.png">
-
-
-<h2 id="pi和root账户切换"><a href="#pi和root账户切换" class="headerlink" title="pi和root账户切换"></a>pi和root账户切换</h2><p>输入</p>
-<p><code>su root</code></p>
-<p>和密码后便可登录root账户</p>
-<p>输入</p>
-<p><code>su pi</code></p>
-<p>后便可切换到pi账户</p>
-<h2 id="如何锁定root账户"><a href="#如何锁定root账户" class="headerlink" title="如何锁定root账户"></a>如何锁定root账户</h2><p>输入</p>
-<p><code>sudo passwd --lock root</code></p>
-<p>锁定root账户后，我们再尝试用root账户登录，会提示Authentication failure(验证失败)</p>
-<p>当我们输入</p>
-<p><code>sudo passwd --unlock root</code></p>
-<p>后，便可解锁root账户</p>
-<p>再次登录root账户成功</p>
-]]></content>
-      <tags>
-        <tag>树莓派</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>树莓派相关</title>
-    <url>/2020/05/24/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h2 id="关于vim"><a href="#关于vim" class="headerlink" title="关于vim"></a>关于vim</h2><p>树莓派自带的vim直接使用会有一些问题，可以尝试进行安装</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
-
-<h2 id="更换软件源"><a href="#更换软件源" class="headerlink" title="更换软件源"></a>更换软件源</h2><p> 编辑</p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
-
-<p>更改为</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#deb http://raspbian.raspberrypi.org/raspbian/ buster main contrib non-free rpi</span><br><span class="line"># Uncomment line below then &apos;apt-get update&apos; to enable &apos;apt-get source&apos;</span><br><span class="line">#deb-src http://raspbian.raspberrypi.org/raspbian/ buster main contrib non-free rpi</span><br><span class="line"></span><br><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br><span class="line"># Uncomment line below then &apos;apt-get update&apos; to enable &apos;apt-get source&apos;</span><br><span class="line">#deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br></pre></td></tr></table></figure>
-
-<p> 编辑</p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/apt/sources.list.d/raspi.list</span><br></pre></td></tr></table></figure>
-
-<p>更改为</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#deb http://archive.raspberrypi.org/debian/ buster main</span><br><span class="line"># Uncomment line below then &apos;apt-get update&apos; to enable &apos;apt-get source&apos;</span><br><span class="line">#deb-src http://archive.raspberrypi.org/debian/ buster main</span><br><span class="line"></span><br><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/raspberrypi/ buster main</span><br><span class="line"># Uncomment line below then &apos;apt-get update&apos; to enable &apos;apt-get source&apos;</span><br><span class="line">#deb-src http://mirrors.tuna.tsinghua.edu.cn/raspberrypi/ buster main</span><br></pre></td></tr></table></figure>
-
-<p>即注释了原有源，修改源为国内的Tsinghua镜像</p>
-<p>可用镜像可以查看<a href="https://www.raspbian.org/RaspbianMirrors" target="_blank" rel="noopener">https://www.raspbian.org/RaspbianMirrors</a></p>
-<p>更新软件源列表 <code>sudo apt-get update</code></p>
-<p>更新软件<code>sudo apt-get upgrade</code></p>
-<p>参考：</p>
-<ul>
-<li><a href="https://mirrors.tuna.tsinghua.edu.cn/help/raspbian/" target="_blank" rel="noopener">Raspbian 镜像使用帮助</a></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>树莓派</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>树莓派安装mongodb</title>
-    <url>/2019/07/17/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85mongodb/</url>
-    <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install mongodb</span><br></pre></td></tr></table></figure>
-
-<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><p>用以上命令安装完成后，执行 <code>mongo</code> 命令，并没有连接成功</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MongoDB shell version: 2.4.14</span><br><span class="line">connecting to: test</span><br><span class="line">Wed Jul 17 22:40:55.765 Error: couldn&apos;t connect to server 127.0.0.1:27017 at src/mongo/shell/mongo.js:145</span><br><span class="line">exception: connect failed</span><br></pre></td></tr></table></figure>
-
-<p>查看安装打印的信息中，有这么一条 <code>无法创建主目录&quot;/var/lib/mongodb&quot;</code>, 说明 mongodb 缺少权限</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo service mongodb stop</span><br><span class="line">sudo chown -R mongodb:mongodb /var/lib/mongodb</span><br><span class="line">sudo service mongodb start</span><br></pre></td></tr></table></figure>
-
-<p>修改目录权限后再次执行 <code>mongo</code> 命令，显示连接成功</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">MongoDB shell version: 2.4.14</span><br><span class="line">connecting to: test</span><br><span class="line">Welcome to the MongoDB shell.</span><br><span class="line">For interactive help, type "help".</span><br><span class="line">For more comprehensive documentation, see</span><br><span class="line">        http://docs.mongodb.org/</span><br><span class="line">Questions? Try the support group</span><br><span class="line">        http://groups.google.com/group/mongodb-user</span><br><span class="line">Server has startup warnings:</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten]</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten] ** NOTE: This is a 32 bit MongoDB binary.</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten] **       32 bit builds are limited to less than 2GB of data (or less with --journal).</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten] **       See http://dochub.mongodb.org/core/32bit</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten]</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"></span></span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>MongoDB</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>树莓派搭建LAMP服务</title>
-    <url>/2018/03/11/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%90%AD%E5%BB%BALAMP%E6%9C%8D%E5%8A%A1/</url>
-    <content><![CDATA[<h2 id="LAMP的含义"><a href="#LAMP的含义" class="headerlink" title="LAMP的含义"></a>LAMP的含义</h2><p>Linux - 操作系统</p>
-<p>Apache - web服务器软件</p>
-<p>MySQL - 数据库</p>
-<p>PHP - 使用语言</p>
-<h2 id="安装LAMP"><a href="#安装LAMP" class="headerlink" title="安装LAMP"></a>安装LAMP</h2><p>更新软件列表</p>
-<p><code>sudo apt-get update</code></p>
-<p>升级软件</p>
-<p><code>sudo apt-get upgrade</code></p>
-<p>安装Apache</p>
-<p><code>sudo apt-get install apache2</code></p>
-<p>输入 y 回车 继续即可</p>
-<p>安装MySQL</p>
-<p><code>sudo apt-get install mysql-server</code></p>
-<p>输入 y 回车 继续即可</p>
-<p>(<strong>注</strong>：在安装数据库MySQL过程中并没有提示设置root密码，此时密码为空，可能与我之前为启用树莓派的root账户有关)</p>
-<p>安装PHP </p>
-<p><code>sudo apt-get install php</code></p>
-<p>输入 y 回车 继续即可</p>
-<p>安装PHP访问MySQL所需要的库</p>
-<p><code>sudo apt-get install php-mysql</code></p>
-<p>输入 y 回车 继续即可</p>
-<h2 id="查看web站点"><a href="#查看web站点" class="headerlink" title="查看web站点"></a>查看web站点</h2><p>在浏览器内输入树莓派局域网IP，可以看到Apache的默认页面</p>
-<img src="/2018/03/11/树莓派搭建LAMP服务/2018-03-11-192347_830x386_scrot.png">]]></content>
-      <tags>
-        <tag>树莓派</tag>
-      </tags>
   </entry>
   <entry>
     <title>git基本用法</title>
@@ -876,6 +346,534 @@
       </tags>
   </entry>
   <entry>
+    <title>js上传视频图片预览</title>
+    <url>/2019/07/02/js%E4%B8%8A%E4%BC%A0%E8%A7%86%E9%A2%91%E5%9B%BE%E7%89%87%E9%A2%84%E8%A7%88/</url>
+    <content><![CDATA[<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p><a href="demo/list/文件上传预览">文件上传预览</a></p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>HTML</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">legend</span>&gt;</span>上传视频文件<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">accept</span>=<span class="string">"video/*"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>视频预览<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">video</span> <span class="attr">id</span>=<span class="string">"video"</span> <span class="attr">src</span>=<span class="string">""</span> <span class="attr">controls</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">legend</span>&gt;</span>上传图片文件<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">accept</span>=<span class="string">"image/*"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>图片预览<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">"img"</span> <span class="attr">src</span>=<span class="string">""</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>CSS</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">video</span>,</span><br><span class="line"><span class="selector-tag">img</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>JS</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> form = <span class="built_in">document</span>.querySelector(<span class="string">'form'</span>)</span><br><span class="line">    <span class="keyword">let</span> videoEl = <span class="built_in">document</span>.getElementById(<span class="string">'video'</span>)</span><br><span class="line">    <span class="keyword">let</span> imgEl = <span class="built_in">document</span>.getElementById(<span class="string">'img'</span>)</span><br><span class="line">    form.addEventListener(<span class="string">'change'</span>, event =&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span>(event.target.type === <span class="string">'file'</span>) &#123;</span><br><span class="line">            <span class="keyword">let</span> file = event.target.files[<span class="number">0</span>]</span><br><span class="line">            <span class="keyword">if</span>(event.target.accept.indexOf(<span class="string">'video'</span>) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                videoEl.src = getObjectURL(file)</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(event.target.accept.indexOf(<span class="string">'image'</span>) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                imgEl.src = getObjectURL(file)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">let</span> getObjectURL = <span class="function"><span class="params">file</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> url = <span class="string">''</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">window</span>.createObjectURL != <span class="literal">undefined</span>) &#123; </span><br><span class="line">            <span class="comment">// basic</span></span><br><span class="line">            url = <span class="built_in">window</span>.createObjectURL(file);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">window</span>.URL != <span class="literal">undefined</span>) &#123; </span><br><span class="line">            <span class="comment">// mozilla(firefox)</span></span><br><span class="line">            url = <span class="built_in">window</span>.URL.createObjectURL(file);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">window</span>.webkitURL != <span class="literal">undefined</span>) &#123; </span><br><span class="line">            <span class="comment">// webkit or chrome</span></span><br><span class="line">            url = <span class="built_in">window</span>.webkitURL.createObjectURL(file);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> url</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>json为什么不允许注释</title>
+    <url>/2018/10/30/json%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E5%85%81%E8%AE%B8%E6%B3%A8%E9%87%8A/</url>
+    <content><![CDATA[<h3 id="来看看json之父怎么说"><a href="#来看看json之父怎么说" class="headerlink" title="来看看json之父怎么说"></a>来看看json之父怎么说</h3><img src="/2018/10/30/json为什么不允许注释/14157748-7a92f06db8b373f8.webp">
+
+<blockquote>
+<p>Comments in JSON<br>I removed comments from JSON because I saw people were using them to holdparsing directives, a practice which would have destroyed interoperability. I knowthat the lackl of comments makes some people sad, but it shouldn’t.<br>Suppose you are using JSON to keep configuration files, which you would like toannotate. Go ahead and insert all the comments you like. Then pipe it throughJSMin before handing it to your JSON parser.</p>
+</blockquote>
+<p>谷歌翻译一下：</p>
+<blockquote>
+<p>JSON中的注释<br>我从JSON中删除了注释，因为我看到有人使用它们来保存指令，这种做法会破坏互操作性。 我知道缺乏注释会让一些人感到悲伤，但事实并非如此。<br>假设您使用JSON来保留您想要注释的配置文件。 继续，插入您喜欢的所有注释。 然后将它传递给JSMin，然后将其传递给JSON解析器。</p>
+</blockquote>
+]]></content>
+  </entry>
+  <entry>
+    <title>koa2文件上传</title>
+    <url>/2019/06/26/koa2%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</url>
+    <content><![CDATA[<h2 id="创建项目目录"><a href="#创建项目目录" class="headerlink" title="创建项目目录"></a>创建项目目录</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir uploadFile</span><br><span class="line"><span class="built_in">cd</span> uploadFile</span><br></pre></td></tr></table></figure>
+
+<h2 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init</span><br><span class="line">npm init</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install koa koa-router koa-body koa-static</span><br></pre></td></tr></table></figure>
+
+<h2 id="项目主程序-app-js"><a href="#项目主程序-app-js" class="headerlink" title="项目主程序 app.js"></a>项目主程序 app.js</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"><span class="keyword">const</span> koaBody = <span class="built_in">require</span>(<span class="string">'koa-body'</span>);</span><br><span class="line"><span class="keyword">const</span> Router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>);</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">static</span> = <span class="built_in">require</span>(<span class="string">'koa-static'</span>);</span><br><span class="line"><span class="keyword">const</span> cors = <span class="built_in">require</span>(<span class="string">'koa2-cors'</span>)</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> hostname = <span class="string">'127.0.0.1'</span></span><br><span class="line"><span class="keyword">const</span> port = <span class="number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa()</span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> Router()</span><br><span class="line"></span><br><span class="line">app.use(cors())</span><br><span class="line">app.use(<span class="keyword">static</span>(<span class="string">'.'</span>));</span><br><span class="line"></span><br><span class="line">router</span><br><span class="line">    .get(<span class="string">'/'</span>, (ctx, next) =&gt; &#123;</span><br><span class="line">        ctx.body = <span class="string">'hello world!'</span></span><br><span class="line">    &#125;)</span><br><span class="line">    .post(<span class="string">'/api/upload'</span>, koaBody(&#123;</span><br><span class="line">        multipart: <span class="literal">true</span>,</span><br><span class="line">        formidable: &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;), (ctx, next) =&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> file = ctx.request.files.file</span><br><span class="line">        <span class="keyword">let</span> fileType = file.name.split(<span class="string">'.'</span>).pop()</span><br><span class="line">        <span class="keyword">let</span> fileName = <span class="string">`<span class="subst">$&#123;<span class="built_in">Date</span>.now()&#125;</span>.<span class="subst">$&#123;fileType&#125;</span>`</span></span><br><span class="line">        <span class="keyword">let</span> fileReader = fs.createReadStream(file.path)</span><br><span class="line">        <span class="keyword">let</span> writeStream = fs.createWriteStream(path.join(__dirname, <span class="string">'upload'</span>, <span class="string">`<span class="subst">$&#123;fileName&#125;</span>`</span>))</span><br><span class="line"></span><br><span class="line">        fileReader.pipe(writeStream)</span><br><span class="line">        ctx.body = &#123;</span><br><span class="line">            code: <span class="number">0</span>,</span><br><span class="line">            message: <span class="string">'上传成功'</span>,</span><br><span class="line">            url: <span class="string">`http://<span class="subst">$&#123;hostname&#125;</span>:<span class="subst">$&#123;port&#125;</span>/upload/<span class="subst">$&#123;fileName&#125;</span>`</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">app</span><br><span class="line">    .use(router.routes())</span><br><span class="line">    .use(router.allowedMethods())</span><br><span class="line"></span><br><span class="line">app.listen(port, hostname, () =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`Server running at http://<span class="subst">$&#123;hostname&#125;</span>:<span class="subst">$&#123;port&#125;</span>/`</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>Koa2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mysql 修改登录密码</title>
+    <url>/2019/01/17/mysql-%E4%BF%AE%E6%94%B9%E7%99%BB%E5%BD%95%E5%AF%86%E7%A0%81/</url>
+    <content><![CDATA[<p>先登录mysql</p>
+<p><code>mysql -u root -p</code></p>
+<img src="/2019/01/17/mysql-修改登录密码/14157748-9e35c9a6a31a677b.png">
+
+<p>使用 SET PASSWORD命令设置密码</p>
+<p><code>set password for 用户名@localhost = password(&#39;新密码&#39;);</code></p>
+<p>例如设置root账户密码为root</p>
+<p><code>set password for root@localhost = password(&#39;root&#39;);</code></p>
+<img src="/2019/01/17/mysql-修改登录密码/14157748-8d93906580f4aada.png">
+
+<p>退出登录后用新密码登录测试是否设置成功</p>
+]]></content>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mysql数据库备份</title>
+    <url>/2019/06/25/mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%87%E4%BB%BD/</url>
+    <content><![CDATA[<h2 id="备份数据库"><a href="#备份数据库" class="headerlink" title="备份数据库"></a>备份数据库</h2><p><code>mysqldump -hhostname -uusername -ppassword databasename &gt; backupfile.sql</code></p>
+]]></content>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ubuntu安装常用软件</title>
+    <url>/2020/05/16/ubuntu%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/</url>
+    <content><![CDATA[<h2 id="安装vscode"><a href="#安装vscode" class="headerlink" title="安装vscode"></a>安装vscode</h2><h3 id="1-下载"><a href="#1-下载" class="headerlink" title="1.下载"></a>1.下载</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget -P Downloads/ https://vscode.cdn.azure.cn/stable/5763d909d5f12fe19f215cbfdd29a91c0fa9208a/code_1.45.1-1589445302_amd64.deb</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-安装"><a href="#2-安装" class="headerlink" title="2.安装"></a>2.安装</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd Downloads/</span><br><span class="line">sudo dpkg -i code_1.45.1-1589445302_amd64.deb</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-查看版本"><a href="#3-查看版本" class="headerlink" title="3.查看版本"></a>3.查看版本</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">code --version</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h2><p>安装nodejs不要使用<code>apt</code>,<code>apt</code>安装的版本较老，不是最新的</p>
+<p>目前nodejs官网长期稳定版本为 12.X</p>
+<p>这里采用官方提供的方式进行安装</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -</span><br><span class="line">sudo apt-get install -y nodejs</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后查看nodejs版本</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">node --version</span><br></pre></td></tr></table></figure>
+
+<p>回显</p>
+<p><code>v12.16.3</code></p>
+<p>其他版本的安装可查看官方提供的二进制安装说明 <a href="https://github.com/nodesource/distributions/blob/master/README.md#nodesource-nodejs-binary-distributions" target="_blank" rel="noopener">NodeSource Node.js Binary Distributions</a></p>
+<h2 id="安装deno"><a href="#安装deno" class="headerlink" title="安装deno"></a>安装deno</h2><h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h3><p>deno官网的<a href="https://deno.land/#installation" target="_blank" rel="noopener">这里</a>提供了linux下的安装方式</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo curl -fsSL https://deno.land/x/install/install.sh | sh</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-环境变量"><a href="#2-环境变量" class="headerlink" title="2.环境变量"></a>2.环境变量</h3><p>从安装完成的回显信息可以知道deno并没有自动配置环境变量，而是提示手动进行配置</p>
+<p>编辑<code>~.profile</code>文件<br>并添加</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">export DENO_INSTALL="/home/yan/.deno"</span><br><span class="line">export PATH="$DENO_INSTALL/bin:$PATH"</span><br></pre></td></tr></table></figure>
+
+<p>也就是deno提示手动配置的内容</p>
+<p>保存后重启</p>
+<p>重启后查看deno版本</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">deno --version</span><br></pre></td></tr></table></figure>
+
+<p>echo</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">deno 1.0.0</span><br><span class="line">v8 8.4.300</span><br><span class="line">typescript 3.9.2</span><br></pre></td></tr></table></figure>
+
+<p>en… deno 1.0.0 一个新的起点</p>
+<h2 id="安装chrome"><a href="#安装chrome" class="headerlink" title="安装chrome"></a>安装chrome</h2><h3 id="1-download"><a href="#1-download" class="headerlink" title="1.download"></a>1.download</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget -P ~/Downloads/ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-install"><a href="#2-install" class="headerlink" title="2.install"></a>2.install</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd Downloads/</span><br><span class="line">sudo dpkg -i google-chrome-stable_current_amd64.deb</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>window实体机ubuntu系统安装</title>
+    <url>/2020/05/12/window%E5%AE%9E%E4%BD%93%E6%9C%BAubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h2 id="情形"><a href="#情形" class="headerlink" title="情形"></a>情形</h2><ul>
+<li><p>window电脑安装ubuntu系统，非多系统</p>
+</li>
+<li><p>ubuntu-18.04</p>
+</li>
+<li><p>u盘安装</p>
+</li>
+</ul>
+<h2 id="1-正常安装"><a href="#1-正常安装" class="headerlink" title="1.正常安装"></a>1.正常安装</h2><h3 id="下载系统镜像"><a href="#下载系统镜像" class="headerlink" title="下载系统镜像"></a>下载系统镜像</h3><p>下载iso系统镜像，国内在官网下载慢的话，可以到<a href="https://developer.aliyun.com/mirror/" target="_blank" rel="noopener">阿里云镜像站</a>下载</p>
+<p>这里下载的是<code>ubuntu-18.04.4-desktop-amd64.iso</code></p>
+<h3 id="制作启动盘"><a href="#制作启动盘" class="headerlink" title="制作启动盘"></a>制作启动盘</h3><p>这里使用 软碟通 </p>
+<p>打开软碟通 - 启动- 写入硬盘映像</p>
+<p><code>便捷启动</code>选择 <code>写入新的驱动器引导扇区</code>中的<code>Syslinux</code></p>
+<p>配置好后便可以写入到U盘</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>配置好启动项，从U盘启动即可，正常情况下即可进入系统安装界面，完</p>
+<h2 id="3-ThinkPad-E485安装Ubuntu"><a href="#3-ThinkPad-E485安装Ubuntu" class="headerlink" title="3.ThinkPad E485安装Ubuntu"></a>3.ThinkPad E485安装Ubuntu</h2><p>一般的电脑进入U盘启动后便可正常安装，但这个本子却是不能的，据说是国内这个本子的BIOS存在问题导致（逃</p>
+<p>当然这个问题网上也是有解决办法的，比如这个帖子<a href="https://tieba.baidu.com/p/6009950485" target="_blank" rel="noopener">E485 ( RYZEN )安装linux教程</a></p>
+<p>编辑安装选项，linux行末添加 <code>ivrs=ioapic[32]=00:14.0 spec_store_bypass_disable=prctl iommu=soft</code>,保存后启动后便可以正常进入安装界面</p>
+<p>安装完成重启后会发现还是进不去系统，这里还是跟前面一样需要编辑 添加<code>ivrs=ioapic[32]=00:14.0 spec_store_bypass_disable=prctl iommu=soft</code></p>
+<p>启动后编辑<code>/etc/default/grub</code></p>
+<p>在<code>GRUB_CMDLINE_LINUX_DEFAULT</code>行末添加<code>ivrs=ioapic[32]=00:14.0 spec_store_bypass_disable=prctl iommu=soft</code>即可， 完</p>
+<p>参考文章</p>
+<ul>
+<li><a href="https://tieba.baidu.com/p/6009950485" target="_blank" rel="noopener">E485 ( RYZEN )安装linux教程</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>提交next主题到站点仓库</title>
+    <url>/2019/06/22/%E6%8F%90%E4%BA%A4next%E4%B8%BB%E9%A2%98%E5%88%B0%E7%AB%99%E7%82%B9%E4%BB%93%E5%BA%93/</url>
+    <content><![CDATA[<p>由于安装 next 主题时，使用的时 <code>git clone https://github.com/theme-next/hexo-theme-next themes/next</code>,直接克隆的 next 主题仓库，当我们要提交站点到仓库时，会发现提交的 themes/next/ 是空目录，没有内容，通过 <code>git status</code> 命令查看仓库状态，有条信息是 <code>modified: themes/next (modified content)</code>，并表明该修改在子模块内，要提交的话也要在子模块仓库里提交</p>
+<p>我们可以删除目录 <code>themes/next</code> 的版本控制，使得该目录属于站点仓库的版本控制之内，之后便可以正常提交了</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git rm -rf --cached themes/next/</span><br><span class="line">git add themes/next/*</span><br><span class="line">git commit</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>hexo</tag>
+        <tag>next</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>文本省略号</title>
+    <url>/2019/06/22/%E6%96%87%E6%9C%AC%E7%9C%81%E7%95%A5%E5%8F%B7/</url>
+    <content><![CDATA[<h2 id="单行文本溢出省略"><a href="#单行文本溢出省略" class="headerlink" title="单行文本溢出省略"></a>单行文本溢出省略</h2><p>HTML</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>我是一行很长很长的文字，我是一行很长很长的文字<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>CSS</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">p</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">150px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> dashed;</span><br><span class="line">  <span class="attribute">white-space</span>: nowrap;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>view</p>
+<img src="/2019/06/22/文本省略号/%7B8F04F25F-E1A5-4D87-8EC2-7B7B3EF47BE2%7D.png.jpg">
+
+<h2 id="多行文本溢出"><a href="#多行文本溢出" class="headerlink" title="多行文本溢出"></a>多行文本溢出</h2><h3 id="1-使用css实现"><a href="#1-使用css实现" class="headerlink" title="1.使用css实现"></a>1.使用css实现</h3><p>现行CSS中暂无统一实现该样式的属性</p>
+<p>但针对于webkit内核的浏览器，可以采用下面的方式实现该样式</p>
+<p>HTML</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>我是一段很长很长的多行文本，我是一段很长很长的多行文本，我是一段很长很长的多行文本，我是一段很长很长的多行文本，我是一段很长很长的多行文本<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>CSS</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">p</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> dashed;</span><br><span class="line">  <span class="attribute">display</span>: -webkit-box;</span><br><span class="line">  <span class="attribute">-webkit-line-clamp</span>: <span class="number">3</span>;</span><br><span class="line">  <span class="attribute">-webkit-box-orient</span>: vertical;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>view</p>
+<img src="/2019/06/22/文本省略号/%7B2DD89E03-B757-44CD-81A4-68193E5F86B3%7D.png.jpg">
+
+<h3 id="2-使用js实现"><a href="#2-使用js实现" class="headerlink" title="2.使用js实现"></a>2.使用js实现</h3><p>使用 <a href="https://github.com/josephschmitt/Clamp.js" target="_blank" rel="noopener">Clamp.js</a></p>
+<p>HTML</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>我是一段很长很长的多行文本，我是一段很长很长的多行文本，我是一段很长很长的多行文本，我是一段很长很长的多行文本，我是一段很长很长的多行文本<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>CSS</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">p</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> dashed;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>JS</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> el = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'p'</span>)[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">$clamp(el, &#123;<span class="attr">clamp</span>: <span class="number">2</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>view</p>
+<img src="/2019/06/22/文本省略号/%7B5C6AD337-3220-4A24-ACE2-087581A8974F%7D.png.jpg">
+
+
+<p>参考内容:</p>
+<ul>
+<li><p><a href="https://css-tricks.com/almanac/properties/l/line-clamp/" target="_blank" rel="noopener">line-clamp</a></p>
+</li>
+<li><p><a href="https://joe.sh/clamp-js" target="_blank" rel="noopener">Introducing Clamp.js</a></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派 UPS-18650</title>
+    <url>/2019/11/09/%E6%A0%91%E8%8E%93%E6%B4%BE-UPS-18650/</url>
+    <content><![CDATA[<h2 id="配置时钟"><a href="#配置时钟" class="headerlink" title="配置时钟"></a>配置时钟</h2><p>启用i2c</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo raspi-config</span><br></pre></td></tr></table></figure>
+
+<p>在interfacing options 中选择启用i2c</p>
+<p>运行</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo i2cdetect -l</span><br></pre></td></tr></table></figure>
+
+<p>查看所有的i2c总线</p>
+<p>这里回显</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i2c-1   i2c             bcm2835 I2C adapter                     I2C adapter</span><br></pre></td></tr></table></figure>
+
+<p>查看i2c上连接的设备</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo i2cdetect -y 1</span><br></pre></td></tr></table></figure>
+
+<p>回显</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f</span><br><span class="line">00:          -- -- -- -- -- -- -- -- -- -- -- -- --</span><br><span class="line">10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --</span><br><span class="line">20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --</span><br><span class="line">30: -- -- -- -- -- -- 36 -- -- -- -- -- -- -- -- --</span><br><span class="line">40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --</span><br><span class="line">50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --</span><br><span class="line">60: -- -- -- -- -- -- -- -- 68 -- -- -- -- -- -- --</span><br><span class="line">70: -- -- -- -- -- -- -- --</span><br></pre></td></tr></table></figure>
+
+<p>这里的0x36为MAX17040G的地址; 0x68为DS1307Z+的地址</p>
+<p>加载 i2c 模块</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo modprobe i2c-dev</span><br></pre></td></tr></table></figure>
+
+<p>切换到超级管理 <code>su</code></p>
+<p>在i2cx 新增一个设备, 名字为ds1307, 设备地址为 0x68</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> ds1307 0x68 &gt; /sys/class/i2c-adapter/i2c-1/new_device</span><br></pre></td></tr></table></figure>
+
+<p>查看我们的刚刚添加的硬件时钟的当前时间</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">hwclock -r</span><br></pre></td></tr></table></figure>
+
+<p>回显</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">2000-01-01 08:01:24.321813+0800</span><br></pre></td></tr></table></figure>
+
+<p>很显然这是刚添加的时钟, 还未同步正确的时间</p>
+<p>将系统时间写入到硬件时钟</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">hwclock -w</span><br></pre></td></tr></table></figure>
+
+<p>这时我们再次读取硬件时钟的话</p>
+<p>回显</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">2019-11-09 17:26:30.864206+0800</span><br></pre></td></tr></table></figure>
+
+<p>已经同步到系统时钟</p>
+<h2 id="同步硬件时钟到系统时钟"><a href="#同步硬件时钟到系统时钟" class="headerlink" title="同步硬件时钟到系统时钟"></a>同步硬件时钟到系统时钟</h2><p>当我们的树莓派断电后, 再次启动后, 如果没有网络的话, 她是不能正确同步系统时间的, 但我们的 UPS 上有一颗时钟芯片, 并且一直有纽扣电池供电, 并不会丢失我们上面设置好的日期时间, 所以我们需要在树莓派启动时将硬件时钟的时间写入到树莓派的系统时间.</p>
+<p>打开树莓派的启动文件rc.local</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">nano /etc/rc.local</span><br></pre></td></tr></table></figure>
+
+<p>在exit 0 前添加</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">modprobe i2c-dev</span><br><span class="line"><span class="built_in">echo</span> ds1307 0x68 &gt; /sys/class/i2c-adapter/i2c-1/new_device</span><br><span class="line">hwclock -r</span><br><span class="line">hwclock -s</span><br></pre></td></tr></table></figure>
+
+<p>重启在无网络的情况下可以测试系统时钟是否被正确同步</p>
+<h2 id="读取电量"><a href="#读取电量" class="headerlink" title="读取电量"></a>读取电量</h2><p>这里我们先简单跑一下板方提供的脚本</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"><span class="keyword">import</span> smbus</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readVoltage</span><span class="params">(bus)</span>:</span></span><br><span class="line"></span><br><span class="line">        <span class="string">"This function returns as float the voltage from the Raspi UPS Hat via the provided SMBus object"</span></span><br><span class="line">        address = <span class="number">0x36</span></span><br><span class="line">        read = bus.read_word_data(address, <span class="number">2</span>)</span><br><span class="line">        swapped = struct.unpack(<span class="string">"&lt;H"</span>, struct.pack(<span class="string">"&gt;H"</span>, read))[<span class="number">0</span>]</span><br><span class="line">        voltage = swapped * <span class="number">1.25</span> /<span class="number">1000</span>/<span class="number">16</span></span><br><span class="line">        <span class="keyword">return</span> voltage</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readCapacity</span><span class="params">(bus)</span>:</span></span><br><span class="line">        <span class="string">"This function returns as a float the remaining capacity of the battery connected to the Raspi UPS Hat via the provided SMBus object"</span></span><br><span class="line">        address = <span class="number">0x36</span></span><br><span class="line">        read = bus.read_word_data(address, <span class="number">4</span>)</span><br><span class="line">        swapped = struct.unpack(<span class="string">"&lt;H"</span>, struct.pack(<span class="string">"&gt;H"</span>, read))[<span class="number">0</span>]</span><br><span class="line">        capacity = swapped/<span class="number">256</span></span><br><span class="line">        <span class="keyword">return</span> capacity</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">bus = smbus.SMBus(<span class="number">1</span>)  <span class="comment"># 0 = /dev/i2c-0 (port I2C0), 1 = /dev/i2c-1 (port I2C1)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line"></span><br><span class="line"> <span class="keyword">print</span> <span class="string">"++++++++++++++++++++"</span></span><br><span class="line"> <span class="keyword">print</span> <span class="string">"Voltage:%5.2fV"</span> % readVoltage(bus)</span><br><span class="line"></span><br><span class="line"> <span class="keyword">print</span> <span class="string">"Battery:%5i%%"</span> % readCapacity(bus)</span><br><span class="line"></span><br><span class="line"> <span class="keyword">if</span> readCapacity(bus) == <span class="number">100</span>:</span><br><span class="line"></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"Battery FULL"</span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">if</span> readCapacity(bus) &lt; <span class="number">20</span>:</span><br><span class="line"></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"Battery LOW"</span></span><br><span class="line"> <span class="keyword">print</span> <span class="string">"++++++++++++++++++++"</span></span><br><span class="line"> time.sleep(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<p>回显</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">++++++++++++++++++++</span><br><span class="line">Voltage: 3.64V</span><br><span class="line">Battery:    8%</span><br><span class="line">Battery LOW</span><br><span class="line">++++++++++++++++++++</span><br></pre></td></tr></table></figure>
+
+<p>参考文章</p>
+<ul>
+<li><a href="https://www.cnblogs.com/likai-abc/p/9255039.html" target="_blank" rel="noopener">树莓派UPS-18650，添加时钟</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>树莓派</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派3B之系统安装</title>
+    <url>/2018/01/14/%E6%A0%91%E8%8E%93%E6%B4%BE3B%E4%B9%8B%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h2 id="格式化SD卡"><a href="#格式化SD卡" class="headerlink" title="格式化SD卡"></a>格式化SD卡</h2><p>下载SD卡格式化工具 <a href="https://www.sdcard.org/downloads/formatter_4/" target="_blank" rel="noopener">SD Card Formatter</a></p>
+<p>软件界面如下，以默认设置进行格式化即可</p>
+<img src="/2018/01/14/树莓派3B之系统安装/TIM截图20180115231316.png">
+
+<h2 id="下载系统"><a href="#下载系统" class="headerlink" title="下载系统"></a>下载系统</h2><p>下载树莓派系统镜像 <a href="https://www.raspberrypi.org/downloads/" target="_blank" rel="noopener">https://www.raspberrypi.org/downloads/</a></p>
+<h2 id="写入系统镜像"><a href="#写入系统镜像" class="headerlink" title="写入系统镜像"></a>写入系统镜像</h2><p>下载 <a href="http://sourceforge.net/projects/win32diskimager/" target="_blank" rel="noopener">Win32 DiskImager</a>,该工具可以把系统镜像写入SD卡</p>
+<img src="/2018/01/14/树莓派3B之系统安装/TIM截图20180110175647.png">
+
+<p>写入系统后，SD卡被分区</p>
+<img src="/2018/01/14/树莓派3B之系统安装/TIM截图20180115232335.png">
+
+<h2 id="启动系统"><a href="#启动系统" class="headerlink" title="启动系统"></a>启动系统</h2><p>把SD卡插入树莓派，插上电源系统即可启动</p>
+]]></content>
+      <tags>
+        <tag>树莓派</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派3B开箱</title>
+    <url>/2018/01/14/%E6%A0%91%E8%8E%93%E6%B4%BE3B%E5%BC%80%E7%AE%B1/</url>
+    <content><![CDATA[<h2 id="开箱清单"><a href="#开箱清单" class="headerlink" title="开箱清单"></a>开箱清单</h2><ul>
+<li>树莓派3代B型</li>
+<li>2.5A带开关5V电源</li>
+<li>闪迪32G内存卡</li>
+<li>散热片一套</li>
+<li>铝合金外壳一个</li>
+</ul>
+<h2 id="开箱组装"><a href="#开箱组装" class="headerlink" title="开箱组装"></a>开箱组装</h2><h3 id="树莓派3代，B型，E14中国版"><a href="#树莓派3代，B型，E14中国版" class="headerlink" title="树莓派3代，B型，E14中国版"></a>树莓派3代，B型，E14中国版</h3><img src="/2018/01/14/树莓派3B开箱/IMG_20180110_143901.jpg">
+
+<p>3B的外包装盒依然延续上一代简洁大方的特点，并突出板载WiFi和蓝牙功能</p>
+<h3 id="5V-2-5A电源"><a href="#5V-2-5A电源" class="headerlink" title="5V 2.5A电源"></a>5V 2.5A电源</h3><p>以前玩树莓派都是直接用手机电源，有些电源输出电流过小，会造成树莓派不稳定，树莓派3B推荐使用2.5A的电源（这个电源带开关，用起来还是挺方便的，不用频繁拔插电源，也延长了电源口的使用寿命，话说这次买的电源质量挺好的，做工很实）</p>
+<img src="/2018/01/14/树莓派3B开箱/IMG_20180110_143751.jpg">
+
+<h3 id="闪迪32G-class10-内存卡"><a href="#闪迪32G-class10-内存卡" class="headerlink" title="闪迪32G class10 内存卡"></a>闪迪32G class10 内存卡</h3><p>树莓派内存卡一般用8 ~ 64G（那我为什么要用32G呢，当然是为了节约成本，这个性价比最高，太大了也没有多大的用途）</p>
+<img src="/2018/01/14/树莓派3B开箱/IMG_20180110_143936.jpg">
+
+<h3 id="两铜一铝散热片"><a href="#两铜一铝散热片" class="headerlink" title="两铜一铝散热片"></a>两铜一铝散热片</h3><p>树莓派背面内存颗粒散热片还带有树莓派的logo，很不错</p>
+<img src="/2018/01/14/树莓派3B开箱/IMG_20180110_143924.jpg">
+
+<h3 id="铝合金外壳"><a href="#铝合金外壳" class="headerlink" title="铝合金外壳"></a>铝合金外壳</h3><img src="/2018/01/14/树莓派3B开箱/IMG_20180110_144613.jpg">
+
+<p>树莓派3已经发售很久了，可为什么现在才买呢，嗯嗯，原因就是它，金属质感的外表，无可挑剔的做工，简直完美</p>
+<h3 id="防静电包装"><a href="#防静电包装" class="headerlink" title="防静电包装"></a>防静电包装</h3><img src="/2018/01/14/树莓派3B开箱/IMG_20180110_144444.jpg">
+
+<img src="/2018/01/14/树莓派3B开箱/IMG_20180110_144522.jpg">
+
+<img src="/2018/01/14/树莓派3B开箱/IMG_20180110_144539.jpg">
+
+<h3 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h3><img src="/2018/01/14/树莓派3B开箱/IMG_20180110_145536.jpg">
+
+<h3 id="南桥和CPU"><a href="#南桥和CPU" class="headerlink" title="南桥和CPU"></a>南桥和CPU</h3><img src="/2018/01/14/树莓派3B开箱/IMG_20180110_145709.jpg">
+
+<p>外壳的做工很好,板子只有一颗固定螺丝</p>
+<img src="/2018/01/14/树莓派3B开箱/IMG_20180110_150530.jpg">
+
+<p>安装完成</p>
+<img src="/2018/01/14/树莓派3B开箱/IMG_20180110_150808.jpg">
+]]></content>
+      <tags>
+        <tag>树莓派</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派pi和root账户密码</title>
+    <url>/2018/03/11/%E6%A0%91%E8%8E%93%E6%B4%BEpi%E5%92%8Croot%E8%B4%A6%E6%88%B7%E5%AF%86%E7%A0%81/</url>
+    <content><![CDATA[<h2 id="pi账户"><a href="#pi账户" class="headerlink" title="pi账户"></a>pi账户</h2><p>pi是树莓派的默认账户，默认密码为 raspberry</p>
+<p>修改默认密码</p>
+<p><code>sudo raspi-config</code></p>
+<img src="/2018/03/11/树莓派pi和root账户密码/2018-03-11-221228_655x390_scrot.png">
+
+<p>选择的一项 Change User Password，输入两次新密码即可完成密码修改</p>
+<img src="/2018/03/11/树莓派pi和root账户密码/2018-03-11-221635_655x390_scrot.png">
+
+<h2 id="root账户"><a href="#root账户" class="headerlink" title="root账户"></a>root账户</h2><p>树莓派的root账户在默认情况下是禁用的，且密码为空，所以root账户在未启用时，无论输入什么密码均是错误密码</p>
+<p>设置root密码</p>
+<p><code>sudo passwd root</code></p>
+<p>输入两次新设置的密码后提示密码更新成功</p>
+<img src="/2018/03/11/树莓派pi和root账户密码/2018-03-11-222638_655x390_scrot.png">
+
+
+<h2 id="pi和root账户切换"><a href="#pi和root账户切换" class="headerlink" title="pi和root账户切换"></a>pi和root账户切换</h2><p>输入</p>
+<p><code>su root</code></p>
+<p>和密码后便可登录root账户</p>
+<p>输入</p>
+<p><code>su pi</code></p>
+<p>后便可切换到pi账户</p>
+<h2 id="如何锁定root账户"><a href="#如何锁定root账户" class="headerlink" title="如何锁定root账户"></a>如何锁定root账户</h2><p>输入</p>
+<p><code>sudo passwd --lock root</code></p>
+<p>锁定root账户后，我们再尝试用root账户登录，会提示Authentication failure(验证失败)</p>
+<p>当我们输入</p>
+<p><code>sudo passwd --unlock root</code></p>
+<p>后，便可解锁root账户</p>
+<p>再次登录root账户成功</p>
+]]></content>
+      <tags>
+        <tag>树莓派</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派如何截屏</title>
+    <url>/2018/03/08/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%A6%82%E4%BD%95%E6%88%AA%E5%B1%8F/</url>
+    <content><![CDATA[<h2 id="安装scrot"><a href="#安装scrot" class="headerlink" title="安装scrot"></a>安装scrot</h2><p>在终端里输入命令:</p>
+<p><code>scrot -v</code></p>
+<p>查看是否安装了scrot, 已经安装了scrot的会显示其版本信息</p>
+<img src="/2018/03/08/树莓派如何截屏/QQ截图20180308155232.jpg">
+
+<p>没有安装的话，输入以下命令进行安装：</p>
+<p><code>sudo apt-get install scrot</code></p>
+<h2 id="查看scrot帮助"><a href="#查看scrot帮助" class="headerlink" title="查看scrot帮助"></a>查看scrot帮助</h2><p>安装完成后，输入命令</p>
+<p><code>scrot -h</code></p>
+<p>可以查看scrot的使用帮助</p>
+<img src="/2018/03/08/树莓派如何截屏/QQ截图20180308160435.jpg">
+
+
+<p>4.scrot的常用命令</p>
+<p>截取整个窗口:</p>
+<p><code>sudo scrot</code></p>
+<p>效果与键盘上的截屏键Print Scr Sysrq相同</p>
+<p>默认保存在当前目录下</p>
+<p>默认文件名 2018-03-08-161715_1824x984_scrot.png</p>
+<p>自命名截图：</p>
+<p><code>sudo scrot 123.png</code></p>
+<p>截取的图片会以文件名123.png保存到当前目录</p>
+<p>其他命令：</p>
+<p>Usage : scrot [OPTIONS]… [FILE]<br>-h, –help 查看帮助<br>-v, –version 获取版本信息<br>-d, –delay NUM 延时NUM秒后截屏<br>-s, –select 鼠标选择一个区域后截屏<br>-u, –focused 截取当前活动窗口(可以配合 -d 延时后改变活动窗口) </p>
+<p><strong>注意</strong>：scrot只能在窗口存在时才能使用，当putty以ssh连接树莓派时，输入命令sudo scrot会报错 <code>giblib error: Can&#39;t open X display. It *is* running, yeah?</code></p>
+]]></content>
+      <tags>
+        <tag>树莓派</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派安装mongodb</title>
+    <url>/2019/07/17/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85mongodb/</url>
+    <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install mongodb</span><br></pre></td></tr></table></figure>
+
+<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><p>用以上命令安装完成后，执行 <code>mongo</code> 命令，并没有连接成功</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MongoDB shell version: 2.4.14</span><br><span class="line">connecting to: test</span><br><span class="line">Wed Jul 17 22:40:55.765 Error: couldn&apos;t connect to server 127.0.0.1:27017 at src/mongo/shell/mongo.js:145</span><br><span class="line">exception: connect failed</span><br></pre></td></tr></table></figure>
+
+<p>查看安装打印的信息中，有这么一条 <code>无法创建主目录&quot;/var/lib/mongodb&quot;</code>, 说明 mongodb 缺少权限</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo service mongodb stop</span><br><span class="line">sudo chown -R mongodb:mongodb /var/lib/mongodb</span><br><span class="line">sudo service mongodb start</span><br></pre></td></tr></table></figure>
+
+<p>修改目录权限后再次执行 <code>mongo</code> 命令，显示连接成功</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">MongoDB shell version: 2.4.14</span><br><span class="line">connecting to: test</span><br><span class="line">Welcome to the MongoDB shell.</span><br><span class="line">For interactive help, type "help".</span><br><span class="line">For more comprehensive documentation, see</span><br><span class="line">        http://docs.mongodb.org/</span><br><span class="line">Questions? Try the support group</span><br><span class="line">        http://groups.google.com/group/mongodb-user</span><br><span class="line">Server has startup warnings:</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten]</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten] ** NOTE: This is a 32 bit MongoDB binary.</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten] **       32 bit builds are limited to less than 2GB of data (or less with --journal).</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten] **       See http://dochub.mongodb.org/core/32bit</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten]</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"></span></span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>MongoDB</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派开机自动启动chrome浏览器</title>
+    <url>/2020/05/11/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E5%90%AF%E5%8A%A8chrome%E6%B5%8F%E8%A7%88%E5%99%A8/</url>
+    <content><![CDATA[<h2 id="1-chrome-命令行启动"><a href="#1-chrome-命令行启动" class="headerlink" title="1.chrome 命令行启动"></a>1.chrome 命令行启动</h2><p>打开谷歌</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chromium-browser https://google.com</span><br></pre></td></tr></table></figure>
+
+<p>全屏打开谷歌</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chromium-browser --start-fullscreen https://google.com</span><br></pre></td></tr></table></figure>
+
+<p>自助服务模式（kiosk）打开谷歌</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chromium-browser --kiosk https://google.com</span><br></pre></td></tr></table></figure>
+
+<p>注：该模式类似于常见的自主终端机的显示模式， 画面全屏显示，但与普通全屏模式又有不同，如果只有触摸屏的话，用户是无法退出全屏的。</p>
+<h2 id="2-树莓派开机自动启动chrome并打开指定的地址"><a href="#2-树莓派开机自动启动chrome并打开指定的地址" class="headerlink" title="2.树莓派开机自动启动chrome并打开指定的地址"></a>2.树莓派开机自动启动chrome并打开指定的地址</h2><p>切换到桌面的自动启动应用配置目录</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd ~/.config/autostart</span><br></pre></td></tr></table></figure>
+
+<p>创建一个自启应用配置</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">touch start-chrome.desktop</span><br><span class="line">vi start-chrome.desktop</span><br></pre></td></tr></table></figure>
+
+<p>编辑内容如下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[Desktop Entry]</span><br><span class="line">Encoding=</span><br><span class="line">Name=</span><br><span class="line">Comment=</span><br><span class="line">Icon=</span><br><span class="line">Exec=chromium-browser --start-fullscreen https://google.com</span><br><span class="line">Terminal=</span><br><span class="line">Type=Application</span><br><span class="line">Categories=</span><br></pre></td></tr></table></figure>
+
+<p>保存重启树莓派，当桌面启动几秒后，便会自动打开chrome</p>
+<p>参考文章</p>
+<ul>
+<li><p><a href="https://blog.csdn.net/szu_Vegetable_Bird/article/details/80231660" target="_blank" rel="noopener">树莓派开机自启动chrome浏览器并进入某网址</a></p>
+</li>
+<li><p><a href="https://peter.sh/experiments/chromium-command-line-switches/" target="_blank" rel="noopener">List of Chromium Command Line Switches</a></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>树莓派</tag>
+        <tag>chrome</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派搭建LAMP服务</title>
+    <url>/2018/03/11/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%90%AD%E5%BB%BALAMP%E6%9C%8D%E5%8A%A1/</url>
+    <content><![CDATA[<h2 id="LAMP的含义"><a href="#LAMP的含义" class="headerlink" title="LAMP的含义"></a>LAMP的含义</h2><p>Linux - 操作系统</p>
+<p>Apache - web服务器软件</p>
+<p>MySQL - 数据库</p>
+<p>PHP - 使用语言</p>
+<h2 id="安装LAMP"><a href="#安装LAMP" class="headerlink" title="安装LAMP"></a>安装LAMP</h2><p>更新软件列表</p>
+<p><code>sudo apt-get update</code></p>
+<p>升级软件</p>
+<p><code>sudo apt-get upgrade</code></p>
+<p>安装Apache</p>
+<p><code>sudo apt-get install apache2</code></p>
+<p>输入 y 回车 继续即可</p>
+<p>安装MySQL</p>
+<p><code>sudo apt-get install mysql-server</code></p>
+<p>输入 y 回车 继续即可</p>
+<p>(<strong>注</strong>：在安装数据库MySQL过程中并没有提示设置root密码，此时密码为空，可能与我之前为启用树莓派的root账户有关)</p>
+<p>安装PHP </p>
+<p><code>sudo apt-get install php</code></p>
+<p>输入 y 回车 继续即可</p>
+<p>安装PHP访问MySQL所需要的库</p>
+<p><code>sudo apt-get install php-mysql</code></p>
+<p>输入 y 回车 继续即可</p>
+<h2 id="查看web站点"><a href="#查看web站点" class="headerlink" title="查看web站点"></a>查看web站点</h2><p>在浏览器内输入树莓派局域网IP，可以看到Apache的默认页面</p>
+<img src="/2018/03/11/树莓派搭建LAMP服务/2018-03-11-192347_830x386_scrot.png">]]></content>
+      <tags>
+        <tag>树莓派</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派相关</title>
+    <url>/2020/05/24/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h2 id="关于vim"><a href="#关于vim" class="headerlink" title="关于vim"></a>关于vim</h2><p>树莓派自带的vim直接使用会有一些问题，可以尝试进行安装</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
+
+<h2 id="更换软件源"><a href="#更换软件源" class="headerlink" title="更换软件源"></a>更换软件源</h2><p> 编辑</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
+
+<p>更改为</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#deb http://raspbian.raspberrypi.org/raspbian/ buster main contrib non-free rpi</span><br><span class="line"># Uncomment line below then &apos;apt-get update&apos; to enable &apos;apt-get source&apos;</span><br><span class="line">#deb-src http://raspbian.raspberrypi.org/raspbian/ buster main contrib non-free rpi</span><br><span class="line"></span><br><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br><span class="line"># Uncomment line below then &apos;apt-get update&apos; to enable &apos;apt-get source&apos;</span><br><span class="line">#deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br></pre></td></tr></table></figure>
+
+<p> 编辑</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/apt/sources.list.d/raspi.list</span><br></pre></td></tr></table></figure>
+
+<p>更改为</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#deb http://archive.raspberrypi.org/debian/ buster main</span><br><span class="line"># Uncomment line below then &apos;apt-get update&apos; to enable &apos;apt-get source&apos;</span><br><span class="line">#deb-src http://archive.raspberrypi.org/debian/ buster main</span><br><span class="line"></span><br><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/raspberrypi/ buster main</span><br><span class="line"># Uncomment line below then &apos;apt-get update&apos; to enable &apos;apt-get source&apos;</span><br><span class="line">#deb-src http://mirrors.tuna.tsinghua.edu.cn/raspberrypi/ buster main</span><br></pre></td></tr></table></figure>
+
+<p>即注释了原有源，修改源为国内的Tsinghua镜像</p>
+<p>可用镜像可以查看<a href="https://www.raspbian.org/RaspbianMirrors" target="_blank" rel="noopener">https://www.raspbian.org/RaspbianMirrors</a></p>
+<p>更新软件源列表 <code>sudo apt-get update</code></p>
+<p>更新软件<code>sudo apt-get upgrade</code></p>
+<p>参考：</p>
+<ul>
+<li><a href="https://mirrors.tuna.tsinghua.edu.cn/help/raspbian/" target="_blank" rel="noopener">Raspbian 镜像使用帮助</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>树莓派</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>树莓派禁止休眠、保持屏幕常亮</title>
     <url>/2020/03/21/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%A6%81%E6%AD%A2%E4%BC%91%E7%9C%A0%E3%80%81%E4%BF%9D%E6%8C%81%E5%B1%8F%E5%B9%95%E5%B8%B8%E4%BA%AE/</url>
     <content><![CDATA[<h2 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo vi /etc/lightdm/lightdm.conf</span><br></pre></td></tr></table></figure>
@@ -923,42 +921,6 @@
 ]]></content>
       <tags>
         <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>树莓派开机自动启动chrome浏览器</title>
-    <url>/2020/05/11/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E5%90%AF%E5%8A%A8chrome%E6%B5%8F%E8%A7%88%E5%99%A8/</url>
-    <content><![CDATA[<h2 id="1-chrome-命令行启动"><a href="#1-chrome-命令行启动" class="headerlink" title="1.chrome 命令行启动"></a>1.chrome 命令行启动</h2><p>打开谷歌</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chromium-browser https://google.com</span><br></pre></td></tr></table></figure>
-
-<p>全屏打开谷歌</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chromium-browser --start-fullscreen https://google.com</span><br></pre></td></tr></table></figure>
-
-<p>自助服务模式（kiosk）打开谷歌</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chromium-browser --kiosk https://google.com</span><br></pre></td></tr></table></figure>
-
-<p>注：该模式类似于常见的自主终端机的显示模式， 画面全屏显示，但与普通全屏模式又有不同，如果只有触摸屏的话，用户是无法退出全屏的。</p>
-<h2 id="2-树莓派开机自动启动chrome并打开指定的地址"><a href="#2-树莓派开机自动启动chrome并打开指定的地址" class="headerlink" title="2.树莓派开机自动启动chrome并打开指定的地址"></a>2.树莓派开机自动启动chrome并打开指定的地址</h2><p>切换到桌面的自动启动应用配置目录</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd ~/.config/autostart</span><br></pre></td></tr></table></figure>
-
-<p>创建一个自启应用配置</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">touch start-chrome.desktop</span><br><span class="line">vi start-chrome.desktop</span><br></pre></td></tr></table></figure>
-
-<p>编辑内容如下</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[Desktop Entry]</span><br><span class="line">Encoding=</span><br><span class="line">Name=</span><br><span class="line">Comment=</span><br><span class="line">Icon=</span><br><span class="line">Exec=chromium-browser --start-fullscreen https://google.com</span><br><span class="line">Terminal=</span><br><span class="line">Type=Application</span><br><span class="line">Categories=</span><br></pre></td></tr></table></figure>
-
-<p>保存重启树莓派，当桌面启动几秒后，便会自动打开chrome</p>
-<p>参考文章</p>
-<ul>
-<li><p><a href="https://blog.csdn.net/szu_Vegetable_Bird/article/details/80231660" target="_blank" rel="noopener">树莓派开机自启动chrome浏览器并进入某网址</a></p>
-</li>
-<li><p><a href="https://peter.sh/experiments/chromium-command-line-switches/" target="_blank" rel="noopener">List of Chromium Command Line Switches</a></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>树莓派</tag>
-        <tag>chrome</tag>
       </tags>
   </entry>
   <entry>
@@ -1016,5 +978,43 @@
 </tr>
 </tbody></table>
 ]]></content>
+  </entry>
+  <entry>
+    <title>hexo创建自定义页面</title>
+    <url>/2019/05/25/hexo%E5%88%9B%E5%BB%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E9%A1%B5%E9%9D%A2/</url>
+    <content><![CDATA[<h2 id="为什么要在-hexo-中使用自定义页面"><a href="#为什么要在-hexo-中使用自定义页面" class="headerlink" title="为什么要在 hexo 中使用自定义页面"></a>为什么要在 hexo 中使用自定义页面</h2><p>在hexo中我们并不是只是用来写文字文章，有时我们也想自定义一些页面，这些页面是完全独立于主题样式的，比如在hexo中放上自己用html写的个人简历，又或是自己的一些前端Demo。</p>
+<h2 id="如何设置自定义页面"><a href="#如何设置自定义页面" class="headerlink" title="如何设置自定义页面"></a>如何设置自定义页面</h2><p>默认情况下source目录下的post, page等都会进行主题模板的渲染，生成相应的静态页面，但hexo中也提供了相应的配置，阻止模板渲染，实现自定义页面</p>
+<p>这里我们想放上我们的静态Demo，这里我们先新建一个页面用来存放我们的demo list</p>
+<p><code>hexo new page &#39;demo&#39;</code></p>
+<p>新建后，source目录下添加了一个demo目录，demo目录下还有一个index目录和index.md文件，我将index目录名命名为list，用来存放我的demos，index.md用来存放相应的demo链接。</p>
+<h3 id="1-通过-layout-false"><a href="#1-通过-layout-false" class="headerlink" title="1.通过 layout: false"></a>1.通过 <strong>layout: false</strong></h3><p>如果我们想让index.html变成独立页面，我们只需在文件的头部添加一下内容：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">layout: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<p>然后这个页面在 <code>hexo generate</code> 时变不会进行渲染，而是直接移动到public 目录下</p>
+<p>这个方法有一定的局限性，页面过多时就不太适合了，每个都添加也不现实</p>
+<h3 id="2-通过-skip-render"><a href="#2-通过-skip-render" class="headerlink" title="2.通过 skip_render"></a>2.通过 <strong>skip_render</strong></h3><p>通过配置文件 <strong>_config.yml</strong> 的 <strong>skip_render</strong> 选项</p>
+<p>例如我们想要跳过source/demo/list目录下的所有文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">skip_render: demo/list/*</span><br></pre></td></tr></table></figure>
+
+<p>如果想要跳过source/demo/list目录下的所有文件及其子文件夹的所有文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">skip_render: demo/list/**</span><br></pre></td></tr></table></figure>
+
+<p>当然也可以指定某一文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">skip_render: demo/list/test.html</span><br></pre></td></tr></table></figure>
+
+<p>多个指定文件或路径时</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">skip_render: </span><br><span class="line">- demo/list/test.html</span><br><span class="line">- demo/list/demo1/**</span><br></pre></td></tr></table></figure>
+
+<p><strong>注：</strong> 修改配置文件后，并不会立即生效，需要重启服务，重新生成静态页面才行</p>
+<p>参考资料：</p>
+<ul>
+<li><a href="http://blog.fangchengjin.cn/hexo-custom-page.html" target="_blank" rel="noopener">Hexo博客跳过渲染，创建自定义网页</a></li>
+<li><a href="http://xchb.work/2017/04/08/hexo%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6-skip-render-%E9%85%8D%E7%BD%AE/" target="_blank" rel="noopener">hexo忽略文件(skip_render)配置</a></li>
+<li><a href="https://hexo.io/docs/configuration#Directory" target="_blank" rel="noopener">hexo文档-Configuration</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
   </entry>
 </search>
