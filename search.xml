@@ -1,31 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>MongoDB笔记</title>
-    <url>/2019/07/06/MongoDB%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h2 id="安装MongoDB服务"><a href="#安装MongoDB服务" class="headerlink" title="安装MongoDB服务"></a>安装MongoDB服务</h2><p>这里下载的时MongoDB 4 Windows社区版本，4之后的版本跟之前的有很大的不同，不需要自行指定数据库和日志目录了，这里安装过程只修改了安装目录，从默认的c盘自定义为d盘，其他均为默认选项，一并安装了compass，这里大多人都不推荐安装compass，说是会卡住，这里安装确实看起来像是卡住了，但就如安装信息说的这里可能需要 a few minutes，事实上这里安装进度不变保持了10分钟左右就安装好了，所以不用太担心，只是网络原因，假死而已</p>
-<p>当然为了方便连接 MongoDB 实例，记得要将MongoDB安装目录下的bin目录添加到系统变量，这样我们就可以直接在shell 里直接输入 <code>mongo</code> 即可连接到MongoDB服务</p>
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h2 id="mongo"><a href="#mongo" class="headerlink" title="mongo"></a>mongo</h2><p>连接到本地的 MongoDB 实例，使用默认服务端口 <code>27017</code></p>
-<p>如果修改了本地 MongoDB 实例默认的服务端口，连接时我们也可以通过 <code>--port</code> 参数指定端口</p>
-<p>例如</p>
-<p><code>mongo --port 28015</code></p>
-<h3 id="show-dbs"><a href="#show-dbs" class="headerlink" title="show dbs"></a>show dbs</h3><p>查看所有的数据库</p>
-<h3 id="db"><a href="#db" class="headerlink" title="db"></a>db</h3><p>查看当前数据库</p>
-<h3 id="use-DATABASE-NAME"><a href="#use-DATABASE-NAME" class="headerlink" title="use DATABASE_NAME"></a>use DATABASE_NAME</h3><p>切换数据库（不论存在与否）</p>
-<h2 id="db-DATABASE-NAME-insert"><a href="#db-DATABASE-NAME-insert" class="headerlink" title="db.DATABASE_NAME.insert()"></a>db.DATABASE_NAME.insert()</h2><p>向 DATABASE_NAME 数据库插入数据</p>
-<p>例如</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">db.test.insert(&#123;&quot;description&quot;: &quot;这是一条测试数据&quot;&#125;)</span><br></pre></td></tr></table></figure>
-
-<p><strong>注：</strong> 该命令不需要切换数据库</p>
-<h3 id="db-dropDatabase"><a href="#db-dropDatabase" class="headerlink" title="db.dropDatabase()"></a>db.dropDatabase()</h3><p>删除当前数据库</p>
-<h3 id="db-createCollection-name-options"><a href="#db-createCollection-name-options" class="headerlink" title="db.createCollection(name[,options])"></a>db.createCollection(name[,options])</h3><p>在当前数据库创建集合 COLLECTION_NAME</p>
-<h3 id="db-COLLECTION-NAME-drop"><a href="#db-COLLECTION-NAME-drop" class="headerlink" title="db.COLLECTION_NAME.drop()"></a>db.COLLECTION_NAME.drop()</h3><p>在当前数据库删除集合 COLLECTION_NAME</p>
-]]></content>
-      <tags>
-        <tag>MongoDB</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>BitLocker加密分区</title>
     <url>/2019/05/24/BitLocker%E5%8A%A0%E5%AF%86%E5%88%86%E5%8C%BA/</url>
     <content><![CDATA[<h2 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h2><p>打开磁盘管理</p>
@@ -187,6 +162,36 @@
       </tags>
   </entry>
   <entry>
+    <title>css transition</title>
+    <url>/2019/05/14/css-transition/</url>
+    <content><![CDATA[<h1 id="css-transition"><a href="#css-transition" class="headerlink" title="css transition"></a>css transition</h1><h2 id="ease与ease-in-out的区别"><a href="#ease与ease-in-out的区别" class="headerlink" title="ease与ease-in-out的区别"></a>ease与ease-in-out的区别</h2><p>两者的整体效果都是缓入缓出，只是细节上存在差异</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>贝塞尔曲线</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ease</td>
+<td>cubic-bezier(0.25, 0.1, 0.25,1)</td>
+</tr>
+<tr>
+<td>ease-in-out</td>
+<td>cubic-bezier(0.42, 0, 0.58, 1)</td>
+</tr>
+</tbody></table>
+<p>比较两者的贝塞尔曲线，ease缓入效果较其缓出效果不明显；ease-in-out缓入缓出效果都比价明显</p>
+<h2 id="step-start-和step-end"><a href="#step-start-和step-end" class="headerlink" title="step-start 和step-end"></a>step-start 和step-end</h2><p>step-start 等同于 steps(1, start), 过渡效果分一步完成，在步的起始开始，即直接过渡到效果</p>
+<p>step-end 等同于 steps(1, end)， 过渡效果分一步完成，在步的结束开始，即transition-duration之后完成过渡效果</p>
+<h2 id="steps"><a href="#steps" class="headerlink" title="steps()"></a>steps()</h2><p>语法：steps(&lt; integer &gt;[, [ start | end ] ]?)</p>
+<p>过渡步数为整数，第二个参数默认值为 end</p>
+<p>start：表示过渡从第一步时间的开始开始(会直接看到过渡效果)</p>
+<p>end：表示过渡从第一步时间的结束开始(不会直接看到过渡效果)</p>
+<p><strong>注意：</strong> transition-delay 将包含于步进函数的第一步，即第一步的持续时间为均分时间加上延迟时间</p>
+]]></content>
+  </entry>
+  <entry>
     <title>centos安装socks5服务</title>
     <url>/2020/05/10/centos%E5%AE%89%E8%A3%85socks5%E6%9C%8D%E5%8A%A1/</url>
     <content><![CDATA[<h2 id="1-安装依赖"><a href="#1-安装依赖" class="headerlink" title="1.安装依赖"></a>1.安装依赖</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum -y install gcc gcc-c++ automake make pam-devel openldap-deve</span><br></pre></td></tr></table></figure>
@@ -246,36 +251,6 @@
         <tag>cenos7</tag>
         <tag>socks5</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>css transition</title>
-    <url>/2019/05/14/css-transition/</url>
-    <content><![CDATA[<h1 id="css-transition"><a href="#css-transition" class="headerlink" title="css transition"></a>css transition</h1><h2 id="ease与ease-in-out的区别"><a href="#ease与ease-in-out的区别" class="headerlink" title="ease与ease-in-out的区别"></a>ease与ease-in-out的区别</h2><p>两者的整体效果都是缓入缓出，只是细节上存在差异</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>贝塞尔曲线</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ease</td>
-<td>cubic-bezier(0.25, 0.1, 0.25,1)</td>
-</tr>
-<tr>
-<td>ease-in-out</td>
-<td>cubic-bezier(0.42, 0, 0.58, 1)</td>
-</tr>
-</tbody></table>
-<p>比较两者的贝塞尔曲线，ease缓入效果较其缓出效果不明显；ease-in-out缓入缓出效果都比价明显</p>
-<h2 id="step-start-和step-end"><a href="#step-start-和step-end" class="headerlink" title="step-start 和step-end"></a>step-start 和step-end</h2><p>step-start 等同于 steps(1, start), 过渡效果分一步完成，在步的起始开始，即直接过渡到效果</p>
-<p>step-end 等同于 steps(1, end)， 过渡效果分一步完成，在步的结束开始，即transition-duration之后完成过渡效果</p>
-<h2 id="steps"><a href="#steps" class="headerlink" title="steps()"></a>steps()</h2><p>语法：steps(&lt; integer &gt;[, [ start | end ] ]?)</p>
-<p>过渡步数为整数，第二个参数默认值为 end</p>
-<p>start：表示过渡从第一步时间的开始开始(会直接看到过渡效果)</p>
-<p>end：表示过渡从第一步时间的结束开始(不会直接看到过渡效果)</p>
-<p><strong>注意：</strong> transition-delay 将包含于步进函数的第一步，即第一步的持续时间为均分时间加上延迟时间</p>
-]]></content>
   </entry>
   <entry>
     <title>git基本用法</title>
@@ -346,6 +321,58 @@
       </tags>
   </entry>
   <entry>
+    <title>hexo创建自定义页面</title>
+    <url>/2019/05/25/hexo%E5%88%9B%E5%BB%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E9%A1%B5%E9%9D%A2/</url>
+    <content><![CDATA[<h2 id="为什么要在-hexo-中使用自定义页面"><a href="#为什么要在-hexo-中使用自定义页面" class="headerlink" title="为什么要在 hexo 中使用自定义页面"></a>为什么要在 hexo 中使用自定义页面</h2><p>在hexo中我们并不是只是用来写文字文章，有时我们也想自定义一些页面，这些页面是完全独立于主题样式的，比如在hexo中放上自己用html写的个人简历，又或是自己的一些前端Demo。</p>
+<h2 id="如何设置自定义页面"><a href="#如何设置自定义页面" class="headerlink" title="如何设置自定义页面"></a>如何设置自定义页面</h2><p>默认情况下source目录下的post, page等都会进行主题模板的渲染，生成相应的静态页面，但hexo中也提供了相应的配置，阻止模板渲染，实现自定义页面</p>
+<p>这里我们想放上我们的静态Demo，这里我们先新建一个页面用来存放我们的demo list</p>
+<p><code>hexo new page &#39;demo&#39;</code></p>
+<p>新建后，source目录下添加了一个demo目录，demo目录下还有一个index目录和index.md文件，我将index目录名命名为list，用来存放我的demos，index.md用来存放相应的demo链接。</p>
+<h3 id="1-通过-layout-false"><a href="#1-通过-layout-false" class="headerlink" title="1.通过 layout: false"></a>1.通过 <strong>layout: false</strong></h3><p>如果我们想让index.html变成独立页面，我们只需在文件的头部添加一下内容：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">layout: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<p>然后这个页面在 <code>hexo generate</code> 时变不会进行渲染，而是直接移动到public 目录下</p>
+<p>这个方法有一定的局限性，页面过多时就不太适合了，每个都添加也不现实</p>
+<h3 id="2-通过-skip-render"><a href="#2-通过-skip-render" class="headerlink" title="2.通过 skip_render"></a>2.通过 <strong>skip_render</strong></h3><p>通过配置文件 <strong>_config.yml</strong> 的 <strong>skip_render</strong> 选项</p>
+<p>例如我们想要跳过source/demo/list目录下的所有文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">skip_render: demo/list/*</span><br></pre></td></tr></table></figure>
+
+<p>如果想要跳过source/demo/list目录下的所有文件及其子文件夹的所有文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">skip_render: demo/list/**</span><br></pre></td></tr></table></figure>
+
+<p>当然也可以指定某一文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">skip_render: demo/list/test.html</span><br></pre></td></tr></table></figure>
+
+<p>多个指定文件或路径时</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">skip_render: </span><br><span class="line">- demo/list/test.html</span><br><span class="line">- demo/list/demo1/**</span><br></pre></td></tr></table></figure>
+
+<p><strong>注：</strong> 修改配置文件后，并不会立即生效，需要重启服务，重新生成静态页面才行</p>
+<p>参考资料：</p>
+<ul>
+<li><a href="http://blog.fangchengjin.cn/hexo-custom-page.html" target="_blank" rel="noopener">Hexo博客跳过渲染，创建自定义网页</a></li>
+<li><a href="http://xchb.work/2017/04/08/hexo%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6-skip-render-%E9%85%8D%E7%BD%AE/" target="_blank" rel="noopener">hexo忽略文件(skip_render)配置</a></li>
+<li><a href="https://hexo.io/docs/configuration#Directory" target="_blank" rel="noopener">hexo文档-Configuration</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>json为什么不允许注释</title>
+    <url>/2018/10/30/json%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E5%85%81%E8%AE%B8%E6%B3%A8%E9%87%8A/</url>
+    <content><![CDATA[<h3 id="来看看json之父怎么说"><a href="#来看看json之父怎么说" class="headerlink" title="来看看json之父怎么说"></a>来看看json之父怎么说</h3><img src="/2018/10/30/json为什么不允许注释/14157748-7a92f06db8b373f8.webp">
+
+<blockquote>
+<p>Comments in JSON<br>I removed comments from JSON because I saw people were using them to holdparsing directives, a practice which would have destroyed interoperability. I knowthat the lackl of comments makes some people sad, but it shouldn’t.<br>Suppose you are using JSON to keep configuration files, which you would like toannotate. Go ahead and insert all the comments you like. Then pipe it throughJSMin before handing it to your JSON parser.</p>
+</blockquote>
+<p>谷歌翻译一下：</p>
+<blockquote>
+<p>JSON中的注释<br>我从JSON中删除了注释，因为我看到有人使用它们来保存指令，这种做法会破坏互操作性。 我知道缺乏注释会让一些人感到悲伤，但事实并非如此。<br>假设您使用JSON来保留您想要注释的配置文件。 继续，插入您喜欢的所有注释。 然后将它传递给JSMin，然后将其传递给JSON解析器。</p>
+</blockquote>
+]]></content>
+  </entry>
+  <entry>
     <title>js上传视频图片预览</title>
     <url>/2019/07/02/js%E4%B8%8A%E4%BC%A0%E8%A7%86%E9%A2%91%E5%9B%BE%E7%89%87%E9%A2%84%E8%A7%88/</url>
     <content><![CDATA[<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p><a href="demo/list/文件上传预览">文件上传预览</a></p>
@@ -362,20 +389,6 @@
       <tags>
         <tag>js</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>json为什么不允许注释</title>
-    <url>/2018/10/30/json%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E5%85%81%E8%AE%B8%E6%B3%A8%E9%87%8A/</url>
-    <content><![CDATA[<h3 id="来看看json之父怎么说"><a href="#来看看json之父怎么说" class="headerlink" title="来看看json之父怎么说"></a>来看看json之父怎么说</h3><img src="/2018/10/30/json为什么不允许注释/14157748-7a92f06db8b373f8.webp">
-
-<blockquote>
-<p>Comments in JSON<br>I removed comments from JSON because I saw people were using them to holdparsing directives, a practice which would have destroyed interoperability. I knowthat the lackl of comments makes some people sad, but it shouldn’t.<br>Suppose you are using JSON to keep configuration files, which you would like toannotate. Go ahead and insert all the comments you like. Then pipe it throughJSMin before handing it to your JSON parser.</p>
-</blockquote>
-<p>谷歌翻译一下：</p>
-<blockquote>
-<p>JSON中的注释<br>我从JSON中删除了注释，因为我看到有人使用它们来保存指令，这种做法会破坏互操作性。 我知道缺乏注释会让一些人感到悲伤，但事实并非如此。<br>假设您使用JSON来保留您想要注释的配置文件。 继续，插入您喜欢的所有注释。 然后将它传递给JSMin，然后将其传递给JSON解析器。</p>
-</blockquote>
-]]></content>
   </entry>
   <entry>
     <title>koa2文件上传</title>
@@ -727,6 +740,23 @@
       </tags>
   </entry>
   <entry>
+    <title>树莓派安装mongodb</title>
+    <url>/2019/07/17/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85mongodb/</url>
+    <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install mongodb</span><br></pre></td></tr></table></figure>
+
+<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><p>用以上命令安装完成后，执行 <code>mongo</code> 命令，并没有连接成功</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MongoDB shell version: 2.4.14</span><br><span class="line">connecting to: test</span><br><span class="line">Wed Jul 17 22:40:55.765 Error: couldn&apos;t connect to server 127.0.0.1:27017 at src/mongo/shell/mongo.js:145</span><br><span class="line">exception: connect failed</span><br></pre></td></tr></table></figure>
+
+<p>查看安装打印的信息中，有这么一条 <code>无法创建主目录&quot;/var/lib/mongodb&quot;</code>, 说明 mongodb 缺少权限</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo service mongodb stop</span><br><span class="line">sudo chown -R mongodb:mongodb /var/lib/mongodb</span><br><span class="line">sudo service mongodb start</span><br></pre></td></tr></table></figure>
+
+<p>修改目录权限后再次执行 <code>mongo</code> 命令，显示连接成功</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">MongoDB shell version: 2.4.14</span><br><span class="line">connecting to: test</span><br><span class="line">Welcome to the MongoDB shell.</span><br><span class="line">For interactive help, type "help".</span><br><span class="line">For more comprehensive documentation, see</span><br><span class="line">        http://docs.mongodb.org/</span><br><span class="line">Questions? Try the support group</span><br><span class="line">        http://groups.google.com/group/mongodb-user</span><br><span class="line">Server has startup warnings:</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten]</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten] ** NOTE: This is a 32 bit MongoDB binary.</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten] **       32 bit builds are limited to less than 2GB of data (or less with --journal).</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten] **       See http://dochub.mongodb.org/core/32bit</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten]</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"></span></span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>MongoDB</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>树莓派如何截屏</title>
     <url>/2018/03/08/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%A6%82%E4%BD%95%E6%88%AA%E5%B1%8F/</url>
     <content><![CDATA[<h2 id="安装scrot"><a href="#安装scrot" class="headerlink" title="安装scrot"></a>安装scrot</h2><p>在终端里输入命令:</p>
@@ -757,23 +787,6 @@
 ]]></content>
       <tags>
         <tag>树莓派</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>树莓派安装mongodb</title>
-    <url>/2019/07/17/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85mongodb/</url>
-    <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install mongodb</span><br></pre></td></tr></table></figure>
-
-<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><p>用以上命令安装完成后，执行 <code>mongo</code> 命令，并没有连接成功</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MongoDB shell version: 2.4.14</span><br><span class="line">connecting to: test</span><br><span class="line">Wed Jul 17 22:40:55.765 Error: couldn&apos;t connect to server 127.0.0.1:27017 at src/mongo/shell/mongo.js:145</span><br><span class="line">exception: connect failed</span><br></pre></td></tr></table></figure>
-
-<p>查看安装打印的信息中，有这么一条 <code>无法创建主目录&quot;/var/lib/mongodb&quot;</code>, 说明 mongodb 缺少权限</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo service mongodb stop</span><br><span class="line">sudo chown -R mongodb:mongodb /var/lib/mongodb</span><br><span class="line">sudo service mongodb start</span><br></pre></td></tr></table></figure>
-
-<p>修改目录权限后再次执行 <code>mongo</code> 命令，显示连接成功</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">MongoDB shell version: 2.4.14</span><br><span class="line">connecting to: test</span><br><span class="line">Welcome to the MongoDB shell.</span><br><span class="line">For interactive help, type "help".</span><br><span class="line">For more comprehensive documentation, see</span><br><span class="line">        http://docs.mongodb.org/</span><br><span class="line">Questions? Try the support group</span><br><span class="line">        http://groups.google.com/group/mongodb-user</span><br><span class="line">Server has startup warnings:</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten]</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten] ** NOTE: This is a 32 bit MongoDB binary.</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten] **       32 bit builds are limited to less than 2GB of data (or less with --journal).</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten] **       See http://dochub.mongodb.org/core/32bit</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten]</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"></span></span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>MongoDB</tag>
       </tags>
   </entry>
   <entry>
@@ -813,36 +826,6 @@
       </tags>
   </entry>
   <entry>
-    <title>树莓派搭建LAMP服务</title>
-    <url>/2018/03/11/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%90%AD%E5%BB%BALAMP%E6%9C%8D%E5%8A%A1/</url>
-    <content><![CDATA[<h2 id="LAMP的含义"><a href="#LAMP的含义" class="headerlink" title="LAMP的含义"></a>LAMP的含义</h2><p>Linux - 操作系统</p>
-<p>Apache - web服务器软件</p>
-<p>MySQL - 数据库</p>
-<p>PHP - 使用语言</p>
-<h2 id="安装LAMP"><a href="#安装LAMP" class="headerlink" title="安装LAMP"></a>安装LAMP</h2><p>更新软件列表</p>
-<p><code>sudo apt-get update</code></p>
-<p>升级软件</p>
-<p><code>sudo apt-get upgrade</code></p>
-<p>安装Apache</p>
-<p><code>sudo apt-get install apache2</code></p>
-<p>输入 y 回车 继续即可</p>
-<p>安装MySQL</p>
-<p><code>sudo apt-get install mysql-server</code></p>
-<p>输入 y 回车 继续即可</p>
-<p>(<strong>注</strong>：在安装数据库MySQL过程中并没有提示设置root密码，此时密码为空，可能与我之前为启用树莓派的root账户有关)</p>
-<p>安装PHP </p>
-<p><code>sudo apt-get install php</code></p>
-<p>输入 y 回车 继续即可</p>
-<p>安装PHP访问MySQL所需要的库</p>
-<p><code>sudo apt-get install php-mysql</code></p>
-<p>输入 y 回车 继续即可</p>
-<h2 id="查看web站点"><a href="#查看web站点" class="headerlink" title="查看web站点"></a>查看web站点</h2><p>在浏览器内输入树莓派局域网IP，可以看到Apache的默认页面</p>
-<img src="/2018/03/11/树莓派搭建LAMP服务/2018-03-11-192347_830x386_scrot.png">]]></content>
-      <tags>
-        <tag>树莓派</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>树莓派相关</title>
     <url>/2020/05/24/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9B%B8%E5%85%B3/</url>
     <content><![CDATA[<h2 id="关于vim"><a href="#关于vim" class="headerlink" title="关于vim"></a>关于vim</h2><p>树莓派自带的vim直接使用会有一些问题，可以尝试进行安装</p>
@@ -869,6 +852,36 @@
 <li><a href="https://mirrors.tuna.tsinghua.edu.cn/help/raspbian/" target="_blank" rel="noopener">Raspbian 镜像使用帮助</a></li>
 </ul>
 ]]></content>
+      <tags>
+        <tag>树莓派</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派搭建LAMP服务</title>
+    <url>/2018/03/11/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%90%AD%E5%BB%BALAMP%E6%9C%8D%E5%8A%A1/</url>
+    <content><![CDATA[<h2 id="LAMP的含义"><a href="#LAMP的含义" class="headerlink" title="LAMP的含义"></a>LAMP的含义</h2><p>Linux - 操作系统</p>
+<p>Apache - web服务器软件</p>
+<p>MySQL - 数据库</p>
+<p>PHP - 使用语言</p>
+<h2 id="安装LAMP"><a href="#安装LAMP" class="headerlink" title="安装LAMP"></a>安装LAMP</h2><p>更新软件列表</p>
+<p><code>sudo apt-get update</code></p>
+<p>升级软件</p>
+<p><code>sudo apt-get upgrade</code></p>
+<p>安装Apache</p>
+<p><code>sudo apt-get install apache2</code></p>
+<p>输入 y 回车 继续即可</p>
+<p>安装MySQL</p>
+<p><code>sudo apt-get install mysql-server</code></p>
+<p>输入 y 回车 继续即可</p>
+<p>(<strong>注</strong>：在安装数据库MySQL过程中并没有提示设置root密码，此时密码为空，可能与我之前为启用树莓派的root账户有关)</p>
+<p>安装PHP </p>
+<p><code>sudo apt-get install php</code></p>
+<p>输入 y 回车 继续即可</p>
+<p>安装PHP访问MySQL所需要的库</p>
+<p><code>sudo apt-get install php-mysql</code></p>
+<p>输入 y 回车 继续即可</p>
+<h2 id="查看web站点"><a href="#查看web站点" class="headerlink" title="查看web站点"></a>查看web站点</h2><p>在浏览器内输入树莓派局域网IP，可以看到Apache的默认页面</p>
+<img src="/2018/03/11/树莓派搭建LAMP服务/2018-03-11-192347_830x386_scrot.png">]]></content>
       <tags>
         <tag>树莓派</tag>
       </tags>
@@ -980,41 +993,28 @@
 ]]></content>
   </entry>
   <entry>
-    <title>hexo创建自定义页面</title>
-    <url>/2019/05/25/hexo%E5%88%9B%E5%BB%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E9%A1%B5%E9%9D%A2/</url>
-    <content><![CDATA[<h2 id="为什么要在-hexo-中使用自定义页面"><a href="#为什么要在-hexo-中使用自定义页面" class="headerlink" title="为什么要在 hexo 中使用自定义页面"></a>为什么要在 hexo 中使用自定义页面</h2><p>在hexo中我们并不是只是用来写文字文章，有时我们也想自定义一些页面，这些页面是完全独立于主题样式的，比如在hexo中放上自己用html写的个人简历，又或是自己的一些前端Demo。</p>
-<h2 id="如何设置自定义页面"><a href="#如何设置自定义页面" class="headerlink" title="如何设置自定义页面"></a>如何设置自定义页面</h2><p>默认情况下source目录下的post, page等都会进行主题模板的渲染，生成相应的静态页面，但hexo中也提供了相应的配置，阻止模板渲染，实现自定义页面</p>
-<p>这里我们想放上我们的静态Demo，这里我们先新建一个页面用来存放我们的demo list</p>
-<p><code>hexo new page &#39;demo&#39;</code></p>
-<p>新建后，source目录下添加了一个demo目录，demo目录下还有一个index目录和index.md文件，我将index目录名命名为list，用来存放我的demos，index.md用来存放相应的demo链接。</p>
-<h3 id="1-通过-layout-false"><a href="#1-通过-layout-false" class="headerlink" title="1.通过 layout: false"></a>1.通过 <strong>layout: false</strong></h3><p>如果我们想让index.html变成独立页面，我们只需在文件的头部添加一下内容：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">layout: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+    <title>MongoDB笔记</title>
+    <url>/2019/07/06/MongoDB%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="安装MongoDB服务"><a href="#安装MongoDB服务" class="headerlink" title="安装MongoDB服务"></a>安装MongoDB服务</h2><p>这里下载的时MongoDB 4 Windows社区版本，4之后的版本跟之前的有很大的不同，不需要自行指定数据库和日志目录了，这里安装过程只修改了安装目录，从默认的c盘自定义为d盘，其他均为默认选项，一并安装了compass，这里大多人都不推荐安装compass，说是会卡住，这里安装确实看起来像是卡住了，但就如安装信息说的这里可能需要 a few minutes，事实上这里安装进度不变保持了10分钟左右就安装好了，所以不用太担心，只是网络原因，假死而已</p>
+<p>当然为了方便连接 MongoDB 实例，记得要将MongoDB安装目录下的bin目录添加到系统变量，这样我们就可以直接在shell 里直接输入 <code>mongo</code> 即可连接到MongoDB服务</p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h2 id="mongo"><a href="#mongo" class="headerlink" title="mongo"></a>mongo</h2><p>连接到本地的 MongoDB 实例，使用默认服务端口 <code>27017</code></p>
+<p>如果修改了本地 MongoDB 实例默认的服务端口，连接时我们也可以通过 <code>--port</code> 参数指定端口</p>
+<p>例如</p>
+<p><code>mongo --port 28015</code></p>
+<h3 id="show-dbs"><a href="#show-dbs" class="headerlink" title="show dbs"></a>show dbs</h3><p>查看所有的数据库</p>
+<h3 id="db"><a href="#db" class="headerlink" title="db"></a>db</h3><p>查看当前数据库</p>
+<h3 id="use-DATABASE-NAME"><a href="#use-DATABASE-NAME" class="headerlink" title="use DATABASE_NAME"></a>use DATABASE_NAME</h3><p>切换数据库（不论存在与否）</p>
+<h2 id="db-DATABASE-NAME-insert"><a href="#db-DATABASE-NAME-insert" class="headerlink" title="db.DATABASE_NAME.insert()"></a>db.DATABASE_NAME.insert()</h2><p>向 DATABASE_NAME 数据库插入数据</p>
+<p>例如</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">db.test.insert(&#123;&quot;description&quot;: &quot;这是一条测试数据&quot;&#125;)</span><br></pre></td></tr></table></figure>
 
-<p>然后这个页面在 <code>hexo generate</code> 时变不会进行渲染，而是直接移动到public 目录下</p>
-<p>这个方法有一定的局限性，页面过多时就不太适合了，每个都添加也不现实</p>
-<h3 id="2-通过-skip-render"><a href="#2-通过-skip-render" class="headerlink" title="2.通过 skip_render"></a>2.通过 <strong>skip_render</strong></h3><p>通过配置文件 <strong>_config.yml</strong> 的 <strong>skip_render</strong> 选项</p>
-<p>例如我们想要跳过source/demo/list目录下的所有文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">skip_render: demo/list/*</span><br></pre></td></tr></table></figure>
-
-<p>如果想要跳过source/demo/list目录下的所有文件及其子文件夹的所有文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">skip_render: demo/list/**</span><br></pre></td></tr></table></figure>
-
-<p>当然也可以指定某一文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">skip_render: demo/list/test.html</span><br></pre></td></tr></table></figure>
-
-<p>多个指定文件或路径时</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">skip_render: </span><br><span class="line">- demo/list/test.html</span><br><span class="line">- demo/list/demo1/**</span><br></pre></td></tr></table></figure>
-
-<p><strong>注：</strong> 修改配置文件后，并不会立即生效，需要重启服务，重新生成静态页面才行</p>
-<p>参考资料：</p>
-<ul>
-<li><a href="http://blog.fangchengjin.cn/hexo-custom-page.html" target="_blank" rel="noopener">Hexo博客跳过渲染，创建自定义网页</a></li>
-<li><a href="http://xchb.work/2017/04/08/hexo%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6-skip-render-%E9%85%8D%E7%BD%AE/" target="_blank" rel="noopener">hexo忽略文件(skip_render)配置</a></li>
-<li><a href="https://hexo.io/docs/configuration#Directory" target="_blank" rel="noopener">hexo文档-Configuration</a></li>
-</ul>
+<p><strong>注：</strong> 该命令不需要切换数据库</p>
+<h3 id="db-dropDatabase"><a href="#db-dropDatabase" class="headerlink" title="db.dropDatabase()"></a>db.dropDatabase()</h3><p>删除当前数据库</p>
+<h3 id="db-createCollection-name-options"><a href="#db-createCollection-name-options" class="headerlink" title="db.createCollection(name[,options])"></a>db.createCollection(name[,options])</h3><p>在当前数据库创建集合 COLLECTION_NAME</p>
+<h3 id="db-COLLECTION-NAME-drop"><a href="#db-COLLECTION-NAME-drop" class="headerlink" title="db.COLLECTION_NAME.drop()"></a>db.COLLECTION_NAME.drop()</h3><p>在当前数据库删除集合 COLLECTION_NAME</p>
 ]]></content>
       <tags>
-        <tag>hexo</tag>
+        <tag>MongoDB</tag>
       </tags>
   </entry>
 </search>
