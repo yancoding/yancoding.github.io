@@ -240,7 +240,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">16</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">17</span></a>
 
   </li>
         
@@ -259,7 +259,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">27</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">30</span></a>
 
   </li>
         
@@ -284,11 +284,40 @@
 
       
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
     </ul>
   
 
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -321,6 +350,529 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/2020/05/24/树莓派相关/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yancoding">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yan blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/05/24/树莓派相关/" class="post-title-link" itemprop="url">树莓派相关</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-05-24 00:01:26 / 修改时间：22:02:13" itemprop="dateCreated datePublished" datetime="2020-05-24T00:01:26+08:00">2020-05-24</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="关于vim"><a href="#关于vim" class="headerlink" title="关于vim"></a>关于vim</h2><p>树莓派自带的vim直接使用会有一些问题，可以尝试进行安装</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
+
+<h2 id="更换软件源"><a href="#更换软件源" class="headerlink" title="更换软件源"></a>更换软件源</h2><p> 编辑</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
+
+<p>更改为</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#deb http://raspbian.raspberrypi.org/raspbian/ buster main contrib non-free rpi</span><br><span class="line"># Uncomment line below then &apos;apt-get update&apos; to enable &apos;apt-get source&apos;</span><br><span class="line">#deb-src http://raspbian.raspberrypi.org/raspbian/ buster main contrib non-free rpi</span><br><span class="line"></span><br><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br><span class="line"># Uncomment line below then &apos;apt-get update&apos; to enable &apos;apt-get source&apos;</span><br><span class="line">#deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br></pre></td></tr></table></figure>
+
+<p> 编辑</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/apt/sources.list.d/raspi.list</span><br></pre></td></tr></table></figure>
+
+<p>更改为</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#deb http://archive.raspberrypi.org/debian/ buster main</span><br><span class="line"># Uncomment line below then &apos;apt-get update&apos; to enable &apos;apt-get source&apos;</span><br><span class="line">#deb-src http://archive.raspberrypi.org/debian/ buster main</span><br><span class="line"></span><br><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/raspberrypi/ buster main</span><br><span class="line"># Uncomment line below then &apos;apt-get update&apos; to enable &apos;apt-get source&apos;</span><br><span class="line">#deb-src http://mirrors.tuna.tsinghua.edu.cn/raspberrypi/ buster main</span><br></pre></td></tr></table></figure>
+
+<p>即注释了原有源，修改源为国内的Tsinghua镜像</p>
+<p>可用镜像可以查看<a href="https://www.raspbian.org/RaspbianMirrors" target="_blank" rel="noopener">https://www.raspbian.org/RaspbianMirrors</a></p>
+<p>更新软件源列表 <code>sudo apt-get update</code></p>
+<p>更新软件<code>sudo apt-get upgrade</code></p>
+<p>参考：</p>
+<ul>
+<li><a href="https://mirrors.tuna.tsinghua.edu.cn/help/raspbian/" target="_blank" rel="noopener">Raspbian 镜像使用帮助</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/2020/05/16/ubuntu安装常用软件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yancoding">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yan blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/05/16/ubuntu安装常用软件/" class="post-title-link" itemprop="url">ubuntu安装常用软件</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-05-16 14:05:17" itemprop="dateCreated datePublished" datetime="2020-05-16T14:05:17+08:00">2020-05-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-05-23 23:54:50" itemprop="dateModified" datetime="2020-05-23T23:54:50+08:00">2020-05-23</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="安装vscode"><a href="#安装vscode" class="headerlink" title="安装vscode"></a>安装vscode</h2><h3 id="1-下载"><a href="#1-下载" class="headerlink" title="1.下载"></a>1.下载</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget -P Downloads/ https://vscode.cdn.azure.cn/stable/5763d909d5f12fe19f215cbfdd29a91c0fa9208a/code_1.45.1-1589445302_amd64.deb</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-安装"><a href="#2-安装" class="headerlink" title="2.安装"></a>2.安装</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd Downloads/</span><br><span class="line">sudo dpkg -i code_1.45.1-1589445302_amd64.deb</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-查看版本"><a href="#3-查看版本" class="headerlink" title="3.查看版本"></a>3.查看版本</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">code --version</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h2><p>安装nodejs不要使用<code>apt</code>,<code>apt</code>安装的版本较老，不是最新的</p>
+<p>目前nodejs官网长期稳定版本为 12.X</p>
+<p>这里采用官方提供的方式进行安装</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -</span><br><span class="line">sudo apt-get install -y nodejs</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后查看nodejs版本</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">node --version</span><br></pre></td></tr></table></figure>
+
+<p>回显</p>
+<p><code>v12.16.3</code></p>
+<p>其他版本的安装可查看官方提供的二进制安装说明 <a href="https://github.com/nodesource/distributions/blob/master/README.md#nodesource-nodejs-binary-distributions" target="_blank" rel="noopener">NodeSource Node.js Binary Distributions</a></p>
+<h2 id="安装deno"><a href="#安装deno" class="headerlink" title="安装deno"></a>安装deno</h2><h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h3><p>deno官网的<a href="https://deno.land/#installation" target="_blank" rel="noopener">这里</a>提供了linux下的安装方式</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo curl -fsSL https://deno.land/x/install/install.sh | sh</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-环境变量"><a href="#2-环境变量" class="headerlink" title="2.环境变量"></a>2.环境变量</h3><p>从安装完成的回显信息可以知道deno并没有自动配置环境变量，而是提示手动进行配置</p>
+<p>编辑<code>~.profile</code>文件<br>并添加</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">export DENO_INSTALL="/home/yan/.deno"</span><br><span class="line">export PATH="$DENO_INSTALL/bin:$PATH"</span><br></pre></td></tr></table></figure>
+
+<p>也就是deno提示手动配置的内容</p>
+<p>保存后重启</p>
+<p>重启后查看deno版本</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">deno --version</span><br></pre></td></tr></table></figure>
+
+<p>echo</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">deno 1.0.0</span><br><span class="line">v8 8.4.300</span><br><span class="line">typescript 3.9.2</span><br></pre></td></tr></table></figure>
+
+<p>en… deno 1.0.0 一个新的起点</p>
+<h2 id="安装chrome"><a href="#安装chrome" class="headerlink" title="安装chrome"></a>安装chrome</h2><h3 id="1-download"><a href="#1-download" class="headerlink" title="1.download"></a>1.download</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget -P ~/Downloads/ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-install"><a href="#2-install" class="headerlink" title="2.install"></a>2.install</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd Downloads/</span><br><span class="line">sudo dpkg -i google-chrome-stable_current_amd64.deb</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/2020/05/12/window实体机ubuntu系统安装/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yancoding">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yan blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/05/12/window实体机ubuntu系统安装/" class="post-title-link" itemprop="url">window实体机ubuntu系统安装</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-05-12 22:46:17 / 修改时间：23:18:42" itemprop="dateCreated datePublished" datetime="2020-05-12T22:46:17+08:00">2020-05-12</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="情形"><a href="#情形" class="headerlink" title="情形"></a>情形</h2><ul>
+<li><p>window电脑安装ubuntu系统，非多系统</p>
+</li>
+<li><p>ubuntu-18.04</p>
+</li>
+<li><p>u盘安装</p>
+</li>
+</ul>
+<h2 id="1-正常安装"><a href="#1-正常安装" class="headerlink" title="1.正常安装"></a>1.正常安装</h2><h3 id="下载系统镜像"><a href="#下载系统镜像" class="headerlink" title="下载系统镜像"></a>下载系统镜像</h3><p>下载iso系统镜像，国内在官网下载慢的话，可以到<a href="https://developer.aliyun.com/mirror/" target="_blank" rel="noopener">阿里云镜像站</a>下载</p>
+<p>这里下载的是<code>ubuntu-18.04.4-desktop-amd64.iso</code></p>
+<h3 id="制作启动盘"><a href="#制作启动盘" class="headerlink" title="制作启动盘"></a>制作启动盘</h3><p>这里使用 软碟通 </p>
+<p>打开软碟通 - 启动- 写入硬盘映像</p>
+<p><code>便捷启动</code>选择 <code>写入新的驱动器引导扇区</code>中的<code>Syslinux</code></p>
+<p>配置好后便可以写入到U盘</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>配置好启动项，从U盘启动即可，正常情况下即可进入系统安装界面，完</p>
+<h2 id="3-ThinkPad-E485安装Ubuntu"><a href="#3-ThinkPad-E485安装Ubuntu" class="headerlink" title="3.ThinkPad E485安装Ubuntu"></a>3.ThinkPad E485安装Ubuntu</h2><p>一般的电脑进入U盘启动后便可正常安装，但这个本子却是不能的，据说是国内这个本子的BIOS存在问题导致（逃</p>
+<p>当然这个问题网上也是有解决办法的，比如这个帖子<a href="https://tieba.baidu.com/p/6009950485" target="_blank" rel="noopener">E485 ( RYZEN )安装linux教程</a></p>
+<p>编辑安装选项，linux行末添加 <code>ivrs=ioapic[32]=00:14.0 spec_store_bypass_disable=prctl iommu=soft</code>,保存后启动后便可以正常进入安装界面</p>
+<p>安装完成重启后会发现还是进不去系统，这里还是跟前面一样需要编辑 添加<code>ivrs=ioapic[32]=00:14.0 spec_store_bypass_disable=prctl iommu=soft</code></p>
+<p>启动后编辑<code>/etc/default/grub</code></p>
+<p>在<code>GRUB_CMDLINE_LINUX_DEFAULT</code>行末添加<code>ivrs=ioapic[32]=00:14.0 spec_store_bypass_disable=prctl iommu=soft</code>即可， 完</p>
+<p>参考文章</p>
+<ul>
+<li><a href="https://tieba.baidu.com/p/6009950485" target="_blank" rel="noopener">E485 ( RYZEN )安装linux教程</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -608,9 +1160,9 @@
 
 <p>此时服务已启动，但还不能正常使用，需要进行服务配置</p>
 <h2 id="4-服务配置"><a href="#4-服务配置" class="headerlink" title="4.服务配置"></a>4.服务配置</h2><p>找到 <code>auth</code> 和 <code>permit</code>, 取消注释，如下</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span> ///////////////////////////////////////////////////////////////////////////////////</span><br><span class="line"><span class="meta">#</span>       SHost           SPort           Authentication</span><br><span class="line"><span class="meta">#</span></span><br><span class="line">auth    0.0.0.0/0               -               -</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> ///////////////////////////////////////////////////////////////////////////////////</span></span><br><span class="line"><span class="meta">#</span><span class="bash">       SHost           SPort           Authentication</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">auth    0.0.0.0/0               -               -</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span> /////////////////////////////////////////////////////////////////////////////////////////////////</span><br><span class="line"><span class="meta">#</span>      Auth     SHost           SPort   DHost           DPort   Fixup   Group   Band    ExpDate</span><br><span class="line"><span class="meta">#</span></span><br><span class="line">permit -        0.0.0.0/0       -       0.0.0.0/0       -       -       -       -       -</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> /////////////////////////////////////////////////////////////////////////////////////////////////</span></span><br><span class="line"><span class="meta">#</span><span class="bash">      Auth     SHost           SPort   DHost           DPort   Fixup   Group   Band    ExpDate</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">permit -        0.0.0.0/0       -       0.0.0.0/0       -       -       -       -       -</span><br></pre></td></tr></table></figure>
 
 <p>重启服务</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">service ss5 restart</span><br></pre></td></tr></table></figure>
@@ -626,9 +1178,9 @@
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vi /etc/opt/ss5/ss5.conf</span><br></pre></td></tr></table></figure>
 
 <p>找到 <code>auth</code> 和 <code>permit</code>, 修改如下</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span> ///////////////////////////////////////////////////////////////////////////////////</span><br><span class="line"><span class="meta">#</span>       SHost           SPort           Authentication</span><br><span class="line"><span class="meta">#</span></span><br><span class="line">auth    0.0.0.0/0               -               u</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> ///////////////////////////////////////////////////////////////////////////////////</span></span><br><span class="line"><span class="meta">#</span><span class="bash">       SHost           SPort           Authentication</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">auth    0.0.0.0/0               -               u</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span> /////////////////////////////////////////////////////////////////////////////////////////////////</span><br><span class="line"><span class="meta">#</span>      Auth     SHost           SPort   DHost           DPort   Fixup   Group   Band    ExpDate</span><br><span class="line"><span class="meta">#</span></span><br><span class="line">permit u        0.0.0.0/0       -       0.0.0.0/0       -       -       -       -       -</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> /////////////////////////////////////////////////////////////////////////////////////////////////</span></span><br><span class="line"><span class="meta">#</span><span class="bash">      Auth     SHost           SPort   DHost           DPort   Fixup   Group   Band    ExpDate</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">permit u        0.0.0.0/0       -       0.0.0.0/0       -       -       -       -       -</span><br></pre></td></tr></table></figure>
 
 <p>编辑</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim /etc/opt/ss5/ss5.passwd</span><br></pre></td></tr></table></figure>
@@ -1580,492 +2132,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/2019/07/17/树莓派安装mongodb/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yancoding">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yan blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/17/树莓派安装mongodb/" class="post-title-link" itemprop="url">树莓派安装mongodb</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-17 22:51:22 / 修改时间：23:00:51" itemprop="dateCreated datePublished" datetime="2019-07-17T22:51:22+08:00">2019-07-17</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install mongodb</span><br></pre></td></tr></table></figure>
-
-<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><p>用以上命令安装完成后，执行 <code>mongo</code> 命令，并没有连接成功</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MongoDB shell version: 2.4.14</span><br><span class="line">connecting to: test</span><br><span class="line">Wed Jul 17 22:40:55.765 Error: couldn&apos;t connect to server 127.0.0.1:27017 at src/mongo/shell/mongo.js:145</span><br><span class="line">exception: connect failed</span><br></pre></td></tr></table></figure>
-
-<p>查看安装打印的信息中，有这么一条 <code>无法创建主目录&quot;/var/lib/mongodb&quot;</code>, 说明 mongodb 缺少权限</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo service mongodb stop</span><br><span class="line">sudo chown -R mongodb:mongodb /var/lib/mongodb</span><br><span class="line">sudo service mongodb start</span><br></pre></td></tr></table></figure>
-
-<p>修改目录权限后再次执行 <code>mongo</code> 命令，显示连接成功</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">MongoDB shell version: 2.4.14</span><br><span class="line">connecting to: test</span><br><span class="line">Welcome to the MongoDB shell.</span><br><span class="line">For interactive help, type "help".</span><br><span class="line">For more comprehensive documentation, see</span><br><span class="line">        http://docs.mongodb.org/</span><br><span class="line">Questions? Try the support group</span><br><span class="line">        http://groups.google.com/group/mongodb-user</span><br><span class="line">Server has startup warnings:</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten]</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten] ** NOTE: This is a 32 bit MongoDB binary.</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten] **       32 bit builds are limited to less than 2GB of data (or less with --journal).</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten] **       See http://dochub.mongodb.org/core/32bit</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten]</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"></span></span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/2019/07/06/MongoDB笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yancoding">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yan blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/06/MongoDB笔记/" class="post-title-link" itemprop="url">MongoDB笔记</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-06 12:48:45" itemprop="dateCreated datePublished" datetime="2019-07-06T12:48:45+08:00">2019-07-06</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-17 22:50:38" itemprop="dateModified" datetime="2019-07-17T22:50:38+08:00">2019-07-17</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="安装MongoDB服务"><a href="#安装MongoDB服务" class="headerlink" title="安装MongoDB服务"></a>安装MongoDB服务</h2><p>这里下载的时MongoDB 4 Windows社区版本，4之后的版本跟之前的有很大的不同，不需要自行指定数据库和日志目录了，这里安装过程只修改了安装目录，从默认的c盘自定义为d盘，其他均为默认选项，一并安装了compass，这里大多人都不推荐安装compass，说是会卡住，这里安装确实看起来像是卡住了，但就如安装信息说的这里可能需要 a few minutes，事实上这里安装进度不变保持了10分钟左右就安装好了，所以不用太担心，只是网络原因，假死而已</p>
-<p>当然为了方便连接 MongoDB 实例，记得要将MongoDB安装目录下的bin目录添加到系统变量，这样我们就可以直接在shell 里直接输入 <code>mongo</code> 即可连接到MongoDB服务</p>
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h2 id="mongo"><a href="#mongo" class="headerlink" title="mongo"></a>mongo</h2><p>连接到本地的 MongoDB 实例，使用默认服务端口 <code>27017</code></p>
-<p>如果修改了本地 MongoDB 实例默认的服务端口，连接时我们也可以通过 <code>--port</code> 参数指定端口</p>
-<p>例如</p>
-<p><code>mongo --port 28015</code></p>
-<h3 id="show-dbs"><a href="#show-dbs" class="headerlink" title="show dbs"></a>show dbs</h3><p>查看所有的数据库</p>
-<h3 id="db"><a href="#db" class="headerlink" title="db"></a>db</h3><p>查看当前数据库</p>
-<h3 id="use-DATABASE-NAME"><a href="#use-DATABASE-NAME" class="headerlink" title="use DATABASE_NAME"></a>use DATABASE_NAME</h3><p>切换数据库（不论存在与否）</p>
-<h2 id="db-DATABASE-NAME-insert"><a href="#db-DATABASE-NAME-insert" class="headerlink" title="db.DATABASE_NAME.insert()"></a>db.DATABASE_NAME.insert()</h2><p>向 DATABASE_NAME 数据库插入数据</p>
-<p>例如</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">db.test.insert(&#123;&quot;description&quot;: &quot;这是一条测试数据&quot;&#125;)</span><br></pre></td></tr></table></figure>
-
-<p><strong>注：</strong> 该命令不需要切换数据库</p>
-<h3 id="db-dropDatabase"><a href="#db-dropDatabase" class="headerlink" title="db.dropDatabase()"></a>db.dropDatabase()</h3><p>删除当前数据库</p>
-<h3 id="db-createCollection-name-options"><a href="#db-createCollection-name-options" class="headerlink" title="db.createCollection(name[,options])"></a>db.createCollection(name[,options])</h3><p>在当前数据库创建集合 COLLECTION_NAME</p>
-<h3 id="db-COLLECTION-NAME-drop"><a href="#db-COLLECTION-NAME-drop" class="headerlink" title="db.COLLECTION_NAME.drop()"></a>db.COLLECTION_NAME.drop()</h3><p>在当前数据库删除集合 COLLECTION_NAME</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/2019/07/02/js上传视频图片预览/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yancoding">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yan blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/02/js上传视频图片预览/" class="post-title-link" itemprop="url">js上传视频图片预览</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-02 22:24:34" itemprop="dateCreated datePublished" datetime="2019-07-02T22:24:34+08:00">2019-07-02</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-06 12:44:52" itemprop="dateModified" datetime="2019-07-06T12:44:52+08:00">2019-07-06</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p><a href="demo/list/文件上传预览">文件上传预览</a></p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>HTML</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">legend</span>&gt;</span>上传视频文件<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">accept</span>=<span class="string">"video/*"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>视频预览<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">video</span> <span class="attr">id</span>=<span class="string">"video"</span> <span class="attr">src</span>=<span class="string">""</span> <span class="attr">controls</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">legend</span>&gt;</span>上传图片文件<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">accept</span>=<span class="string">"image/*"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>图片预览<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">"img"</span> <span class="attr">src</span>=<span class="string">""</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>CSS</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">video</span>,</span><br><span class="line"><span class="selector-tag">img</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>JS</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> form = <span class="built_in">document</span>.querySelector(<span class="string">'form'</span>)</span><br><span class="line">    <span class="keyword">let</span> videoEl = <span class="built_in">document</span>.getElementById(<span class="string">'video'</span>)</span><br><span class="line">    <span class="keyword">let</span> imgEl = <span class="built_in">document</span>.getElementById(<span class="string">'img'</span>)</span><br><span class="line">    form.addEventListener(<span class="string">'change'</span>, event =&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span>(event.target.type === <span class="string">'file'</span>) &#123;</span><br><span class="line">            <span class="keyword">let</span> file = event.target.files[<span class="number">0</span>]</span><br><span class="line">            <span class="keyword">if</span>(event.target.accept.indexOf(<span class="string">'video'</span>) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                videoEl.src = getObjectURL(file)</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(event.target.accept.indexOf(<span class="string">'image'</span>) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                imgEl.src = getObjectURL(file)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">let</span> getObjectURL = <span class="function"><span class="params">file</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> url = <span class="string">''</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">window</span>.createObjectURL != <span class="literal">undefined</span>) &#123; </span><br><span class="line">            <span class="comment">// basic</span></span><br><span class="line">            url = <span class="built_in">window</span>.createObjectURL(file);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">window</span>.URL != <span class="literal">undefined</span>) &#123; </span><br><span class="line">            <span class="comment">// mozilla(firefox)</span></span><br><span class="line">            url = <span class="built_in">window</span>.URL.createObjectURL(file);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">window</span>.webkitURL != <span class="literal">undefined</span>) &#123; </span><br><span class="line">            <span class="comment">// webkit or chrome</span></span><br><span class="line">            url = <span class="built_in">window</span>.webkitURL.createObjectURL(file);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> url</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2114,7 +2180,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-count">30</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2165,7 +2231,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                      
+                    
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -2358,6 +2426,326 @@
 
 
   
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
 
 
 
