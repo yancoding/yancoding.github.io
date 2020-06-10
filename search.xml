@@ -451,6 +451,15 @@
       </tags>
   </entry>
   <entry>
+    <title>mysql数据库备份</title>
+    <url>/2019/06/25/mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%87%E4%BB%BD/</url>
+    <content><![CDATA[<h2 id="备份数据库"><a href="#备份数据库" class="headerlink" title="备份数据库"></a>备份数据库</h2><p><code>mysqldump -hhostname -uusername -ppassword databasename &gt; backupfile.sql</code></p>
+]]></content>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ubuntu安装常用软件</title>
     <url>/2020/05/16/ubuntu%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/</url>
     <content><![CDATA[<h2 id="安装vscode"><a href="#安装vscode" class="headerlink" title="安装vscode"></a>安装vscode</h2><h3 id="1-下载"><a href="#1-下载" class="headerlink" title="1.下载"></a>1.下载</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget -P Downloads/ https://vscode.cdn.azure.cn/stable/5763d909d5f12fe19f215cbfdd29a91c0fa9208a/code_1.45.1-1589445302_amd64.deb</span><br></pre></td></tr></table></figure>
@@ -493,15 +502,6 @@
 ]]></content>
       <tags>
         <tag>ubuntu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mysql数据库备份</title>
-    <url>/2019/06/25/mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%87%E4%BB%BD/</url>
-    <content><![CDATA[<h2 id="备份数据库"><a href="#备份数据库" class="headerlink" title="备份数据库"></a>备份数据库</h2><p><code>mysqldump -hhostname -uusername -ppassword databasename &gt; backupfile.sql</code></p>
-]]></content>
-      <tags>
-        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
@@ -729,6 +729,29 @@
       </tags>
   </entry>
   <entry>
+    <title>树莓派EC20模块联网</title>
+    <url>/2020/06/06/%E6%A0%91%E8%8E%93%E6%B4%BEEC20%E6%A8%A1%E5%9D%97%E8%81%94%E7%BD%91/</url>
+    <content><![CDATA[<h2 id="EC20模块"><a href="#EC20模块" class="headerlink" title="EC20模块"></a>EC20模块</h2><img src="/2020/06/06/树莓派EC20模块联网/01.jpg">
+
+<h2 id="查看连接状态"><a href="#查看连接状态" class="headerlink" title="查看连接状态"></a>查看连接状态</h2><p>执行<code>lsusb</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Bus 001 Device 004: ID 1357:1000 P&amp;E Microcomputer Systems</span><br><span class="line">Bus 001 Device 005: ID 2c7c:0125 Quectel Wireless Solutions Co., Ltd. EC25 LTE modem</span><br><span class="line">Bus 001 Device 003: ID 0424:ec00 Standard Microsystems Corp. SMSC9512/9514 Fast Ethernet Adapter</span><br><span class="line">Bus 001 Device 002: ID 0424:9514 Standard Microsystems Corp. SMC9514 Hub</span><br><span class="line">Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub</span><br></pre></td></tr></table></figure>
+
+<p>执行<code>lsmod</code></p>
+<p>未连接模块时</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Module                  Size  Used by</span><br><span class="line">sha256_generic         20480  0</span><br><span class="line">cfg80211              651264  0</span><br><span class="line">rfkill                 28672  2 cfg80211</span><br><span class="line">8021q                  32768  0</span><br><span class="line">garp                   16384  1 8021q</span><br><span class="line">stp                    16384  1 garp</span><br><span class="line">llc                    16384  2 garp,stp</span><br><span class="line">joydev                 20480  0</span><br><span class="line">evdev                  24576  7</span><br><span class="line">bcm2835_v4l2           45056  0</span><br><span class="line">bcm2835_codec          36864  0</span><br><span class="line">v4l2_common            16384  1 bcm2835_v4l2</span><br><span class="line">snd_bcm2835            24576  1</span><br><span class="line">videobuf2_vmalloc      16384  1 bcm2835_v4l2</span><br><span class="line">v4l2_mem2mem           24576  1 bcm2835_codec</span><br><span class="line">snd_pcm               102400  1 snd_bcm2835</span><br><span class="line">bcm2835_mmal_vchiq     32768  2 bcm2835_codec,bcm2835_v4l2</span><br><span class="line">videobuf2_dma_contig    20480  1 bcm2835_codec</span><br><span class="line">raspberrypi_hwmon      16384  0</span><br><span class="line">videobuf2_memops       16384  2 videobuf2_dma_contig,videobuf2_vmalloc</span><br><span class="line">hwmon                  16384  1 raspberrypi_hwmon</span><br><span class="line">videobuf2_v4l2         24576  3 bcm2835_codec,bcm2835_v4l2,v4l2_mem2mem</span><br><span class="line">snd_timer              32768  1 snd_pcm</span><br><span class="line">videobuf2_common       45056  4 bcm2835_codec,bcm2835_v4l2,v4l2_mem2mem,videobuf2_v4l2</span><br><span class="line">snd                    73728  5 snd_timer,snd_bcm2835,snd_pcm</span><br><span class="line">videodev              200704  6 bcm2835_codec,v4l2_common,videobuf2_common,bcm2835_v4l2,v4l2_mem2mem,videobuf2_v4l2</span><br><span class="line">media                  36864  3 bcm2835_codec,videodev,v4l2_mem2mem</span><br><span class="line">vc_sm_cma              36864  1 bcm2835_mmal_vchiq</span><br><span class="line">uio_pdrv_genirq        16384  0</span><br><span class="line">uio                    20480  1 uio_pdrv_genirq</span><br><span class="line">fixed                  16384  0</span><br><span class="line">i2c_dev                20480  0</span><br><span class="line">ip_tables              24576  0</span><br><span class="line">x_tables               32768  1 ip_tables</span><br><span class="line">ipv6                  454656  28</span><br></pre></td></tr></table></figure>
+
+<p>连接模块后</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Module                  Size  Used by</span><br><span class="line">option                 45056  0</span><br><span class="line">qmi_wwan               28672  0</span><br><span class="line">usb_wwan               20480  1 option</span><br><span class="line">cdc_wdm                20480  1 qmi_wwan</span><br><span class="line">usbserial              40960  2 option,usb_wwan</span><br><span class="line">sha256_generic         20480  0</span><br><span class="line">cfg80211              651264  0</span><br><span class="line">rfkill                 28672  2 cfg80211</span><br><span class="line">8021q                  32768  0</span><br><span class="line">garp                   16384  1 8021q</span><br><span class="line">stp                    16384  1 garp</span><br><span class="line">llc                    16384  2 garp,stp</span><br><span class="line">joydev                 20480  0</span><br><span class="line">evdev                  24576  7</span><br><span class="line">bcm2835_v4l2           45056  0</span><br><span class="line">bcm2835_codec          36864  0</span><br><span class="line">v4l2_common            16384  1 bcm2835_v4l2</span><br><span class="line">snd_bcm2835            24576  1</span><br><span class="line">videobuf2_vmalloc      16384  1 bcm2835_v4l2</span><br><span class="line">v4l2_mem2mem           24576  1 bcm2835_codec</span><br><span class="line">snd_pcm               102400  1 snd_bcm2835</span><br><span class="line">bcm2835_mmal_vchiq     32768  2 bcm2835_codec,bcm2835_v4l2</span><br><span class="line">videobuf2_dma_contig    20480  1 bcm2835_codec</span><br><span class="line">raspberrypi_hwmon      16384  0</span><br><span class="line">videobuf2_memops       16384  2 videobuf2_dma_contig,videobuf2_vmalloc</span><br><span class="line">hwmon                  16384  1 raspberrypi_hwmon</span><br><span class="line">videobuf2_v4l2         24576  3 bcm2835_codec,bcm2835_v4l2,v4l2_mem2mem</span><br><span class="line">snd_timer              32768  1 snd_pcm</span><br><span class="line">videobuf2_common       45056  4 bcm2835_codec,bcm2835_v4l2,v4l2_mem2mem,videobuf2_v4l2</span><br><span class="line">snd                    73728  5 snd_timer,snd_bcm2835,snd_pcm</span><br><span class="line">videodev              200704  6 bcm2835_codec,v4l2_common,videobuf2_common,bcm2835_v4l2,v4l2_mem2mem,videobuf2_v4l2</span><br><span class="line">media                  36864  3 bcm2835_codec,videodev,v4l2_mem2mem</span><br><span class="line">vc_sm_cma              36864  1 bcm2835_mmal_vchiq</span><br><span class="line">uio_pdrv_genirq        16384  0</span><br><span class="line">uio                    20480  1 uio_pdrv_genirq</span><br><span class="line">fixed                  16384  0</span><br><span class="line">i2c_dev                20480  0</span><br><span class="line">ip_tables              24576  0</span><br><span class="line">x_tables               32768  1 ip_tables</span><br><span class="line">ipv6                  454656  30</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[Dialer Defaults]</span><br><span class="line">Init1 = ATZ</span><br><span class="line">Init2 = ATQ0 V1 E1 S0=0 &amp;C1 &amp;D2 +FCLASS=0</span><br><span class="line">Modem Type = Analog Modem</span><br><span class="line">Baud = 9600</span><br><span class="line">New PPPD = yes</span><br><span class="line">Modem = /dev/ttyUSB2</span><br><span class="line">ISDN = 0</span><br><span class="line">; Phone = &lt;Target Phone Number&gt;</span><br><span class="line">; Password = &lt;Your Password&gt;</span><br><span class="line">; Username = &lt;Your Login Name&gt;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>树莓派</tag>
+        <tag>EC20模块</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>树莓派pi和root账户密码</title>
     <url>/2018/03/11/%E6%A0%91%E8%8E%93%E6%B4%BEpi%E5%92%8Croot%E8%B4%A6%E6%88%B7%E5%AF%86%E7%A0%81/</url>
     <content><![CDATA[<h2 id="pi账户"><a href="#pi账户" class="headerlink" title="pi账户"></a>pi账户</h2><p>pi是树莓派的默认账户，默认密码为 raspberry</p>
@@ -798,6 +821,27 @@
       </tags>
   </entry>
   <entry>
+    <title>树莓派安装gammu</title>
+    <url>/2020/06/07/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85gammu/</url>
+    <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install gammu</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gammu-config</span><br></pre></td></tr></table></figure>
+
+<img src="/2020/06/07/树莓派安装gammu/2020-06-07_151207.gif">
+
+<h2 id="发送短信"><a href="#发送短信" class="headerlink" title="发送短信"></a>发送短信</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gammu sendsms TEXT 19965412404 -TEXT <span class="string">'from raspberrypi(测试短信)'</span> -unicode</span><br></pre></td></tr></table></figure>
+
+<img src="/2020/06/07/树莓派安装gammu/2020-06-07_152304.gif">
+
+<img src="/2020/06/07/树莓派安装gammu/2020-06-07_152603.gif">
+]]></content>
+      <tags>
+        <tag>树莓派</tag>
+        <tag>EC20模块</tag>
+        <tag>gammu</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>树莓派安装mongodb</title>
     <url>/2019/07/17/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85mongodb/</url>
     <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install mongodb</span><br></pre></td></tr></table></figure>
@@ -851,36 +895,6 @@
       </tags>
   </entry>
   <entry>
-    <title>树莓派搭建LAMP服务</title>
-    <url>/2018/03/11/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%90%AD%E5%BB%BALAMP%E6%9C%8D%E5%8A%A1/</url>
-    <content><![CDATA[<h2 id="LAMP的含义"><a href="#LAMP的含义" class="headerlink" title="LAMP的含义"></a>LAMP的含义</h2><p>Linux - 操作系统</p>
-<p>Apache - web服务器软件</p>
-<p>MySQL - 数据库</p>
-<p>PHP - 使用语言</p>
-<h2 id="安装LAMP"><a href="#安装LAMP" class="headerlink" title="安装LAMP"></a>安装LAMP</h2><p>更新软件列表</p>
-<p><code>sudo apt-get update</code></p>
-<p>升级软件</p>
-<p><code>sudo apt-get upgrade</code></p>
-<p>安装Apache</p>
-<p><code>sudo apt-get install apache2</code></p>
-<p>输入 y 回车 继续即可</p>
-<p>安装MySQL</p>
-<p><code>sudo apt-get install mysql-server</code></p>
-<p>输入 y 回车 继续即可</p>
-<p>(<strong>注</strong>：在安装数据库MySQL过程中并没有提示设置root密码，此时密码为空，可能与我之前为启用树莓派的root账户有关)</p>
-<p>安装PHP </p>
-<p><code>sudo apt-get install php</code></p>
-<p>输入 y 回车 继续即可</p>
-<p>安装PHP访问MySQL所需要的库</p>
-<p><code>sudo apt-get install php-mysql</code></p>
-<p>输入 y 回车 继续即可</p>
-<h2 id="查看web站点"><a href="#查看web站点" class="headerlink" title="查看web站点"></a>查看web站点</h2><p>在浏览器内输入树莓派局域网IP，可以看到Apache的默认页面</p>
-<img src="/2018/03/11/树莓派搭建LAMP服务/2018-03-11-192347_830x386_scrot.png">]]></content>
-      <tags>
-        <tag>树莓派</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>树莓派相关</title>
     <url>/2020/05/24/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9B%B8%E5%85%B3/</url>
     <content><![CDATA[<h2 id="关于vim"><a href="#关于vim" class="headerlink" title="关于vim"></a>关于vim</h2><p>树莓派自带的vim直接使用会有一些问题，可以尝试进行安装</p>
@@ -917,7 +931,67 @@
 
 <p>这里比较常用的命令是<code>nginx -s [stop, quit, reopen, reload]</code>, 用于启动或停止nginx服务</p>
 <p>从帮助文件里可以知道nginx的默认配置文件在<code>/etc/nginx/nginx.conf</code>, 网站文件目录在<code>/usr/share/nginx/</code></p>
+<h2 id="安装命令行音乐播放器moc"><a href="#安装命令行音乐播放器moc" class="headerlink" title="安装命令行音乐播放器moc"></a>安装命令行音乐播放器moc</h2><p><code>moc</code>是<code>music on console</code>的意思</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install moc</span><br></pre></td></tr></table></figure>
+
+<p>执行<code>mocp</code>命令即可运行播放器</p>
+<img src="/2020/05/24/树莓派相关/2020-06-08_230552.gif">
+
+<h2 id="查看系统运行状态"><a href="#查看系统运行状态" class="headerlink" title="查看系统运行状态"></a>查看系统运行状态</h2><p>执行<code>top</code>命令</p>
+<img src="/2020/05/24/树莓派相关/2020-06-09_204651.gif">
+
+<p>执行<code>htop</code>命令</p>
+<img src="/2020/05/24/树莓派相关/2020-06-09_204852.gif">
+
+<h2 id="使用ffmpeg命令录制视频"><a href="#使用ffmpeg命令录制视频" class="headerlink" title="使用ffmpeg命令录制视频"></a>使用ffmpeg命令录制视频</h2><p>插上usb摄像头后</p>
+<p>执行<code>lsusb</code>查看设备</p>
+<img src="/2020/05/24/树莓派相关/2020-06-10_223609.gif">
+
+<p>其中的<code>Apple, Inc. Built-in iSight</code>便是usb摄像头</p>
+<p>查看ffmpeg官方文档<a href="http://ffmpeg.org/ffmpeg.html#Video-and-Audio-grabbing" target="_blank" rel="noopener">这里</a>有说如何获取音频视频到文件</p>
+<blockquote>
+<p>6.1 Video and Audio grabbing<br>If you specify the input format and device then ffmpeg can grab video and audio directly.</p>
+<p><code>ffmpeg -f oss -i /dev/dsp -f video4linux2 -i /dev/video0 /tmp/out.mpg</code><br>Or with an ALSA audio source (mono input, card id 1) instead of OSS:</p>
+<p><code>ffmpeg -f alsa -ac 1 -i hw:1 -f video4linux2 -i /dev/video0 /tmp/out.mpg</code><br>Note that you must activate the right video source and channel before launching ffmpeg with any TV viewer such as xawtv by Gerd Knorr. You also have to set the audio recording levels correctly with a standard mixer.</p>
+</blockquote>
+<p>树莓派上没有录音设备，所以就不录音频，只录视频画面</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffmpeg -f video4linux2 -i /dev/video0 -t 10 out.mpg</span><br></pre></td></tr></table></figure>
+
+<p>录制10s视频并保存到当前目录的out.mpg</p>
+<p>这里保存的是mpg格式文件，普通播放器可能无法播放，将其转为常见的mp4格式</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffmpeg -i out.mpg out.mp4</span><br></pre></td></tr></table></figure>
+
 ]]></content>
+      <tags>
+        <tag>树莓派</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派搭建LAMP服务</title>
+    <url>/2018/03/11/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%90%AD%E5%BB%BALAMP%E6%9C%8D%E5%8A%A1/</url>
+    <content><![CDATA[<h2 id="LAMP的含义"><a href="#LAMP的含义" class="headerlink" title="LAMP的含义"></a>LAMP的含义</h2><p>Linux - 操作系统</p>
+<p>Apache - web服务器软件</p>
+<p>MySQL - 数据库</p>
+<p>PHP - 使用语言</p>
+<h2 id="安装LAMP"><a href="#安装LAMP" class="headerlink" title="安装LAMP"></a>安装LAMP</h2><p>更新软件列表</p>
+<p><code>sudo apt-get update</code></p>
+<p>升级软件</p>
+<p><code>sudo apt-get upgrade</code></p>
+<p>安装Apache</p>
+<p><code>sudo apt-get install apache2</code></p>
+<p>输入 y 回车 继续即可</p>
+<p>安装MySQL</p>
+<p><code>sudo apt-get install mysql-server</code></p>
+<p>输入 y 回车 继续即可</p>
+<p>(<strong>注</strong>：在安装数据库MySQL过程中并没有提示设置root密码，此时密码为空，可能与我之前为启用树莓派的root账户有关)</p>
+<p>安装PHP </p>
+<p><code>sudo apt-get install php</code></p>
+<p>输入 y 回车 继续即可</p>
+<p>安装PHP访问MySQL所需要的库</p>
+<p><code>sudo apt-get install php-mysql</code></p>
+<p>输入 y 回车 继续即可</p>
+<h2 id="查看web站点"><a href="#查看web站点" class="headerlink" title="查看web站点"></a>查看web站点</h2><p>在浏览器内输入树莓派局域网IP，可以看到Apache的默认页面</p>
+<img src="/2018/03/11/树莓派搭建LAMP服务/2018-03-11-192347_830x386_scrot.png">]]></content>
       <tags>
         <tag>树莓派</tag>
       </tags>
