@@ -263,7 +263,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">32</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">33</span></a>
 
   </li>
         
@@ -436,6 +436,34 @@
           
 
           
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">1.3k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
 
           
 
@@ -468,9 +496,9 @@
 
 <p>此时服务已启动，但还不能正常使用，需要进行服务配置</p>
 <h2 id="4-服务配置"><a href="#4-服务配置" class="headerlink" title="4.服务配置"></a>4.服务配置</h2><p>找到 <code>auth</code> 和 <code>permit</code>, 取消注释，如下</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span> ///////////////////////////////////////////////////////////////////////////////////</span><br><span class="line"><span class="meta">#</span>       SHost           SPort           Authentication</span><br><span class="line"><span class="meta">#</span></span><br><span class="line">auth    0.0.0.0/0               -               -</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> ///////////////////////////////////////////////////////////////////////////////////</span></span><br><span class="line"><span class="meta">#</span><span class="bash">       SHost           SPort           Authentication</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">auth    0.0.0.0/0               -               -</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span> /////////////////////////////////////////////////////////////////////////////////////////////////</span><br><span class="line"><span class="meta">#</span>      Auth     SHost           SPort   DHost           DPort   Fixup   Group   Band    ExpDate</span><br><span class="line"><span class="meta">#</span></span><br><span class="line">permit -        0.0.0.0/0       -       0.0.0.0/0       -       -       -       -       -</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> /////////////////////////////////////////////////////////////////////////////////////////////////</span></span><br><span class="line"><span class="meta">#</span><span class="bash">      Auth     SHost           SPort   DHost           DPort   Fixup   Group   Band    ExpDate</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">permit -        0.0.0.0/0       -       0.0.0.0/0       -       -       -       -       -</span><br></pre></td></tr></table></figure>
 
 <p>重启服务</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">service ss5 restart</span><br></pre></td></tr></table></figure>
@@ -486,9 +514,9 @@
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vi /etc/opt/ss5/ss5.conf</span><br></pre></td></tr></table></figure>
 
 <p>找到 <code>auth</code> 和 <code>permit</code>, 修改如下</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span> ///////////////////////////////////////////////////////////////////////////////////</span><br><span class="line"><span class="meta">#</span>       SHost           SPort           Authentication</span><br><span class="line"><span class="meta">#</span></span><br><span class="line">auth    0.0.0.0/0               -               u</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> ///////////////////////////////////////////////////////////////////////////////////</span></span><br><span class="line"><span class="meta">#</span><span class="bash">       SHost           SPort           Authentication</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">auth    0.0.0.0/0               -               u</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span> /////////////////////////////////////////////////////////////////////////////////////////////////</span><br><span class="line"><span class="meta">#</span>      Auth     SHost           SPort   DHost           DPort   Fixup   Group   Band    ExpDate</span><br><span class="line"><span class="meta">#</span></span><br><span class="line">permit u        0.0.0.0/0       -       0.0.0.0/0       -       -       -       -       -</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> /////////////////////////////////////////////////////////////////////////////////////////////////</span></span><br><span class="line"><span class="meta">#</span><span class="bash">      Auth     SHost           SPort   DHost           DPort   Fixup   Group   Band    ExpDate</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">permit u        0.0.0.0/0       -       0.0.0.0/0       -       -       -       -       -</span><br></pre></td></tr></table></figure>
 
 <p>编辑</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim /etc/opt/ss5/ss5.passwd</span><br></pre></td></tr></table></figure>
@@ -628,7 +656,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">32</span>
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -764,7 +792,25 @@
   <span class="author" itemprop="copyrightHolder">yancoding</span>
 
   
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">32k</span>
+  
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">29 分钟</span>
   
 </div>
 
