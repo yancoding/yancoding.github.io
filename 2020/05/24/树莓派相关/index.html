@@ -120,7 +120,12 @@
 <meta property="og:image" content="https://yancoding.github.io/2020/05/24/树莓派相关/2020-06-14_120308.gif">
 <meta property="og:image" content="https://yancoding.github.io/2020/05/24/树莓派相关/2020-06-14_232405.gif">
 <meta property="og:image" content="https://yancoding.github.io/2020/05/24/树莓派相关/2020-06-14_083950.gif">
-<meta property="og:updated_time" content="2020-06-14T15:30:30.922Z">
+<meta property="og:image" content="https://yancoding.github.io/2020/05/24/树莓派相关/2020-06-16_212327.gif">
+<meta property="og:image" content="https://yancoding.github.io/2020/05/24/树莓派相关/2020-06-16_212227.gif">
+<meta property="og:image" content="https://yancoding.github.io/2020/05/24/树莓派相关/2020-08-02_152545.png">
+<meta property="og:image" content="https://yancoding.github.io/2020/05/24/树莓派相关/2020-08-02_165347.png">
+<meta property="og:image" content="https://yancoding.github.io/2020/05/24/树莓派相关/2020-08-01_225748.png">
+<meta property="og:updated_time" content="2020-08-02T08:55:15.976Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="树莓派相关">
 <meta name="twitter:description" content="关于vim树莓派自带的vim直接使用会有一些问题，可以尝试进行安装 sudo apt-get install vim  更换软件源 编辑  sudo vim /etc/apt/sources.list  更改为 #deb http://raspbian.raspberrypi.org/raspbian/ buster main contrib non-free rpi# Uncomment lin">
@@ -259,7 +264,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">19</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">20</span></a>
 
   </li>
         
@@ -278,7 +283,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">33</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">34</span></a>
 
   </li>
         
@@ -445,7 +450,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-06-14 23:30:30" itemprop="dateModified" datetime="2020-06-14T23:30:30+08:00">2020-06-14</time>
+                <time title="修改时间：2020-08-02 16:55:15" itemprop="dateModified" datetime="2020-08-02T16:55:15+08:00">2020-08-02</time>
               
             
           </span>
@@ -473,7 +478,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">5.6k</span>
+                <span title="本文字数">6.9k</span>
               
 
               
@@ -487,7 +492,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">5 分钟</span>
+                <span title="阅读时长">6 分钟</span>
               
             </div>
           
@@ -618,7 +623,7 @@
 <p>查看扫描到蓝牙设备<code>devices</code></p>
 <img src="/2020/05/24/树莓派相关/2020-06-14_115137.gif">
 
-<p>信任设备<code>trust</code></p>
+<p>信任设备<code>trust</code>（下次系统重启会自动进行连接）</p>
 <img src="/2020/05/24/树莓派相关/2020-06-14_120113.gif">
 
 <p>配对<code>pair</code></p>
@@ -636,20 +641,104 @@
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim ~/.asoundrc</span><br></pre></td></tr></table></figure>
 
 <p>编辑该文件，没有则新建</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pcm.!default &#123;</span><br><span class="line">        type asym</span><br><span class="line">        playback.pcm &#123;</span><br><span class="line">                type plug</span><br><span class="line">                slave.pcm &quot;output&quot;</span><br><span class="line">        &#125;</span><br><span class="line">        capture.pcm &#123;</span><br><span class="line">                type plug</span><br><span class="line">                slave.pcm &quot;input&quot;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">pcm.output &#123;</span><br><span class="line">        type bluealsa</span><br><span class="line">        device &quot;30:21:D0:3E:1F:C1&quot;</span><br><span class="line">        profile &quot;a2dp&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ctl.!default &#123;</span><br><span class="line">        type bluealsa</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">pcm.input &#123;</span><br><span class="line">        type bluealsa</span><br><span class="line">        device &quot;30:21:D0:3E:1F:C1&quot;</span><br><span class="line">        profile &quot;sco&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pcm.!default &#123;</span><br><span class="line">        type asym</span><br><span class="line">        playback.pcm &#123;</span><br><span class="line">                type plug</span><br><span class="line">                slave.pcm &quot;output&quot;</span><br><span class="line">        &#125;</span><br><span class="line">        capture.pcm &#123;</span><br><span class="line">                type plug</span><br><span class="line">                slave.pcm &quot;input&quot;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">pcm.output &#123;</span><br><span class="line">        type bluealsa</span><br><span class="line">        device &quot;50:D2:F5:5C:00:26&quot;</span><br><span class="line">        profile &quot;a2dp&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ctl.!default &#123;</span><br><span class="line">        type bluealsa</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">pcm.input &#123;</span><br><span class="line">        type bluealsa</span><br><span class="line">        device &quot;50:D2:F5:5C:00:26&quot;</span><br><span class="line">        profile &quot;sco&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>output - 音频输出<br>input - 音频输入（麦克风）</p>
-<p>这里”30:21:D0:3E:1F:C1”是音箱mac地址（不是图上的那个设备，改了）</p>
+<p>这里”30:21:D0:3E:1F:C1”是音箱mac地址</p>
 <p>保存后重新播放，便可以将蓝牙音箱作为默认音频输出</p>
 <p>注意：这样配置，mocp播放器不能正常播放（可能不能正确识别树莓派下音频配置，推荐这种情况下使用树莓派自带的<code>vlc media player</code>作为音乐播放器）</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vlc -I ncurses</span><br></pre></td></tr></table></figure>
 
 <img src="/2020/05/24/树莓派相关/2020-06-14_232405.gif">
 
-<p>在未进行蓝牙扫描时，<code>devices</code>命令可以用来查看已配对设备</p>
+<p>或者</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vlc ~/Music</span><br></pre></td></tr></table></figure>
+
+<p>添加指定目录到播放列表</p>
+<p>在未进行蓝牙扫描时，<code>paired-devices</code>命令可以用来查看已配对设备</p>
 <p><code>remove</code>命令可以用来指定移除指定设备的配对</p>
 <p><code>disconnect</code>用于断开当前蓝牙连接</p>
 <img src="/2020/05/24/树莓派相关/2020-06-14_083950.gif">
+
+<h2 id="查看CPU温度"><a href="#查看CPU温度" class="headerlink" title="查看CPU温度"></a>查看CPU温度</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cat /sys/class/thermal/thermal_zone0/temp</span><br></pre></td></tr></table></figure>
+
+<p>所得值除以1000可以得到摄氏度单位值</p>
+<img src="/2020/05/24/树莓派相关/2020-06-16_212327.gif">
+
+<p>也可以使用<code>watch</code>命令，刷新温度值，默认每两秒执行一次</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">watch cat /sys/class/thermal/thermal_zone0/temp</span><br></pre></td></tr></table></figure>
+
+<img src="/2020/05/24/树莓派相关/2020-06-16_212227.gif">
+
+<h2 id="设置静态ip"><a href="#设置静态ip" class="headerlink" title="设置静态ip"></a>设置静态ip</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/dhcpcd.conf</span><br></pre></td></tr></table></figure>
+
+<p>修改相应部分为</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Example static IP configuration:</span><br><span class="line">interface eth0</span><br><span class="line">static ip_address=192.168.1.4/24</span><br><span class="line">#static ip6_address=fd51:42f8:caae:d92e::ff/64</span><br><span class="line">static routers=192.168.1.1</span><br><span class="line">#static domain_name_servers=192.168.0.1 8.8.8.8 fd51:42f8:caae:d92e::1</span><br></pre></td></tr></table></figure>
+
+<p>wifi 下类似 interface 为 wlan0</p>
+<p>重启生效</p>
+<h2 id="修改主机名"><a href="#修改主机名" class="headerlink" title="修改主机名"></a>修改主机名</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/hostname</span><br><span class="line">sudo vim /etc/hosts</span><br></pre></td></tr></table></figure>
+
+<p>修改其中的主机名，重启生效</p>
+<h2 id="挂载硬盘"><a href="#挂载硬盘" class="headerlink" title="挂载硬盘"></a>挂载硬盘</h2><p>查看磁盘分区</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo fdisk -l</span><br></pre></td></tr></table></figure>
+
+<img src="/2020/05/24/树莓派相关/2020-08-02_152545.png">
+
+<p>挂载</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo mount /dev/sda1 /media</span><br></pre></td></tr></table></figure>
+
+<p>开机自动挂载</p>
+<p>编辑</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/fstab</span><br></pre></td></tr></table></figure>
+
+<p>添加一行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/dev/sda1       /media          ntfs    defaults,noatime        0       0</span><br></pre></td></tr></table></figure>
+
+<p>重启</p>
+<p>查看<code>df -lh</code></p>
+<img src="/2020/05/24/树莓派相关/2020-08-02_165347.png">
+
+<h2 id="安装samba服务"><a href="#安装samba服务" class="headerlink" title="安装samba服务"></a>安装samba服务</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install samba</span><br></pre></td></tr></table></figure>
+
+<p>配置</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/samba/smb.conf</span><br></pre></td></tr></table></figure>
+
+<p>在配置文件中添加</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[share]</span><br><span class="line">    path = /media</span><br><span class="line">    public = yes</span><br><span class="line">    writable = yes</span><br><span class="line">    browsable = yes</span><br></pre></td></tr></table></figure>
+
+<p>访问 <code>\\192.168.1.4</code></p>
+<p>如何添加用户</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo smbpasswd -a pi</span><br></pre></td></tr></table></figure>
+
+<p>这将添加pi用户，注意密码不要与pi用户密码设一样，另设密码</p>
+<p>如果在Windows上登录过后，如何清除用户登录状态</p>
+<p>在cmd命令行</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">net use</span><br><span class="line">net use \\192.168.1.4\raspi4-private /delete</span><br></pre></td></tr></table></figure>
+
+<img src="/2020/05/24/树莓派相关/2020-08-01_225748.png">
+
+<p>上传文件速度在30M/s，下载速度105M/s,有线网络连接的情况下</p>
+<h2 id="磁盘读写速度测试"><a href="#磁盘读写速度测试" class="headerlink" title="磁盘读写速度测试"></a>磁盘读写速度测试</h2><p>读取速度</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install hdparm</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo hdparm -t /dev/sda1</span><br><span class="line">sudo hdparm -T /dev/sda1</span><br></pre></td></tr></table></figure>
+
+<p>显示</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/dev/sda1:</span><br><span class="line"> Timing buffered disk reads: 276 MB in  3.01 seconds =  91.81 MB/sec</span><br><span class="line"></span><br><span class="line">/dev/sda1:</span><br><span class="line"> Timing cached reads:   1532 MB in  2.00 seconds = 766.63 MB/sec</span><br></pre></td></tr></table></figure>
+
+<p>写入速度</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo dd if=/dev/zero of=/media/testw.dbf bs=512M count=1</span><br></pre></td></tr></table></figure>
+
+<p>回显</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">记录了1+0 的读入</span><br><span class="line">记录了1+0 的写出</span><br><span class="line">536870912 bytes (537 MB, 512 MiB) copied, 17.697 s, 30.3 MB/s</span><br></pre></td></tr></table></figure>
+
+<h2 id="屏幕旋转"><a href="#屏幕旋转" class="headerlink" title="屏幕旋转"></a>屏幕旋转</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo vim /boot/config.txt</span><br></pre></td></tr></table></figure>
+
+<p>添加</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">display_rotate=1</span><br></pre></td></tr></table></figure>
+
+<p>旋转90deg</p>
 
       
     </div>
@@ -772,7 +861,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-count">34</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -829,7 +918,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">19</span>
+                      
+                    
+                    <span class="site-state-item-count">20</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -880,7 +971,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于vim"><span class="nav-number">1.</span> <span class="nav-text">关于vim</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更换软件源"><span class="nav-number">2.</span> <span class="nav-text">更换软件源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装nginx"><span class="nav-number">3.</span> <span class="nav-text">安装nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#播放音频"><span class="nav-number">4.</span> <span class="nav-text">播放音频</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-使用aplay播放"><span class="nav-number">4.1.</span> <span class="nav-text">1.使用aplay播放</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用omxplayer播放"><span class="nav-number">4.2.</span> <span class="nav-text">2.使用omxplayer播放</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-使用音乐播放器moc播放"><span class="nav-number">4.3.</span> <span class="nav-text">3.使用音乐播放器moc播放</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看系统运行状态"><span class="nav-number">5.</span> <span class="nav-text">查看系统运行状态</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-使用top命令"><span class="nav-number">5.1.</span> <span class="nav-text">1.使用top命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用htop命令"><span class="nav-number">5.2.</span> <span class="nav-text">2.使用htop命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用ffmpeg命令录制视频"><span class="nav-number">6.</span> <span class="nav-text">使用ffmpeg命令录制视频</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rtmp服务器推流"><span class="nav-number">7.</span> <span class="nav-text">rtmp服务器推流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-rtmp服务"><span class="nav-number">7.1.</span> <span class="nav-text">1.rtmp服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-前端"><span class="nav-number">7.2.</span> <span class="nav-text">2.前端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-ffmpeg命令推流"><span class="nav-number">7.3.</span> <span class="nav-text">3.ffmpeg命令推流</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#本地文件推流"><span class="nav-number">7.3.1.</span> <span class="nav-text">本地文件推流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#摄像头推流"><span class="nav-number">7.3.2.</span> <span class="nav-text">摄像头推流</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连接蓝牙音箱"><span class="nav-number">8.</span> <span class="nav-text">连接蓝牙音箱</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于vim"><span class="nav-number">1.</span> <span class="nav-text">关于vim</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更换软件源"><span class="nav-number">2.</span> <span class="nav-text">更换软件源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装nginx"><span class="nav-number">3.</span> <span class="nav-text">安装nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#播放音频"><span class="nav-number">4.</span> <span class="nav-text">播放音频</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-使用aplay播放"><span class="nav-number">4.1.</span> <span class="nav-text">1.使用aplay播放</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用omxplayer播放"><span class="nav-number">4.2.</span> <span class="nav-text">2.使用omxplayer播放</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-使用音乐播放器moc播放"><span class="nav-number">4.3.</span> <span class="nav-text">3.使用音乐播放器moc播放</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看系统运行状态"><span class="nav-number">5.</span> <span class="nav-text">查看系统运行状态</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-使用top命令"><span class="nav-number">5.1.</span> <span class="nav-text">1.使用top命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用htop命令"><span class="nav-number">5.2.</span> <span class="nav-text">2.使用htop命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用ffmpeg命令录制视频"><span class="nav-number">6.</span> <span class="nav-text">使用ffmpeg命令录制视频</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rtmp服务器推流"><span class="nav-number">7.</span> <span class="nav-text">rtmp服务器推流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-rtmp服务"><span class="nav-number">7.1.</span> <span class="nav-text">1.rtmp服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-前端"><span class="nav-number">7.2.</span> <span class="nav-text">2.前端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-ffmpeg命令推流"><span class="nav-number">7.3.</span> <span class="nav-text">3.ffmpeg命令推流</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#本地文件推流"><span class="nav-number">7.3.1.</span> <span class="nav-text">本地文件推流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#摄像头推流"><span class="nav-number">7.3.2.</span> <span class="nav-text">摄像头推流</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连接蓝牙音箱"><span class="nav-number">8.</span> <span class="nav-text">连接蓝牙音箱</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看CPU温度"><span class="nav-number">9.</span> <span class="nav-text">查看CPU温度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置静态ip"><span class="nav-number">10.</span> <span class="nav-text">设置静态ip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改主机名"><span class="nav-number">11.</span> <span class="nav-text">修改主机名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#挂载硬盘"><span class="nav-number">12.</span> <span class="nav-text">挂载硬盘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装samba服务"><span class="nav-number">13.</span> <span class="nav-text">安装samba服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘读写速度测试"><span class="nav-number">14.</span> <span class="nav-text">磁盘读写速度测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#屏幕旋转"><span class="nav-number">15.</span> <span class="nav-text">屏幕旋转</span></a></li></ol></div>
             
 
           </div>
@@ -915,7 +1006,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">32k</span>
+    <span title="站点总字数">34k</span>
   
 
   
@@ -926,7 +1017,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">29 分钟</span>
+    <span title="站点阅读时长">31 分钟</span>
   
 </div>
 
