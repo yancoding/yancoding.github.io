@@ -240,7 +240,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">20</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">25</span></a>
 
   </li>
         
@@ -259,7 +259,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">34</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">38</span></a>
 
   </li>
         
@@ -350,6 +350,838 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/2020/05/12/window实体机ubuntu系统安装/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yancoding">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yan blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/05/12/window实体机ubuntu系统安装/" class="post-title-link" itemprop="url">window实体机ubuntu系统安装</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-05-12 22:46:17 / 修改时间：23:18:42" itemprop="dateCreated datePublished" datetime="2020-05-12T22:46:17+08:00">2020-05-12</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">680</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="情形"><a href="#情形" class="headerlink" title="情形"></a>情形</h2><ul>
+<li><p>window电脑安装ubuntu系统，非多系统</p>
+</li>
+<li><p>ubuntu-18.04</p>
+</li>
+<li><p>u盘安装</p>
+</li>
+</ul>
+<h2 id="1-正常安装"><a href="#1-正常安装" class="headerlink" title="1.正常安装"></a>1.正常安装</h2><h3 id="下载系统镜像"><a href="#下载系统镜像" class="headerlink" title="下载系统镜像"></a>下载系统镜像</h3><p>下载iso系统镜像，国内在官网下载慢的话，可以到<a href="https://developer.aliyun.com/mirror/" target="_blank" rel="noopener">阿里云镜像站</a>下载</p>
+<p>这里下载的是<code>ubuntu-18.04.4-desktop-amd64.iso</code></p>
+<h3 id="制作启动盘"><a href="#制作启动盘" class="headerlink" title="制作启动盘"></a>制作启动盘</h3><p>这里使用 软碟通 </p>
+<p>打开软碟通 - 启动- 写入硬盘映像</p>
+<p><code>便捷启动</code>选择 <code>写入新的驱动器引导扇区</code>中的<code>Syslinux</code></p>
+<p>配置好后便可以写入到U盘</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>配置好启动项，从U盘启动即可，正常情况下即可进入系统安装界面，完</p>
+<h2 id="3-ThinkPad-E485安装Ubuntu"><a href="#3-ThinkPad-E485安装Ubuntu" class="headerlink" title="3.ThinkPad E485安装Ubuntu"></a>3.ThinkPad E485安装Ubuntu</h2><p>一般的电脑进入U盘启动后便可正常安装，但这个本子却是不能的，据说是国内这个本子的BIOS存在问题导致（逃</p>
+<p>当然这个问题网上也是有解决办法的，比如这个帖子<a href="https://tieba.baidu.com/p/6009950485" target="_blank" rel="noopener">E485 ( RYZEN )安装linux教程</a></p>
+<p>编辑安装选项，linux行末添加 <code>ivrs=ioapic[32]=00:14.0 spec_store_bypass_disable=prctl iommu=soft</code>,保存后启动后便可以正常进入安装界面</p>
+<p>安装完成重启后会发现还是进不去系统，这里还是跟前面一样需要编辑 添加<code>ivrs=ioapic[32]=00:14.0 spec_store_bypass_disable=prctl iommu=soft</code></p>
+<p>启动后编辑<code>/etc/default/grub</code></p>
+<p>在<code>GRUB_CMDLINE_LINUX_DEFAULT</code>行末添加<code>ivrs=ioapic[32]=00:14.0 spec_store_bypass_disable=prctl iommu=soft</code>即可， 完</p>
+<p>参考文章</p>
+<ul>
+<li><a href="https://tieba.baidu.com/p/6009950485" target="_blank" rel="noopener">E485 ( RYZEN )安装linux教程</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/2020/05/11/树莓派开机自动启动chrome浏览器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yancoding">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yan blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/05/11/树莓派开机自动启动chrome浏览器/" class="post-title-link" itemprop="url">树莓派开机自动启动chrome浏览器</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-05-11 21:35:26" itemprop="dateCreated datePublished" datetime="2020-05-11T21:35:26+08:00">2020-05-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-08-02 12:24:17" itemprop="dateModified" datetime="2020-08-02T12:24:17+08:00">2020-08-02</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">608</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-chrome-命令行启动（不可通过ssh连接，可以尝试在真机，或者vnc连接情况下）"><a href="#1-chrome-命令行启动（不可通过ssh连接，可以尝试在真机，或者vnc连接情况下）" class="headerlink" title="1.chrome 命令行启动（不可通过ssh连接，可以尝试在真机，或者vnc连接情况下）"></a>1.chrome 命令行启动（不可通过ssh连接，可以尝试在真机，或者vnc连接情况下）</h2><p>打开谷歌</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chromium-browser https://google.com</span><br></pre></td></tr></table></figure>
+
+<p>全屏打开谷歌</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chromium-browser --start-fullscreen https://google.com</span><br></pre></td></tr></table></figure>
+
+<p>自助服务模式（kiosk）打开谷歌</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chromium-browser --kiosk https://google.com</span><br></pre></td></tr></table></figure>
+
+<p>注：该模式类似于常见的自主终端机的显示模式， 画面全屏显示，但与普通全屏模式又有不同，如果只有触摸屏的话，用户是无法退出全屏的。</p>
+<h2 id="2-树莓派开机自动启动chrome并打开指定的地址"><a href="#2-树莓派开机自动启动chrome并打开指定的地址" class="headerlink" title="2.树莓派开机自动启动chrome并打开指定的地址"></a>2.树莓派开机自动启动chrome并打开指定的地址</h2><p>切换到桌面的自动启动应用配置目录</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd ~/.config/autostart</span><br></pre></td></tr></table></figure>
+
+<p>创建一个自启应用配置</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">touch start-chrome.desktop</span><br><span class="line">vi start-chrome.desktop</span><br></pre></td></tr></table></figure>
+
+<p>编辑内容如下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[Desktop Entry]</span><br><span class="line">Encoding=</span><br><span class="line">Name=</span><br><span class="line">Comment=</span><br><span class="line">Icon=</span><br><span class="line">Exec=chromium-browser --start-fullscreen https://google.com</span><br><span class="line">Terminal=</span><br><span class="line">Type=Application</span><br><span class="line">Categories=</span><br></pre></td></tr></table></figure>
+
+<p>保存重启树莓派，当桌面启动几秒后，便会自动打开chrome</p>
+<p>参考文章</p>
+<ul>
+<li><p><a href="https://blog.csdn.net/szu_Vegetable_Bird/article/details/80231660" target="_blank" rel="noopener">树莓派开机自启动chrome浏览器并进入某网址</a></p>
+</li>
+<li><p><a href="https://peter.sh/experiments/chromium-command-line-switches/" target="_blank" rel="noopener">List of Chromium Command Line Switches</a></p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/2020/05/10/centos安装socks5服务/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yancoding">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yan blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/05/10/centos安装socks5服务/" class="post-title-link" itemprop="url">centos安装socks5服务</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-05-10 20:26:57 / 修改时间：23:27:33" itemprop="dateCreated datePublished" datetime="2020-05-10T20:26:57+08:00">2020-05-10</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">1.3k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-安装依赖"><a href="#1-安装依赖" class="headerlink" title="1.安装依赖"></a>1.安装依赖</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum -y install gcc gcc-c++ automake make pam-devel openldap-deve</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-安装socks5"><a href="#2-安装socks5" class="headerlink" title="2.安装socks5"></a>2.安装socks5</h2><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget https://jaist.dl.sourceforge.net/project/ss5/ss5/3.8.9-8/ss5-3.8.9-8.tar.gz</span><br></pre></td></tr></table></figure>
+
+<h3 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">tar -zxvf ss5-3.8.9-8.tar.gz</span><br></pre></td></tr></table></figure>
+
+<h3 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd ss5-3.8.9</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-启动服务"><a href="#3-启动服务" class="headerlink" title="3.启动服务"></a>3.启动服务</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">service ss5 start</span><br></pre></td></tr></table></figure>
+
+<p>echo “env: /etc/init.d/ss5: Permission denied”</p>
+<p>修改权限后再次启动</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chmod a+x /etc/init.d/ss5</span><br><span class="line">service ss5 start</span><br></pre></td></tr></table></figure>
+
+<p>此时服务已启动，但还不能正常使用，需要进行服务配置</p>
+<h2 id="4-服务配置"><a href="#4-服务配置" class="headerlink" title="4.服务配置"></a>4.服务配置</h2><p>找到 <code>auth</code> 和 <code>permit</code>, 取消注释，如下</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> ///////////////////////////////////////////////////////////////////////////////////</span></span><br><span class="line"><span class="meta">#</span><span class="bash">       SHost           SPort           Authentication</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">auth    0.0.0.0/0               -               -</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> /////////////////////////////////////////////////////////////////////////////////////////////////</span></span><br><span class="line"><span class="meta">#</span><span class="bash">      Auth     SHost           SPort   DHost           DPort   Fixup   Group   Band    ExpDate</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">permit -        0.0.0.0/0       -       0.0.0.0/0       -       -       -       -       -</span><br></pre></td></tr></table></figure>
+
+<p>重启服务</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">service ss5 restart</span><br></pre></td></tr></table></figure>
+
+<p>socks5默认服务端口为<code>1080</code>, 查看系统端口列表</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">firewall-cmd --zone=public --list-ports</span><br></pre></td></tr></table></figure>
+
+<p>如果还没有开启, 则开启1080端口</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">firewall-cmd --add-port=1080/tcp --permanent</span><br><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+
+<p>至此，服务已可以连接，任何用户均可连接</p>
+<h2 id="5-配置用户"><a href="#5-配置用户" class="headerlink" title="5.配置用户"></a>5.配置用户</h2><p>编辑</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vi /etc/opt/ss5/ss5.conf</span><br></pre></td></tr></table></figure>
+
+<p>找到 <code>auth</code> 和 <code>permit</code>, 修改如下</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> ///////////////////////////////////////////////////////////////////////////////////</span></span><br><span class="line"><span class="meta">#</span><span class="bash">       SHost           SPort           Authentication</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">auth    0.0.0.0/0               -               u</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> /////////////////////////////////////////////////////////////////////////////////////////////////</span></span><br><span class="line"><span class="meta">#</span><span class="bash">      Auth     SHost           SPort   DHost           DPort   Fixup   Group   Band    ExpDate</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">permit u        0.0.0.0/0       -       0.0.0.0/0       -       -       -       -       -</span><br></pre></td></tr></table></figure>
+
+<p>编辑</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim /etc/opt/ss5/ss5.passwd</span><br></pre></td></tr></table></figure>
+
+<p>添加一行用户，账户与密码空格隔开</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">username password</span><br></pre></td></tr></table></figure>
+
+<p>重启服务</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">service ss5 restart</span><br></pre></td></tr></table></figure>
+
+<p>此时在连接代理服务则需要账户密码才可连接成功</p>
+<p>参考文章</p>
+<ul>
+<li><a href="https://blog.csdn.net/zjiang1994/article/details/74925039" target="_blank" rel="noopener">CentOS7 配置SOCKS5代理服务</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/2020/04/04/centos-安装-nginx/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yancoding">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yan blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/04/04/centos-安装-nginx/" class="post-title-link" itemprop="url">centos 安装 nginx</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-04-04 22:38:49" itemprop="dateCreated datePublished" datetime="2020-04-04T22:38:49+08:00">2020-04-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-05-10 23:28:39" itemprop="dateModified" datetime="2020-05-10T23:28:39+08:00">2020-05-10</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">853</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-系统版本"><a href="#1-系统版本" class="headerlink" title="1, 系统版本"></a>1, 系统版本</h2><p>当前安装的系统版本为：CentOS 7 x64 并且没有 SELinux</p>
+<h2 id="2，安装"><a href="#2，安装" class="headerlink" title="2，安装"></a>2，安装</h2><p>安装过程来自nginx官方的安装介绍</p>
+<p>需要先安装 yum-utils</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo yum install yum-utils</span><br></pre></td></tr></table></figure>
+
+<p>然后添加 nginx 的 yum 仓库<br>在<code>/etc/yum.repos.d/</code>下新建文件<code>nginx</code></p>
+<p>保存一下内容</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[nginx-stable]</span><br><span class="line">name=nginx stable repo</span><br><span class="line">baseurl=http://nginx.org/packages/centos/$releasever/$basearch/</span><br><span class="line">gpgcheck=1</span><br><span class="line">enabled=1</span><br><span class="line">gpgkey=https://nginx.org/keys/nginx_signing.key</span><br><span class="line">module_hotfixes=true</span><br><span class="line"></span><br><span class="line">[nginx-mainline]</span><br><span class="line">name=nginx mainline repo</span><br><span class="line">baseurl=http://nginx.org/packages/mainline/centos/$releasever/$basearch/</span><br><span class="line">gpgcheck=1</span><br><span class="line">enabled=0</span><br><span class="line">gpgkey=https://nginx.org/keys/nginx_signing.key</span><br><span class="line">module_hotfixes=true</span><br></pre></td></tr></table></figure>
+
+<p>安装nginx</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo yum install nginx</span><br></pre></td></tr></table></figure>
+
+<p>到此nginx安装完毕</p>
+<h2 id="关于配置"><a href="#关于配置" class="headerlink" title="关于配置"></a>关于配置</h2><p>nginx默认是监听80端口的</p>
+<p>这是如果防火墙没有开放相应端口的话，是无法进行外网访问的</p>
+<p>查看所有打开的端口： <code>firewall-cmd --zone=public --list-ports</code></p>
+<p>打开80端口 <code>firewall-cmd --zone=public --add-port=80/tcp --permanent</code></p>
+<p>之后便可以在外网访问到nginx的欢迎界面了</p>
+<p>注：在本系统内，nginx的配置文件目录在： /etc/nginx；静态资源目录：/usr/share/nginx/</p>
+<p>参考文章</p>
+<ul>
+<li><a href="http://nginx.org/en/linux_packages.html#RHEL-CentOS" target="_blank" rel="noopener">Installation instructions</a></li>
+<li><a href="https://blog.csdn.net/s_p_j/article/details/80979450" target="_blank" rel="noopener">CentOS7使用firewall-cmd打开关闭防火墙与端口</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1558,770 +2390,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/2019/07/02/js上传视频图片预览/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yancoding">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yan blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/02/js上传视频图片预览/" class="post-title-link" itemprop="url">js上传视频图片预览</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-02 22:24:34" itemprop="dateCreated datePublished" datetime="2019-07-02T22:24:34+08:00">2019-07-02</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-06 12:44:52" itemprop="dateModified" datetime="2019-07-06T12:44:52+08:00">2019-07-06</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">1.2k</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">1 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p><a href="demo/list/文件上传预览">文件上传预览</a></p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>HTML</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">legend</span>&gt;</span>上传视频文件<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">accept</span>=<span class="string">"video/*"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>视频预览<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">video</span> <span class="attr">id</span>=<span class="string">"video"</span> <span class="attr">src</span>=<span class="string">""</span> <span class="attr">controls</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">legend</span>&gt;</span>上传图片文件<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">accept</span>=<span class="string">"image/*"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>图片预览<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">"img"</span> <span class="attr">src</span>=<span class="string">""</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>CSS</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">video</span>,</span><br><span class="line"><span class="selector-tag">img</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>JS</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> form = <span class="built_in">document</span>.querySelector(<span class="string">'form'</span>)</span><br><span class="line">    <span class="keyword">let</span> videoEl = <span class="built_in">document</span>.getElementById(<span class="string">'video'</span>)</span><br><span class="line">    <span class="keyword">let</span> imgEl = <span class="built_in">document</span>.getElementById(<span class="string">'img'</span>)</span><br><span class="line">    form.addEventListener(<span class="string">'change'</span>, event =&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span>(event.target.type === <span class="string">'file'</span>) &#123;</span><br><span class="line">            <span class="keyword">let</span> file = event.target.files[<span class="number">0</span>]</span><br><span class="line">            <span class="keyword">if</span>(event.target.accept.indexOf(<span class="string">'video'</span>) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                videoEl.src = getObjectURL(file)</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(event.target.accept.indexOf(<span class="string">'image'</span>) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                imgEl.src = getObjectURL(file)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">let</span> getObjectURL = <span class="function"><span class="params">file</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> url = <span class="string">''</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">window</span>.createObjectURL != <span class="literal">undefined</span>) &#123; </span><br><span class="line">            <span class="comment">// basic</span></span><br><span class="line">            url = <span class="built_in">window</span>.createObjectURL(file);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">window</span>.URL != <span class="literal">undefined</span>) &#123; </span><br><span class="line">            <span class="comment">// mozilla(firefox)</span></span><br><span class="line">            url = <span class="built_in">window</span>.URL.createObjectURL(file);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">window</span>.webkitURL != <span class="literal">undefined</span>) &#123; </span><br><span class="line">            <span class="comment">// webkit or chrome</span></span><br><span class="line">            url = <span class="built_in">window</span>.webkitURL.createObjectURL(file);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> url</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/2019/06/26/koa2文件上传/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yancoding">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yan blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/26/koa2文件上传/" class="post-title-link" itemprop="url">koa2文件上传</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-26 22:27:34" itemprop="dateCreated datePublished" datetime="2019-06-26T22:27:34+08:00">2019-06-26</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-11-08 23:57:15" itemprop="dateModified" datetime="2019-11-08T23:57:15+08:00">2019-11-08</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">1.2k</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">1 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="创建项目目录"><a href="#创建项目目录" class="headerlink" title="创建项目目录"></a>创建项目目录</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir uploadFile</span><br><span class="line"><span class="built_in">cd</span> uploadFile</span><br></pre></td></tr></table></figure>
-
-<h2 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init</span><br><span class="line">npm init</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install koa koa-router koa-body koa-static</span><br></pre></td></tr></table></figure>
-
-<h2 id="项目主程序-app-js"><a href="#项目主程序-app-js" class="headerlink" title="项目主程序 app.js"></a>项目主程序 app.js</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"><span class="keyword">const</span> koaBody = <span class="built_in">require</span>(<span class="string">'koa-body'</span>);</span><br><span class="line"><span class="keyword">const</span> Router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>);</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">static</span> = <span class="built_in">require</span>(<span class="string">'koa-static'</span>);</span><br><span class="line"><span class="keyword">const</span> cors = <span class="built_in">require</span>(<span class="string">'koa2-cors'</span>)</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> hostname = <span class="string">'127.0.0.1'</span></span><br><span class="line"><span class="keyword">const</span> port = <span class="number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa()</span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> Router()</span><br><span class="line"></span><br><span class="line">app.use(cors())</span><br><span class="line">app.use(<span class="keyword">static</span>(<span class="string">'.'</span>));</span><br><span class="line"></span><br><span class="line">router</span><br><span class="line">    .get(<span class="string">'/'</span>, (ctx, next) =&gt; &#123;</span><br><span class="line">        ctx.body = <span class="string">'hello world!'</span></span><br><span class="line">    &#125;)</span><br><span class="line">    .post(<span class="string">'/api/upload'</span>, koaBody(&#123;</span><br><span class="line">        multipart: <span class="literal">true</span>,</span><br><span class="line">        formidable: &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;), (ctx, next) =&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> file = ctx.request.files.file</span><br><span class="line">        <span class="keyword">let</span> fileType = file.name.split(<span class="string">'.'</span>).pop()</span><br><span class="line">        <span class="keyword">let</span> fileName = <span class="string">`<span class="subst">$&#123;<span class="built_in">Date</span>.now()&#125;</span>.<span class="subst">$&#123;fileType&#125;</span>`</span></span><br><span class="line">        <span class="keyword">let</span> fileReader = fs.createReadStream(file.path)</span><br><span class="line">        <span class="keyword">let</span> writeStream = fs.createWriteStream(path.join(__dirname, <span class="string">'upload'</span>, <span class="string">`<span class="subst">$&#123;fileName&#125;</span>`</span>))</span><br><span class="line"></span><br><span class="line">        fileReader.pipe(writeStream)</span><br><span class="line">        ctx.body = &#123;</span><br><span class="line">            code: <span class="number">0</span>,</span><br><span class="line">            message: <span class="string">'上传成功'</span>,</span><br><span class="line">            url: <span class="string">`http://<span class="subst">$&#123;hostname&#125;</span>:<span class="subst">$&#123;port&#125;</span>/upload/<span class="subst">$&#123;fileName&#125;</span>`</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">app</span><br><span class="line">    .use(router.routes())</span><br><span class="line">    .use(router.allowedMethods())</span><br><span class="line"></span><br><span class="line">app.listen(port, hostname, () =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`Server running at http://<span class="subst">$&#123;hostname&#125;</span>:<span class="subst">$&#123;port&#125;</span>/`</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/2019/06/25/mysql数据库备份/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yancoding">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yan blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/25/mysql数据库备份/" class="post-title-link" itemprop="url">mysql数据库备份</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-25 00:11:57 / 修改时间：00:13:20" itemprop="dateCreated datePublished" datetime="2019-06-25T00:11:57+08:00">2019-06-25</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">74</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">1 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="备份数据库"><a href="#备份数据库" class="headerlink" title="备份数据库"></a>备份数据库</h2><p><code>mysqldump -hhostname -uusername -ppassword databasename &gt; backupfile.sql</code></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/2019/06/22/文本省略号/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yancoding">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yan blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/22/文本省略号/" class="post-title-link" itemprop="url">文本省略号</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-22 00:48:25 / 修改时间：23:20:46" itemprop="dateCreated datePublished" datetime="2019-06-22T00:48:25+08:00">2019-06-22</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">748</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">1 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="单行文本溢出省略"><a href="#单行文本溢出省略" class="headerlink" title="单行文本溢出省略"></a>单行文本溢出省略</h2><p>HTML</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>我是一行很长很长的文字，我是一行很长很长的文字<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>CSS</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">p</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">150px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> dashed;</span><br><span class="line">  <span class="attribute">white-space</span>: nowrap;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>view</p>
-<img src="/2019/06/22/文本省略号/%7B8F04F25F-E1A5-4D87-8EC2-7B7B3EF47BE2%7D.png.jpg">
-
-<h2 id="多行文本溢出"><a href="#多行文本溢出" class="headerlink" title="多行文本溢出"></a>多行文本溢出</h2><h3 id="1-使用css实现"><a href="#1-使用css实现" class="headerlink" title="1.使用css实现"></a>1.使用css实现</h3><p>现行CSS中暂无统一实现该样式的属性</p>
-<p>但针对于webkit内核的浏览器，可以采用下面的方式实现该样式</p>
-<p>HTML</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>我是一段很长很长的多行文本，我是一段很长很长的多行文本，我是一段很长很长的多行文本，我是一段很长很长的多行文本，我是一段很长很长的多行文本<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>CSS</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">p</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> dashed;</span><br><span class="line">  <span class="attribute">display</span>: -webkit-box;</span><br><span class="line">  <span class="attribute">-webkit-line-clamp</span>: <span class="number">3</span>;</span><br><span class="line">  <span class="attribute">-webkit-box-orient</span>: vertical;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>view</p>
-<img src="/2019/06/22/文本省略号/%7B2DD89E03-B757-44CD-81A4-68193E5F86B3%7D.png.jpg">
-
-<h3 id="2-使用js实现"><a href="#2-使用js实现" class="headerlink" title="2.使用js实现"></a>2.使用js实现</h3><p>使用 <a href="https://github.com/josephschmitt/Clamp.js" target="_blank" rel="noopener">Clamp.js</a></p>
-<p>HTML</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>我是一段很长很长的多行文本，我是一段很长很长的多行文本，我是一段很长很长的多行文本，我是一段很长很长的多行文本，我是一段很长很长的多行文本<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>CSS</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">p</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> dashed;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>JS</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> el = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'p'</span>)[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">$clamp(el, &#123;<span class="attr">clamp</span>: <span class="number">2</span>&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>view</p>
-<img src="/2019/06/22/文本省略号/%7B5C6AD337-3220-4A24-ACE2-087581A8974F%7D.png.jpg">
-
-
-<p>参考内容:</p>
-<ul>
-<li><p><a href="https://css-tricks.com/almanac/properties/l/line-clamp/" target="_blank" rel="noopener">line-clamp</a></p>
-</li>
-<li><p><a href="https://joe.sh/clamp-js" target="_blank" rel="noopener">Introducing Clamp.js</a></p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2370,7 +2438,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">38</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2429,7 +2497,17 @@
                     
                       
                     
-                    <span class="site-state-item-count">20</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -2498,7 +2576,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">34k</span>
+    <span title="站点总字数">39k</span>
   
 
   
@@ -2509,7 +2587,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">31 分钟</span>
+    <span title="站点阅读时长">36 分钟</span>
   
 </div>
 
