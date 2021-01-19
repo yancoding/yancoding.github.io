@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <input name="inputImage" type="file" accept="image/*">
+  <script>
+    window.addEventListener('load', () => {
+      const inputImageEl = document.querySelector('input[name=inputImage]')
+
+      inputImageEl.addEventListener('change', e => {
+        const img = new Image()
+        img.src = URL.createObjectURL(e.target.files[0])
+
+        img.addEventListener('load', () => {
+          const canvas = document.createElement('canvas')
+
+          // 字体大小为12px
+          canvas.width = img.width * 12
+          canvas.height = img.height * 12
+          const ctx = canvas.getContext('2d')
+          ctx.drawImage(img, 0, 0)
+
+          var imageData = ctx.getImageData(0, 0, img.width, img.height)
+          let data = imageData.data
+          for (let i = 0; i < img.height; i++) {
+            for (let j = 0; j < img.width; j++) {
+              const R = data[i * img.width * 4 + j * 4]
+              const G = data[i * img.width * 4 + j * 4 + 1]
+              const B = data[i * img.width * 4 + j * 4 + 2]
+
+              // 加权平均
+              const average = 0.21 * R + 0.72 * G + 0.07 * B
+              ctx.font = '12px'
+              if (average > 128) {
+                ctx.fillText('1', j * 12, i * 12)
+              } else {
+                ctx.fillText('0', j * 12, i * 12)
+              }
+            }
+          }
+          document.body.appendChild(canvas)
+        })
+      })
+
+    })
+  </script>
+</body>
+
+</html>

@@ -38,12 +38,12 @@
       myRoom.joinRoomWithToken(roomToken)
         .then(() => {
           console.log('join room success')
+          autoSubscribe(myRoom)
         })
         .catch(err => {
           console.log(err)
           alert('加入房间失败，请检查roomToken后重试')
         })
-        autoSubscribe(myRoom)
     }
     // 订阅指定用户视频流
     async function subscribe(myRoom, userId) {

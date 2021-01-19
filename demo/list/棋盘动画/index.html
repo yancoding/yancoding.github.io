@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container {
+      width: 500px;
+      height: 500px;
+      margin: 100px auto;
+      /* perspective: 800px;
+      perspective-origin: center 100%; */
+    }
+
+    .base-container {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transform: rotateX(45deg) rotateZ(45deg);
+    }
+
+    .base {
+      width: 100%;
+      height: 100%;
+      border-radius: 30px;
+      position: absolute;
+    }
+
+    .base-top {
+      background: #3879FE;
+    }
+
+    .base-center {
+      background: #9CBCFE;
+      transform: translateZ(-40px);
+    }
+
+    .base-bottom {
+      background: #D8E5FE;
+      transform: translateZ(-80px);
+    }
+
+    .division {
+      width: 682px;
+      height: 40px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+    }
+
+    .division-top {
+      background: #9CBCFE;
+      transform: translate(-50%, -50%) rotateZ(-45deg) rotateX(90deg) translateY(-20px);
+    }
+
+    .division-bottom {
+      background: #D8E5FE;
+      transform: translate(-50%, -50%) rotateZ(-45deg) rotateX(90deg) translateY(-60px);
+    }
+
+    .track {
+      width: 80%;
+      height: 80%;
+      color: #fff;
+      border: 1px dashed;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transform-style: inherit;
+    }
+
+    .track::before,
+    .track::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+    }
+
+    .track::before {
+      width: 100%;
+      height: 0;
+      border-top: 1px dashed;
+      top: 50%;
+      left: 0;
+    }
+
+    .track::after {
+      width: 0;
+      height: 100%;
+      border-left: 1px dashed;
+      top: 0;
+      left: 50%;
+    }
+
+    .trace {
+      width: 20px;
+      height: 0;
+      background: rgba(55, 103, 254, .7);
+      position: absolute;
+      animation-name: draw_trace;
+      animation-duration: 3s;
+      animation-fill-mode: forwards;
+      animation-play-state: paused;
+    }
+
+    .trace-top-left {
+      top: 0;
+      left: 0;
+      transform: translateX(-50%);
+      animation-delay: 12s;
+      animation-play-state: running;
+    }
+
+    .trace-left-center {
+      top: 50%;
+      left: 0;
+      transform: translateX(-50%);
+      animation-delay: 15s;
+      animation-play-state: running;
+    }
+
+    .trace-left-bottom {
+      top: 100%;
+      left: 0;
+      transform-origin: top;
+      transform: translateX(-50%) rotateZ(-90deg);
+      animation-delay: 18s;
+      animation-play-state: running;
+    }
+
+    .trace-top-center {
+      top: 0;
+      left: 50%;
+      transform-origin: top;
+      transform: translateX(-50%) rotateZ(90deg);
+      animation-delay: 9s;
+      animation-play-state: running;
+    }
+
+    .trace-center-center {
+      top: 50%;
+      left: 50%;
+      transform-origin: top;
+      transform: translateX(-50%) rotateZ(-90deg);
+      animation-delay: 0s;
+      animation-play-state: running;
+    }
+
+    .trace-bottom-center {
+      top: 100%;
+      left: 50%;
+      transform-origin: top;
+      transform: translateX(-50%) rotateZ(-90deg);
+      animation-delay: 21s;
+      animation-play-state: running;
+    }
+
+    .trace-top-right {
+      top: 0;
+      left: 100%;
+      transform-origin: top;
+      transform: translateX(-50%) rotateZ(90deg);
+      animation-delay: 6s;
+      animation-play-state: running;
+    }
+
+    .trace-right-center {
+      top: 50%;
+      left: 100%;
+      transform-origin: top;
+      transform: translateX(-50%) rotateZ(180deg);
+      animation-delay: 3s;
+      animation-play-state: running;
+    }
+
+    .trace-right-bottom {
+      top: 100%;
+      left: 100%;
+      transform-origin: top;
+      transform: translateX(-50%) rotateZ(180deg);
+    }
+
+
+
+    .cycle {
+      width: 15%;
+      height: 15%;
+      background: #6295FD;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      transform: translate(50%, 50%);
+      border-radius: 50%;
+    }
+
+    .cycle::after {
+      content: '';
+      display: inline-block;
+      width: 75%;
+      height: 75%;
+      background: #95B7FD;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+    }
+
+    .cube {
+      font-size: 16px;
+      width: 3em;
+      height: 3em;
+      position: absolute;
+    }
+
+    .cube-top-left {
+      top: 0;
+      left: 0;
+    }
+
+    .cube-left-center {
+      top: 50%;
+      left: 0;
+    }
+    .cube-left-bottom {
+      top: 100%;
+      left: 0;
+    }
+    .cube-top-center {
+      top: 0;
+      left: 50%;
+    }
+    .cube-center-center {
+      top: 50%;
+      left: 50%;
+    }
+    .cube-bottom-center {
+      top: 100%;
+      left: 50%;
+    }
+    .cube-top-right {
+      top: 0;
+      left: 100%;
+    }
+    .cube-right-center {
+      top: 50%;
+      left: 100%;
+    }
+    
+
+    .cube .face {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background: #BBD8F9;
+    }
+
+    .cube .face-front {
+      /* background: rgba(90,90,90); */
+      background-image: linear-gradient(-180deg, #E2F2FF 0%, #D9F0FF 95%);
+      transform: translate(-50%, -50%) translateZ(3em);
+    }
+
+    .cube .face-back {
+      /* background: rgba(0,210,0); */
+      background: linear-gradient(-180deg, #E2F2FF 0%, #D9F0FF 95%);
+      transform: translate(-50%, -50%);
+    }
+    .cube .face-left {
+      /* background: rgba(210,0,0); */
+      background: linear-gradient(-180deg, #E2F2FF 0%, #D9F0FF 95%);
+      transform: translate(-50%, -50%) rotateY(-90deg) translateZ(1.5em) translateX(1.5em);
+    }
+
+    .cube .face-right {
+      /* background: rgba(0,0,210); */
+      background-image: linear-gradient(90deg, #A2CBFE 0%, #85C6F8 100%);
+      transform: translate(-50%, -50%) rotateY(90deg) translateZ(1.5em) translateX(-1.5em);
+    }
+
+    .cube .face-top {
+      /* background: rgba(210,210,0); */
+      background: linear-gradient(-180deg, #E2F2FF 0%, #D9F0FF 95%);
+      transform: translate(-50%, -50%) rotateX(90deg) translateZ(1.5em) translateY(1.5em);
+    }
+
+    .cube .face-bottom {
+      /* background: rgba(210,0,210); */
+      background-image: linear-gradient(-90deg, #B8DDFF 0%, #BCD6F6 100%);
+      transform: translate(-50%, -50%) rotateX(-90deg) translateZ(1.5em) translateY(-1.5em);
+    }
+
+    .cube-move {
+      top: 50%;
+      left: 50%;
+      font-size: 6px;
+      animation: 24s move_cube forwards;
+    }
+
+    .cube-move .face-front {
+      background: #FFC9A3;
+    }
+
+    .cube-move .face-back {
+      background: #FFB05D;
+    }
+    .cube-move .face-left {
+      background: #FFB05D;
+    }
+    .cube-move .face-right {
+      background: #FFB05D;
+    }
+    .cube-move .face-top {
+      background: #FFC9A3;
+    }
+    .cube-move .face-bottom {
+      background: #FF9346;
+    }
+
+    @keyframes move_cube {
+      0% {
+        top: 50%;
+        left: 50%;
+      }
+
+      12.5% {
+        top: 50%;
+        left: 100%;
+      }
+
+      25% {
+        top: 0;
+        left: 100%;
+      }
+
+      37.5% {
+        top: 0;
+        left: 50%;
+      }
+
+      50% {
+        top: 0;
+        left: 0;
+      }
+
+      62.5% {
+        top: 50%;
+        left: 0;
+      }
+
+      75% {
+        top: 100%;
+        left: 0;
+      }
+
+      87.5% {
+        top: 100%;
+        left: 50%;
+      }
+
+      100% {
+        top: 100%;
+        left: 100%;
+      }
+    }
+
+    @keyframes draw_trace {
+      0% {
+        height: 0;
+      }
+
+      100% {
+        height: 50%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="base-container">
+      <div class="base base-top"></div>
+      <div class="base base-center"></div>
+      <div class="base base-bottom"></div>
+      <div class="division division-top"></div>
+      <div class="division division-bottom"></div>
+      <div class="track">
+        <div class="trace trace-top-left"></div>
+        <div class="trace trace-left-center"></div>
+        <div class="trace trace-left-bottom"></div>
+        <div class="trace trace-top-center"></div>
+        <div class="trace trace-center-center"></div>
+        <div class="trace trace-bottom-center"></div>
+        <div class="trace trace-top-right"></div>
+        <div class="trace trace-right-center"></div>
+        <div class="trace trace-right-bottom"></div>
+        <div class="cube cube-top-left">
+          <div class="face face-front"></div>
+          <div class="face face-back"></div>
+          <div class="face face-left"></div>
+          <div class="face face-right"></div>
+          <div class="face face-top"></div>
+          <div class="face face-bottom"></div>
+        </div>
+        <div class="cube cube-left-center">
+          <div class="face face-front"></div>
+          <div class="face face-back"></div>
+          <div class="face face-left"></div>
+          <div class="face face-right"></div>
+          <div class="face face-top"></div>
+          <div class="face face-bottom"></div>
+        </div>
+        <div class="cube cube-left-bottom">
+          <div class="face face-front"></div>
+          <div class="face face-back"></div>
+          <div class="face face-left"></div>
+          <div class="face face-right"></div>
+          <div class="face face-top"></div>
+          <div class="face face-bottom"></div>
+        </div>
+        <div class="cube cube-top-center">
+          <div class="face face-front"></div>
+          <div class="face face-back"></div>
+          <div class="face face-left"></div>
+          <div class="face face-right"></div>
+          <div class="face face-top"></div>
+          <div class="face face-bottom"></div>
+        </div>
+        <div class="cube cube-center-center">
+          <div class="face face-front"></div>
+          <div class="face face-back"></div>
+          <div class="face face-left"></div>
+          <div class="face face-right"></div>
+          <div class="face face-top"></div>
+          <div class="face face-bottom"></div>
+        </div>
+        <div class="cube cube-bottom-center">
+          <div class="face face-front"></div>
+          <div class="face face-back"></div>
+          <div class="face face-left"></div>
+          <div class="face face-right"></div>
+          <div class="face face-top"></div>
+          <div class="face face-bottom"></div>
+        </div>
+        <div class="cube cube-top-right">
+          <div class="face face-front"></div>
+          <div class="face face-back"></div>
+          <div class="face face-left"></div>
+          <div class="face face-right"></div>
+          <div class="face face-top"></div>
+          <div class="face face-bottom"></div>
+        </div>
+        <div class="cube cube-right-center">
+          <div class="face face-front"></div>
+          <div class="face face-back"></div>
+          <div class="face face-left"></div>
+          <div class="face face-right"></div>
+          <div class="face face-top"></div>
+          <div class="face face-bottom"></div>
+        </div>
+        <div class="cube cube-move">
+          <div class="face face-front"></div>
+          <div class="face face-back"></div>
+          <div class="face face-left"></div>
+          <div class="face face-right"></div>
+          <div class="face face-top"></div>
+          <div class="face face-bottom"></div>
+        </div>
+        <div class="cycle"></div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

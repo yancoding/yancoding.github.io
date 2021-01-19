@@ -240,7 +240,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">25</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">30</span></a>
 
   </li>
         
@@ -259,7 +259,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">38</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">41</span></a>
 
   </li>
         
@@ -279,6 +279,25 @@
     
 
     <a href="/demo/" rel="section"><i class="menu-item-icon fa fa-fw fa-rocket"></i> <br>Demo</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-component">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/component/" rel="section"><i class="menu-item-icon fa fa-fw fa-th-large"></i> <br>Component</a>
 
   </li>
 
@@ -350,6 +369,637 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/2019/05/24/BitLocker加密分区/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yancoding">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yan blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/24/BitLocker加密分区/" class="post-title-link" itemprop="url">BitLocker加密分区</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-24 00:20:45" itemprop="dateCreated datePublished" datetime="2019-05-24T00:20:45+08:00">2019-05-24</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-21 23:07:08" itemprop="dateModified" datetime="2019-06-21T23:07:08+08:00">2019-06-21</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">1.6k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h2><p>打开磁盘管理</p>
+<img src="/2019/05/24/BitLocker加密分区/TIM截图20190524094220.jpg">
+
+<p>对该分区进行<strong>压缩分区</strong></p>
+<img src="/2019/05/24/BitLocker加密分区/TIM截图20190524094330.jpg">
+
+<p>可以将压缩分区量设置为 102400 即从当前分区压缩出 100G 的分区大小</p>
+<img src="/2019/05/24/BitLocker加密分区/TIM截图20190524094426.jpg">
+
+<p>将这 100G 未分配分区<strong>添加简单券</strong></p>
+<img src="/2019/05/24/BitLocker加密分区/TIM截图20190524094512.jpg">
+
+<p>到此，我们已经划分出了 100G 容量大小的可用分区</p>
+<h2 id="对分区启用BitLocker加密"><a href="#对分区启用BitLocker加密" class="headerlink" title="对分区启用BitLocker加密"></a>对分区启用BitLocker加密</h2><p>右键 <strong>启用BitLocker</strong> </p>
+<img src="/2019/05/24/BitLocker加密分区/TIM截图20190524094606.jpg">
+
+<p>设置好密码并保存好BitLocker恢复秘钥后，就可以点击 <strong>启动加密</strong> 对分区进行加密</p>
+<img src="/2019/05/24/BitLocker加密分区/TIM截图20190524094706.jpg">
+
+<p>整个加密时间很长，这里 100G 的分区用了20min左右</p>
+<img src="/2019/05/24/BitLocker加密分区/TIM截图20190524094850.jpg">
+
+<h2 id="锁定-BitLocker-分区"><a href="#锁定-BitLocker-分区" class="headerlink" title="锁定 BitLocker 分区"></a>锁定 BitLocker 分区</h2><h3 id="1-命令和批处理"><a href="#1-命令和批处理" class="headerlink" title="1.命令和批处理"></a>1.命令和批处理</h3><p>加密分区后，每次电脑开机再访问分区，都要输入一次密码，但是我们怎么锁定分区呢，这里默认是电脑关闭时会锁定BitLocker分区，但如果想立即锁定分区，防止其他人窥探呢</p>
+<p>默认情况下电脑上并没有直接面向用户开启这个功能，但是可以通过命令行进行suoding</p>
+<p><code>manage-bde -lock i:</code></p>
+<p>这里的 <strong>i</strong> 是我们的卷标</p>
+<p>每次输入命令进行锁定，实在是太麻烦里<br>这里我们可以用批处理，将该命令放到一个批处理文件里，需要锁定时，直接双击运行该批处理程序就好了</p>
+<p>新建 <strong>记事本</strong>，粘贴下面的内容</p>
+<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">title</span> 锁定加密分区i</span><br><span class="line">manage-bde -lock i:</span><br><span class="line"><span class="built_in">echo</span> 按任意键退出</span><br><span class="line"><span class="built_in">pause</span> &gt; <span class="built_in">NUL</span></span><br></pre></td></tr></table></figure>
+
+<p>选择另存为，设置编码方式为：<strong>ANSI</strong> 防止中文乱码</p>
+<p>这时我们直接运行该批处理就可以锁定 分区i</p>
+<h3 id="2-添加右键菜单"><a href="#2-添加右键菜单" class="headerlink" title="2.添加右键菜单"></a>2.添加右键菜单</h3><p>使用批处理看起来还是挺方便的，但是当我们不止一个加密分区，而是多个的时候，我们为了锁定多个分区，要分别设置批处理，这样就麻烦里些；如果是移动硬盘的话，这样更麻烦了，因为我们在挂在移动硬盘时并不知道他的盘符是几，编写固定的批处理文件这里就不适用了</p>
+<p>终极解决办法是为磁盘驱动器添加右键菜单，这样我们只要右键菜单，点击锁定Bitlocker，即可锁定相应的分区</p>
+<p>新建一个记事本，粘贴一下内容</p>
+<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">Windows Registry Editor Version <span class="number">5</span>.<span class="number">00</span></span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\Drive\shell\runas]</span><br><span class="line">@="锁定 BitLocker"</span><br><span class="line">"AppliesTo"="System.Volume.BitLockerProtection:=System.Volume.BitLockerProtection#On OR System.Volume.BitLockerProtection:=System.Volume.BitLockerProtection#Encrypting OR System.Volume.BitLockerProtection:=System.Volume.BitLockerProtection#Suspended) AND System.Volume.BitLockerCanChangePassphraseByProxy:=System.StructuredQueryType.Boolean#True"</span><br><span class="line">"Icon"="<span class="variable">%SystemRoot%</span>\\\\System32\\\\shell32.dll,<span class="number">47</span>"</span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\Drive\shell\runas\command]</span><br><span class="line">@="<span class="built_in">cmd</span>  /v:on /k   <span class="built_in">set</span> bdestr=%<span class="number">1</span> &amp;&amp; <span class="built_in">set</span> bdedrv=<span class="variable">!bdestr:~0,2!</span> &amp;&amp; manage-bde.exe  -lock <span class="variable">!bdedrv!</span> -ForceDismount&amp; <span class="keyword">exit</span>"</span><br></pre></td></tr></table></figure>
+
+<p>保存为 <strong>.reg</strong> 文件</p>
+<p>双击运行，会添加相应的注册表项</p>
+<p>再次查看磁盘右键菜单，会发现多出一个菜单项 <strong>锁定 BitLocker</strong></p>
+<img src="/2019/05/24/BitLocker加密分区/2019-05-24_210854.png">
+
+<p>点击即可锁定相应的磁盘分区</p>
+<p>参考文章：</p>
+<ul>
+<li><a href="http://www.xitonghe.com/jiaocheng/Windows10-7781.html" target="_blank" rel="noopener">Win10系统右键菜单添加“手动BITLOCKER锁定加密”的方法</a></li>
+<li><a href="https://www.winhelponline.com/blog/change-default-icon-file-type-windows/" target="_blank" rel="noopener">How to Change the Icon for a File Type in Windows?</a></li>
+<li><a href="https://help4windows.com/windows_7_shell32_dll.shtml" target="_blank" rel="noopener">Windows 7 “shell32” Icons</a></li>
+<li><a href="https://diymediahome.org/windows-icons-reference-list-with-details-locations-images/" target="_blank" rel="noopener">Windows Icons: Full list with details, locations &amp; images</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/2019/05/21/第一次使用hexo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yancoding">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yan blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/21/第一次使用hexo/" class="post-title-link" itemprop="url">第一次使用hexo</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-21 18:08:35" itemprop="dateCreated datePublished" datetime="2019-05-21T18:08:35+08:00">2019-05-21</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-11-08 23:57:51" itemprop="dateModified" datetime="2019-11-08T23:57:51+08:00">2019-11-08</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">542</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><p>全局安装hexo命令行工具<br><code>npm install hexo-cli -g</code></p>
+<p>初始化一个hexo项目，我们取名为blog，这会创建一个blog项目文件夹<br><code>hexo init blog</code></p>
+<p>切换到项目目录<br><code>cd blog</code></p>
+<p>安装项目依赖<br><code>npm intall</code></p>
+<p>这时我们就可以启动本地服务，在本机查看我们的站点<br><code>hexo server</code></p>
+<h2 id="先写个文章试试吧"><a href="#先写个文章试试吧" class="headerlink" title="先写个文章试试吧"></a>先写个文章试试吧</h2><p>比如我要写一篇文章叫 “第一次使用hexo”，可以这样<br><code>hexo new &#39;第一次使用hexo&#39;</code></p>
+<p>创建好新文章后，我们可以在项目的<code>source</code>下的<code>_posts</code>文件夹下看到新建的post文件<code>第一次使用hexo.md</code>,为Markdown文件</p>
+<p>这时我们就可以用markdown语法写文章了，写完保存后，我们需要将Markdown文件生成静态的html文件<br><code>hexo g</code></p>
+<p>静态文件生成后，我们就可以运行我们的服务，在站点上查看我们刚刚写的文章啦。注意，hexo是支持热重载的，所以我们添加内容保存后，直接刷新我们的站点页面，就可以直接查看到我们刚刚添加的文章内容，不需要重启服务<br><code>hexo server</code></p>
+<p>以上就是hexo最基本的操作了，如果你只在意文章内容，不在意外观，其实已经可以满足你的需求了。当然，hexo还有更多的功能，具体可见hexo官方文档 <a href="https://hexo.io/" target="_blank" rel="noopener">https://hexo.io/</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/2019/05/14/css-transition/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yancoding">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yan blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/14/css-transition/" class="post-title-link" itemprop="url">css transition</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-14 22:47:49" itemprop="dateCreated datePublished" datetime="2019-05-14T22:47:49+08:00">2019-05-14</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-21 23:07:08" itemprop="dateModified" datetime="2019-06-21T23:07:08+08:00">2019-06-21</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">507</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="css-transition"><a href="#css-transition" class="headerlink" title="css transition"></a>css transition</h1><h2 id="ease与ease-in-out的区别"><a href="#ease与ease-in-out的区别" class="headerlink" title="ease与ease-in-out的区别"></a>ease与ease-in-out的区别</h2><p>两者的整体效果都是缓入缓出，只是细节上存在差异</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>贝塞尔曲线</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ease</td>
+<td>cubic-bezier(0.25, 0.1, 0.25,1)</td>
+</tr>
+<tr>
+<td>ease-in-out</td>
+<td>cubic-bezier(0.42, 0, 0.58, 1)</td>
+</tr>
+</tbody></table>
+<p>比较两者的贝塞尔曲线，ease缓入效果较其缓出效果不明显；ease-in-out缓入缓出效果都比价明显</p>
+<h2 id="step-start-和step-end"><a href="#step-start-和step-end" class="headerlink" title="step-start 和step-end"></a>step-start 和step-end</h2><p>step-start 等同于 steps(1, start), 过渡效果分一步完成，在步的起始开始，即直接过渡到效果</p>
+<p>step-end 等同于 steps(1, end)， 过渡效果分一步完成，在步的结束开始，即transition-duration之后完成过渡效果</p>
+<h2 id="steps"><a href="#steps" class="headerlink" title="steps()"></a>steps()</h2><p>语法：steps(&lt; integer &gt;[, [ start | end ] ]?)</p>
+<p>过渡步数为整数，第二个参数默认值为 end</p>
+<p>start：表示过渡从第一步时间的开始开始(会直接看到过渡效果)</p>
+<p>end：表示过渡从第一步时间的结束开始(不会直接看到过渡效果)</p>
+<p><strong>注意：</strong> transition-delay 将包含于步进函数的第一步，即第一步的持续时间为均分时间加上延迟时间</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1819,205 +2469,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/2018/01/14/树莓派3B之系统安装/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yancoding">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yan blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/01/14/树莓派3B之系统安装/" class="post-title-link" itemprop="url">树莓派3B之系统安装</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-01-14 00:35:15" itemprop="dateCreated datePublished" datetime="2018-01-14T00:35:15+08:00">2018-01-14</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-06-21 23:07:08" itemprop="dateModified" datetime="2019-06-21T23:07:08+08:00">2019-06-21</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">176</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">1 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="格式化SD卡"><a href="#格式化SD卡" class="headerlink" title="格式化SD卡"></a>格式化SD卡</h2><p>下载SD卡格式化工具 <a href="https://www.sdcard.org/downloads/formatter_4/" target="_blank" rel="noopener">SD Card Formatter</a></p>
-<p>软件界面如下，以默认设置进行格式化即可</p>
-<img src="/2018/01/14/树莓派3B之系统安装/TIM截图20180115231316.png">
-
-<h2 id="下载系统"><a href="#下载系统" class="headerlink" title="下载系统"></a>下载系统</h2><p>下载树莓派系统镜像 <a href="https://www.raspberrypi.org/downloads/" target="_blank" rel="noopener">https://www.raspberrypi.org/downloads/</a></p>
-<h2 id="写入系统镜像"><a href="#写入系统镜像" class="headerlink" title="写入系统镜像"></a>写入系统镜像</h2><p>下载 <a href="http://sourceforge.net/projects/win32diskimager/" target="_blank" rel="noopener">Win32 DiskImager</a>,该工具可以把系统镜像写入SD卡</p>
-<img src="/2018/01/14/树莓派3B之系统安装/TIM截图20180110175647.png">
-
-<p>写入系统后，SD卡被分区</p>
-<img src="/2018/01/14/树莓派3B之系统安装/TIM截图20180115232335.png">
-
-<h2 id="启动系统"><a href="#启动系统" class="headerlink" title="启动系统"></a>启动系统</h2><p>把SD卡插入树莓派，插上电源系统即可启动</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2061,7 +2517,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">38</span>
+                    <span class="site-state-item-count">41</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2130,7 +2586,17 @@
                     
                       
                     
-                    <span class="site-state-item-count">25</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">30</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -2185,7 +2651,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2021</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -2199,7 +2665,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">39k</span>
+    <span title="站点总字数">42k</span>
   
 
   
@@ -2210,7 +2676,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">36 分钟</span>
+    <span title="站点阅读时长">38 分钟</span>
   
 </div>
 

@@ -240,7 +240,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">25</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">30</span></a>
 
   </li>
         
@@ -259,7 +259,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">38</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">41</span></a>
 
   </li>
         
@@ -279,6 +279,25 @@
     
 
     <a href="/demo/" rel="section"><i class="menu-item-icon fa fa-fw fa-rocket"></i> <br>Demo</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-component">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/component/" rel="section"><i class="menu-item-icon fa fa-fw fa-th-large"></i> <br>Component</a>
 
   </li>
 
@@ -350,6 +369,617 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/2019/07/18/管理富文本编辑器里上传的文件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yancoding">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yan blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/18/管理富文本编辑器里上传的文件/" class="post-title-link" itemprop="url">管理富文本编辑器里上传的文件</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-18 09:51:56" itemprop="dateCreated datePublished" datetime="2019-07-18T09:51:56+08:00">2019-07-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-11-08 23:57:15" itemprop="dateModified" datetime="2019-11-08T23:57:15+08:00">2019-11-08</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">1.6k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>富文本编辑器会提供插入图片或视频的功能，该功能一般情况时执行插入操作时上传相关文件，由服务器返回静态文件的url地址，前端通过插入img或是video标签，并将返回的url赋予src属性，这样就可以在前端看到我们插入的文件了，但是用户可能会插入新的文件或是删除已插入的文件，但是在前端我们只是删除img或是video标签，服务器上该资源的文件还是存在的，并没有被清除，事实上此时用户没有提交，我们也不能直接进行删除，毕竟用户还可能执行撤销操作，如果直接删除了服务器资源，就会导致文件资源404，找不到该资源，又要重新上传，用户体验太差。</p>
+<h2 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h2><blockquote>
+<p>前端提供需要清除文件的地址数组</p>
+</blockquote>
+<p>用户打开富文本编辑器，这可能是新建的或是对已有的内容进行编辑，我们可以初始化一个数组<code>let uploads = []</code>,如果是编辑操作，我们先通过<code>querySelectorAll(&#39;[src]&#39;)</code>得到文件相应的 dom 数组，后面进行遍历，将每一项的src值push到uploads数组里，这样我们就得到了以前上传并使用中的文件列表；在后续的上传操作中，每次上传我们都会将文件地址push到uploads数组里；当用户进行提交操作时，我们可以遍历出内容中所有的file并push到 <code>let files = []</code>数组中。</p>
+<p>此时我们得到了两个数组，一个是 <code>uploads</code> 上传文件的数组，另一个是 <code>files</code> 内容中有效的文件数组，那取其差集，就是我们要清除的无用文件的数组 <code>useless</code>了，将该数组传到服务器，就可以清除相关的无用文件了。</p>
+<blockquote>
+<p>这里有个小问题，如何取两个数组差集的问题，可以这样写：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> uploads = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>, <span class="string">'f'</span>]</span><br><span class="line"><span class="keyword">let</span> files = [<span class="string">'b'</span>, <span class="string">'e'</span>]</span><br><span class="line"><span class="keyword">let</span> useless = []</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;files.length; i++) &#123;</span><br><span class="line">   <span class="keyword">let</span> index = uploads.indexOf(files[i])</span><br><span class="line">   uploads.splice(index,<span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line">useless = uploads</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`useless: <span class="subst">$&#123;useless&#125;</span>`</span>)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>这种实现由什么缺陷呢：整体上看，这种实现确实了我们的预期功能，并且后台也很简单，只需提供一个可以接收删除文件数组的接口，并执行删除就可以了；现实其实后台并没有这么简单，删除操作一般是危险的，需要我们警惕的，如果该实现上传到服务器的文件并没有进行数据库记录，只是放置在 <code>static/uploads/</code> 的目录下，那就没有办法设置谁由权限删除某一个文件，也就是说只要提供删除数组，所有的可以操作编辑器的用户都可以进行删除操作，显然这是有安全问题的，所以对上传的文件一定要做数据库记录，并设置所有者，执行删除操作时也需要判断操作是否来自所有者。</p>
+<p>既然上述存在的问题必须通过添加数据库记录来解决，那我们可以将上传的文件绑定到指定的内容id；对于新创建的内容，新上传的文件记录的内容id为null，当我们提交编辑器内容时，我们将files各记录的内容id设置为实际值；如果是编辑已有的内容，我们此时已有该内容的id，将该内容id下的所有文件记录的内容id设置为null，我们将files里的指定为该内容id，之后我们可以定期清理内容id为null的文件，即可清除无用的上传文件，这有点类似于js中内存垃圾清理实现方式之一的引用计数。</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>article_id</th>
+<th>file_url</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>null</td>
+<td>‘<a href="http://domain.com/pic.jpg&#39;" target="_blank" rel="noopener">http://domain.com/pic.jpg&#39;</a></td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>‘<a href="http://domain.com/pic.jpg&#39;" target="_blank" rel="noopener">http://domain.com/pic.jpg&#39;</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>‘<a href="http://domain.com/pic.jpg&#39;" target="_blank" rel="noopener">http://domain.com/pic.jpg&#39;</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td>1</td>
+<td>‘<a href="http://domain.com/pic.jpg&#39;" target="_blank" rel="noopener">http://domain.com/pic.jpg&#39;</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td>1</td>
+<td>‘<a href="http://domain.com/pic.jpg&#39;" target="_blank" rel="noopener">http://domain.com/pic.jpg&#39;</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td>1</td>
+<td>‘<a href="http://domain.com/pic.jpg&#39;" target="_blank" rel="noopener">http://domain.com/pic.jpg&#39;</a></td>
+</tr>
+</tbody></table>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/2019/07/17/树莓派安装mongodb/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yancoding">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yan blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/17/树莓派安装mongodb/" class="post-title-link" itemprop="url">树莓派安装mongodb</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-17 22:51:22 / 修改时间：23:00:51" itemprop="dateCreated datePublished" datetime="2019-07-17T22:51:22+08:00">2019-07-17</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">973</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install mongodb</span><br></pre></td></tr></table></figure>
+
+<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><p>用以上命令安装完成后，执行 <code>mongo</code> 命令，并没有连接成功</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MongoDB shell version: 2.4.14</span><br><span class="line">connecting to: test</span><br><span class="line">Wed Jul 17 22:40:55.765 Error: couldn&apos;t connect to server 127.0.0.1:27017 at src/mongo/shell/mongo.js:145</span><br><span class="line">exception: connect failed</span><br></pre></td></tr></table></figure>
+
+<p>查看安装打印的信息中，有这么一条 <code>无法创建主目录&quot;/var/lib/mongodb&quot;</code>, 说明 mongodb 缺少权限</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo service mongodb stop</span><br><span class="line">sudo chown -R mongodb:mongodb /var/lib/mongodb</span><br><span class="line">sudo service mongodb start</span><br></pre></td></tr></table></figure>
+
+<p>修改目录权限后再次执行 <code>mongo</code> 命令，显示连接成功</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">MongoDB shell version: 2.4.14</span><br><span class="line">connecting to: test</span><br><span class="line">Welcome to the MongoDB shell.</span><br><span class="line">For interactive help, type "help".</span><br><span class="line">For more comprehensive documentation, see</span><br><span class="line">        http://docs.mongodb.org/</span><br><span class="line">Questions? Try the support group</span><br><span class="line">        http://groups.google.com/group/mongodb-user</span><br><span class="line">Server has startup warnings:</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten]</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten] ** NOTE: This is a 32 bit MongoDB binary.</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten] **       32 bit builds are limited to less than 2GB of data (or less with --journal).</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten] **       See http://dochub.mongodb.org/core/32bit</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten]</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"></span></span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/2019/07/06/MongoDB笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yancoding">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yan blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/06/MongoDB笔记/" class="post-title-link" itemprop="url">MongoDB笔记</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-06 12:48:45" itemprop="dateCreated datePublished" datetime="2019-07-06T12:48:45+08:00">2019-07-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-17 22:50:38" itemprop="dateModified" datetime="2019-07-17T22:50:38+08:00">2019-07-17</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">742</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="安装MongoDB服务"><a href="#安装MongoDB服务" class="headerlink" title="安装MongoDB服务"></a>安装MongoDB服务</h2><p>这里下载的时MongoDB 4 Windows社区版本，4之后的版本跟之前的有很大的不同，不需要自行指定数据库和日志目录了，这里安装过程只修改了安装目录，从默认的c盘自定义为d盘，其他均为默认选项，一并安装了compass，这里大多人都不推荐安装compass，说是会卡住，这里安装确实看起来像是卡住了，但就如安装信息说的这里可能需要 a few minutes，事实上这里安装进度不变保持了10分钟左右就安装好了，所以不用太担心，只是网络原因，假死而已</p>
+<p>当然为了方便连接 MongoDB 实例，记得要将MongoDB安装目录下的bin目录添加到系统变量，这样我们就可以直接在shell 里直接输入 <code>mongo</code> 即可连接到MongoDB服务</p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h2 id="mongo"><a href="#mongo" class="headerlink" title="mongo"></a>mongo</h2><p>连接到本地的 MongoDB 实例，使用默认服务端口 <code>27017</code></p>
+<p>如果修改了本地 MongoDB 实例默认的服务端口，连接时我们也可以通过 <code>--port</code> 参数指定端口</p>
+<p>例如</p>
+<p><code>mongo --port 28015</code></p>
+<h3 id="show-dbs"><a href="#show-dbs" class="headerlink" title="show dbs"></a>show dbs</h3><p>查看所有的数据库</p>
+<h3 id="db"><a href="#db" class="headerlink" title="db"></a>db</h3><p>查看当前数据库</p>
+<h3 id="use-DATABASE-NAME"><a href="#use-DATABASE-NAME" class="headerlink" title="use DATABASE_NAME"></a>use DATABASE_NAME</h3><p>切换数据库（不论存在与否）</p>
+<h2 id="db-DATABASE-NAME-insert"><a href="#db-DATABASE-NAME-insert" class="headerlink" title="db.DATABASE_NAME.insert()"></a>db.DATABASE_NAME.insert()</h2><p>向 DATABASE_NAME 数据库插入数据</p>
+<p>例如</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">db.test.insert(&#123;&quot;description&quot;: &quot;这是一条测试数据&quot;&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>注：</strong> 该命令不需要切换数据库</p>
+<h3 id="db-dropDatabase"><a href="#db-dropDatabase" class="headerlink" title="db.dropDatabase()"></a>db.dropDatabase()</h3><p>删除当前数据库</p>
+<h3 id="db-createCollection-name-options"><a href="#db-createCollection-name-options" class="headerlink" title="db.createCollection(name[,options])"></a>db.createCollection(name[,options])</h3><p>在当前数据库创建集合 COLLECTION_NAME</p>
+<h3 id="db-COLLECTION-NAME-drop"><a href="#db-COLLECTION-NAME-drop" class="headerlink" title="db.COLLECTION_NAME.drop()"></a>db.COLLECTION_NAME.drop()</h3><p>在当前数据库删除集合 COLLECTION_NAME</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1741,642 +2371,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/2019/05/24/BitLocker加密分区/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yancoding">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yan blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/24/BitLocker加密分区/" class="post-title-link" itemprop="url">BitLocker加密分区</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-24 00:20:45" itemprop="dateCreated datePublished" datetime="2019-05-24T00:20:45+08:00">2019-05-24</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-06-21 23:07:08" itemprop="dateModified" datetime="2019-06-21T23:07:08+08:00">2019-06-21</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">1.6k</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">1 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h2><p>打开磁盘管理</p>
-<img src="/2019/05/24/BitLocker加密分区/TIM截图20190524094220.jpg">
-
-<p>对该分区进行<strong>压缩分区</strong></p>
-<img src="/2019/05/24/BitLocker加密分区/TIM截图20190524094330.jpg">
-
-<p>可以将压缩分区量设置为 102400 即从当前分区压缩出 100G 的分区大小</p>
-<img src="/2019/05/24/BitLocker加密分区/TIM截图20190524094426.jpg">
-
-<p>将这 100G 未分配分区<strong>添加简单券</strong></p>
-<img src="/2019/05/24/BitLocker加密分区/TIM截图20190524094512.jpg">
-
-<p>到此，我们已经划分出了 100G 容量大小的可用分区</p>
-<h2 id="对分区启用BitLocker加密"><a href="#对分区启用BitLocker加密" class="headerlink" title="对分区启用BitLocker加密"></a>对分区启用BitLocker加密</h2><p>右键 <strong>启用BitLocker</strong> </p>
-<img src="/2019/05/24/BitLocker加密分区/TIM截图20190524094606.jpg">
-
-<p>设置好密码并保存好BitLocker恢复秘钥后，就可以点击 <strong>启动加密</strong> 对分区进行加密</p>
-<img src="/2019/05/24/BitLocker加密分区/TIM截图20190524094706.jpg">
-
-<p>整个加密时间很长，这里 100G 的分区用了20min左右</p>
-<img src="/2019/05/24/BitLocker加密分区/TIM截图20190524094850.jpg">
-
-<h2 id="锁定-BitLocker-分区"><a href="#锁定-BitLocker-分区" class="headerlink" title="锁定 BitLocker 分区"></a>锁定 BitLocker 分区</h2><h3 id="1-命令和批处理"><a href="#1-命令和批处理" class="headerlink" title="1.命令和批处理"></a>1.命令和批处理</h3><p>加密分区后，每次电脑开机再访问分区，都要输入一次密码，但是我们怎么锁定分区呢，这里默认是电脑关闭时会锁定BitLocker分区，但如果想立即锁定分区，防止其他人窥探呢</p>
-<p>默认情况下电脑上并没有直接面向用户开启这个功能，但是可以通过命令行进行suoding</p>
-<p><code>manage-bde -lock i:</code></p>
-<p>这里的 <strong>i</strong> 是我们的卷标</p>
-<p>每次输入命令进行锁定，实在是太麻烦里<br>这里我们可以用批处理，将该命令放到一个批处理文件里，需要锁定时，直接双击运行该批处理程序就好了</p>
-<p>新建 <strong>记事本</strong>，粘贴下面的内容</p>
-<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">title</span> 锁定加密分区i</span><br><span class="line">manage-bde -lock i:</span><br><span class="line"><span class="built_in">echo</span> 按任意键退出</span><br><span class="line"><span class="built_in">pause</span> &gt; <span class="built_in">NUL</span></span><br></pre></td></tr></table></figure>
-
-<p>选择另存为，设置编码方式为：<strong>ANSI</strong> 防止中文乱码</p>
-<p>这时我们直接运行该批处理就可以锁定 分区i</p>
-<h3 id="2-添加右键菜单"><a href="#2-添加右键菜单" class="headerlink" title="2.添加右键菜单"></a>2.添加右键菜单</h3><p>使用批处理看起来还是挺方便的，但是当我们不止一个加密分区，而是多个的时候，我们为了锁定多个分区，要分别设置批处理，这样就麻烦里些；如果是移动硬盘的话，这样更麻烦了，因为我们在挂在移动硬盘时并不知道他的盘符是几，编写固定的批处理文件这里就不适用了</p>
-<p>终极解决办法是为磁盘驱动器添加右键菜单，这样我们只要右键菜单，点击锁定Bitlocker，即可锁定相应的分区</p>
-<p>新建一个记事本，粘贴一下内容</p>
-<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">Windows Registry Editor Version <span class="number">5</span>.<span class="number">00</span></span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\Drive\shell\runas]</span><br><span class="line">@="锁定 BitLocker"</span><br><span class="line">"AppliesTo"="System.Volume.BitLockerProtection:=System.Volume.BitLockerProtection#On OR System.Volume.BitLockerProtection:=System.Volume.BitLockerProtection#Encrypting OR System.Volume.BitLockerProtection:=System.Volume.BitLockerProtection#Suspended) AND System.Volume.BitLockerCanChangePassphraseByProxy:=System.StructuredQueryType.Boolean#True"</span><br><span class="line">"Icon"="<span class="variable">%SystemRoot%</span>\\\\System32\\\\shell32.dll,<span class="number">47</span>"</span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\Drive\shell\runas\command]</span><br><span class="line">@="<span class="built_in">cmd</span>  /v:on /k   <span class="built_in">set</span> bdestr=%<span class="number">1</span> &amp;&amp; <span class="built_in">set</span> bdedrv=<span class="variable">!bdestr:~0,2!</span> &amp;&amp; manage-bde.exe  -lock <span class="variable">!bdedrv!</span> -ForceDismount&amp; <span class="keyword">exit</span>"</span><br></pre></td></tr></table></figure>
-
-<p>保存为 <strong>.reg</strong> 文件</p>
-<p>双击运行，会添加相应的注册表项</p>
-<p>再次查看磁盘右键菜单，会发现多出一个菜单项 <strong>锁定 BitLocker</strong></p>
-<img src="/2019/05/24/BitLocker加密分区/2019-05-24_210854.png">
-
-<p>点击即可锁定相应的磁盘分区</p>
-<p>参考文章：</p>
-<ul>
-<li><a href="http://www.xitonghe.com/jiaocheng/Windows10-7781.html" target="_blank" rel="noopener">Win10系统右键菜单添加“手动BITLOCKER锁定加密”的方法</a></li>
-<li><a href="https://www.winhelponline.com/blog/change-default-icon-file-type-windows/" target="_blank" rel="noopener">How to Change the Icon for a File Type in Windows?</a></li>
-<li><a href="https://help4windows.com/windows_7_shell32_dll.shtml" target="_blank" rel="noopener">Windows 7 “shell32” Icons</a></li>
-<li><a href="https://diymediahome.org/windows-icons-reference-list-with-details-locations-images/" target="_blank" rel="noopener">Windows Icons: Full list with details, locations &amp; images</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/2019/05/21/第一次使用hexo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yancoding">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yan blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/21/第一次使用hexo/" class="post-title-link" itemprop="url">第一次使用hexo</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-21 18:08:35" itemprop="dateCreated datePublished" datetime="2019-05-21T18:08:35+08:00">2019-05-21</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-11-08 23:57:51" itemprop="dateModified" datetime="2019-11-08T23:57:51+08:00">2019-11-08</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">542</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">1 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><p>全局安装hexo命令行工具<br><code>npm install hexo-cli -g</code></p>
-<p>初始化一个hexo项目，我们取名为blog，这会创建一个blog项目文件夹<br><code>hexo init blog</code></p>
-<p>切换到项目目录<br><code>cd blog</code></p>
-<p>安装项目依赖<br><code>npm intall</code></p>
-<p>这时我们就可以启动本地服务，在本机查看我们的站点<br><code>hexo server</code></p>
-<h2 id="先写个文章试试吧"><a href="#先写个文章试试吧" class="headerlink" title="先写个文章试试吧"></a>先写个文章试试吧</h2><p>比如我要写一篇文章叫 “第一次使用hexo”，可以这样<br><code>hexo new &#39;第一次使用hexo&#39;</code></p>
-<p>创建好新文章后，我们可以在项目的<code>source</code>下的<code>_posts</code>文件夹下看到新建的post文件<code>第一次使用hexo.md</code>,为Markdown文件</p>
-<p>这时我们就可以用markdown语法写文章了，写完保存后，我们需要将Markdown文件生成静态的html文件<br><code>hexo g</code></p>
-<p>静态文件生成后，我们就可以运行我们的服务，在站点上查看我们刚刚写的文章啦。注意，hexo是支持热重载的，所以我们添加内容保存后，直接刷新我们的站点页面，就可以直接查看到我们刚刚添加的文章内容，不需要重启服务<br><code>hexo server</code></p>
-<p>以上就是hexo最基本的操作了，如果你只在意文章内容，不在意外观，其实已经可以满足你的需求了。当然，hexo还有更多的功能，具体可见hexo官方文档 <a href="https://hexo.io/" target="_blank" rel="noopener">https://hexo.io/</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/2019/05/14/css-transition/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yancoding">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yan blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/14/css-transition/" class="post-title-link" itemprop="url">css transition</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-14 22:47:49" itemprop="dateCreated datePublished" datetime="2019-05-14T22:47:49+08:00">2019-05-14</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-06-21 23:07:08" itemprop="dateModified" datetime="2019-06-21T23:07:08+08:00">2019-06-21</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">507</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">1 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="css-transition"><a href="#css-transition" class="headerlink" title="css transition"></a>css transition</h1><h2 id="ease与ease-in-out的区别"><a href="#ease与ease-in-out的区别" class="headerlink" title="ease与ease-in-out的区别"></a>ease与ease-in-out的区别</h2><p>两者的整体效果都是缓入缓出，只是细节上存在差异</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>贝塞尔曲线</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ease</td>
-<td>cubic-bezier(0.25, 0.1, 0.25,1)</td>
-</tr>
-<tr>
-<td>ease-in-out</td>
-<td>cubic-bezier(0.42, 0, 0.58, 1)</td>
-</tr>
-</tbody></table>
-<p>比较两者的贝塞尔曲线，ease缓入效果较其缓出效果不明显；ease-in-out缓入缓出效果都比价明显</p>
-<h2 id="step-start-和step-end"><a href="#step-start-和step-end" class="headerlink" title="step-start 和step-end"></a>step-start 和step-end</h2><p>step-start 等同于 steps(1, start), 过渡效果分一步完成，在步的起始开始，即直接过渡到效果</p>
-<p>step-end 等同于 steps(1, end)， 过渡效果分一步完成，在步的结束开始，即transition-duration之后完成过渡效果</p>
-<h2 id="steps"><a href="#steps" class="headerlink" title="steps()"></a>steps()</h2><p>语法：steps(&lt; integer &gt;[, [ start | end ] ]?)</p>
-<p>过渡步数为整数，第二个参数默认值为 end</p>
-<p>start：表示过渡从第一步时间的开始开始(会直接看到过渡效果)</p>
-<p>end：表示过渡从第一步时间的结束开始(不会直接看到过渡效果)</p>
-<p><strong>注意：</strong> transition-delay 将包含于步进函数的第一步，即第一步的持续时间为均分时间加上延迟时间</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2420,7 +2419,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">38</span>
+                    <span class="site-state-item-count">41</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2489,7 +2488,17 @@
                     
                       
                     
-                    <span class="site-state-item-count">25</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">30</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -2544,7 +2553,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2021</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -2558,7 +2567,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">39k</span>
+    <span title="站点总字数">42k</span>
   
 
   
@@ -2569,7 +2578,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">36 分钟</span>
+    <span title="站点阅读时长">38 分钟</span>
   
 </div>
 

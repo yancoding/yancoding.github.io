@@ -100,64 +100,6 @@
       </tags>
   </entry>
   <entry>
-    <title>MongoDB笔记</title>
-    <url>/2019/07/06/MongoDB%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h2 id="安装MongoDB服务"><a href="#安装MongoDB服务" class="headerlink" title="安装MongoDB服务"></a>安装MongoDB服务</h2><p>这里下载的时MongoDB 4 Windows社区版本，4之后的版本跟之前的有很大的不同，不需要自行指定数据库和日志目录了，这里安装过程只修改了安装目录，从默认的c盘自定义为d盘，其他均为默认选项，一并安装了compass，这里大多人都不推荐安装compass，说是会卡住，这里安装确实看起来像是卡住了，但就如安装信息说的这里可能需要 a few minutes，事实上这里安装进度不变保持了10分钟左右就安装好了，所以不用太担心，只是网络原因，假死而已</p>
-<p>当然为了方便连接 MongoDB 实例，记得要将MongoDB安装目录下的bin目录添加到系统变量，这样我们就可以直接在shell 里直接输入 <code>mongo</code> 即可连接到MongoDB服务</p>
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h2 id="mongo"><a href="#mongo" class="headerlink" title="mongo"></a>mongo</h2><p>连接到本地的 MongoDB 实例，使用默认服务端口 <code>27017</code></p>
-<p>如果修改了本地 MongoDB 实例默认的服务端口，连接时我们也可以通过 <code>--port</code> 参数指定端口</p>
-<p>例如</p>
-<p><code>mongo --port 28015</code></p>
-<h3 id="show-dbs"><a href="#show-dbs" class="headerlink" title="show dbs"></a>show dbs</h3><p>查看所有的数据库</p>
-<h3 id="db"><a href="#db" class="headerlink" title="db"></a>db</h3><p>查看当前数据库</p>
-<h3 id="use-DATABASE-NAME"><a href="#use-DATABASE-NAME" class="headerlink" title="use DATABASE_NAME"></a>use DATABASE_NAME</h3><p>切换数据库（不论存在与否）</p>
-<h2 id="db-DATABASE-NAME-insert"><a href="#db-DATABASE-NAME-insert" class="headerlink" title="db.DATABASE_NAME.insert()"></a>db.DATABASE_NAME.insert()</h2><p>向 DATABASE_NAME 数据库插入数据</p>
-<p>例如</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">db.test.insert(&#123;&quot;description&quot;: &quot;这是一条测试数据&quot;&#125;)</span><br></pre></td></tr></table></figure>
-
-<p><strong>注：</strong> 该命令不需要切换数据库</p>
-<h3 id="db-dropDatabase"><a href="#db-dropDatabase" class="headerlink" title="db.dropDatabase()"></a>db.dropDatabase()</h3><p>删除当前数据库</p>
-<h3 id="db-createCollection-name-options"><a href="#db-createCollection-name-options" class="headerlink" title="db.createCollection(name[,options])"></a>db.createCollection(name[,options])</h3><p>在当前数据库创建集合 COLLECTION_NAME</p>
-<h3 id="db-COLLECTION-NAME-drop"><a href="#db-COLLECTION-NAME-drop" class="headerlink" title="db.COLLECTION_NAME.drop()"></a>db.COLLECTION_NAME.drop()</h3><p>在当前数据库删除集合 COLLECTION_NAME</p>
-]]></content>
-      <tags>
-        <tag>MongoDB</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>centos 安装 nginx</title>
-    <url>/2020/04/04/centos-%E5%AE%89%E8%A3%85-nginx/</url>
-    <content><![CDATA[<h2 id="1-系统版本"><a href="#1-系统版本" class="headerlink" title="1, 系统版本"></a>1, 系统版本</h2><p>当前安装的系统版本为：CentOS 7 x64 并且没有 SELinux</p>
-<h2 id="2，安装"><a href="#2，安装" class="headerlink" title="2，安装"></a>2，安装</h2><p>安装过程来自nginx官方的安装介绍</p>
-<p>需要先安装 yum-utils</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo yum install yum-utils</span><br></pre></td></tr></table></figure>
-
-<p>然后添加 nginx 的 yum 仓库<br>在<code>/etc/yum.repos.d/</code>下新建文件<code>nginx</code></p>
-<p>保存一下内容</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[nginx-stable]</span><br><span class="line">name=nginx stable repo</span><br><span class="line">baseurl=http://nginx.org/packages/centos/$releasever/$basearch/</span><br><span class="line">gpgcheck=1</span><br><span class="line">enabled=1</span><br><span class="line">gpgkey=https://nginx.org/keys/nginx_signing.key</span><br><span class="line">module_hotfixes=true</span><br><span class="line"></span><br><span class="line">[nginx-mainline]</span><br><span class="line">name=nginx mainline repo</span><br><span class="line">baseurl=http://nginx.org/packages/mainline/centos/$releasever/$basearch/</span><br><span class="line">gpgcheck=1</span><br><span class="line">enabled=0</span><br><span class="line">gpgkey=https://nginx.org/keys/nginx_signing.key</span><br><span class="line">module_hotfixes=true</span><br></pre></td></tr></table></figure>
-
-<p>安装nginx</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo yum install nginx</span><br></pre></td></tr></table></figure>
-
-<p>到此nginx安装完毕</p>
-<h2 id="关于配置"><a href="#关于配置" class="headerlink" title="关于配置"></a>关于配置</h2><p>nginx默认是监听80端口的</p>
-<p>这是如果防火墙没有开放相应端口的话，是无法进行外网访问的</p>
-<p>查看所有打开的端口： <code>firewall-cmd --zone=public --list-ports</code></p>
-<p>打开80端口 <code>firewall-cmd --zone=public --add-port=80/tcp --permanent</code></p>
-<p>之后便可以在外网访问到nginx的欢迎界面了</p>
-<p>注：在本系统内，nginx的配置文件目录在： /etc/nginx；静态资源目录：/usr/share/nginx/</p>
-<p>参考文章</p>
-<ul>
-<li><a href="http://nginx.org/en/linux_packages.html#RHEL-CentOS" target="_blank" rel="noopener">Installation instructions</a></li>
-<li><a href="https://blog.csdn.net/s_p_j/article/details/80979450" target="_blank" rel="noopener">CentOS7使用firewall-cmd打开关闭防火墙与端口</a></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>centos</tag>
-        <tag>nginx</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SEO优化学习笔记</title>
     <url>/2018/03/10/SEO%E4%BC%98%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="SEO与SEM的区别"><a href="#SEO与SEM的区别" class="headerlink" title="SEO与SEM的区别"></a>SEO与SEM的区别</h2><p>SEO (Search Engine Optimization 搜索引擎优化)<br>SEM (Search Engine Marketing 搜索引擎营销)</p>
@@ -225,6 +167,64 @@
 ]]></content>
       <tags>
         <tag>SEO</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MongoDB笔记</title>
+    <url>/2019/07/06/MongoDB%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="安装MongoDB服务"><a href="#安装MongoDB服务" class="headerlink" title="安装MongoDB服务"></a>安装MongoDB服务</h2><p>这里下载的时MongoDB 4 Windows社区版本，4之后的版本跟之前的有很大的不同，不需要自行指定数据库和日志目录了，这里安装过程只修改了安装目录，从默认的c盘自定义为d盘，其他均为默认选项，一并安装了compass，这里大多人都不推荐安装compass，说是会卡住，这里安装确实看起来像是卡住了，但就如安装信息说的这里可能需要 a few minutes，事实上这里安装进度不变保持了10分钟左右就安装好了，所以不用太担心，只是网络原因，假死而已</p>
+<p>当然为了方便连接 MongoDB 实例，记得要将MongoDB安装目录下的bin目录添加到系统变量，这样我们就可以直接在shell 里直接输入 <code>mongo</code> 即可连接到MongoDB服务</p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h2 id="mongo"><a href="#mongo" class="headerlink" title="mongo"></a>mongo</h2><p>连接到本地的 MongoDB 实例，使用默认服务端口 <code>27017</code></p>
+<p>如果修改了本地 MongoDB 实例默认的服务端口，连接时我们也可以通过 <code>--port</code> 参数指定端口</p>
+<p>例如</p>
+<p><code>mongo --port 28015</code></p>
+<h3 id="show-dbs"><a href="#show-dbs" class="headerlink" title="show dbs"></a>show dbs</h3><p>查看所有的数据库</p>
+<h3 id="db"><a href="#db" class="headerlink" title="db"></a>db</h3><p>查看当前数据库</p>
+<h3 id="use-DATABASE-NAME"><a href="#use-DATABASE-NAME" class="headerlink" title="use DATABASE_NAME"></a>use DATABASE_NAME</h3><p>切换数据库（不论存在与否）</p>
+<h2 id="db-DATABASE-NAME-insert"><a href="#db-DATABASE-NAME-insert" class="headerlink" title="db.DATABASE_NAME.insert()"></a>db.DATABASE_NAME.insert()</h2><p>向 DATABASE_NAME 数据库插入数据</p>
+<p>例如</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">db.test.insert(&#123;&quot;description&quot;: &quot;这是一条测试数据&quot;&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>注：</strong> 该命令不需要切换数据库</p>
+<h3 id="db-dropDatabase"><a href="#db-dropDatabase" class="headerlink" title="db.dropDatabase()"></a>db.dropDatabase()</h3><p>删除当前数据库</p>
+<h3 id="db-createCollection-name-options"><a href="#db-createCollection-name-options" class="headerlink" title="db.createCollection(name[,options])"></a>db.createCollection(name[,options])</h3><p>在当前数据库创建集合 COLLECTION_NAME</p>
+<h3 id="db-COLLECTION-NAME-drop"><a href="#db-COLLECTION-NAME-drop" class="headerlink" title="db.COLLECTION_NAME.drop()"></a>db.COLLECTION_NAME.drop()</h3><p>在当前数据库删除集合 COLLECTION_NAME</p>
+]]></content>
+      <tags>
+        <tag>MongoDB</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>centos 安装 nginx</title>
+    <url>/2020/04/04/centos-%E5%AE%89%E8%A3%85-nginx/</url>
+    <content><![CDATA[<h2 id="1-系统版本"><a href="#1-系统版本" class="headerlink" title="1, 系统版本"></a>1, 系统版本</h2><p>当前安装的系统版本为：CentOS 7 x64 并且没有 SELinux</p>
+<h2 id="2，安装"><a href="#2，安装" class="headerlink" title="2，安装"></a>2，安装</h2><p>安装过程来自nginx官方的安装介绍</p>
+<p>需要先安装 yum-utils</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo yum install yum-utils</span><br></pre></td></tr></table></figure>
+
+<p>然后添加 nginx 的 yum 仓库<br>在<code>/etc/yum.repos.d/</code>下新建文件<code>nginx</code></p>
+<p>保存一下内容</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[nginx-stable]</span><br><span class="line">name=nginx stable repo</span><br><span class="line">baseurl=http://nginx.org/packages/centos/$releasever/$basearch/</span><br><span class="line">gpgcheck=1</span><br><span class="line">enabled=1</span><br><span class="line">gpgkey=https://nginx.org/keys/nginx_signing.key</span><br><span class="line">module_hotfixes=true</span><br><span class="line"></span><br><span class="line">[nginx-mainline]</span><br><span class="line">name=nginx mainline repo</span><br><span class="line">baseurl=http://nginx.org/packages/mainline/centos/$releasever/$basearch/</span><br><span class="line">gpgcheck=1</span><br><span class="line">enabled=0</span><br><span class="line">gpgkey=https://nginx.org/keys/nginx_signing.key</span><br><span class="line">module_hotfixes=true</span><br></pre></td></tr></table></figure>
+
+<p>安装nginx</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo yum install nginx</span><br></pre></td></tr></table></figure>
+
+<p>到此nginx安装完毕</p>
+<h2 id="关于配置"><a href="#关于配置" class="headerlink" title="关于配置"></a>关于配置</h2><p>nginx默认是监听80端口的</p>
+<p>这是如果防火墙没有开放相应端口的话，是无法进行外网访问的</p>
+<p>查看所有打开的端口： <code>firewall-cmd --zone=public --list-ports</code></p>
+<p>打开80端口 <code>firewall-cmd --zone=public --add-port=80/tcp --permanent</code></p>
+<p>之后便可以在外网访问到nginx的欢迎界面了</p>
+<p>注：在本系统内，nginx的配置文件目录在： /etc/nginx；静态资源目录：/usr/share/nginx/</p>
+<p>参考文章</p>
+<ul>
+<li><a href="http://nginx.org/en/linux_packages.html#RHEL-CentOS" target="_blank" rel="noopener">Installation instructions</a></li>
+<li><a href="https://blog.csdn.net/s_p_j/article/details/80979450" target="_blank" rel="noopener">CentOS7使用firewall-cmd打开关闭防火墙与端口</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>centos</tag>
+        <tag>nginx</tag>
       </tags>
   </entry>
   <entry>
@@ -395,6 +395,20 @@
       </tags>
   </entry>
   <entry>
+    <title>json为什么不允许注释</title>
+    <url>/2018/10/30/json%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E5%85%81%E8%AE%B8%E6%B3%A8%E9%87%8A/</url>
+    <content><![CDATA[<h3 id="来看看json之父怎么说"><a href="#来看看json之父怎么说" class="headerlink" title="来看看json之父怎么说"></a>来看看json之父怎么说</h3><img src="/2018/10/30/json为什么不允许注释/14157748-7a92f06db8b373f8.webp">
+
+<blockquote>
+<p>Comments in JSON<br>I removed comments from JSON because I saw people were using them to holdparsing directives, a practice which would have destroyed interoperability. I knowthat the lackl of comments makes some people sad, but it shouldn’t.<br>Suppose you are using JSON to keep configuration files, which you would like toannotate. Go ahead and insert all the comments you like. Then pipe it throughJSMin before handing it to your JSON parser.</p>
+</blockquote>
+<p>谷歌翻译一下：</p>
+<blockquote>
+<p>JSON中的注释<br>我从JSON中删除了注释，因为我看到有人使用它们来保存指令，这种做法会破坏互操作性。 我知道缺乏注释会让一些人感到悲伤，但事实并非如此。<br>假设您使用JSON来保留您想要注释的配置文件。 继续，插入您喜欢的所有注释。 然后将它传递给JSMin，然后将其传递给JSON解析器。</p>
+</blockquote>
+]]></content>
+  </entry>
+  <entry>
     <title>hexo创建自定义页面</title>
     <url>/2019/05/25/hexo%E5%88%9B%E5%BB%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E9%A1%B5%E9%9D%A2/</url>
     <content><![CDATA[<h2 id="为什么要在-hexo-中使用自定义页面"><a href="#为什么要在-hexo-中使用自定义页面" class="headerlink" title="为什么要在 hexo 中使用自定义页面"></a>为什么要在 hexo 中使用自定义页面</h2><p>在hexo中我们并不是只是用来写文字文章，有时我们也想自定义一些页面，这些页面是完全独立于主题样式的，比如在hexo中放上自己用html写的个人简历，又或是自己的一些前端Demo。</p>
@@ -431,20 +445,6 @@
       <tags>
         <tag>hexo</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>json为什么不允许注释</title>
-    <url>/2018/10/30/json%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E5%85%81%E8%AE%B8%E6%B3%A8%E9%87%8A/</url>
-    <content><![CDATA[<h3 id="来看看json之父怎么说"><a href="#来看看json之父怎么说" class="headerlink" title="来看看json之父怎么说"></a>来看看json之父怎么说</h3><img src="/2018/10/30/json为什么不允许注释/14157748-7a92f06db8b373f8.webp">
-
-<blockquote>
-<p>Comments in JSON<br>I removed comments from JSON because I saw people were using them to holdparsing directives, a practice which would have destroyed interoperability. I knowthat the lackl of comments makes some people sad, but it shouldn’t.<br>Suppose you are using JSON to keep configuration files, which you would like toannotate. Go ahead and insert all the comments you like. Then pipe it throughJSMin before handing it to your JSON parser.</p>
-</blockquote>
-<p>谷歌翻译一下：</p>
-<blockquote>
-<p>JSON中的注释<br>我从JSON中删除了注释，因为我看到有人使用它们来保存指令，这种做法会破坏互操作性。 我知道缺乏注释会让一些人感到悲伤，但事实并非如此。<br>假设您使用JSON来保留您想要注释的配置文件。 继续，插入您喜欢的所有注释。 然后将它传递给JSMin，然后将其传递给JSON解析器。</p>
-</blockquote>
-]]></content>
   </entry>
   <entry>
     <title>js上传视频图片预览</title>
@@ -494,15 +494,6 @@
 <img src="/2019/01/17/mysql-修改登录密码/14157748-8d93906580f4aada.png">
 
 <p>退出登录后用新密码登录测试是否设置成功</p>
-]]></content>
-      <tags>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mysql数据库备份</title>
-    <url>/2019/06/25/mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%87%E4%BB%BD/</url>
-    <content><![CDATA[<h2 id="备份数据库"><a href="#备份数据库" class="headerlink" title="备份数据库"></a>备份数据库</h2><p><code>mysqldump -hhostname -uusername -ppassword databasename &gt; backupfile.sql</code></p>
 ]]></content>
       <tags>
         <tag>mysql</tag>
@@ -568,51 +559,12 @@
       </tags>
   </entry>
   <entry>
-    <title>videojs使用</title>
-    <url>/2020/08/16/videojs%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h2 id="如何引入videojs"><a href="#如何引入videojs" class="headerlink" title="如何引入videojs"></a>如何引入videojs</h2><p>引入videojs的css js, 给video元素加上video-js类，并加上<code>data-setup</code>属性， 这样就videojs就可以正常工作了</p>
-<h3 id="cdn"><a href="#cdn" class="headerlink" title="cdn"></a>cdn</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"zh-cn"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>videojs<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 引入css --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://vjs.zencdn.net/7.8.4/video-js.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">video</span></span></span><br><span class="line"><span class="tag">    <span class="attr">class</span>=<span class="string">"video-js"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">controls</span></span></span><br><span class="line"><span class="tag">    <span class="attr">width</span>=<span class="string">"640"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">poster</span>=<span class="string">"poster.jpg"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">data-setup</span>=<span class="string">"&#123;&#125;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"movie.mp4"</span> <span class="attr">type</span>=<span class="string">"video/mp4"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"movie.ogg"</span> <span class="attr">type</span>=<span class="string">"video/ogg"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"vjs-no-js"</span>&gt;</span>To view this video please enable JavaScript, and consider upgrading to a web browser that <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"https://videojs.com/html5-video-support"</span> <span class="attr">target</span>=<span class="string">"_blank"</span>&gt;</span>supports HTML5 video<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 引入js --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://vjs.zencdn.net/7.8.4/video.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>这个加过视频封面的样子</p>
-<img src="/2020/08/16/videojs使用/2020-08-16_125500.jpg">
-
-<p>这是视频播放时的界面</p>
-<img src="/2020/08/16/videojs使用/2020-08-16_125049.jpg">
-
-<h3 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install --save-dev video.js</span><br></pre></td></tr></table></figure>
-
-<p>安装完成后，需要引入css和js</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'video/dist/video-js.css'</span></span><br><span class="line"><span class="keyword">import</span> videojs <span class="keyword">from</span> <span class="string">'videojs'</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="更改主题"><a href="#更改主题" class="headerlink" title="更改主题"></a>更改主题</h2><h3 id="通过cdn"><a href="#通过cdn" class="headerlink" title="通过cdn"></a>通过cdn</h3><p>引入主题样式，并向video元素添加相应的主题类，例如 <code>vjs-theme-city</code></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">id</span>=<span class="string">"player"</span> <span class="attr">class</span>=<span class="string">"video-js vjs-theme-city"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- city --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">" https://unpkg.com/@videojs/themes@1/dist/city/index.css"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- fantasy --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">" https://unpkg.com/@videojs/themes@1/dist/fantasy/index.css"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- forest --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">" https://unpkg.com/@videojs/themes@1/dist/forest/index.css"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- sea --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">" https://unpkg.com/@videojs/themes@1/dist/sea/index.css"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>city theme</p>
-<img src="/2020/08/16/videojs使用/2020-08-16_165242.jpg">
-
-<p>fantasy theme</p>
-<img src="/2020/08/16/videojs使用/2020-08-16_165637.jpg">
-
-<p>forest theme</p>
-<img src="/2020/08/16/videojs使用/2020-08-16_184209.jpg">
-
-<p>sea theme</p>
-<img src="/2020/08/16/videojs使用/2020-08-16_184304.jpg">
-
-<h3 id="通过npm"><a href="#通过npm" class="headerlink" title="通过npm"></a>通过npm</h3><p>通过npm安装主题样式</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install @videojs/themes</span><br></pre></td></tr></table></figure>
-
-<p>然后模块引入</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// city</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'@videojs/themes/dist/city/index.css'</span></span><br><span class="line"><span class="comment">// fantasy</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'@videojs/themes/dist/fantasy/index.css'</span></span><br><span class="line"><span class="comment">// forest</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'@videojs/themes/dist/forest/index.css'</span></span><br><span class="line"><span class="comment">// sea</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'@videojs/themes/dist/sea/index.css'</span></span><br></pre></td></tr></table></figure>
-
-<p>然后在我们的player播放器的video元素添加类</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">id</span>=<span class="string">"player"</span> <span class="attr">class</span>=<span class="string">"video-js vjs-theme-city"</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
+    <title>mysql数据库备份</title>
+    <url>/2019/06/25/mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%87%E4%BB%BD/</url>
+    <content><![CDATA[<h2 id="备份数据库"><a href="#备份数据库" class="headerlink" title="备份数据库"></a>备份数据库</h2><p><code>mysqldump -hhostname -uusername -ppassword databasename &gt; backupfile.sql</code></p>
 ]]></content>
       <tags>
-        <tag>videojs</tag>
+        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
@@ -661,6 +613,54 @@
       </tags>
   </entry>
   <entry>
+    <title>videojs使用</title>
+    <url>/2020/08/16/videojs%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h2 id="如何引入videojs"><a href="#如何引入videojs" class="headerlink" title="如何引入videojs"></a>如何引入videojs</h2><p>引入videojs的css js, 给video元素加上video-js类，并加上<code>data-setup</code>属性， 这样就videojs就可以正常工作了</p>
+<h3 id="cdn"><a href="#cdn" class="headerlink" title="cdn"></a>cdn</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"zh-cn"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>videojs<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 引入css --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://vjs.zencdn.net/7.8.4/video-js.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">video</span></span></span><br><span class="line"><span class="tag">    <span class="attr">class</span>=<span class="string">"video-js"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">controls</span></span></span><br><span class="line"><span class="tag">    <span class="attr">width</span>=<span class="string">"640"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">poster</span>=<span class="string">"poster.jpg"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">data-setup</span>=<span class="string">"&#123;&#125;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"movie.mp4"</span> <span class="attr">type</span>=<span class="string">"video/mp4"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"movie.ogg"</span> <span class="attr">type</span>=<span class="string">"video/ogg"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"vjs-no-js"</span>&gt;</span>To view this video please enable JavaScript, and consider upgrading to a web browser that <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"https://videojs.com/html5-video-support"</span> <span class="attr">target</span>=<span class="string">"_blank"</span>&gt;</span>supports HTML5 video<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 引入js --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://vjs.zencdn.net/7.8.4/video.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这个加过视频封面的样子</p>
+<img src="/2020/08/16/videojs使用/2020-08-16_125500.jpg">
+
+<p>这是视频播放时的界面</p>
+<img src="/2020/08/16/videojs使用/2020-08-16_125049.jpg">
+
+<h3 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install --save-dev video.js</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后，需要引入css和js</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'video/dist/video-js.css'</span></span><br><span class="line"><span class="keyword">import</span> videojs <span class="keyword">from</span> <span class="string">'videojs'</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="更改主题"><a href="#更改主题" class="headerlink" title="更改主题"></a>更改主题</h2><h3 id="通过cdn"><a href="#通过cdn" class="headerlink" title="通过cdn"></a>通过cdn</h3><p>引入主题样式，并向video元素添加相应的主题类，例如 <code>vjs-theme-city</code></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">id</span>=<span class="string">"player"</span> <span class="attr">class</span>=<span class="string">"video-js vjs-theme-city"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- city --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">" https://unpkg.com/@videojs/themes@1/dist/city/index.css"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- fantasy --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">" https://unpkg.com/@videojs/themes@1/dist/fantasy/index.css"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- forest --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">" https://unpkg.com/@videojs/themes@1/dist/forest/index.css"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- sea --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">" https://unpkg.com/@videojs/themes@1/dist/sea/index.css"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>city theme</p>
+<img src="/2020/08/16/videojs使用/2020-08-16_165242.jpg">
+
+<p>fantasy theme</p>
+<img src="/2020/08/16/videojs使用/2020-08-16_165637.jpg">
+
+<p>forest theme</p>
+<img src="/2020/08/16/videojs使用/2020-08-16_184209.jpg">
+
+<p>sea theme</p>
+<img src="/2020/08/16/videojs使用/2020-08-16_184304.jpg">
+
+<h3 id="通过npm"><a href="#通过npm" class="headerlink" title="通过npm"></a>通过npm</h3><p>通过npm安装主题样式</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install @videojs/themes</span><br></pre></td></tr></table></figure>
+
+<p>然后模块引入</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// city</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'@videojs/themes/dist/city/index.css'</span></span><br><span class="line"><span class="comment">// fantasy</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'@videojs/themes/dist/fantasy/index.css'</span></span><br><span class="line"><span class="comment">// forest</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'@videojs/themes/dist/forest/index.css'</span></span><br><span class="line"><span class="comment">// sea</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'@videojs/themes/dist/sea/index.css'</span></span><br></pre></td></tr></table></figure>
+
+<p>然后在我们的player播放器的video元素添加类</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">id</span>=<span class="string">"player"</span> <span class="attr">class</span>=<span class="string">"video-js vjs-theme-city"</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>videojs</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>window实体机ubuntu系统安装</title>
     <url>/2020/05/12/window%E5%AE%9E%E4%BD%93%E6%9C%BAubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[<h2 id="情形"><a href="#情形" class="headerlink" title="情形"></a>情形</h2><ul>
@@ -701,6 +701,42 @@
       <tags>
         <tag>js</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>如何取消单选按钮的选中状态</title>
+    <url>/2021/01/19/%E5%A6%82%E4%BD%95%E5%8F%96%E6%B6%88%E5%8D%95%E9%80%89%E6%8C%89%E9%92%AE%E7%9A%84%E9%80%89%E4%B8%AD%E7%8A%B6%E6%80%81/</url>
+    <content><![CDATA[<h2 id="1-常规用法"><a href="#1-常规用法" class="headerlink" title="1.常规用法"></a>1.常规用法</h2><p>单选按钮通常用于用户在一组选项中选中某一项的场景中，一但用户选中其中一项，是不可以再次点击以取消选中的。</p>
+<p>常见的写法有以下几种</p>
+<p>无label的</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"option"</span> <span class="attr">value</span>=<span class="string">"a"</span> <span class="attr">checked</span>&gt;</span>选项A</span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"option"</span> <span class="attr">value</span>=<span class="string">"b"</span>&gt;</span>选项B</span><br></pre></td></tr></table></figure>
+
+<p>通过for关联</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">id</span>=<span class="string">"optionA"</span> <span class="attr">name</span>=<span class="string">"option2"</span> <span class="attr">value</span>=<span class="string">"a"</span> <span class="attr">checked</span>&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"optionA"</span>&gt;</span>选项A<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">id</span>=<span class="string">"optionB"</span> <span class="attr">name</span>=<span class="string">"option2"</span> <span class="attr">value</span>=<span class="string">"b"</span>&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"optionB"</span>&gt;</span>选项B<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>或是直接将input放到对应的label中</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"option3"</span> <span class="attr">value</span>=<span class="string">"a"</span> <span class="attr">checked</span>&gt;</span>选项A<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"option3"</span> <span class="attr">value</span>=<span class="string">"b"</span>&gt;</span>选项B<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-取消选中"><a href="#2-取消选中" class="headerlink" title="2.取消选中"></a>2.取消选中</h2><p>如果有需求需要允许用户将已经选中的单选按钮取消选中，这个需求其实并不是非常常见，但也算有实际的需求场景，还算合理<br>但是默认提供的单选按钮是无法取消选中的，那么只有通过相应的事件进行处理了</p>
+<p>对于一组单选按钮，他们是相互关联的，选中其一，则其他的会取消选中；那么我们可以监听单选的click事件<br>如果<br>1.已经选中，那么设置元素的checked = false，取消选中<br>2.未选中，那么设置元素的checked = true， 选中；同组的其它单选元素的checked = false</p>
+<p>但在实际处理中会发现，我们并不知道click前的状态，因为点击后，我们事件的e.target.checked都会为true，所以我们应该记录下click之前的状态</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> radioEls = <span class="built_in">document</span>.querySelectorAll(<span class="string">'input[type=radio]'</span>)</span><br><span class="line">  radioEls.forEach(<span class="function"><span class="params">el</span> =&gt;</span> &#123;</span><br><span class="line">    el._checked = el.checked</span><br><span class="line">    el.addEventListener(<span class="string">'click'</span>, e =&gt; &#123;</span><br><span class="line">      <span class="keyword">const</span> target = e.target</span><br><span class="line">      <span class="keyword">if</span> (target._checked) &#123;</span><br><span class="line">        target.checked = target._checked = <span class="literal">false</span></span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">document</span>.querySelectorAll(<span class="string">`input[name=<span class="subst">$&#123;target.name&#125;</span>]`</span>).forEach(<span class="function"><span class="params">el</span> =&gt;</span> &#123;</span><br><span class="line">          el.checked = el._checked = <span class="literal">false</span></span><br><span class="line">        &#125;)</span><br><span class="line">        target.checked = target._checked = <span class="literal">true</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+
+<p><a href="/demo/post/1.html">查看效果</a></p>
+]]></content>
+      <tags>
+        <tag>html</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>小程序ios环境下finally报错</title>
+    <url>/2021/01/16/%E5%B0%8F%E7%A8%8B%E5%BA%8Fios%E7%8E%AF%E5%A2%83%E4%B8%8Bfinally%E6%8A%A5%E9%94%99/</url>
+    <content><![CDATA[<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>判断是否存在finally方法，不存在则在Promise原型上添加finally方法</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 兼容ios真机环境下Promise对象不存在finally方法</span></span><br><span class="line"><span class="keyword">if</span> (!<span class="built_in">Promise</span>.prototype.finally) &#123;</span><br><span class="line">  <span class="built_in">Promise</span>.prototype.finally = <span class="function"><span class="keyword">function</span>(<span class="params">callback</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">      callback &amp;&amp; callback(res)</span><br><span class="line">    &#125;, error =&gt; &#123;</span><br><span class="line">      callback &amp;&amp; callback(error)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Promise finally实现</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.prototype.finally = <span class="function"><span class="keyword">function</span> (<span class="params">callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> P = <span class="keyword">this</span>.constructor;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.then(</span><br><span class="line">    value  =&gt; P.resolve(callback()).then(<span class="function"><span class="params">()</span> =&gt;</span> value),</span><br><span class="line">    reason =&gt; P.resolve(callback()).then(<span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="keyword">throw</span> reason &#125;)</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+]]></content>
   </entry>
   <entry>
     <title>提交next主题到站点仓库</title>
@@ -829,6 +865,26 @@
       </tags>
   </entry>
   <entry>
+    <title>树莓派3B之系统安装</title>
+    <url>/2018/01/14/%E6%A0%91%E8%8E%93%E6%B4%BE3B%E4%B9%8B%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h2 id="格式化SD卡"><a href="#格式化SD卡" class="headerlink" title="格式化SD卡"></a>格式化SD卡</h2><p>下载SD卡格式化工具 <a href="https://www.sdcard.org/downloads/formatter_4/" target="_blank" rel="noopener">SD Card Formatter</a></p>
+<p>软件界面如下，以默认设置进行格式化即可</p>
+<img src="/2018/01/14/树莓派3B之系统安装/TIM截图20180115231316.png">
+
+<h2 id="下载系统"><a href="#下载系统" class="headerlink" title="下载系统"></a>下载系统</h2><p>下载树莓派系统镜像 <a href="https://www.raspberrypi.org/downloads/" target="_blank" rel="noopener">https://www.raspberrypi.org/downloads/</a></p>
+<h2 id="写入系统镜像"><a href="#写入系统镜像" class="headerlink" title="写入系统镜像"></a>写入系统镜像</h2><p>下载 <a href="http://sourceforge.net/projects/win32diskimager/" target="_blank" rel="noopener">Win32 DiskImager</a>,该工具可以把系统镜像写入SD卡</p>
+<img src="/2018/01/14/树莓派3B之系统安装/TIM截图20180110175647.png">
+
+<p>写入系统后，SD卡被分区</p>
+<img src="/2018/01/14/树莓派3B之系统安装/TIM截图20180115232335.png">
+
+<h2 id="启动系统"><a href="#启动系统" class="headerlink" title="启动系统"></a>启动系统</h2><p>把SD卡插入树莓派，插上电源系统即可启动</p>
+]]></content>
+      <tags>
+        <tag>树莓派</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>树莓派3B开箱</title>
     <url>/2018/01/14/%E6%A0%91%E8%8E%93%E6%B4%BE3B%E5%BC%80%E7%AE%B1/</url>
     <content><![CDATA[<h2 id="开箱清单"><a href="#开箱清单" class="headerlink" title="开箱清单"></a>开箱清单</h2><ul>
@@ -874,23 +930,26 @@
       </tags>
   </entry>
   <entry>
-    <title>树莓派3B之系统安装</title>
-    <url>/2018/01/14/%E6%A0%91%E8%8E%93%E6%B4%BE3B%E4%B9%8B%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<h2 id="格式化SD卡"><a href="#格式化SD卡" class="headerlink" title="格式化SD卡"></a>格式化SD卡</h2><p>下载SD卡格式化工具 <a href="https://www.sdcard.org/downloads/formatter_4/" target="_blank" rel="noopener">SD Card Formatter</a></p>
-<p>软件界面如下，以默认设置进行格式化即可</p>
-<img src="/2018/01/14/树莓派3B之系统安装/TIM截图20180115231316.png">
+    <title>树莓派EC20模块联网</title>
+    <url>/2020/06/06/%E6%A0%91%E8%8E%93%E6%B4%BEEC20%E6%A8%A1%E5%9D%97%E8%81%94%E7%BD%91/</url>
+    <content><![CDATA[<h2 id="EC20模块"><a href="#EC20模块" class="headerlink" title="EC20模块"></a>EC20模块</h2><img src="/2020/06/06/树莓派EC20模块联网/01.jpg">
 
-<h2 id="下载系统"><a href="#下载系统" class="headerlink" title="下载系统"></a>下载系统</h2><p>下载树莓派系统镜像 <a href="https://www.raspberrypi.org/downloads/" target="_blank" rel="noopener">https://www.raspberrypi.org/downloads/</a></p>
-<h2 id="写入系统镜像"><a href="#写入系统镜像" class="headerlink" title="写入系统镜像"></a>写入系统镜像</h2><p>下载 <a href="http://sourceforge.net/projects/win32diskimager/" target="_blank" rel="noopener">Win32 DiskImager</a>,该工具可以把系统镜像写入SD卡</p>
-<img src="/2018/01/14/树莓派3B之系统安装/TIM截图20180110175647.png">
+<h2 id="查看连接状态"><a href="#查看连接状态" class="headerlink" title="查看连接状态"></a>查看连接状态</h2><p>执行<code>lsusb</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Bus 001 Device 004: ID 1357:1000 P&amp;E Microcomputer Systems</span><br><span class="line">Bus 001 Device 005: ID 2c7c:0125 Quectel Wireless Solutions Co., Ltd. EC25 LTE modem</span><br><span class="line">Bus 001 Device 003: ID 0424:ec00 Standard Microsystems Corp. SMSC9512/9514 Fast Ethernet Adapter</span><br><span class="line">Bus 001 Device 002: ID 0424:9514 Standard Microsystems Corp. SMC9514 Hub</span><br><span class="line">Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub</span><br></pre></td></tr></table></figure>
 
-<p>写入系统后，SD卡被分区</p>
-<img src="/2018/01/14/树莓派3B之系统安装/TIM截图20180115232335.png">
+<p>执行<code>lsmod</code></p>
+<p>未连接模块时</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Module                  Size  Used by</span><br><span class="line">sha256_generic         20480  0</span><br><span class="line">cfg80211              651264  0</span><br><span class="line">rfkill                 28672  2 cfg80211</span><br><span class="line">8021q                  32768  0</span><br><span class="line">garp                   16384  1 8021q</span><br><span class="line">stp                    16384  1 garp</span><br><span class="line">llc                    16384  2 garp,stp</span><br><span class="line">joydev                 20480  0</span><br><span class="line">evdev                  24576  7</span><br><span class="line">bcm2835_v4l2           45056  0</span><br><span class="line">bcm2835_codec          36864  0</span><br><span class="line">v4l2_common            16384  1 bcm2835_v4l2</span><br><span class="line">snd_bcm2835            24576  1</span><br><span class="line">videobuf2_vmalloc      16384  1 bcm2835_v4l2</span><br><span class="line">v4l2_mem2mem           24576  1 bcm2835_codec</span><br><span class="line">snd_pcm               102400  1 snd_bcm2835</span><br><span class="line">bcm2835_mmal_vchiq     32768  2 bcm2835_codec,bcm2835_v4l2</span><br><span class="line">videobuf2_dma_contig    20480  1 bcm2835_codec</span><br><span class="line">raspberrypi_hwmon      16384  0</span><br><span class="line">videobuf2_memops       16384  2 videobuf2_dma_contig,videobuf2_vmalloc</span><br><span class="line">hwmon                  16384  1 raspberrypi_hwmon</span><br><span class="line">videobuf2_v4l2         24576  3 bcm2835_codec,bcm2835_v4l2,v4l2_mem2mem</span><br><span class="line">snd_timer              32768  1 snd_pcm</span><br><span class="line">videobuf2_common       45056  4 bcm2835_codec,bcm2835_v4l2,v4l2_mem2mem,videobuf2_v4l2</span><br><span class="line">snd                    73728  5 snd_timer,snd_bcm2835,snd_pcm</span><br><span class="line">videodev              200704  6 bcm2835_codec,v4l2_common,videobuf2_common,bcm2835_v4l2,v4l2_mem2mem,videobuf2_v4l2</span><br><span class="line">media                  36864  3 bcm2835_codec,videodev,v4l2_mem2mem</span><br><span class="line">vc_sm_cma              36864  1 bcm2835_mmal_vchiq</span><br><span class="line">uio_pdrv_genirq        16384  0</span><br><span class="line">uio                    20480  1 uio_pdrv_genirq</span><br><span class="line">fixed                  16384  0</span><br><span class="line">i2c_dev                20480  0</span><br><span class="line">ip_tables              24576  0</span><br><span class="line">x_tables               32768  1 ip_tables</span><br><span class="line">ipv6                  454656  28</span><br></pre></td></tr></table></figure>
 
-<h2 id="启动系统"><a href="#启动系统" class="headerlink" title="启动系统"></a>启动系统</h2><p>把SD卡插入树莓派，插上电源系统即可启动</p>
+<p>连接模块后</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Module                  Size  Used by</span><br><span class="line">option                 45056  0</span><br><span class="line">qmi_wwan               28672  0</span><br><span class="line">usb_wwan               20480  1 option</span><br><span class="line">cdc_wdm                20480  1 qmi_wwan</span><br><span class="line">usbserial              40960  2 option,usb_wwan</span><br><span class="line">sha256_generic         20480  0</span><br><span class="line">cfg80211              651264  0</span><br><span class="line">rfkill                 28672  2 cfg80211</span><br><span class="line">8021q                  32768  0</span><br><span class="line">garp                   16384  1 8021q</span><br><span class="line">stp                    16384  1 garp</span><br><span class="line">llc                    16384  2 garp,stp</span><br><span class="line">joydev                 20480  0</span><br><span class="line">evdev                  24576  7</span><br><span class="line">bcm2835_v4l2           45056  0</span><br><span class="line">bcm2835_codec          36864  0</span><br><span class="line">v4l2_common            16384  1 bcm2835_v4l2</span><br><span class="line">snd_bcm2835            24576  1</span><br><span class="line">videobuf2_vmalloc      16384  1 bcm2835_v4l2</span><br><span class="line">v4l2_mem2mem           24576  1 bcm2835_codec</span><br><span class="line">snd_pcm               102400  1 snd_bcm2835</span><br><span class="line">bcm2835_mmal_vchiq     32768  2 bcm2835_codec,bcm2835_v4l2</span><br><span class="line">videobuf2_dma_contig    20480  1 bcm2835_codec</span><br><span class="line">raspberrypi_hwmon      16384  0</span><br><span class="line">videobuf2_memops       16384  2 videobuf2_dma_contig,videobuf2_vmalloc</span><br><span class="line">hwmon                  16384  1 raspberrypi_hwmon</span><br><span class="line">videobuf2_v4l2         24576  3 bcm2835_codec,bcm2835_v4l2,v4l2_mem2mem</span><br><span class="line">snd_timer              32768  1 snd_pcm</span><br><span class="line">videobuf2_common       45056  4 bcm2835_codec,bcm2835_v4l2,v4l2_mem2mem,videobuf2_v4l2</span><br><span class="line">snd                    73728  5 snd_timer,snd_bcm2835,snd_pcm</span><br><span class="line">videodev              200704  6 bcm2835_codec,v4l2_common,videobuf2_common,bcm2835_v4l2,v4l2_mem2mem,videobuf2_v4l2</span><br><span class="line">media                  36864  3 bcm2835_codec,videodev,v4l2_mem2mem</span><br><span class="line">vc_sm_cma              36864  1 bcm2835_mmal_vchiq</span><br><span class="line">uio_pdrv_genirq        16384  0</span><br><span class="line">uio                    20480  1 uio_pdrv_genirq</span><br><span class="line">fixed                  16384  0</span><br><span class="line">i2c_dev                20480  0</span><br><span class="line">ip_tables              24576  0</span><br><span class="line">x_tables               32768  1 ip_tables</span><br><span class="line">ipv6                  454656  30</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[Dialer Defaults]</span><br><span class="line">Init1 = ATZ</span><br><span class="line">Init2 = ATQ0 V1 E1 S0=0 &amp;C1 &amp;D2 +FCLASS=0</span><br><span class="line">Modem Type = Analog Modem</span><br><span class="line">Baud = 9600</span><br><span class="line">New PPPD = yes</span><br><span class="line">Modem = /dev/ttyUSB2</span><br><span class="line">ISDN = 0</span><br><span class="line">; Phone = &lt;Target Phone Number&gt;</span><br><span class="line">; Password = &lt;Your Password&gt;</span><br><span class="line">; Username = &lt;Your Login Name&gt;</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <tags>
         <tag>树莓派</tag>
+        <tag>EC20模块</tag>
       </tags>
   </entry>
   <entry>
@@ -930,26 +989,30 @@
       </tags>
   </entry>
   <entry>
-    <title>树莓派EC20模块联网</title>
-    <url>/2020/06/06/%E6%A0%91%E8%8E%93%E6%B4%BEEC20%E6%A8%A1%E5%9D%97%E8%81%94%E7%BD%91/</url>
-    <content><![CDATA[<h2 id="EC20模块"><a href="#EC20模块" class="headerlink" title="EC20模块"></a>EC20模块</h2><img src="/2020/06/06/树莓派EC20模块联网/01.jpg">
+    <title>树莓派使用nodejs驱动ssd1306 128*64 oled显示屏</title>
+    <url>/2021/01/11/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BD%BF%E7%94%A8nodejs%E9%A9%B1%E5%8A%A8ssd1306-128-64-oled%E6%98%BE%E7%A4%BA%E5%B1%8F/</url>
+    <content><![CDATA[<h2 id="一、oled屏幕"><a href="#一、oled屏幕" class="headerlink" title="一、oled屏幕"></a>一、oled屏幕</h2><p>分辨率： 128 * 64<br>尺寸：0.96英寸<br>驱动芯片：ssd1306<br>电压：3.3~5V<br>功耗：0.06w<br>寿命：16000h<br>显示：双色（黄、蓝）<br>字库：无内置字库（软件控制显示）<br>通信： 4线spi/i2c（默认spi，使用i2c需调整相应屏后电阻）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 针脚</span><br><span class="line">GND ------- 接地</span><br><span class="line">VCC ------- 3.3 ~ 5V</span><br><span class="line">D0  ------- 时钟线</span><br><span class="line">D1  ------- 数据线</span><br><span class="line">RES ------- 复位（低电平有效）</span><br><span class="line">DC  ------- spi 通信 data/command 选择；i2c通信时设置i2c地址</span><br><span class="line">cs  ------- 片选（spi通信，低电平有效）</span><br></pre></td></tr></table></figure>
 
-<h2 id="查看连接状态"><a href="#查看连接状态" class="headerlink" title="查看连接状态"></a>查看连接状态</h2><p>执行<code>lsusb</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Bus 001 Device 004: ID 1357:1000 P&amp;E Microcomputer Systems</span><br><span class="line">Bus 001 Device 005: ID 2c7c:0125 Quectel Wireless Solutions Co., Ltd. EC25 LTE modem</span><br><span class="line">Bus 001 Device 003: ID 0424:ec00 Standard Microsystems Corp. SMSC9512/9514 Fast Ethernet Adapter</span><br><span class="line">Bus 001 Device 002: ID 0424:9514 Standard Microsystems Corp. SMC9514 Hub</span><br><span class="line">Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub</span><br></pre></td></tr></table></figure>
+<img src="/2021/01/11/树莓派使用nodejs驱动ssd1306-128-64-oled显示屏/IMG_20210111_220337.jpg">
+<img src="/2021/01/11/树莓派使用nodejs驱动ssd1306-128-64-oled显示屏/IMG_20210111_220051.jpg">
 
-<p>执行<code>lsmod</code></p>
-<p>未连接模块时</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Module                  Size  Used by</span><br><span class="line">sha256_generic         20480  0</span><br><span class="line">cfg80211              651264  0</span><br><span class="line">rfkill                 28672  2 cfg80211</span><br><span class="line">8021q                  32768  0</span><br><span class="line">garp                   16384  1 8021q</span><br><span class="line">stp                    16384  1 garp</span><br><span class="line">llc                    16384  2 garp,stp</span><br><span class="line">joydev                 20480  0</span><br><span class="line">evdev                  24576  7</span><br><span class="line">bcm2835_v4l2           45056  0</span><br><span class="line">bcm2835_codec          36864  0</span><br><span class="line">v4l2_common            16384  1 bcm2835_v4l2</span><br><span class="line">snd_bcm2835            24576  1</span><br><span class="line">videobuf2_vmalloc      16384  1 bcm2835_v4l2</span><br><span class="line">v4l2_mem2mem           24576  1 bcm2835_codec</span><br><span class="line">snd_pcm               102400  1 snd_bcm2835</span><br><span class="line">bcm2835_mmal_vchiq     32768  2 bcm2835_codec,bcm2835_v4l2</span><br><span class="line">videobuf2_dma_contig    20480  1 bcm2835_codec</span><br><span class="line">raspberrypi_hwmon      16384  0</span><br><span class="line">videobuf2_memops       16384  2 videobuf2_dma_contig,videobuf2_vmalloc</span><br><span class="line">hwmon                  16384  1 raspberrypi_hwmon</span><br><span class="line">videobuf2_v4l2         24576  3 bcm2835_codec,bcm2835_v4l2,v4l2_mem2mem</span><br><span class="line">snd_timer              32768  1 snd_pcm</span><br><span class="line">videobuf2_common       45056  4 bcm2835_codec,bcm2835_v4l2,v4l2_mem2mem,videobuf2_v4l2</span><br><span class="line">snd                    73728  5 snd_timer,snd_bcm2835,snd_pcm</span><br><span class="line">videodev              200704  6 bcm2835_codec,v4l2_common,videobuf2_common,bcm2835_v4l2,v4l2_mem2mem,videobuf2_v4l2</span><br><span class="line">media                  36864  3 bcm2835_codec,videodev,v4l2_mem2mem</span><br><span class="line">vc_sm_cma              36864  1 bcm2835_mmal_vchiq</span><br><span class="line">uio_pdrv_genirq        16384  0</span><br><span class="line">uio                    20480  1 uio_pdrv_genirq</span><br><span class="line">fixed                  16384  0</span><br><span class="line">i2c_dev                20480  0</span><br><span class="line">ip_tables              24576  0</span><br><span class="line">x_tables               32768  1 ip_tables</span><br><span class="line">ipv6                  454656  28</span><br></pre></td></tr></table></figure>
+<h2 id="SPI通信"><a href="#SPI通信" class="headerlink" title="SPI通信"></a>SPI通信</h2><p>SPI(Serial Peripheral Interface) 串行外设接口。 以主从方式进行工作，一台master主机可以连接多台slave从机，通过CS片选可以指定选中的从机。通常为4线或3线（单向传输数据）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 4wire SPI</span><br><span class="line">SCLK ------ 时钟</span><br><span class="line">MOSI ------ Master Out Slave Input</span><br><span class="line">MISO ------ Maset Input Slave Out</span><br><span class="line">CS   ------ 片选</span><br></pre></td></tr></table></figure>
 
-<p>连接模块后</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Module                  Size  Used by</span><br><span class="line">option                 45056  0</span><br><span class="line">qmi_wwan               28672  0</span><br><span class="line">usb_wwan               20480  1 option</span><br><span class="line">cdc_wdm                20480  1 qmi_wwan</span><br><span class="line">usbserial              40960  2 option,usb_wwan</span><br><span class="line">sha256_generic         20480  0</span><br><span class="line">cfg80211              651264  0</span><br><span class="line">rfkill                 28672  2 cfg80211</span><br><span class="line">8021q                  32768  0</span><br><span class="line">garp                   16384  1 8021q</span><br><span class="line">stp                    16384  1 garp</span><br><span class="line">llc                    16384  2 garp,stp</span><br><span class="line">joydev                 20480  0</span><br><span class="line">evdev                  24576  7</span><br><span class="line">bcm2835_v4l2           45056  0</span><br><span class="line">bcm2835_codec          36864  0</span><br><span class="line">v4l2_common            16384  1 bcm2835_v4l2</span><br><span class="line">snd_bcm2835            24576  1</span><br><span class="line">videobuf2_vmalloc      16384  1 bcm2835_v4l2</span><br><span class="line">v4l2_mem2mem           24576  1 bcm2835_codec</span><br><span class="line">snd_pcm               102400  1 snd_bcm2835</span><br><span class="line">bcm2835_mmal_vchiq     32768  2 bcm2835_codec,bcm2835_v4l2</span><br><span class="line">videobuf2_dma_contig    20480  1 bcm2835_codec</span><br><span class="line">raspberrypi_hwmon      16384  0</span><br><span class="line">videobuf2_memops       16384  2 videobuf2_dma_contig,videobuf2_vmalloc</span><br><span class="line">hwmon                  16384  1 raspberrypi_hwmon</span><br><span class="line">videobuf2_v4l2         24576  3 bcm2835_codec,bcm2835_v4l2,v4l2_mem2mem</span><br><span class="line">snd_timer              32768  1 snd_pcm</span><br><span class="line">videobuf2_common       45056  4 bcm2835_codec,bcm2835_v4l2,v4l2_mem2mem,videobuf2_v4l2</span><br><span class="line">snd                    73728  5 snd_timer,snd_bcm2835,snd_pcm</span><br><span class="line">videodev              200704  6 bcm2835_codec,v4l2_common,videobuf2_common,bcm2835_v4l2,v4l2_mem2mem,videobuf2_v4l2</span><br><span class="line">media                  36864  3 bcm2835_codec,videodev,v4l2_mem2mem</span><br><span class="line">vc_sm_cma              36864  1 bcm2835_mmal_vchiq</span><br><span class="line">uio_pdrv_genirq        16384  0</span><br><span class="line">uio                    20480  1 uio_pdrv_genirq</span><br><span class="line">fixed                  16384  0</span><br><span class="line">i2c_dev                20480  0</span><br><span class="line">ip_tables              24576  0</span><br><span class="line">x_tables               32768  1 ip_tables</span><br><span class="line">ipv6                  454656  30</span><br></pre></td></tr></table></figure>
+<h2 id="二、连接raspberrypi"><a href="#二、连接raspberrypi" class="headerlink" title="二、连接raspberrypi"></a>二、连接raspberrypi</h2><p>1.启用spi</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo raspi-config</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[Dialer Defaults]</span><br><span class="line">Init1 = ATZ</span><br><span class="line">Init2 = ATQ0 V1 E1 S0=0 &amp;C1 &amp;D2 +FCLASS=0</span><br><span class="line">Modem Type = Analog Modem</span><br><span class="line">Baud = 9600</span><br><span class="line">New PPPD = yes</span><br><span class="line">Modem = /dev/ttyUSB2</span><br><span class="line">ISDN = 0</span><br><span class="line">; Phone = &lt;Target Phone Number&gt;</span><br><span class="line">; Password = &lt;Your Password&gt;</span><br><span class="line">; Username = &lt;Your Login Name&gt;</span><br></pre></td></tr></table></figure>
-
+<p>找到advanced options 下的spi，选择启用</p>
+<p>2.连接</p>
+<img src="/2021/01/11/树莓派使用nodejs驱动ssd1306-128-64-oled显示屏/raspberry-pi-pin.png">
 ]]></content>
       <tags>
         <tag>树莓派</tag>
-        <tag>EC20模块</tag>
+        <tag>nodejs</tag>
+        <tag>canvas</tag>
+        <tag>ssd1306</tag>
+        <tag>oled</tag>
       </tags>
   </entry>
   <entry>
@@ -1118,22 +1181,6 @@
 <p>输入 y 回车 继续即可</p>
 <h2 id="查看web站点"><a href="#查看web站点" class="headerlink" title="查看web站点"></a>查看web站点</h2><p>在浏览器内输入树莓派局域网IP，可以看到Apache的默认页面</p>
 <img src="/2018/03/11/树莓派搭建LAMP服务/2018-03-11-192347_830x386_scrot.png">]]></content>
-      <tags>
-        <tag>树莓派</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>树莓派禁止休眠、保持屏幕常亮</title>
-    <url>/2020/03/21/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%A6%81%E6%AD%A2%E4%BC%91%E7%9C%A0%E3%80%81%E4%BF%9D%E6%8C%81%E5%B1%8F%E5%B9%95%E5%B8%B8%E4%BA%AE/</url>
-    <content><![CDATA[<h2 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo vi /etc/lightdm/lightdm.conf</span><br></pre></td></tr></table></figure>
-
-<p>找到<br><code>#xserver-command=X</code><br>修改为<br><code>xserver-command=X -s 0 -dpms</code></p>
-<p>保存后重启即可</p>
-<p>参考文章</p>
-<ul>
-<li><a href="https://blog.csdn.net/u011720560/article/details/78288128" target="_blank" rel="noopener">树莓派禁止休眠、屏幕常亮</a></li>
-</ul>
-]]></content>
       <tags>
         <tag>树莓派</tag>
       </tags>
@@ -1368,6 +1415,22 @@
       </tags>
   </entry>
   <entry>
+    <title>树莓派禁止休眠、保持屏幕常亮</title>
+    <url>/2020/03/21/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%A6%81%E6%AD%A2%E4%BC%91%E7%9C%A0%E3%80%81%E4%BF%9D%E6%8C%81%E5%B1%8F%E5%B9%95%E5%B8%B8%E4%BA%AE/</url>
+    <content><![CDATA[<h2 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo vi /etc/lightdm/lightdm.conf</span><br></pre></td></tr></table></figure>
+
+<p>找到<br><code>#xserver-command=X</code><br>修改为<br><code>xserver-command=X -s 0 -dpms</code></p>
+<p>保存后重启即可</p>
+<p>参考文章</p>
+<ul>
+<li><a href="https://blog.csdn.net/u011720560/article/details/78288128" target="_blank" rel="noopener">树莓派禁止休眠、屏幕常亮</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>树莓派</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>树莓派鼠标空闲时隐藏光标</title>
     <url>/2020/03/21/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%BC%A0%E6%A0%87%E7%A9%BA%E9%97%B2%E6%97%B6%E9%9A%90%E8%97%8F%E5%85%89%E6%A0%87/</url>
     <content><![CDATA[<h2 id="安装uncluter"><a href="#安装uncluter" class="headerlink" title="安装uncluter"></a>安装uncluter</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install unclutter</span><br></pre></td></tr></table></figure>
@@ -1381,6 +1444,24 @@
 ]]></content>
       <tags>
         <tag>树莓派</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>第一次使用hexo</title>
+    <url>/2019/05/21/%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8hexo/</url>
+    <content><![CDATA[<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><p>全局安装hexo命令行工具<br><code>npm install hexo-cli -g</code></p>
+<p>初始化一个hexo项目，我们取名为blog，这会创建一个blog项目文件夹<br><code>hexo init blog</code></p>
+<p>切换到项目目录<br><code>cd blog</code></p>
+<p>安装项目依赖<br><code>npm intall</code></p>
+<p>这时我们就可以启动本地服务，在本机查看我们的站点<br><code>hexo server</code></p>
+<h2 id="先写个文章试试吧"><a href="#先写个文章试试吧" class="headerlink" title="先写个文章试试吧"></a>先写个文章试试吧</h2><p>比如我要写一篇文章叫 “第一次使用hexo”，可以这样<br><code>hexo new &#39;第一次使用hexo&#39;</code></p>
+<p>创建好新文章后，我们可以在项目的<code>source</code>下的<code>_posts</code>文件夹下看到新建的post文件<code>第一次使用hexo.md</code>,为Markdown文件</p>
+<p>这时我们就可以用markdown语法写文章了，写完保存后，我们需要将Markdown文件生成静态的html文件<br><code>hexo g</code></p>
+<p>静态文件生成后，我们就可以运行我们的服务，在站点上查看我们刚刚写的文章啦。注意，hexo是支持热重载的，所以我们添加内容保存后，直接刷新我们的站点页面，就可以直接查看到我们刚刚添加的文章内容，不需要重启服务<br><code>hexo server</code></p>
+<p>以上就是hexo最基本的操作了，如果你只在意文章内容，不在意外观，其实已经可以满足你的需求了。当然，hexo还有更多的功能，具体可见hexo官方文档 <a href="https://hexo.io/" target="_blank" rel="noopener">https://hexo.io/</a></p>
+]]></content>
+      <tags>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -1438,23 +1519,5 @@
 </tr>
 </tbody></table>
 ]]></content>
-  </entry>
-  <entry>
-    <title>第一次使用hexo</title>
-    <url>/2019/05/21/%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8hexo/</url>
-    <content><![CDATA[<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><p>全局安装hexo命令行工具<br><code>npm install hexo-cli -g</code></p>
-<p>初始化一个hexo项目，我们取名为blog，这会创建一个blog项目文件夹<br><code>hexo init blog</code></p>
-<p>切换到项目目录<br><code>cd blog</code></p>
-<p>安装项目依赖<br><code>npm intall</code></p>
-<p>这时我们就可以启动本地服务，在本机查看我们的站点<br><code>hexo server</code></p>
-<h2 id="先写个文章试试吧"><a href="#先写个文章试试吧" class="headerlink" title="先写个文章试试吧"></a>先写个文章试试吧</h2><p>比如我要写一篇文章叫 “第一次使用hexo”，可以这样<br><code>hexo new &#39;第一次使用hexo&#39;</code></p>
-<p>创建好新文章后，我们可以在项目的<code>source</code>下的<code>_posts</code>文件夹下看到新建的post文件<code>第一次使用hexo.md</code>,为Markdown文件</p>
-<p>这时我们就可以用markdown语法写文章了，写完保存后，我们需要将Markdown文件生成静态的html文件<br><code>hexo g</code></p>
-<p>静态文件生成后，我们就可以运行我们的服务，在站点上查看我们刚刚写的文章啦。注意，hexo是支持热重载的，所以我们添加内容保存后，直接刷新我们的站点页面，就可以直接查看到我们刚刚添加的文章内容，不需要重启服务<br><code>hexo server</code></p>
-<p>以上就是hexo最基本的操作了，如果你只在意文章内容，不在意外观，其实已经可以满足你的需求了。当然，hexo还有更多的功能，具体可见hexo官方文档 <a href="https://hexo.io/" target="_blank" rel="noopener">https://hexo.io/</a></p>
-]]></content>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
   </entry>
 </search>

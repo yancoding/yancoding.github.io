@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .show-box {
+      display: inline-block;
+      border: 1px solid;
+    }
+
+    .show-box .video-container {
+      display: inline-block;
+      width: 320px;
+      height: 240px;
+    }
+  </style>
+</head>
+
+<body>
+  <div style="border: 1px solid; display: inline-block;">
+    <p>远程画面</p>
+    <div class="show-box">
+      <div>
+        摄像头
+        <button onclick="subscribe('pc')">订阅</button>
+      </div>
+      <div class="video-container" id="remoteCamera"></div>
+    </div>
+    <div class="show-box">
+      <div>
+        屏幕
+        <button onclick="subscribe('pc')">订阅</button>
+      </div>
+      <div class="video-container" id="remoteScreen"></div>
+    </div>
+    <div class="show-box">
+      <div>
+        手机
+        <button onclick="subscribe('pc')">订阅</button>
+      </div>
+      <div class="video-container" id="remoteMobile"></div>
+    </div>
+    <br>
+    <button onclick="joinRoom()">加入房间</button>
+  </div>
+  <p>roomToken: </p>
+  <textarea name="" id="textarea" cols="30" rows="10"></textarea>
+  <script src="./pili-rtc-web.js"></script>
+  <script>
+    // 提取本地存储的roomToken, 回显
+    document.getElementById('textarea').value = window.localStorage.getItem('roomToken-sub')
+    // 打印七牛云RTC版本号
+    console.log("七牛云RTC版本号: ", QNRTC.version);
+    // 当前房间会话(track模式)
+    const myRoom = new QNRTC.TrackModeSession()
+
+    // 加入房间
+    const joinRoom = () => {
+      const roomToken = document.getElementById('textarea').value
+      localStorage.setItem('roomToken-sub', roomToken)
+      myRoom.joinRoomWithToken(roomToken)
+        .then(() => {
+          console.log('加入房间成功')
+          autoSubscribe(myRoom)
+        })
+        .catch(err => {
+          console.log(`加入房间失败: ${err}`)
+          alert('加入房间失败，请检查roomToken后重试')
+          location.reload()
+        })
+    }
+
+    // 订阅track
+    async function subscribe(myRoom, trackInfoList) {
+      // 通过传入 trackId 调用订阅方法发起订阅，成功会返回相应的 Track 对象，也就是远端的 Track 列表了
+      const remoteTracks = await myRoom.subscribe(trackInfoList.map(info => info.trackId));
+
+      // 选择页面上的一个元素作为父元素，播放远端的音视频轨
+      const remoteCameraEl = document.getElementById("remoteCamera");
+      const remoteScreenEl = document.getElementById("remoteScreen");
+      const remoteMobileEl = document.getElementById("remoteMobile");
+      // 遍历返回的远端 Track，调用 play 方法完成在页面上的播放
+      for (const remoteTrack of remoteTracks) {
+        if (remoteTrack.info.tag === "audio") {
+          continue
+        } else if (remoteTrack.info.tag === "video") {
+          remoteTrack.play(remoteCameraEl, true);
+        } else if (remoteTrack.info.tag === "screen") {
+          remoteTrack.play(remoteScreenEl, true);
+        } else if (remoteTrack.info.tag === "debug") {
+          console.log('mobile')
+          remoteTrack.play(remoteMobileEl, true);
+        }
+      }
+    }
+    
+    // 自动订阅
+    function autoSubscribe(myRoom) {
+      const trackInfoList = myRoom.trackInfoList;
+      console.log("当前房间的tranckList: ", trackInfoList) 
+
+      subscribe(myRoom, trackInfoList)
+        .then(() => console.log("订阅成功!"))
+        .catch(err => console.error("订阅失败: ", err))
+
+      // 监听track-add事件
+      myRoom.on("track-add", (trackInfoList) => {
+        console.log("track-add事件触发, tranckList: ", trackInfoList)
+
+        subscribe(myRoom, trackInfoList)
+          .then(() => console.log("订阅成功!"))
+          .catch(err => console.error("订阅失败: ", err))
+      });
+    }
+  </script>
+</body>
+
+</html>
