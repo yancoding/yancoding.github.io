@@ -67,6 +67,64 @@
       </tags>
   </entry>
   <entry>
+    <title>BitLocker加密分区</title>
+    <url>/2019/05/24/BitLocker%E5%8A%A0%E5%AF%86%E5%88%86%E5%8C%BA/</url>
+    <content><![CDATA[<h2 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h2><p>打开磁盘管理</p>
+<img src="/2019/05/24/BitLocker加密分区/TIM截图20190524094220.jpg">
+
+<p>对该分区进行<strong>压缩分区</strong></p>
+<img src="/2019/05/24/BitLocker加密分区/TIM截图20190524094330.jpg">
+
+<p>可以将压缩分区量设置为 102400 即从当前分区压缩出 100G 的分区大小</p>
+<img src="/2019/05/24/BitLocker加密分区/TIM截图20190524094426.jpg">
+
+<p>将这 100G 未分配分区<strong>添加简单券</strong></p>
+<img src="/2019/05/24/BitLocker加密分区/TIM截图20190524094512.jpg">
+
+<p>到此，我们已经划分出了 100G 容量大小的可用分区</p>
+<h2 id="对分区启用BitLocker加密"><a href="#对分区启用BitLocker加密" class="headerlink" title="对分区启用BitLocker加密"></a>对分区启用BitLocker加密</h2><p>右键 <strong>启用BitLocker</strong> </p>
+<img src="/2019/05/24/BitLocker加密分区/TIM截图20190524094606.jpg">
+
+<p>设置好密码并保存好BitLocker恢复秘钥后，就可以点击 <strong>启动加密</strong> 对分区进行加密</p>
+<img src="/2019/05/24/BitLocker加密分区/TIM截图20190524094706.jpg">
+
+<p>整个加密时间很长，这里 100G 的分区用了20min左右</p>
+<img src="/2019/05/24/BitLocker加密分区/TIM截图20190524094850.jpg">
+
+<h2 id="锁定-BitLocker-分区"><a href="#锁定-BitLocker-分区" class="headerlink" title="锁定 BitLocker 分区"></a>锁定 BitLocker 分区</h2><h3 id="1-命令和批处理"><a href="#1-命令和批处理" class="headerlink" title="1.命令和批处理"></a>1.命令和批处理</h3><p>加密分区后，每次电脑开机再访问分区，都要输入一次密码，但是我们怎么锁定分区呢，这里默认是电脑关闭时会锁定BitLocker分区，但如果想立即锁定分区，防止其他人窥探呢</p>
+<p>默认情况下电脑上并没有直接面向用户开启这个功能，但是可以通过命令行进行suoding</p>
+<p><code>manage-bde -lock i:</code></p>
+<p>这里的 <strong>i</strong> 是我们的卷标</p>
+<p>每次输入命令进行锁定，实在是太麻烦里<br>这里我们可以用批处理，将该命令放到一个批处理文件里，需要锁定时，直接双击运行该批处理程序就好了</p>
+<p>新建 <strong>记事本</strong>，粘贴下面的内容</p>
+<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">title</span> 锁定加密分区i</span><br><span class="line">manage-bde -lock i:</span><br><span class="line"><span class="built_in">echo</span> 按任意键退出</span><br><span class="line"><span class="built_in">pause</span> &gt; <span class="built_in">NUL</span></span><br></pre></td></tr></table></figure>
+
+<p>选择另存为，设置编码方式为：<strong>ANSI</strong> 防止中文乱码</p>
+<p>这时我们直接运行该批处理就可以锁定 分区i</p>
+<h3 id="2-添加右键菜单"><a href="#2-添加右键菜单" class="headerlink" title="2.添加右键菜单"></a>2.添加右键菜单</h3><p>使用批处理看起来还是挺方便的，但是当我们不止一个加密分区，而是多个的时候，我们为了锁定多个分区，要分别设置批处理，这样就麻烦里些；如果是移动硬盘的话，这样更麻烦了，因为我们在挂在移动硬盘时并不知道他的盘符是几，编写固定的批处理文件这里就不适用了</p>
+<p>终极解决办法是为磁盘驱动器添加右键菜单，这样我们只要右键菜单，点击锁定Bitlocker，即可锁定相应的分区</p>
+<p>新建一个记事本，粘贴一下内容</p>
+<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">Windows Registry Editor Version <span class="number">5</span>.<span class="number">00</span></span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\Drive\shell\runas]</span><br><span class="line">@="锁定 BitLocker"</span><br><span class="line">"AppliesTo"="System.Volume.BitLockerProtection:=System.Volume.BitLockerProtection#On OR System.Volume.BitLockerProtection:=System.Volume.BitLockerProtection#Encrypting OR System.Volume.BitLockerProtection:=System.Volume.BitLockerProtection#Suspended) AND System.Volume.BitLockerCanChangePassphraseByProxy:=System.StructuredQueryType.Boolean#True"</span><br><span class="line">"Icon"="<span class="variable">%SystemRoot%</span>\\\\System32\\\\shell32.dll,<span class="number">47</span>"</span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\Drive\shell\runas\command]</span><br><span class="line">@="<span class="built_in">cmd</span>  /v:on /k   <span class="built_in">set</span> bdestr=%<span class="number">1</span> &amp;&amp; <span class="built_in">set</span> bdedrv=<span class="variable">!bdestr:~0,2!</span> &amp;&amp; manage-bde.exe  -lock <span class="variable">!bdedrv!</span> -ForceDismount&amp; <span class="keyword">exit</span>"</span><br></pre></td></tr></table></figure>
+
+<p>保存为 <strong>.reg</strong> 文件</p>
+<p>双击运行，会添加相应的注册表项</p>
+<p>再次查看磁盘右键菜单，会发现多出一个菜单项 <strong>锁定 BitLocker</strong></p>
+<img src="/2019/05/24/BitLocker加密分区/2019-05-24_210854.png">
+
+<p>点击即可锁定相应的磁盘分区</p>
+<p>参考文章：</p>
+<ul>
+<li><a href="http://www.xitonghe.com/jiaocheng/Windows10-7781.html" target="_blank" rel="noopener">Win10系统右键菜单添加“手动BITLOCKER锁定加密”的方法</a></li>
+<li><a href="https://www.winhelponline.com/blog/change-default-icon-file-type-windows/" target="_blank" rel="noopener">How to Change the Icon for a File Type in Windows?</a></li>
+<li><a href="https://help4windows.com/windows_7_shell32_dll.shtml" target="_blank" rel="noopener">Windows 7 “shell32” Icons</a></li>
+<li><a href="https://diymediahome.org/windows-icons-reference-list-with-details-locations-images/" target="_blank" rel="noopener">Windows Icons: Full list with details, locations &amp; images</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>windows</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SEO优化学习笔记</title>
     <url>/2018/03/10/SEO%E4%BC%98%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="SEO与SEM的区别"><a href="#SEO与SEM的区别" class="headerlink" title="SEO与SEM的区别"></a>SEO与SEM的区别</h2><p>SEO (Search Engine Optimization 搜索引擎优化)<br>SEM (Search Engine Marketing 搜索引擎营销)</p>
@@ -137,69 +195,97 @@
       </tags>
   </entry>
   <entry>
-    <title>frp反向代理</title>
-    <url>/2020/07/17/frp%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>frp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>BitLocker加密分区</title>
-    <url>/2019/05/24/BitLocker%E5%8A%A0%E5%AF%86%E5%88%86%E5%8C%BA/</url>
-    <content><![CDATA[<h2 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h2><p>打开磁盘管理</p>
-<img src="/2019/05/24/BitLocker加密分区/TIM截图20190524094220.jpg">
+    <title>centos安装socks5服务</title>
+    <url>/2020/05/10/centos%E5%AE%89%E8%A3%85socks5%E6%9C%8D%E5%8A%A1/</url>
+    <content><![CDATA[<h2 id="1-安装依赖"><a href="#1-安装依赖" class="headerlink" title="1.安装依赖"></a>1.安装依赖</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum -y install gcc gcc-c++ automake make pam-devel openldap-deve</span><br></pre></td></tr></table></figure>
 
-<p>对该分区进行<strong>压缩分区</strong></p>
-<img src="/2019/05/24/BitLocker加密分区/TIM截图20190524094330.jpg">
+<h2 id="2-安装socks5"><a href="#2-安装socks5" class="headerlink" title="2.安装socks5"></a>2.安装socks5</h2><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget https://jaist.dl.sourceforge.net/project/ss5/ss5/3.8.9-8/ss5-3.8.9-8.tar.gz</span><br></pre></td></tr></table></figure>
 
-<p>可以将压缩分区量设置为 102400 即从当前分区压缩出 100G 的分区大小</p>
-<img src="/2019/05/24/BitLocker加密分区/TIM截图20190524094426.jpg">
+<h3 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">tar -zxvf ss5-3.8.9-8.tar.gz</span><br></pre></td></tr></table></figure>
 
-<p>将这 100G 未分配分区<strong>添加简单券</strong></p>
-<img src="/2019/05/24/BitLocker加密分区/TIM截图20190524094512.jpg">
+<h3 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd ss5-3.8.9</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
 
-<p>到此，我们已经划分出了 100G 容量大小的可用分区</p>
-<h2 id="对分区启用BitLocker加密"><a href="#对分区启用BitLocker加密" class="headerlink" title="对分区启用BitLocker加密"></a>对分区启用BitLocker加密</h2><p>右键 <strong>启用BitLocker</strong> </p>
-<img src="/2019/05/24/BitLocker加密分区/TIM截图20190524094606.jpg">
+<h2 id="3-启动服务"><a href="#3-启动服务" class="headerlink" title="3.启动服务"></a>3.启动服务</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">service ss5 start</span><br></pre></td></tr></table></figure>
 
-<p>设置好密码并保存好BitLocker恢复秘钥后，就可以点击 <strong>启动加密</strong> 对分区进行加密</p>
-<img src="/2019/05/24/BitLocker加密分区/TIM截图20190524094706.jpg">
+<p>echo “env: /etc/init.d/ss5: Permission denied”</p>
+<p>修改权限后再次启动</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chmod a+x /etc/init.d/ss5</span><br><span class="line">service ss5 start</span><br></pre></td></tr></table></figure>
 
-<p>整个加密时间很长，这里 100G 的分区用了20min左右</p>
-<img src="/2019/05/24/BitLocker加密分区/TIM截图20190524094850.jpg">
+<p>此时服务已启动，但还不能正常使用，需要进行服务配置</p>
+<h2 id="4-服务配置"><a href="#4-服务配置" class="headerlink" title="4.服务配置"></a>4.服务配置</h2><p>找到 <code>auth</code> 和 <code>permit</code>, 取消注释，如下</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> ///////////////////////////////////////////////////////////////////////////////////</span></span><br><span class="line"><span class="meta">#</span><span class="bash">       SHost           SPort           Authentication</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">auth    0.0.0.0/0               -               -</span><br></pre></td></tr></table></figure>
 
-<h2 id="锁定-BitLocker-分区"><a href="#锁定-BitLocker-分区" class="headerlink" title="锁定 BitLocker 分区"></a>锁定 BitLocker 分区</h2><h3 id="1-命令和批处理"><a href="#1-命令和批处理" class="headerlink" title="1.命令和批处理"></a>1.命令和批处理</h3><p>加密分区后，每次电脑开机再访问分区，都要输入一次密码，但是我们怎么锁定分区呢，这里默认是电脑关闭时会锁定BitLocker分区，但如果想立即锁定分区，防止其他人窥探呢</p>
-<p>默认情况下电脑上并没有直接面向用户开启这个功能，但是可以通过命令行进行suoding</p>
-<p><code>manage-bde -lock i:</code></p>
-<p>这里的 <strong>i</strong> 是我们的卷标</p>
-<p>每次输入命令进行锁定，实在是太麻烦里<br>这里我们可以用批处理，将该命令放到一个批处理文件里，需要锁定时，直接双击运行该批处理程序就好了</p>
-<p>新建 <strong>记事本</strong>，粘贴下面的内容</p>
-<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">title</span> 锁定加密分区i</span><br><span class="line">manage-bde -lock i:</span><br><span class="line"><span class="built_in">echo</span> 按任意键退出</span><br><span class="line"><span class="built_in">pause</span> &gt; <span class="built_in">NUL</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> /////////////////////////////////////////////////////////////////////////////////////////////////</span></span><br><span class="line"><span class="meta">#</span><span class="bash">      Auth     SHost           SPort   DHost           DPort   Fixup   Group   Band    ExpDate</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">permit -        0.0.0.0/0       -       0.0.0.0/0       -       -       -       -       -</span><br></pre></td></tr></table></figure>
 
-<p>选择另存为，设置编码方式为：<strong>ANSI</strong> 防止中文乱码</p>
-<p>这时我们直接运行该批处理就可以锁定 分区i</p>
-<h3 id="2-添加右键菜单"><a href="#2-添加右键菜单" class="headerlink" title="2.添加右键菜单"></a>2.添加右键菜单</h3><p>使用批处理看起来还是挺方便的，但是当我们不止一个加密分区，而是多个的时候，我们为了锁定多个分区，要分别设置批处理，这样就麻烦里些；如果是移动硬盘的话，这样更麻烦了，因为我们在挂在移动硬盘时并不知道他的盘符是几，编写固定的批处理文件这里就不适用了</p>
-<p>终极解决办法是为磁盘驱动器添加右键菜单，这样我们只要右键菜单，点击锁定Bitlocker，即可锁定相应的分区</p>
-<p>新建一个记事本，粘贴一下内容</p>
-<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">Windows Registry Editor Version <span class="number">5</span>.<span class="number">00</span></span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\Drive\shell\runas]</span><br><span class="line">@="锁定 BitLocker"</span><br><span class="line">"AppliesTo"="System.Volume.BitLockerProtection:=System.Volume.BitLockerProtection#On OR System.Volume.BitLockerProtection:=System.Volume.BitLockerProtection#Encrypting OR System.Volume.BitLockerProtection:=System.Volume.BitLockerProtection#Suspended) AND System.Volume.BitLockerCanChangePassphraseByProxy:=System.StructuredQueryType.Boolean#True"</span><br><span class="line">"Icon"="<span class="variable">%SystemRoot%</span>\\\\System32\\\\shell32.dll,<span class="number">47</span>"</span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\Drive\shell\runas\command]</span><br><span class="line">@="<span class="built_in">cmd</span>  /v:on /k   <span class="built_in">set</span> bdestr=%<span class="number">1</span> &amp;&amp; <span class="built_in">set</span> bdedrv=<span class="variable">!bdestr:~0,2!</span> &amp;&amp; manage-bde.exe  -lock <span class="variable">!bdedrv!</span> -ForceDismount&amp; <span class="keyword">exit</span>"</span><br></pre></td></tr></table></figure>
+<p>重启服务</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">service ss5 restart</span><br></pre></td></tr></table></figure>
 
-<p>保存为 <strong>.reg</strong> 文件</p>
-<p>双击运行，会添加相应的注册表项</p>
-<p>再次查看磁盘右键菜单，会发现多出一个菜单项 <strong>锁定 BitLocker</strong></p>
-<img src="/2019/05/24/BitLocker加密分区/2019-05-24_210854.png">
+<p>socks5默认服务端口为<code>1080</code>, 查看系统端口列表</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">firewall-cmd --zone=public --list-ports</span><br></pre></td></tr></table></figure>
 
-<p>点击即可锁定相应的磁盘分区</p>
-<p>参考文章：</p>
+<p>如果还没有开启, 则开启1080端口</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">firewall-cmd --add-port=1080/tcp --permanent</span><br><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+
+<p>至此，服务已可以连接，任何用户均可连接</p>
+<h2 id="5-配置用户"><a href="#5-配置用户" class="headerlink" title="5.配置用户"></a>5.配置用户</h2><p>编辑</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vi /etc/opt/ss5/ss5.conf</span><br></pre></td></tr></table></figure>
+
+<p>找到 <code>auth</code> 和 <code>permit</code>, 修改如下</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> ///////////////////////////////////////////////////////////////////////////////////</span></span><br><span class="line"><span class="meta">#</span><span class="bash">       SHost           SPort           Authentication</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">auth    0.0.0.0/0               -               u</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> /////////////////////////////////////////////////////////////////////////////////////////////////</span></span><br><span class="line"><span class="meta">#</span><span class="bash">      Auth     SHost           SPort   DHost           DPort   Fixup   Group   Band    ExpDate</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">permit u        0.0.0.0/0       -       0.0.0.0/0       -       -       -       -       -</span><br></pre></td></tr></table></figure>
+
+<p>编辑</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim /etc/opt/ss5/ss5.passwd</span><br></pre></td></tr></table></figure>
+
+<p>添加一行用户，账户与密码空格隔开</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">username password</span><br></pre></td></tr></table></figure>
+
+<p>重启服务</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">service ss5 restart</span><br></pre></td></tr></table></figure>
+
+<p>此时在连接代理服务则需要账户密码才可连接成功</p>
+<p>参考文章</p>
 <ul>
-<li><a href="http://www.xitonghe.com/jiaocheng/Windows10-7781.html" target="_blank" rel="noopener">Win10系统右键菜单添加“手动BITLOCKER锁定加密”的方法</a></li>
-<li><a href="https://www.winhelponline.com/blog/change-default-icon-file-type-windows/" target="_blank" rel="noopener">How to Change the Icon for a File Type in Windows?</a></li>
-<li><a href="https://help4windows.com/windows_7_shell32_dll.shtml" target="_blank" rel="noopener">Windows 7 “shell32” Icons</a></li>
-<li><a href="https://diymediahome.org/windows-icons-reference-list-with-details-locations-images/" target="_blank" rel="noopener">Windows Icons: Full list with details, locations &amp; images</a></li>
+<li><a href="https://blog.csdn.net/zjiang1994/article/details/74925039" target="_blank" rel="noopener">CentOS7 配置SOCKS5代理服务</a></li>
 </ul>
 ]]></content>
       <tags>
-        <tag>windows</tag>
+        <tag>cenos7</tag>
+        <tag>socks5</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>centos 安装 nginx</title>
+    <url>/2020/04/04/centos-%E5%AE%89%E8%A3%85-nginx/</url>
+    <content><![CDATA[<h2 id="1-系统版本"><a href="#1-系统版本" class="headerlink" title="1, 系统版本"></a>1, 系统版本</h2><p>当前安装的系统版本为：CentOS 7 x64 并且没有 SELinux</p>
+<h2 id="2，安装"><a href="#2，安装" class="headerlink" title="2，安装"></a>2，安装</h2><p>安装过程来自nginx官方的安装介绍</p>
+<p>需要先安装 yum-utils</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo yum install yum-utils</span><br></pre></td></tr></table></figure>
+
+<p>然后添加 nginx 的 yum 仓库<br>在<code>/etc/yum.repos.d/</code>下新建文件<code>nginx</code></p>
+<p>保存一下内容</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[nginx-stable]</span><br><span class="line">name=nginx stable repo</span><br><span class="line">baseurl=http://nginx.org/packages/centos/$releasever/$basearch/</span><br><span class="line">gpgcheck=1</span><br><span class="line">enabled=1</span><br><span class="line">gpgkey=https://nginx.org/keys/nginx_signing.key</span><br><span class="line">module_hotfixes=true</span><br><span class="line"></span><br><span class="line">[nginx-mainline]</span><br><span class="line">name=nginx mainline repo</span><br><span class="line">baseurl=http://nginx.org/packages/mainline/centos/$releasever/$basearch/</span><br><span class="line">gpgcheck=1</span><br><span class="line">enabled=0</span><br><span class="line">gpgkey=https://nginx.org/keys/nginx_signing.key</span><br><span class="line">module_hotfixes=true</span><br></pre></td></tr></table></figure>
+
+<p>安装nginx</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo yum install nginx</span><br></pre></td></tr></table></figure>
+
+<p>到此nginx安装完毕</p>
+<h2 id="关于配置"><a href="#关于配置" class="headerlink" title="关于配置"></a>关于配置</h2><p>nginx默认是监听80端口的</p>
+<p>这是如果防火墙没有开放相应端口的话，是无法进行外网访问的</p>
+<p>查看所有打开的端口： <code>firewall-cmd --zone=public --list-ports</code></p>
+<p>打开80端口 <code>firewall-cmd --zone=public --add-port=80/tcp --permanent</code></p>
+<p>之后便可以在外网访问到nginx的欢迎界面了</p>
+<p>注：在本系统内，nginx的配置文件目录在： /etc/nginx；静态资源目录：/usr/share/nginx/</p>
+<p>参考文章</p>
+<ul>
+<li><a href="http://nginx.org/en/linux_packages.html#RHEL-CentOS" target="_blank" rel="noopener">Installation instructions</a></li>
+<li><a href="https://blog.csdn.net/s_p_j/article/details/80979450" target="_blank" rel="noopener">CentOS7使用firewall-cmd打开关闭防火墙与端口</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>centos</tag>
+        <tag>nginx</tag>
       </tags>
   </entry>
   <entry>
@@ -231,6 +317,14 @@
 <p>end：表示过渡从第一步时间的结束开始(不会直接看到过渡效果)</p>
 <p><strong>注意：</strong> transition-delay 将包含于步进函数的第一步，即第一步的持续时间为均分时间加上延迟时间</p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>frp反向代理</title>
+    <url>/2020/07/17/frp%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>frp</tag>
+      </tags>
   </entry>
   <entry>
     <title>git基本用法</title>
@@ -301,20 +395,6 @@
       </tags>
   </entry>
   <entry>
-    <title>json为什么不允许注释</title>
-    <url>/2018/10/30/json%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E5%85%81%E8%AE%B8%E6%B3%A8%E9%87%8A/</url>
-    <content><![CDATA[<h3 id="来看看json之父怎么说"><a href="#来看看json之父怎么说" class="headerlink" title="来看看json之父怎么说"></a>来看看json之父怎么说</h3><img src="/2018/10/30/json为什么不允许注释/14157748-7a92f06db8b373f8.webp">
-
-<blockquote>
-<p>Comments in JSON<br>I removed comments from JSON because I saw people were using them to holdparsing directives, a practice which would have destroyed interoperability. I knowthat the lackl of comments makes some people sad, but it shouldn’t.<br>Suppose you are using JSON to keep configuration files, which you would like toannotate. Go ahead and insert all the comments you like. Then pipe it throughJSMin before handing it to your JSON parser.</p>
-</blockquote>
-<p>谷歌翻译一下：</p>
-<blockquote>
-<p>JSON中的注释<br>我从JSON中删除了注释，因为我看到有人使用它们来保存指令，这种做法会破坏互操作性。 我知道缺乏注释会让一些人感到悲伤，但事实并非如此。<br>假设您使用JSON来保留您想要注释的配置文件。 继续，插入您喜欢的所有注释。 然后将它传递给JSMin，然后将其传递给JSON解析器。</p>
-</blockquote>
-]]></content>
-  </entry>
-  <entry>
     <title>hexo创建自定义页面</title>
     <url>/2019/05/25/hexo%E5%88%9B%E5%BB%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E9%A1%B5%E9%9D%A2/</url>
     <content><![CDATA[<h2 id="为什么要在-hexo-中使用自定义页面"><a href="#为什么要在-hexo-中使用自定义页面" class="headerlink" title="为什么要在 hexo 中使用自定义页面"></a>为什么要在 hexo 中使用自定义页面</h2><p>在hexo中我们并不是只是用来写文字文章，有时我们也想自定义一些页面，这些页面是完全独立于主题样式的，比如在hexo中放上自己用html写的个人简历，又或是自己的一些前端Demo。</p>
@@ -353,36 +433,51 @@
       </tags>
   </entry>
   <entry>
-    <title>centos 安装 nginx</title>
-    <url>/2020/04/04/centos-%E5%AE%89%E8%A3%85-nginx/</url>
-    <content><![CDATA[<h2 id="1-系统版本"><a href="#1-系统版本" class="headerlink" title="1, 系统版本"></a>1, 系统版本</h2><p>当前安装的系统版本为：CentOS 7 x64 并且没有 SELinux</p>
-<h2 id="2，安装"><a href="#2，安装" class="headerlink" title="2，安装"></a>2，安装</h2><p>安装过程来自nginx官方的安装介绍</p>
-<p>需要先安装 yum-utils</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo yum install yum-utils</span><br></pre></td></tr></table></figure>
+    <title>json为什么不允许注释</title>
+    <url>/2018/10/30/json%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E5%85%81%E8%AE%B8%E6%B3%A8%E9%87%8A/</url>
+    <content><![CDATA[<h3 id="来看看json之父怎么说"><a href="#来看看json之父怎么说" class="headerlink" title="来看看json之父怎么说"></a>来看看json之父怎么说</h3><img src="/2018/10/30/json为什么不允许注释/14157748-7a92f06db8b373f8.webp">
 
-<p>然后添加 nginx 的 yum 仓库<br>在<code>/etc/yum.repos.d/</code>下新建文件<code>nginx</code></p>
-<p>保存一下内容</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[nginx-stable]</span><br><span class="line">name=nginx stable repo</span><br><span class="line">baseurl=http://nginx.org/packages/centos/$releasever/$basearch/</span><br><span class="line">gpgcheck=1</span><br><span class="line">enabled=1</span><br><span class="line">gpgkey=https://nginx.org/keys/nginx_signing.key</span><br><span class="line">module_hotfixes=true</span><br><span class="line"></span><br><span class="line">[nginx-mainline]</span><br><span class="line">name=nginx mainline repo</span><br><span class="line">baseurl=http://nginx.org/packages/mainline/centos/$releasever/$basearch/</span><br><span class="line">gpgcheck=1</span><br><span class="line">enabled=0</span><br><span class="line">gpgkey=https://nginx.org/keys/nginx_signing.key</span><br><span class="line">module_hotfixes=true</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Comments in JSON<br>I removed comments from JSON because I saw people were using them to holdparsing directives, a practice which would have destroyed interoperability. I knowthat the lackl of comments makes some people sad, but it shouldn’t.<br>Suppose you are using JSON to keep configuration files, which you would like toannotate. Go ahead and insert all the comments you like. Then pipe it throughJSMin before handing it to your JSON parser.</p>
+</blockquote>
+<p>谷歌翻译一下：</p>
+<blockquote>
+<p>JSON中的注释<br>我从JSON中删除了注释，因为我看到有人使用它们来保存指令，这种做法会破坏互操作性。 我知道缺乏注释会让一些人感到悲伤，但事实并非如此。<br>假设您使用JSON来保留您想要注释的配置文件。 继续，插入您喜欢的所有注释。 然后将它传递给JSMin，然后将其传递给JSON解析器。</p>
+</blockquote>
+]]></content>
+  </entry>
+  <entry>
+    <title>js上传视频图片预览</title>
+    <url>/2019/07/02/js%E4%B8%8A%E4%BC%A0%E8%A7%86%E9%A2%91%E5%9B%BE%E7%89%87%E9%A2%84%E8%A7%88/</url>
+    <content><![CDATA[<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p><a href="demo/list/文件上传预览">文件上传预览</a></p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>HTML</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">legend</span>&gt;</span>上传视频文件<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">accept</span>=<span class="string">"video/*"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>视频预览<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">video</span> <span class="attr">id</span>=<span class="string">"video"</span> <span class="attr">src</span>=<span class="string">""</span> <span class="attr">controls</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">legend</span>&gt;</span>上传图片文件<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">accept</span>=<span class="string">"image/*"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>图片预览<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">"img"</span> <span class="attr">src</span>=<span class="string">""</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>安装nginx</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo yum install nginx</span><br></pre></td></tr></table></figure>
+<p>CSS</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">video</span>,</span><br><span class="line"><span class="selector-tag">img</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>到此nginx安装完毕</p>
-<h2 id="关于配置"><a href="#关于配置" class="headerlink" title="关于配置"></a>关于配置</h2><p>nginx默认是监听80端口的</p>
-<p>这是如果防火墙没有开放相应端口的话，是无法进行外网访问的</p>
-<p>查看所有打开的端口： <code>firewall-cmd --zone=public --list-ports</code></p>
-<p>打开80端口 <code>firewall-cmd --zone=public --add-port=80/tcp --permanent</code></p>
-<p>之后便可以在外网访问到nginx的欢迎界面了</p>
-<p>注：在本系统内，nginx的配置文件目录在： /etc/nginx；静态资源目录：/usr/share/nginx/</p>
-<p>参考文章</p>
-<ul>
-<li><a href="http://nginx.org/en/linux_packages.html#RHEL-CentOS" target="_blank" rel="noopener">Installation instructions</a></li>
-<li><a href="https://blog.csdn.net/s_p_j/article/details/80979450" target="_blank" rel="noopener">CentOS7使用firewall-cmd打开关闭防火墙与端口</a></li>
-</ul>
+<p>JS</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> form = <span class="built_in">document</span>.querySelector(<span class="string">'form'</span>)</span><br><span class="line">    <span class="keyword">let</span> videoEl = <span class="built_in">document</span>.getElementById(<span class="string">'video'</span>)</span><br><span class="line">    <span class="keyword">let</span> imgEl = <span class="built_in">document</span>.getElementById(<span class="string">'img'</span>)</span><br><span class="line">    form.addEventListener(<span class="string">'change'</span>, event =&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span>(event.target.type === <span class="string">'file'</span>) &#123;</span><br><span class="line">            <span class="keyword">let</span> file = event.target.files[<span class="number">0</span>]</span><br><span class="line">            <span class="keyword">if</span>(event.target.accept.indexOf(<span class="string">'video'</span>) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                videoEl.src = getObjectURL(file)</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(event.target.accept.indexOf(<span class="string">'image'</span>) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                imgEl.src = getObjectURL(file)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">let</span> getObjectURL = <span class="function"><span class="params">file</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> url = <span class="string">''</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">window</span>.createObjectURL != <span class="literal">undefined</span>) &#123; </span><br><span class="line">            <span class="comment">// basic</span></span><br><span class="line">            url = <span class="built_in">window</span>.createObjectURL(file);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">window</span>.URL != <span class="literal">undefined</span>) &#123; </span><br><span class="line">            <span class="comment">// mozilla(firefox)</span></span><br><span class="line">            url = <span class="built_in">window</span>.URL.createObjectURL(file);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">window</span>.webkitURL != <span class="literal">undefined</span>) &#123; </span><br><span class="line">            <span class="comment">// webkit or chrome</span></span><br><span class="line">            url = <span class="built_in">window</span>.webkitURL.createObjectURL(file);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> url</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <tags>
-        <tag>centos</tag>
-        <tag>nginx</tag>
+        <tag>js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>koa2文件上传</title>
+    <url>/2019/06/26/koa2%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</url>
+    <content><![CDATA[<h2 id="创建项目目录"><a href="#创建项目目录" class="headerlink" title="创建项目目录"></a>创建项目目录</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir uploadFile</span><br><span class="line"><span class="built_in">cd</span> uploadFile</span><br></pre></td></tr></table></figure>
+
+<h2 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init</span><br><span class="line">npm init</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install koa koa-router koa-body koa-static</span><br></pre></td></tr></table></figure>
+
+<h2 id="项目主程序-app-js"><a href="#项目主程序-app-js" class="headerlink" title="项目主程序 app.js"></a>项目主程序 app.js</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"><span class="keyword">const</span> koaBody = <span class="built_in">require</span>(<span class="string">'koa-body'</span>);</span><br><span class="line"><span class="keyword">const</span> Router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>);</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">static</span> = <span class="built_in">require</span>(<span class="string">'koa-static'</span>);</span><br><span class="line"><span class="keyword">const</span> cors = <span class="built_in">require</span>(<span class="string">'koa2-cors'</span>)</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> hostname = <span class="string">'127.0.0.1'</span></span><br><span class="line"><span class="keyword">const</span> port = <span class="number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa()</span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> Router()</span><br><span class="line"></span><br><span class="line">app.use(cors())</span><br><span class="line">app.use(<span class="keyword">static</span>(<span class="string">'.'</span>));</span><br><span class="line"></span><br><span class="line">router</span><br><span class="line">    .get(<span class="string">'/'</span>, (ctx, next) =&gt; &#123;</span><br><span class="line">        ctx.body = <span class="string">'hello world!'</span></span><br><span class="line">    &#125;)</span><br><span class="line">    .post(<span class="string">'/api/upload'</span>, koaBody(&#123;</span><br><span class="line">        multipart: <span class="literal">true</span>,</span><br><span class="line">        formidable: &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;), (ctx, next) =&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> file = ctx.request.files.file</span><br><span class="line">        <span class="keyword">let</span> fileType = file.name.split(<span class="string">'.'</span>).pop()</span><br><span class="line">        <span class="keyword">let</span> fileName = <span class="string">`<span class="subst">$&#123;<span class="built_in">Date</span>.now()&#125;</span>.<span class="subst">$&#123;fileType&#125;</span>`</span></span><br><span class="line">        <span class="keyword">let</span> fileReader = fs.createReadStream(file.path)</span><br><span class="line">        <span class="keyword">let</span> writeStream = fs.createWriteStream(path.join(__dirname, <span class="string">'upload'</span>, <span class="string">`<span class="subst">$&#123;fileName&#125;</span>`</span>))</span><br><span class="line"></span><br><span class="line">        fileReader.pipe(writeStream)</span><br><span class="line">        ctx.body = &#123;</span><br><span class="line">            code: <span class="number">0</span>,</span><br><span class="line">            message: <span class="string">'上传成功'</span>,</span><br><span class="line">            url: <span class="string">`http://<span class="subst">$&#123;hostname&#125;</span>:<span class="subst">$&#123;port&#125;</span>/upload/<span class="subst">$&#123;fileName&#125;</span>`</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">app</span><br><span class="line">    .use(router.routes())</span><br><span class="line">    .use(router.allowedMethods())</span><br><span class="line"></span><br><span class="line">app.listen(port, hostname, () =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`Server running at http://<span class="subst">$&#123;hostname&#125;</span>:<span class="subst">$&#123;port&#125;</span>/`</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>Koa2</tag>
       </tags>
   </entry>
   <entry>
@@ -405,91 +500,12 @@
       </tags>
   </entry>
   <entry>
-    <title>js上传视频图片预览</title>
-    <url>/2019/07/02/js%E4%B8%8A%E4%BC%A0%E8%A7%86%E9%A2%91%E5%9B%BE%E7%89%87%E9%A2%84%E8%A7%88/</url>
-    <content><![CDATA[<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p><a href="demo/list/文件上传预览">文件上传预览</a></p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>HTML</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">legend</span>&gt;</span>上传视频文件<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">accept</span>=<span class="string">"video/*"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>视频预览<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">video</span> <span class="attr">id</span>=<span class="string">"video"</span> <span class="attr">src</span>=<span class="string">""</span> <span class="attr">controls</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">legend</span>&gt;</span>上传图片文件<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">accept</span>=<span class="string">"image/*"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>图片预览<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">"img"</span> <span class="attr">src</span>=<span class="string">""</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>CSS</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">video</span>,</span><br><span class="line"><span class="selector-tag">img</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>JS</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> form = <span class="built_in">document</span>.querySelector(<span class="string">'form'</span>)</span><br><span class="line">    <span class="keyword">let</span> videoEl = <span class="built_in">document</span>.getElementById(<span class="string">'video'</span>)</span><br><span class="line">    <span class="keyword">let</span> imgEl = <span class="built_in">document</span>.getElementById(<span class="string">'img'</span>)</span><br><span class="line">    form.addEventListener(<span class="string">'change'</span>, event =&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span>(event.target.type === <span class="string">'file'</span>) &#123;</span><br><span class="line">            <span class="keyword">let</span> file = event.target.files[<span class="number">0</span>]</span><br><span class="line">            <span class="keyword">if</span>(event.target.accept.indexOf(<span class="string">'video'</span>) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                videoEl.src = getObjectURL(file)</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(event.target.accept.indexOf(<span class="string">'image'</span>) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                imgEl.src = getObjectURL(file)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">let</span> getObjectURL = <span class="function"><span class="params">file</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> url = <span class="string">''</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">window</span>.createObjectURL != <span class="literal">undefined</span>) &#123; </span><br><span class="line">            <span class="comment">// basic</span></span><br><span class="line">            url = <span class="built_in">window</span>.createObjectURL(file);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">window</span>.URL != <span class="literal">undefined</span>) &#123; </span><br><span class="line">            <span class="comment">// mozilla(firefox)</span></span><br><span class="line">            url = <span class="built_in">window</span>.URL.createObjectURL(file);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">window</span>.webkitURL != <span class="literal">undefined</span>) &#123; </span><br><span class="line">            <span class="comment">// webkit or chrome</span></span><br><span class="line">            url = <span class="built_in">window</span>.webkitURL.createObjectURL(file);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> url</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>js</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>mysql数据库备份</title>
     <url>/2019/06/25/mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%87%E4%BB%BD/</url>
     <content><![CDATA[<h2 id="备份数据库"><a href="#备份数据库" class="headerlink" title="备份数据库"></a>备份数据库</h2><p><code>mysqldump -hhostname -uusername -ppassword databasename &gt; backupfile.sql</code></p>
 ]]></content>
       <tags>
         <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>centos安装socks5服务</title>
-    <url>/2020/05/10/centos%E5%AE%89%E8%A3%85socks5%E6%9C%8D%E5%8A%A1/</url>
-    <content><![CDATA[<h2 id="1-安装依赖"><a href="#1-安装依赖" class="headerlink" title="1.安装依赖"></a>1.安装依赖</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum -y install gcc gcc-c++ automake make pam-devel openldap-deve</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-安装socks5"><a href="#2-安装socks5" class="headerlink" title="2.安装socks5"></a>2.安装socks5</h2><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget https://jaist.dl.sourceforge.net/project/ss5/ss5/3.8.9-8/ss5-3.8.9-8.tar.gz</span><br></pre></td></tr></table></figure>
-
-<h3 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">tar -zxvf ss5-3.8.9-8.tar.gz</span><br></pre></td></tr></table></figure>
-
-<h3 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd ss5-3.8.9</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-启动服务"><a href="#3-启动服务" class="headerlink" title="3.启动服务"></a>3.启动服务</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">service ss5 start</span><br></pre></td></tr></table></figure>
-
-<p>echo “env: /etc/init.d/ss5: Permission denied”</p>
-<p>修改权限后再次启动</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chmod a+x /etc/init.d/ss5</span><br><span class="line">service ss5 start</span><br></pre></td></tr></table></figure>
-
-<p>此时服务已启动，但还不能正常使用，需要进行服务配置</p>
-<h2 id="4-服务配置"><a href="#4-服务配置" class="headerlink" title="4.服务配置"></a>4.服务配置</h2><p>找到 <code>auth</code> 和 <code>permit</code>, 取消注释，如下</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> ///////////////////////////////////////////////////////////////////////////////////</span></span><br><span class="line"><span class="meta">#</span><span class="bash">       SHost           SPort           Authentication</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">auth    0.0.0.0/0               -               -</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> /////////////////////////////////////////////////////////////////////////////////////////////////</span></span><br><span class="line"><span class="meta">#</span><span class="bash">      Auth     SHost           SPort   DHost           DPort   Fixup   Group   Band    ExpDate</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">permit -        0.0.0.0/0       -       0.0.0.0/0       -       -       -       -       -</span><br></pre></td></tr></table></figure>
-
-<p>重启服务</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">service ss5 restart</span><br></pre></td></tr></table></figure>
-
-<p>socks5默认服务端口为<code>1080</code>, 查看系统端口列表</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">firewall-cmd --zone=public --list-ports</span><br></pre></td></tr></table></figure>
-
-<p>如果还没有开启, 则开启1080端口</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">firewall-cmd --add-port=1080/tcp --permanent</span><br><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
-
-<p>至此，服务已可以连接，任何用户均可连接</p>
-<h2 id="5-配置用户"><a href="#5-配置用户" class="headerlink" title="5.配置用户"></a>5.配置用户</h2><p>编辑</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vi /etc/opt/ss5/ss5.conf</span><br></pre></td></tr></table></figure>
-
-<p>找到 <code>auth</code> 和 <code>permit</code>, 修改如下</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> ///////////////////////////////////////////////////////////////////////////////////</span></span><br><span class="line"><span class="meta">#</span><span class="bash">       SHost           SPort           Authentication</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">auth    0.0.0.0/0               -               u</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> /////////////////////////////////////////////////////////////////////////////////////////////////</span></span><br><span class="line"><span class="meta">#</span><span class="bash">      Auth     SHost           SPort   DHost           DPort   Fixup   Group   Band    ExpDate</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">permit u        0.0.0.0/0       -       0.0.0.0/0       -       -       -       -       -</span><br></pre></td></tr></table></figure>
-
-<p>编辑</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim /etc/opt/ss5/ss5.passwd</span><br></pre></td></tr></table></figure>
-
-<p>添加一行用户，账户与密码空格隔开</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">username password</span><br></pre></td></tr></table></figure>
-
-<p>重启服务</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">service ss5 restart</span><br></pre></td></tr></table></figure>
-
-<p>此时在连接代理服务则需要账户密码才可连接成功</p>
-<p>参考文章</p>
-<ul>
-<li><a href="https://blog.csdn.net/zjiang1994/article/details/74925039" target="_blank" rel="noopener">CentOS7 配置SOCKS5代理服务</a></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>cenos7</tag>
-        <tag>socks5</tag>
       </tags>
   </entry>
   <entry>
@@ -552,19 +568,48 @@
       </tags>
   </entry>
   <entry>
-    <title>koa2文件上传</title>
-    <url>/2019/06/26/koa2%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</url>
-    <content><![CDATA[<h2 id="创建项目目录"><a href="#创建项目目录" class="headerlink" title="创建项目目录"></a>创建项目目录</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir uploadFile</span><br><span class="line"><span class="built_in">cd</span> uploadFile</span><br></pre></td></tr></table></figure>
+    <title>ubuntu安装常用软件</title>
+    <url>/2020/05/16/ubuntu%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/</url>
+    <content><![CDATA[<h2 id="安装vscode"><a href="#安装vscode" class="headerlink" title="安装vscode"></a>安装vscode</h2><h3 id="1-下载"><a href="#1-下载" class="headerlink" title="1.下载"></a>1.下载</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget -P Downloads/ https://vscode.cdn.azure.cn/stable/5763d909d5f12fe19f215cbfdd29a91c0fa9208a/code_1.45.1-1589445302_amd64.deb</span><br></pre></td></tr></table></figure>
 
-<h2 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init</span><br><span class="line">npm init</span><br></pre></td></tr></table></figure>
+<h3 id="2-安装"><a href="#2-安装" class="headerlink" title="2.安装"></a>2.安装</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd Downloads/</span><br><span class="line">sudo dpkg -i code_1.45.1-1589445302_amd64.deb</span><br></pre></td></tr></table></figure>
 
-<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install koa koa-router koa-body koa-static</span><br></pre></td></tr></table></figure>
+<h3 id="3-查看版本"><a href="#3-查看版本" class="headerlink" title="3.查看版本"></a>3.查看版本</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">code --version</span><br></pre></td></tr></table></figure>
 
-<h2 id="项目主程序-app-js"><a href="#项目主程序-app-js" class="headerlink" title="项目主程序 app.js"></a>项目主程序 app.js</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"><span class="keyword">const</span> koaBody = <span class="built_in">require</span>(<span class="string">'koa-body'</span>);</span><br><span class="line"><span class="keyword">const</span> Router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>);</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">static</span> = <span class="built_in">require</span>(<span class="string">'koa-static'</span>);</span><br><span class="line"><span class="keyword">const</span> cors = <span class="built_in">require</span>(<span class="string">'koa2-cors'</span>)</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> hostname = <span class="string">'127.0.0.1'</span></span><br><span class="line"><span class="keyword">const</span> port = <span class="number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa()</span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> Router()</span><br><span class="line"></span><br><span class="line">app.use(cors())</span><br><span class="line">app.use(<span class="keyword">static</span>(<span class="string">'.'</span>));</span><br><span class="line"></span><br><span class="line">router</span><br><span class="line">    .get(<span class="string">'/'</span>, (ctx, next) =&gt; &#123;</span><br><span class="line">        ctx.body = <span class="string">'hello world!'</span></span><br><span class="line">    &#125;)</span><br><span class="line">    .post(<span class="string">'/api/upload'</span>, koaBody(&#123;</span><br><span class="line">        multipart: <span class="literal">true</span>,</span><br><span class="line">        formidable: &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;), (ctx, next) =&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> file = ctx.request.files.file</span><br><span class="line">        <span class="keyword">let</span> fileType = file.name.split(<span class="string">'.'</span>).pop()</span><br><span class="line">        <span class="keyword">let</span> fileName = <span class="string">`<span class="subst">$&#123;<span class="built_in">Date</span>.now()&#125;</span>.<span class="subst">$&#123;fileType&#125;</span>`</span></span><br><span class="line">        <span class="keyword">let</span> fileReader = fs.createReadStream(file.path)</span><br><span class="line">        <span class="keyword">let</span> writeStream = fs.createWriteStream(path.join(__dirname, <span class="string">'upload'</span>, <span class="string">`<span class="subst">$&#123;fileName&#125;</span>`</span>))</span><br><span class="line"></span><br><span class="line">        fileReader.pipe(writeStream)</span><br><span class="line">        ctx.body = &#123;</span><br><span class="line">            code: <span class="number">0</span>,</span><br><span class="line">            message: <span class="string">'上传成功'</span>,</span><br><span class="line">            url: <span class="string">`http://<span class="subst">$&#123;hostname&#125;</span>:<span class="subst">$&#123;port&#125;</span>/upload/<span class="subst">$&#123;fileName&#125;</span>`</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">app</span><br><span class="line">    .use(router.routes())</span><br><span class="line">    .use(router.allowedMethods())</span><br><span class="line"></span><br><span class="line">app.listen(port, hostname, () =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`Server running at http://<span class="subst">$&#123;hostname&#125;</span>:<span class="subst">$&#123;port&#125;</span>/`</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h2><p>安装nodejs不要使用<code>apt</code>,<code>apt</code>安装的版本较老，不是最新的</p>
+<p>目前nodejs官网长期稳定版本为 12.X</p>
+<p>这里采用官方提供的方式进行安装</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -</span><br><span class="line">sudo apt-get install -y nodejs</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后查看nodejs版本</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">node --version</span><br></pre></td></tr></table></figure>
+
+<p>回显</p>
+<p><code>v12.16.3</code></p>
+<p>其他版本的安装可查看官方提供的二进制安装说明 <a href="https://github.com/nodesource/distributions/blob/master/README.md#nodesource-nodejs-binary-distributions" target="_blank" rel="noopener">NodeSource Node.js Binary Distributions</a></p>
+<h2 id="安装deno"><a href="#安装deno" class="headerlink" title="安装deno"></a>安装deno</h2><h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h3><p>deno官网的<a href="https://deno.land/#installation" target="_blank" rel="noopener">这里</a>提供了linux下的安装方式</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo curl -fsSL https://deno.land/x/install/install.sh | sh</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-环境变量"><a href="#2-环境变量" class="headerlink" title="2.环境变量"></a>2.环境变量</h3><p>从安装完成的回显信息可以知道deno并没有自动配置环境变量，而是提示手动进行配置</p>
+<p>编辑<code>~.profile</code>文件<br>并添加</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">export DENO_INSTALL="/home/yan/.deno"</span><br><span class="line">export PATH="$DENO_INSTALL/bin:$PATH"</span><br></pre></td></tr></table></figure>
+
+<p>也就是deno提示手动配置的内容</p>
+<p>保存后重启</p>
+<p>重启后查看deno版本</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">deno --version</span><br></pre></td></tr></table></figure>
+
+<p>echo</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">deno 1.0.0</span><br><span class="line">v8 8.4.300</span><br><span class="line">typescript 3.9.2</span><br></pre></td></tr></table></figure>
+
+<p>en… deno 1.0.0 一个新的起点</p>
+<h2 id="安装chrome"><a href="#安装chrome" class="headerlink" title="安装chrome"></a>安装chrome</h2><h3 id="1-download"><a href="#1-download" class="headerlink" title="1.download"></a>1.download</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget -P ~/Downloads/ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-install"><a href="#2-install" class="headerlink" title="2.install"></a>2.install</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd Downloads/</span><br><span class="line">sudo dpkg -i google-chrome-stable_current_amd64.deb</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <tags>
-        <tag>Koa2</tag>
+        <tag>ubuntu</tag>
       </tags>
   </entry>
   <entry>
@@ -622,51 +667,6 @@
 <h2 id="browser端"><a href="#browser端" class="headerlink" title="browser端"></a>browser端</h2>]]></content>
       <tags>
         <tag>js</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ubuntu安装常用软件</title>
-    <url>/2020/05/16/ubuntu%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/</url>
-    <content><![CDATA[<h2 id="安装vscode"><a href="#安装vscode" class="headerlink" title="安装vscode"></a>安装vscode</h2><h3 id="1-下载"><a href="#1-下载" class="headerlink" title="1.下载"></a>1.下载</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget -P Downloads/ https://vscode.cdn.azure.cn/stable/5763d909d5f12fe19f215cbfdd29a91c0fa9208a/code_1.45.1-1589445302_amd64.deb</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-安装"><a href="#2-安装" class="headerlink" title="2.安装"></a>2.安装</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd Downloads/</span><br><span class="line">sudo dpkg -i code_1.45.1-1589445302_amd64.deb</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-查看版本"><a href="#3-查看版本" class="headerlink" title="3.查看版本"></a>3.查看版本</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">code --version</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h2><p>安装nodejs不要使用<code>apt</code>,<code>apt</code>安装的版本较老，不是最新的</p>
-<p>目前nodejs官网长期稳定版本为 12.X</p>
-<p>这里采用官方提供的方式进行安装</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -</span><br><span class="line">sudo apt-get install -y nodejs</span><br></pre></td></tr></table></figure>
-
-<p>安装完成后查看nodejs版本</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">node --version</span><br></pre></td></tr></table></figure>
-
-<p>回显</p>
-<p><code>v12.16.3</code></p>
-<p>其他版本的安装可查看官方提供的二进制安装说明 <a href="https://github.com/nodesource/distributions/blob/master/README.md#nodesource-nodejs-binary-distributions" target="_blank" rel="noopener">NodeSource Node.js Binary Distributions</a></p>
-<h2 id="安装deno"><a href="#安装deno" class="headerlink" title="安装deno"></a>安装deno</h2><h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h3><p>deno官网的<a href="https://deno.land/#installation" target="_blank" rel="noopener">这里</a>提供了linux下的安装方式</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo curl -fsSL https://deno.land/x/install/install.sh | sh</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-环境变量"><a href="#2-环境变量" class="headerlink" title="2.环境变量"></a>2.环境变量</h3><p>从安装完成的回显信息可以知道deno并没有自动配置环境变量，而是提示手动进行配置</p>
-<p>编辑<code>~.profile</code>文件<br>并添加</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">export DENO_INSTALL="/home/yan/.deno"</span><br><span class="line">export PATH="$DENO_INSTALL/bin:$PATH"</span><br></pre></td></tr></table></figure>
-
-<p>也就是deno提示手动配置的内容</p>
-<p>保存后重启</p>
-<p>重启后查看deno版本</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">deno --version</span><br></pre></td></tr></table></figure>
-
-<p>echo</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">deno 1.0.0</span><br><span class="line">v8 8.4.300</span><br><span class="line">typescript 3.9.2</span><br></pre></td></tr></table></figure>
-
-<p>en… deno 1.0.0 一个新的起点</p>
-<h2 id="安装chrome"><a href="#安装chrome" class="headerlink" title="安装chrome"></a>安装chrome</h2><h3 id="1-download"><a href="#1-download" class="headerlink" title="1.download"></a>1.download</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget -P ~/Downloads/ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-install"><a href="#2-install" class="headerlink" title="2.install"></a>2.install</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd Downloads/</span><br><span class="line">sudo dpkg -i google-chrome-stable_current_amd64.deb</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>ubuntu</tag>
       </tags>
   </entry>
   <entry>
@@ -728,27 +728,19 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> countdown = <span class="number">3</span> * <span class="number">60</span></span><br><span class="line"><span class="keyword">let</span> time = <span class="number">0</span></span><br><span class="line"><span class="keyword">let</span> startTime = <span class="number">0</span></span><br><span class="line"><span class="keyword">let</span> timer = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 停止倒计时</span></span><br><span class="line"><span class="keyword">const</span> stop = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  time += (<span class="built_in">Date</span>.now() - startTime)</span><br><span class="line">  clearInterval(timer)</span><br><span class="line">  timer = <span class="literal">null</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 开始倒计时</span></span><br><span class="line"><span class="keyword">const</span> start = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (!timer) &#123;</span><br><span class="line">    startTime = <span class="built_in">Date</span>.now()</span><br><span class="line">    timer = setInterval(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> currentCountdown = countdown - <span class="built_in">Math</span>.floor((<span class="built_in">Date</span>.now() - startTime + time) / <span class="number">1000</span>) </span><br><span class="line">      <span class="keyword">if</span> (currentCountdown &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'countdown: '</span>, currentCountdown)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'done'</span>)</span><br><span class="line">        stop()</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, <span class="number">1000</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这里我们依然使用了setInterval，但是只是用来每隔一秒读取倒计时，用来实现用户视图层的更新，实际与倒计时实现并无太大关联，我们可以封装一个倒计时</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Countdown</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 传入倒计时初始值(s)</span></span><br><span class="line">  <span class="keyword">constructor</span>(countdown) &#123;</span><br><span class="line">    <span class="keyword">this</span>.lastTime = <span class="number">0</span></span><br><span class="line">    <span class="keyword">this</span>.startTime = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">this</span>.countdown = countdown</span><br><span class="line">    <span class="keyword">this</span>.stoped = <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 开始计时</span></span><br><span class="line">  start() &#123;</span><br><span class="line">    <span class="keyword">this</span>.startTime = <span class="built_in">Date</span>.now()</span><br><span class="line">    <span class="keyword">this</span>.stoped = <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 停止计时</span></span><br><span class="line">  stop() &#123;</span><br><span class="line">    <span class="keyword">this</span>.lastTime += <span class="built_in">Date</span>.now() - <span class="keyword">this</span>.startTime</span><br><span class="line">    <span class="keyword">this</span>.stoped = <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 获取倒计时</span></span><br><span class="line">  getCountdown() &#123;</span><br><span class="line">    <span class="keyword">let</span> result</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.stoped) &#123;</span><br><span class="line">      result = <span class="keyword">this</span>.countdown - <span class="built_in">Math</span>.floor(<span class="keyword">this</span>.lastTime / <span class="number">1000</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> currentTime = <span class="built_in">Date</span>.now() - <span class="keyword">this</span>.startTime + <span class="keyword">this</span>.lastTime</span><br><span class="line">      result = <span class="keyword">this</span>.countdown - <span class="built_in">Math</span>.floor(currentTime / <span class="number">1000</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result &gt;= <span class="number">0</span> ? result : <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Countdown</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 传入倒计时初始值(ms)</span></span><br><span class="line">  <span class="keyword">constructor</span>(countdown) &#123;</span><br><span class="line">    <span class="keyword">this</span>.lastTime = <span class="number">0</span></span><br><span class="line">    <span class="keyword">this</span>.startTime = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">this</span>.countdown = countdown</span><br><span class="line">    <span class="keyword">this</span>.stoped = <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 开始计时</span></span><br><span class="line">  start() &#123;</span><br><span class="line">    <span class="keyword">this</span>.startTime = <span class="built_in">Date</span>.now()</span><br><span class="line">    <span class="keyword">this</span>.stoped = <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 停止计时</span></span><br><span class="line">  stop() &#123;</span><br><span class="line">    <span class="keyword">this</span>.lastTime += <span class="built_in">Date</span>.now() - <span class="keyword">this</span>.startTime</span><br><span class="line">    <span class="keyword">this</span>.stoped = <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 获取倒计时</span></span><br><span class="line">  getCountdown() &#123;</span><br><span class="line">    <span class="keyword">let</span> result</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.stoped) &#123;</span><br><span class="line">      result = <span class="keyword">this</span>.countdown - <span class="keyword">this</span>.lastTime</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      result = <span class="keyword">this</span>.countdown - (<span class="built_in">Date</span>.now() - <span class="keyword">this</span>.startTime) - <span class="keyword">this</span>.lastTime</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result &gt;= <span class="number">0</span> ? result : <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>一但我们创建了一个<code>Countdown</code>实例，就可以随时通过调用实例的<code>getCountdown</code>方法获取当前的倒计时。在未开始<code>start</code>时，会返回倒计时总秒数；</p>
 <p>开始倒计时后，我们可以指定一定的时间间隔读取当前的倒计时，如果你想每秒更新view的倒计时，可以每秒取样，或是更小的时间间隔；</p>
 <p>停止倒计时后，我们只能读取到一个固定值，除非再次开启倒计时；</p>
 <p>倒计时为0时，将一直返回0，表示倒计时完成，可以将此视为完成标志；</p>
-<p><a href="/demo/post/2.html">查看效果</a></p>
+<p>以上我们已经可以拿到准确的倒计时，不论是倒计时还未完成，还是已经完成返回0，都能准确表示当前倒计时状态，但还是存在一个问题，就是我们无法知道倒计时是何时完成的，即便我们读取倒计时的值为0时，只能说明倒计时已经完成，却无法准确知道合适完成</p>
+<p>所以这里还需要补充一个完成回调，来告诉我们倒计时何时完成，以便执行后续的业务逻辑</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Countdown</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 传入倒计时初始值(ms)及完成回调</span></span><br><span class="line">  <span class="keyword">constructor</span>(countdown, callback) &#123;</span><br><span class="line">    <span class="keyword">this</span>.lastTime = <span class="number">0</span></span><br><span class="line">    <span class="keyword">this</span>.startTime = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">this</span>.countdown = countdown</span><br><span class="line">    <span class="keyword">this</span>.callback = callback</span><br><span class="line">    <span class="keyword">this</span>.timer = <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 开始计时</span></span><br><span class="line">  start() &#123;</span><br><span class="line">    <span class="keyword">this</span>.startTime = <span class="built_in">Date</span>.now()</span><br><span class="line">    <span class="keyword">this</span>.timer = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.callback &amp;&amp; <span class="keyword">this</span>.callback()</span><br><span class="line">    &#125;, <span class="keyword">this</span>.countdown - <span class="keyword">this</span>.lastTime)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 停止计时</span></span><br><span class="line">  stop() &#123;</span><br><span class="line">    <span class="keyword">this</span>.lastTime += <span class="built_in">Date</span>.now() - <span class="keyword">this</span>.startTime</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.timer) &#123;</span><br><span class="line">      clearTimeout(<span class="keyword">this</span>.timer)</span><br><span class="line">      <span class="keyword">this</span>.timer = <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 获取倒计时</span></span><br><span class="line">  getCountdown() &#123;</span><br><span class="line">    <span class="keyword">let</span> result</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.timer) &#123;</span><br><span class="line">      <span class="keyword">const</span> currentTime = <span class="built_in">Date</span>.now() - <span class="keyword">this</span>.startTime + <span class="keyword">this</span>.lastTime</span><br><span class="line">      result = <span class="keyword">this</span>.countdown - currentTime</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      result = <span class="keyword">this</span>.countdown - <span class="keyword">this</span>.lastTime</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result &gt;= <span class="number">0</span> ? result : <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <tags>
         <tag>js</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>提交next主题到站点仓库</title>
-    <url>/2019/06/22/%E6%8F%90%E4%BA%A4next%E4%B8%BB%E9%A2%98%E5%88%B0%E7%AB%99%E7%82%B9%E4%BB%93%E5%BA%93/</url>
-    <content><![CDATA[<p>由于安装 next 主题时，使用的时 <code>git clone https://github.com/theme-next/hexo-theme-next themes/next</code>,直接克隆的 next 主题仓库，当我们要提交站点到仓库时，会发现提交的 themes/next/ 是空目录，没有内容，通过 <code>git status</code> 命令查看仓库状态，有条信息是 <code>modified: themes/next (modified content)</code>，并表明该修改在子模块内，要提交的话也要在子模块仓库里提交</p>
-<p>我们可以删除目录 <code>themes/next</code> 的版本控制，使得该目录属于站点仓库的版本控制之内，之后便可以正常提交了</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git rm -rf --cached themes/next/</span><br><span class="line">git add themes/next/*</span><br><span class="line">git commit</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>hexo</tag>
-        <tag>next</tag>
       </tags>
   </entry>
   <entry>
@@ -774,6 +766,17 @@
 ]]></content>
       <tags>
         <tag>html</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>提交next主题到站点仓库</title>
+    <url>/2019/06/22/%E6%8F%90%E4%BA%A4next%E4%B8%BB%E9%A2%98%E5%88%B0%E7%AB%99%E7%82%B9%E4%BB%93%E5%BA%93/</url>
+    <content><![CDATA[<p>由于安装 next 主题时，使用的时 <code>git clone https://github.com/theme-next/hexo-theme-next themes/next</code>,直接克隆的 next 主题仓库，当我们要提交站点到仓库时，会发现提交的 themes/next/ 是空目录，没有内容，通过 <code>git status</code> 命令查看仓库状态，有条信息是 <code>modified: themes/next (modified content)</code>，并表明该修改在子模块内，要提交的话也要在子模块仓库里提交</p>
+<p>我们可以删除目录 <code>themes/next</code> 的版本控制，使得该目录属于站点仓库的版本控制之内，之后便可以正常提交了</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git rm -rf --cached themes/next/</span><br><span class="line">git add themes/next/*</span><br><span class="line">git commit</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>hexo</tag>
+        <tag>next</tag>
       </tags>
   </entry>
   <entry>
@@ -957,6 +960,29 @@
       </tags>
   </entry>
   <entry>
+    <title>树莓派EC20模块联网</title>
+    <url>/2020/06/06/%E6%A0%91%E8%8E%93%E6%B4%BEEC20%E6%A8%A1%E5%9D%97%E8%81%94%E7%BD%91/</url>
+    <content><![CDATA[<h2 id="EC20模块"><a href="#EC20模块" class="headerlink" title="EC20模块"></a>EC20模块</h2><img src="/2020/06/06/树莓派EC20模块联网/01.jpg">
+
+<h2 id="查看连接状态"><a href="#查看连接状态" class="headerlink" title="查看连接状态"></a>查看连接状态</h2><p>执行<code>lsusb</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Bus 001 Device 004: ID 1357:1000 P&amp;E Microcomputer Systems</span><br><span class="line">Bus 001 Device 005: ID 2c7c:0125 Quectel Wireless Solutions Co., Ltd. EC25 LTE modem</span><br><span class="line">Bus 001 Device 003: ID 0424:ec00 Standard Microsystems Corp. SMSC9512/9514 Fast Ethernet Adapter</span><br><span class="line">Bus 001 Device 002: ID 0424:9514 Standard Microsystems Corp. SMC9514 Hub</span><br><span class="line">Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub</span><br></pre></td></tr></table></figure>
+
+<p>执行<code>lsmod</code></p>
+<p>未连接模块时</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Module                  Size  Used by</span><br><span class="line">sha256_generic         20480  0</span><br><span class="line">cfg80211              651264  0</span><br><span class="line">rfkill                 28672  2 cfg80211</span><br><span class="line">8021q                  32768  0</span><br><span class="line">garp                   16384  1 8021q</span><br><span class="line">stp                    16384  1 garp</span><br><span class="line">llc                    16384  2 garp,stp</span><br><span class="line">joydev                 20480  0</span><br><span class="line">evdev                  24576  7</span><br><span class="line">bcm2835_v4l2           45056  0</span><br><span class="line">bcm2835_codec          36864  0</span><br><span class="line">v4l2_common            16384  1 bcm2835_v4l2</span><br><span class="line">snd_bcm2835            24576  1</span><br><span class="line">videobuf2_vmalloc      16384  1 bcm2835_v4l2</span><br><span class="line">v4l2_mem2mem           24576  1 bcm2835_codec</span><br><span class="line">snd_pcm               102400  1 snd_bcm2835</span><br><span class="line">bcm2835_mmal_vchiq     32768  2 bcm2835_codec,bcm2835_v4l2</span><br><span class="line">videobuf2_dma_contig    20480  1 bcm2835_codec</span><br><span class="line">raspberrypi_hwmon      16384  0</span><br><span class="line">videobuf2_memops       16384  2 videobuf2_dma_contig,videobuf2_vmalloc</span><br><span class="line">hwmon                  16384  1 raspberrypi_hwmon</span><br><span class="line">videobuf2_v4l2         24576  3 bcm2835_codec,bcm2835_v4l2,v4l2_mem2mem</span><br><span class="line">snd_timer              32768  1 snd_pcm</span><br><span class="line">videobuf2_common       45056  4 bcm2835_codec,bcm2835_v4l2,v4l2_mem2mem,videobuf2_v4l2</span><br><span class="line">snd                    73728  5 snd_timer,snd_bcm2835,snd_pcm</span><br><span class="line">videodev              200704  6 bcm2835_codec,v4l2_common,videobuf2_common,bcm2835_v4l2,v4l2_mem2mem,videobuf2_v4l2</span><br><span class="line">media                  36864  3 bcm2835_codec,videodev,v4l2_mem2mem</span><br><span class="line">vc_sm_cma              36864  1 bcm2835_mmal_vchiq</span><br><span class="line">uio_pdrv_genirq        16384  0</span><br><span class="line">uio                    20480  1 uio_pdrv_genirq</span><br><span class="line">fixed                  16384  0</span><br><span class="line">i2c_dev                20480  0</span><br><span class="line">ip_tables              24576  0</span><br><span class="line">x_tables               32768  1 ip_tables</span><br><span class="line">ipv6                  454656  28</span><br></pre></td></tr></table></figure>
+
+<p>连接模块后</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Module                  Size  Used by</span><br><span class="line">option                 45056  0</span><br><span class="line">qmi_wwan               28672  0</span><br><span class="line">usb_wwan               20480  1 option</span><br><span class="line">cdc_wdm                20480  1 qmi_wwan</span><br><span class="line">usbserial              40960  2 option,usb_wwan</span><br><span class="line">sha256_generic         20480  0</span><br><span class="line">cfg80211              651264  0</span><br><span class="line">rfkill                 28672  2 cfg80211</span><br><span class="line">8021q                  32768  0</span><br><span class="line">garp                   16384  1 8021q</span><br><span class="line">stp                    16384  1 garp</span><br><span class="line">llc                    16384  2 garp,stp</span><br><span class="line">joydev                 20480  0</span><br><span class="line">evdev                  24576  7</span><br><span class="line">bcm2835_v4l2           45056  0</span><br><span class="line">bcm2835_codec          36864  0</span><br><span class="line">v4l2_common            16384  1 bcm2835_v4l2</span><br><span class="line">snd_bcm2835            24576  1</span><br><span class="line">videobuf2_vmalloc      16384  1 bcm2835_v4l2</span><br><span class="line">v4l2_mem2mem           24576  1 bcm2835_codec</span><br><span class="line">snd_pcm               102400  1 snd_bcm2835</span><br><span class="line">bcm2835_mmal_vchiq     32768  2 bcm2835_codec,bcm2835_v4l2</span><br><span class="line">videobuf2_dma_contig    20480  1 bcm2835_codec</span><br><span class="line">raspberrypi_hwmon      16384  0</span><br><span class="line">videobuf2_memops       16384  2 videobuf2_dma_contig,videobuf2_vmalloc</span><br><span class="line">hwmon                  16384  1 raspberrypi_hwmon</span><br><span class="line">videobuf2_v4l2         24576  3 bcm2835_codec,bcm2835_v4l2,v4l2_mem2mem</span><br><span class="line">snd_timer              32768  1 snd_pcm</span><br><span class="line">videobuf2_common       45056  4 bcm2835_codec,bcm2835_v4l2,v4l2_mem2mem,videobuf2_v4l2</span><br><span class="line">snd                    73728  5 snd_timer,snd_bcm2835,snd_pcm</span><br><span class="line">videodev              200704  6 bcm2835_codec,v4l2_common,videobuf2_common,bcm2835_v4l2,v4l2_mem2mem,videobuf2_v4l2</span><br><span class="line">media                  36864  3 bcm2835_codec,videodev,v4l2_mem2mem</span><br><span class="line">vc_sm_cma              36864  1 bcm2835_mmal_vchiq</span><br><span class="line">uio_pdrv_genirq        16384  0</span><br><span class="line">uio                    20480  1 uio_pdrv_genirq</span><br><span class="line">fixed                  16384  0</span><br><span class="line">i2c_dev                20480  0</span><br><span class="line">ip_tables              24576  0</span><br><span class="line">x_tables               32768  1 ip_tables</span><br><span class="line">ipv6                  454656  30</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[Dialer Defaults]</span><br><span class="line">Init1 = ATZ</span><br><span class="line">Init2 = ATQ0 V1 E1 S0=0 &amp;C1 &amp;D2 +FCLASS=0</span><br><span class="line">Modem Type = Analog Modem</span><br><span class="line">Baud = 9600</span><br><span class="line">New PPPD = yes</span><br><span class="line">Modem = /dev/ttyUSB2</span><br><span class="line">ISDN = 0</span><br><span class="line">; Phone = &lt;Target Phone Number&gt;</span><br><span class="line">; Password = &lt;Your Password&gt;</span><br><span class="line">; Username = &lt;Your Login Name&gt;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>树莓派</tag>
+        <tag>EC20模块</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>树莓派pi和root账户密码</title>
     <url>/2018/03/11/%E6%A0%91%E8%8E%93%E6%B4%BEpi%E5%92%8Croot%E8%B4%A6%E6%88%B7%E5%AF%86%E7%A0%81/</url>
     <content><![CDATA[<h2 id="pi账户"><a href="#pi账户" class="headerlink" title="pi账户"></a>pi账户</h2><p>pi是树莓派的默认账户，默认密码为 raspberry</p>
@@ -993,26 +1019,73 @@
       </tags>
   </entry>
   <entry>
-    <title>树莓派EC20模块联网</title>
-    <url>/2020/06/06/%E6%A0%91%E8%8E%93%E6%B4%BEEC20%E6%A8%A1%E5%9D%97%E8%81%94%E7%BD%91/</url>
-    <content><![CDATA[<h2 id="EC20模块"><a href="#EC20模块" class="headerlink" title="EC20模块"></a>EC20模块</h2><img src="/2020/06/06/树莓派EC20模块联网/01.jpg">
+    <title>树莓派使用nodejs驱动ssd1306 128*64 oled显示屏</title>
+    <url>/2021/01/11/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BD%BF%E7%94%A8nodejs%E9%A9%B1%E5%8A%A8ssd1306-128-64-oled%E6%98%BE%E7%A4%BA%E5%B1%8F/</url>
+    <content><![CDATA[<h2 id="一、oled屏幕"><a href="#一、oled屏幕" class="headerlink" title="一、oled屏幕"></a>一、oled屏幕</h2><p>分辨率： 128 * 64<br>尺寸：0.96英寸<br>驱动芯片：ssd1306<br>电压：3.3~5V<br>功耗：0.06w<br>寿命：16000h<br>显示：双色（黄、蓝）<br>字库：无内置字库（软件控制显示）<br>通信： 4线spi/i2c（默认spi，使用i2c需调整相应屏后电阻）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 针脚</span><br><span class="line">GND ------- 接地</span><br><span class="line">VCC ------- 3.3 ~ 5V</span><br><span class="line">D0  ------- 时钟线</span><br><span class="line">D1  ------- 数据线</span><br><span class="line">RES ------- 复位（低电平有效）</span><br><span class="line">DC  ------- spi 通信 data/command 选择；i2c通信时设置i2c地址</span><br><span class="line">cs  ------- 片选（spi通信，低电平有效）</span><br></pre></td></tr></table></figure>
 
-<h2 id="查看连接状态"><a href="#查看连接状态" class="headerlink" title="查看连接状态"></a>查看连接状态</h2><p>执行<code>lsusb</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Bus 001 Device 004: ID 1357:1000 P&amp;E Microcomputer Systems</span><br><span class="line">Bus 001 Device 005: ID 2c7c:0125 Quectel Wireless Solutions Co., Ltd. EC25 LTE modem</span><br><span class="line">Bus 001 Device 003: ID 0424:ec00 Standard Microsystems Corp. SMSC9512/9514 Fast Ethernet Adapter</span><br><span class="line">Bus 001 Device 002: ID 0424:9514 Standard Microsystems Corp. SMC9514 Hub</span><br><span class="line">Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub</span><br></pre></td></tr></table></figure>
+<img src="/2021/01/11/树莓派使用nodejs驱动ssd1306-128-64-oled显示屏/IMG_20210111_220337.jpg">
+<img src="/2021/01/11/树莓派使用nodejs驱动ssd1306-128-64-oled显示屏/IMG_20210111_220051.jpg">
 
-<p>执行<code>lsmod</code></p>
-<p>未连接模块时</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Module                  Size  Used by</span><br><span class="line">sha256_generic         20480  0</span><br><span class="line">cfg80211              651264  0</span><br><span class="line">rfkill                 28672  2 cfg80211</span><br><span class="line">8021q                  32768  0</span><br><span class="line">garp                   16384  1 8021q</span><br><span class="line">stp                    16384  1 garp</span><br><span class="line">llc                    16384  2 garp,stp</span><br><span class="line">joydev                 20480  0</span><br><span class="line">evdev                  24576  7</span><br><span class="line">bcm2835_v4l2           45056  0</span><br><span class="line">bcm2835_codec          36864  0</span><br><span class="line">v4l2_common            16384  1 bcm2835_v4l2</span><br><span class="line">snd_bcm2835            24576  1</span><br><span class="line">videobuf2_vmalloc      16384  1 bcm2835_v4l2</span><br><span class="line">v4l2_mem2mem           24576  1 bcm2835_codec</span><br><span class="line">snd_pcm               102400  1 snd_bcm2835</span><br><span class="line">bcm2835_mmal_vchiq     32768  2 bcm2835_codec,bcm2835_v4l2</span><br><span class="line">videobuf2_dma_contig    20480  1 bcm2835_codec</span><br><span class="line">raspberrypi_hwmon      16384  0</span><br><span class="line">videobuf2_memops       16384  2 videobuf2_dma_contig,videobuf2_vmalloc</span><br><span class="line">hwmon                  16384  1 raspberrypi_hwmon</span><br><span class="line">videobuf2_v4l2         24576  3 bcm2835_codec,bcm2835_v4l2,v4l2_mem2mem</span><br><span class="line">snd_timer              32768  1 snd_pcm</span><br><span class="line">videobuf2_common       45056  4 bcm2835_codec,bcm2835_v4l2,v4l2_mem2mem,videobuf2_v4l2</span><br><span class="line">snd                    73728  5 snd_timer,snd_bcm2835,snd_pcm</span><br><span class="line">videodev              200704  6 bcm2835_codec,v4l2_common,videobuf2_common,bcm2835_v4l2,v4l2_mem2mem,videobuf2_v4l2</span><br><span class="line">media                  36864  3 bcm2835_codec,videodev,v4l2_mem2mem</span><br><span class="line">vc_sm_cma              36864  1 bcm2835_mmal_vchiq</span><br><span class="line">uio_pdrv_genirq        16384  0</span><br><span class="line">uio                    20480  1 uio_pdrv_genirq</span><br><span class="line">fixed                  16384  0</span><br><span class="line">i2c_dev                20480  0</span><br><span class="line">ip_tables              24576  0</span><br><span class="line">x_tables               32768  1 ip_tables</span><br><span class="line">ipv6                  454656  28</span><br></pre></td></tr></table></figure>
+<h2 id="SPI通信"><a href="#SPI通信" class="headerlink" title="SPI通信"></a>SPI通信</h2><p>SPI(Serial Peripheral Interface) 串行外设接口。 以主从方式进行工作，一台master主机可以连接多台slave从机，通过CS片选可以指定选中的从机。通常为4线或3线（单向传输数据）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 4wire SPI</span><br><span class="line">SCLK ------ 时钟</span><br><span class="line">MOSI ------ Master Out Slave Input</span><br><span class="line">MISO ------ Maset Input Slave Out</span><br><span class="line">CS   ------ 片选</span><br></pre></td></tr></table></figure>
 
-<p>连接模块后</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Module                  Size  Used by</span><br><span class="line">option                 45056  0</span><br><span class="line">qmi_wwan               28672  0</span><br><span class="line">usb_wwan               20480  1 option</span><br><span class="line">cdc_wdm                20480  1 qmi_wwan</span><br><span class="line">usbserial              40960  2 option,usb_wwan</span><br><span class="line">sha256_generic         20480  0</span><br><span class="line">cfg80211              651264  0</span><br><span class="line">rfkill                 28672  2 cfg80211</span><br><span class="line">8021q                  32768  0</span><br><span class="line">garp                   16384  1 8021q</span><br><span class="line">stp                    16384  1 garp</span><br><span class="line">llc                    16384  2 garp,stp</span><br><span class="line">joydev                 20480  0</span><br><span class="line">evdev                  24576  7</span><br><span class="line">bcm2835_v4l2           45056  0</span><br><span class="line">bcm2835_codec          36864  0</span><br><span class="line">v4l2_common            16384  1 bcm2835_v4l2</span><br><span class="line">snd_bcm2835            24576  1</span><br><span class="line">videobuf2_vmalloc      16384  1 bcm2835_v4l2</span><br><span class="line">v4l2_mem2mem           24576  1 bcm2835_codec</span><br><span class="line">snd_pcm               102400  1 snd_bcm2835</span><br><span class="line">bcm2835_mmal_vchiq     32768  2 bcm2835_codec,bcm2835_v4l2</span><br><span class="line">videobuf2_dma_contig    20480  1 bcm2835_codec</span><br><span class="line">raspberrypi_hwmon      16384  0</span><br><span class="line">videobuf2_memops       16384  2 videobuf2_dma_contig,videobuf2_vmalloc</span><br><span class="line">hwmon                  16384  1 raspberrypi_hwmon</span><br><span class="line">videobuf2_v4l2         24576  3 bcm2835_codec,bcm2835_v4l2,v4l2_mem2mem</span><br><span class="line">snd_timer              32768  1 snd_pcm</span><br><span class="line">videobuf2_common       45056  4 bcm2835_codec,bcm2835_v4l2,v4l2_mem2mem,videobuf2_v4l2</span><br><span class="line">snd                    73728  5 snd_timer,snd_bcm2835,snd_pcm</span><br><span class="line">videodev              200704  6 bcm2835_codec,v4l2_common,videobuf2_common,bcm2835_v4l2,v4l2_mem2mem,videobuf2_v4l2</span><br><span class="line">media                  36864  3 bcm2835_codec,videodev,v4l2_mem2mem</span><br><span class="line">vc_sm_cma              36864  1 bcm2835_mmal_vchiq</span><br><span class="line">uio_pdrv_genirq        16384  0</span><br><span class="line">uio                    20480  1 uio_pdrv_genirq</span><br><span class="line">fixed                  16384  0</span><br><span class="line">i2c_dev                20480  0</span><br><span class="line">ip_tables              24576  0</span><br><span class="line">x_tables               32768  1 ip_tables</span><br><span class="line">ipv6                  454656  30</span><br></pre></td></tr></table></figure>
+<h2 id="二、连接raspberrypi"><a href="#二、连接raspberrypi" class="headerlink" title="二、连接raspberrypi"></a>二、连接raspberrypi</h2><p>1.启用spi</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo raspi-config</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[Dialer Defaults]</span><br><span class="line">Init1 = ATZ</span><br><span class="line">Init2 = ATQ0 V1 E1 S0=0 &amp;C1 &amp;D2 +FCLASS=0</span><br><span class="line">Modem Type = Analog Modem</span><br><span class="line">Baud = 9600</span><br><span class="line">New PPPD = yes</span><br><span class="line">Modem = /dev/ttyUSB2</span><br><span class="line">ISDN = 0</span><br><span class="line">; Phone = &lt;Target Phone Number&gt;</span><br><span class="line">; Password = &lt;Your Password&gt;</span><br><span class="line">; Username = &lt;Your Login Name&gt;</span><br></pre></td></tr></table></figure>
+<p>找到advanced options 下的spi，选择启用</p>
+<p>2.连接</p>
+<img src="/2021/01/11/树莓派使用nodejs驱动ssd1306-128-64-oled显示屏/raspberry-pi-pin.png">
+
+<h2 id="三、点亮"><a href="#三、点亮" class="headerlink" title="三、点亮"></a>三、点亮</h2><p>在github上查找相关ssd1306的相关js驱动，找到一个可用的驱动，为防止丢失，已Fork <a href="https://github.com/yancoding/ssd1306-spi" target="_blank" rel="noopener">https://github.com/yancoding/ssd1306-spi</a></p>
+<p>index.js</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> rpio = <span class="built_in">require</span>(<span class="string">"rpio"</span>);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SSD1306</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(&#123;</span><br><span class="line">    width,</span><br><span class="line">    height,</span><br><span class="line">    resetPin,</span><br><span class="line">    dcPin,</span><br><span class="line">    spiChip,</span><br><span class="line">    rpio</span><br><span class="line">  &#125;) &#123;</span><br><span class="line">    <span class="keyword">this</span>.EXTERNAL_VCC = <span class="number">0x1</span></span><br><span class="line">    <span class="keyword">this</span>.SWITCH_CAP_VCC = <span class="number">0x2</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.SET_LOW_COLUMN = <span class="number">0x00</span></span><br><span class="line">    <span class="keyword">this</span>.SET_HIGH_COLUMN = <span class="number">0x10</span></span><br><span class="line">    <span class="keyword">this</span>.SET_MEMORY_MODE = <span class="number">0x20</span></span><br><span class="line">    <span class="keyword">this</span>.SET_COL_ADDRESS = <span class="number">0x21</span></span><br><span class="line">    <span class="keyword">this</span>.SET_PAGE_ADDRESS = <span class="number">0x22</span></span><br><span class="line">    <span class="keyword">this</span>.RIGHT_HORIZ_SCROLL = <span class="number">0x26</span></span><br><span class="line">    <span class="keyword">this</span>.LEFT_HORIZ_SCROLL = <span class="number">0x27</span></span><br><span class="line">    <span class="keyword">this</span>.VERT_AND_RIGHT_HORIZ_SCROLL = <span class="number">0x29</span></span><br><span class="line">    <span class="keyword">this</span>.VERT_AND_LEFT_HORIZ_SCROLL = <span class="number">0x2A</span></span><br><span class="line">    <span class="keyword">this</span>.DEACTIVATE_SCROLL = <span class="number">0x2E</span></span><br><span class="line">    <span class="keyword">this</span>.ACTIVATE_SCROLL = <span class="number">0x2F</span></span><br><span class="line">    <span class="keyword">this</span>.SET_START_LINE = <span class="number">0x40</span></span><br><span class="line">    <span class="keyword">this</span>.SET_CONTRAST = <span class="number">0x81</span></span><br><span class="line">    <span class="keyword">this</span>.CHARGE_PUMP = <span class="number">0x8D</span></span><br><span class="line">    <span class="keyword">this</span>.SEG_REMAP = <span class="number">0xA0</span></span><br><span class="line">    <span class="keyword">this</span>.SET_VERT_SCROLL_AREA = <span class="number">0xA3</span></span><br><span class="line">    <span class="keyword">this</span>.DISPLAY_ALL_ON_RESUME = <span class="number">0xA4</span></span><br><span class="line">    <span class="keyword">this</span>.DISPLAY_ALL_ON = <span class="number">0xA5</span></span><br><span class="line">    <span class="keyword">this</span>.NORMAL_DISPLAY = <span class="number">0xA6</span></span><br><span class="line">    <span class="keyword">this</span>.INVERT_DISPLAY = <span class="number">0xA7</span></span><br><span class="line">    <span class="keyword">this</span>.DISPLAY_OFF = <span class="number">0xAE</span></span><br><span class="line">    <span class="keyword">this</span>.DISPLAY_ON = <span class="number">0xAF</span></span><br><span class="line">    <span class="keyword">this</span>.COM_SCAN_INC = <span class="number">0xC0</span></span><br><span class="line">    <span class="keyword">this</span>.COM_SCAN_DEC = <span class="number">0xC8</span></span><br><span class="line">    <span class="keyword">this</span>.SET_DISPLAY_OFFSET = <span class="number">0xD3</span></span><br><span class="line">    <span class="keyword">this</span>.SET_COM_PINS = <span class="number">0xDA</span></span><br><span class="line">    <span class="keyword">this</span>.SET_VCOM_DETECT = <span class="number">0xDB</span></span><br><span class="line">    <span class="keyword">this</span>.SET_DISPLAY_CLOCK_DIV = <span class="number">0xD5</span></span><br><span class="line">    <span class="keyword">this</span>.SET_PRECHARGE = <span class="number">0xD9</span></span><br><span class="line">    <span class="keyword">this</span>.SET_MULTIPLEX = <span class="number">0xA8</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.MEMORY_MODE_HORIZ = <span class="number">0x00</span></span><br><span class="line">    <span class="keyword">this</span>.MEMORY_MODE_VERT = <span class="number">0x01</span></span><br><span class="line">    <span class="keyword">this</span>.MEMORY_MODE_PAGE = <span class="number">0x02</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> options = &#123;</span><br><span class="line">      gpiomem: <span class="literal">false</span>,</span><br><span class="line">      mapping: <span class="string">"gpio"</span>,</span><br><span class="line">      ...rpio</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>._screenWidth = width;</span><br><span class="line">    <span class="keyword">this</span>._screenHeight = height;</span><br><span class="line">    <span class="keyword">this</span>._resetPin = resetPin;</span><br><span class="line">    <span class="keyword">this</span>._dcPin = dcPin;</span><br><span class="line">    <span class="keyword">this</span>._spiChip = spiChip;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>._rpioOptions = options;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>._screenBuffer = Buffer.alloc((width * height) / <span class="number">8</span>).fill(<span class="number">0x00</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  init() &#123;</span><br><span class="line">    rpio.init(<span class="keyword">this</span>._rpioOptions);</span><br><span class="line">    rpio.spiBegin();</span><br><span class="line">    rpio.spiChipSelect(<span class="keyword">this</span>._spiChip);</span><br><span class="line">    <span class="comment">// 8MHz</span></span><br><span class="line">    rpio.spiSetClockDivider(<span class="number">128</span>);</span><br><span class="line"></span><br><span class="line">    rpio.open(<span class="keyword">this</span>._resetPin, rpio.OUTPUT, rpio.HIGH);</span><br><span class="line">    rpio.open(<span class="keyword">this</span>._dcPin, rpio.OUTPUT, rpio.LOW);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Init the OLED screen</span></span><br><span class="line">    rpio.msleep(<span class="number">0.01</span>);</span><br><span class="line">    <span class="keyword">this</span>.reset();</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.DISPLAY_OFF]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_DISPLAY_CLOCK_DIV, <span class="number">0x80</span>]));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Setup the right screen size</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>._screenHeight === <span class="number">64</span>) &#123;</span><br><span class="line">      <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_MULTIPLEX, <span class="number">0x3F</span>]));</span><br><span class="line">      <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_COM_PINS, <span class="number">0x12</span>]));</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_MULTIPLEX, <span class="number">0x1F</span>]));</span><br><span class="line">      <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_COM_PINS, <span class="number">0x02</span>]));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_DISPLAY_OFFSET, <span class="number">0x00</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_START_LINE | <span class="number">0x00</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.CHARGE_PUMP, <span class="number">0x14</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_MEMORY_MODE, <span class="number">0x00</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SEG_REMAP | <span class="number">0x01</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.COM_SCAN_DEC]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_CONTRAST, <span class="number">0x8f</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_PRECHARGE, <span class="number">0xf1</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_VCOM_DETECT, <span class="number">0x40</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.DISPLAY_ALL_ON_RESUME]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.NORMAL_DISPLAY]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.DISPLAY_ON]));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  clearDisplay() &#123;</span><br><span class="line">    <span class="keyword">this</span>._screenBuffer.fill(<span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  invertDisplay() &#123;</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.INVERT_DISPLAY]));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  normalDisplay() &#123;</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.NORMAL_DISPLAY]));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  draw() &#123;</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_MEMORY_MODE, <span class="keyword">this</span>.MEMORY_MODE_HORIZ]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_PAGE_ADDRESS, <span class="number">0x00</span>, <span class="number">0x07</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_COL_ADDRESS, <span class="number">0x00</span>, <span class="number">0x7f</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.DISPLAY_ON]));</span><br><span class="line">    <span class="keyword">this</span>.data(<span class="keyword">this</span>._screenBuffer);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  drawPixel(x, y, on) &#123;</span><br><span class="line">    <span class="keyword">if</span> (x &lt; <span class="number">0</span> || x &gt; <span class="keyword">this</span>._screenWidth - <span class="number">1</span> || y &lt; <span class="number">0</span> || y &gt; <span class="keyword">this</span>._screenHeight - <span class="number">1</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> page = <span class="built_in">Math</span>.floor(y / <span class="number">8</span>);</span><br><span class="line">    <span class="keyword">let</span> offset = y % <span class="number">8</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (on) &#123;</span><br><span class="line">      <span class="keyword">this</span>._screenBuffer[page * <span class="keyword">this</span>._screenWidth + x] |= (<span class="number">0x1</span> &lt;&lt; offset);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>._screenBuffer[page * <span class="keyword">this</span>._screenWidth + x] &amp;= ((<span class="number">0x1</span> &lt;&lt; offset) ^ <span class="number">0xff</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  reset() &#123;</span><br><span class="line">    rpio.write(<span class="keyword">this</span>._resetPin, rpio.LOW);</span><br><span class="line">    rpio.msleep(<span class="number">10</span>);</span><br><span class="line">    rpio.write(<span class="keyword">this</span>._resetPin, rpio.HIGH);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  command(buffer) &#123;</span><br><span class="line">    rpio.spiWrite(buffer, buffer.length);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  data(buffer) &#123;</span><br><span class="line">    <span class="comment">// Set DC to high to write data</span></span><br><span class="line">    rpio.write(<span class="keyword">this</span>._dcPin, rpio.HIGH);</span><br><span class="line"></span><br><span class="line">    rpio.spiWrite(buffer, buffer.length);</span><br><span class="line"></span><br><span class="line">    rpio.write(<span class="keyword">this</span>._dcPin, rpio.LOW);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  end() &#123;</span><br><span class="line">    rpio.spiEnd();</span><br><span class="line">    rpio.close(<span class="keyword">this</span>._resetPin, rpio.PIN_RESET);</span><br><span class="line">    rpio.close(<span class="keyword">this</span>._dcPin, rpio.PIN_RESET);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = SSD1306;</span><br></pre></td></tr></table></figure>
+
+<p>使用该驱动</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 引入</span></span><br><span class="line"><span class="keyword">const</span> SSD1306 = <span class="built_in">require</span>(<span class="string">'ssd1306'</span>)</span><br><span class="line"><span class="keyword">const</span> rpio = <span class="built_in">require</span>(<span class="string">"rpio"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建实例</span></span><br><span class="line"><span class="keyword">const</span> ssd1306 = <span class="keyword">new</span> SSD1306(&#123;</span><br><span class="line">  width: <span class="number">128</span>,</span><br><span class="line">  height: <span class="number">64</span>,</span><br><span class="line">  resetPin: <span class="number">24</span>,</span><br><span class="line">  dcPin: <span class="number">23</span>,</span><br><span class="line">  spiChip: <span class="number">0</span>,</span><br><span class="line">  rpio,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化</span></span><br><span class="line">ssd1306.init()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 依次点亮每个点阵</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; <span class="number">128</span>; i++) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">1</span>; j &lt; <span class="number">64</span>; j++) &#123;</span><br><span class="line">    ssd1306.drawPixel(i, j, <span class="literal">true</span>)</span><br><span class="line">    ssd1306.draw()</span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果可以依次点亮屏幕上的每一点，说明oled一切正常，可以尝试做些其他的事情了</p>
+<h2 id="四、一个像素点是如何点亮的？"><a href="#四、一个像素点是如何点亮的？" class="headerlink" title="四、一个像素点是如何点亮的？"></a>四、一个像素点是如何点亮的？</h2><p>其实oled与大多数的点阵屏幕点亮原理都很类似，具体还要看下使用手册</p>
+<p>oled 水平共有64个共阴极，那么如果在某一像素点上加上高电平，即可点亮该点</p>
+<p>128 * 64 共有64行，128列，64行在数据层分为8页，在第一页，也就是128 * 8的区域，如果在第一列写入的数据为0xff，即二进制的 <code>11111111</code>,则会点亮第一页第一列的8个像素点，上为高位D0，下为低位D7。</p>
+<p>所以屏幕的显存为128 * 8 byte，通过ssd1306的指令写入显存，即可显示我们要展示的内容</p>
+<p>传统做法是对常用的字符生成不通大小的点阵数据，也就是所谓的字库，生成方式称为字体取模，这种方式有一定的局限性，我们可以考虑采用另一种方式来显示我们想要的任何图形</p>
+<h2 id="五、借助canvas绘图"><a href="#五、借助canvas绘图" class="headerlink" title="五、借助canvas绘图"></a>五、借助canvas绘图</h2><p>oled屏幕的尺寸是固定的128 * 64尺寸，这点非常类似canvas的画布，我们因此可以将屏幕当成canvas的画布</p>
+<p>首先创建一个屏幕大小的画布, 然后借助canvas的api可以绘制出我们想要的图案，再取出画布上的像素数据，转换为相应的数据格式，写入oled的显存，即可在屏幕上展示画布上的图案</p>
+<p>注意这里由于屏幕每个点只有两个状态，亮或暗，因此我们在画布上绘制时，只使用黑色绘制即可</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> rpio = <span class="built_in">require</span>(<span class="string">"rpio"</span>);</span><br><span class="line"><span class="keyword">const</span> &#123;</span><br><span class="line">  createCanvas,</span><br><span class="line">  loadImage</span><br><span class="line">&#125; = <span class="built_in">require</span>(<span class="string">'canvas'</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SSD1306</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(&#123;</span><br><span class="line">    width,</span><br><span class="line">    height,</span><br><span class="line">    resetPin,</span><br><span class="line">    dcPin,</span><br><span class="line">    spiChip,</span><br><span class="line">    rpio</span><br><span class="line">  &#125;) &#123;</span><br><span class="line">    <span class="keyword">this</span>.EXTERNAL_VCC = <span class="number">0x1</span></span><br><span class="line">    <span class="keyword">this</span>.SWITCH_CAP_VCC = <span class="number">0x2</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.SET_LOW_COLUMN = <span class="number">0x00</span></span><br><span class="line">    <span class="keyword">this</span>.SET_HIGH_COLUMN = <span class="number">0x10</span></span><br><span class="line">    <span class="keyword">this</span>.SET_MEMORY_MODE = <span class="number">0x20</span></span><br><span class="line">    <span class="keyword">this</span>.SET_COL_ADDRESS = <span class="number">0x21</span></span><br><span class="line">    <span class="keyword">this</span>.SET_PAGE_ADDRESS = <span class="number">0x22</span></span><br><span class="line">    <span class="keyword">this</span>.RIGHT_HORIZ_SCROLL = <span class="number">0x26</span></span><br><span class="line">    <span class="keyword">this</span>.LEFT_HORIZ_SCROLL = <span class="number">0x27</span></span><br><span class="line">    <span class="keyword">this</span>.VERT_AND_RIGHT_HORIZ_SCROLL = <span class="number">0x29</span></span><br><span class="line">    <span class="keyword">this</span>.VERT_AND_LEFT_HORIZ_SCROLL = <span class="number">0x2A</span></span><br><span class="line">    <span class="keyword">this</span>.DEACTIVATE_SCROLL = <span class="number">0x2E</span></span><br><span class="line">    <span class="keyword">this</span>.ACTIVATE_SCROLL = <span class="number">0x2F</span></span><br><span class="line">    <span class="keyword">this</span>.SET_START_LINE = <span class="number">0x40</span></span><br><span class="line">    <span class="keyword">this</span>.SET_CONTRAST = <span class="number">0x81</span></span><br><span class="line">    <span class="keyword">this</span>.CHARGE_PUMP = <span class="number">0x8D</span></span><br><span class="line">    <span class="keyword">this</span>.SEG_REMAP = <span class="number">0xA0</span></span><br><span class="line">    <span class="keyword">this</span>.SET_VERT_SCROLL_AREA = <span class="number">0xA3</span></span><br><span class="line">    <span class="keyword">this</span>.DISPLAY_ALL_ON_RESUME = <span class="number">0xA4</span></span><br><span class="line">    <span class="keyword">this</span>.DISPLAY_ALL_ON = <span class="number">0xA5</span></span><br><span class="line">    <span class="keyword">this</span>.NORMAL_DISPLAY = <span class="number">0xA6</span></span><br><span class="line">    <span class="keyword">this</span>.INVERT_DISPLAY = <span class="number">0xA7</span></span><br><span class="line">    <span class="keyword">this</span>.DISPLAY_OFF = <span class="number">0xAE</span></span><br><span class="line">    <span class="keyword">this</span>.DISPLAY_ON = <span class="number">0xAF</span></span><br><span class="line">    <span class="keyword">this</span>.COM_SCAN_INC = <span class="number">0xC0</span></span><br><span class="line">    <span class="keyword">this</span>.COM_SCAN_DEC = <span class="number">0xC8</span></span><br><span class="line">    <span class="keyword">this</span>.SET_DISPLAY_OFFSET = <span class="number">0xD3</span></span><br><span class="line">    <span class="keyword">this</span>.SET_COM_PINS = <span class="number">0xDA</span></span><br><span class="line">    <span class="keyword">this</span>.SET_VCOM_DETECT = <span class="number">0xDB</span></span><br><span class="line">    <span class="keyword">this</span>.SET_DISPLAY_CLOCK_DIV = <span class="number">0xD5</span></span><br><span class="line">    <span class="keyword">this</span>.SET_PRECHARGE = <span class="number">0xD9</span></span><br><span class="line">    <span class="keyword">this</span>.SET_MULTIPLEX = <span class="number">0xA8</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.MEMORY_MODE_HORIZ = <span class="number">0x00</span></span><br><span class="line">    <span class="keyword">this</span>.MEMORY_MODE_VERT = <span class="number">0x01</span></span><br><span class="line">    <span class="keyword">this</span>.MEMORY_MODE_PAGE = <span class="number">0x02</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> options = &#123;</span><br><span class="line">      gpiomem: <span class="literal">false</span>,</span><br><span class="line">      mapping: <span class="string">"gpio"</span>,</span><br><span class="line">      ...rpio</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>._screenWidth = width;</span><br><span class="line">    <span class="keyword">this</span>._screenHeight = height;</span><br><span class="line">    <span class="keyword">this</span>._resetPin = resetPin;</span><br><span class="line">    <span class="keyword">this</span>._dcPin = dcPin;</span><br><span class="line">    <span class="keyword">this</span>._spiChip = spiChip;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>._rpioOptions = options;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>._screenBuffer = Buffer.alloc((width * height) / <span class="number">8</span>).fill(<span class="number">0x00</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>._ctx = createCanvas(<span class="number">128</span>, <span class="number">64</span>).getContext(<span class="string">'2d'</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  init() &#123;</span><br><span class="line">    <span class="keyword">this</span>._ctx.fillStyle = <span class="string">'rgba(255, 255, 255, 1)'</span></span><br><span class="line">    <span class="keyword">this</span>._ctx.fillRect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">128</span>, <span class="number">64</span>)</span><br><span class="line"></span><br><span class="line">    rpio.init(<span class="keyword">this</span>._rpioOptions);</span><br><span class="line">    rpio.spiBegin();</span><br><span class="line">    rpio.spiChipSelect(<span class="keyword">this</span>._spiChip);</span><br><span class="line">    <span class="comment">// 8MHz</span></span><br><span class="line">    rpio.spiSetClockDivider(<span class="number">128</span>);</span><br><span class="line"></span><br><span class="line">    rpio.open(<span class="keyword">this</span>._resetPin, rpio.OUTPUT, rpio.HIGH);</span><br><span class="line">    rpio.open(<span class="keyword">this</span>._dcPin, rpio.OUTPUT, rpio.LOW);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Init the OLED screen</span></span><br><span class="line">    rpio.msleep(<span class="number">0.01</span>);</span><br><span class="line">    <span class="keyword">this</span>.reset();</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.DISPLAY_OFF]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_DISPLAY_CLOCK_DIV, <span class="number">0x80</span>]));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Setup the right screen size</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>._screenHeight === <span class="number">64</span>) &#123;</span><br><span class="line">      <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_MULTIPLEX, <span class="number">0x3F</span>]));</span><br><span class="line">      <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_COM_PINS, <span class="number">0x12</span>]));</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_MULTIPLEX, <span class="number">0x1F</span>]));</span><br><span class="line">      <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_COM_PINS, <span class="number">0x02</span>]));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_DISPLAY_OFFSET, <span class="number">0x00</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_START_LINE | <span class="number">0x00</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.CHARGE_PUMP, <span class="number">0x14</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_MEMORY_MODE, <span class="number">0x00</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SEG_REMAP | <span class="number">0x01</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.COM_SCAN_DEC]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_CONTRAST, <span class="number">0x8f</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_PRECHARGE, <span class="number">0xf1</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_VCOM_DETECT, <span class="number">0x40</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.DISPLAY_ALL_ON_RESUME]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.NORMAL_DISPLAY]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.DISPLAY_ON]));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  getContext(contextID) &#123;</span><br><span class="line">    <span class="keyword">if</span> (contextID === <span class="string">'2d'</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>._ctx</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'getConText(contextID)参数错误'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  clearDisplay() &#123;</span><br><span class="line">    <span class="keyword">this</span>._screenBuffer.fill(<span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  invertDisplay() &#123;</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.INVERT_DISPLAY]));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  normalDisplay() &#123;</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.NORMAL_DISPLAY]));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  draw() &#123;</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_MEMORY_MODE, <span class="keyword">this</span>.MEMORY_MODE_HORIZ]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_PAGE_ADDRESS, <span class="number">0x00</span>, <span class="number">0x07</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_COL_ADDRESS, <span class="number">0x00</span>, <span class="number">0x7f</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.DISPLAY_ON]));</span><br><span class="line">    <span class="keyword">this</span>.data(<span class="keyword">this</span>._screenBuffer);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  drawPixel(x, y, on) &#123;</span><br><span class="line">    <span class="keyword">if</span> (x &lt; <span class="number">0</span> || x &gt; <span class="keyword">this</span>._screenWidth - <span class="number">1</span> || y &lt; <span class="number">0</span> || y &gt; <span class="keyword">this</span>._screenHeight - <span class="number">1</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> page = <span class="built_in">Math</span>.floor(y / <span class="number">8</span>);</span><br><span class="line">    <span class="keyword">let</span> offset = y % <span class="number">8</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (on) &#123;</span><br><span class="line">      <span class="keyword">this</span>._screenBuffer[page * <span class="keyword">this</span>._screenWidth + x] |= (<span class="number">0x1</span> &lt;&lt; offset);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>._screenBuffer[page * <span class="keyword">this</span>._screenWidth + x] &amp;= ((<span class="number">0x1</span> &lt;&lt; offset) ^ <span class="number">0xff</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  reset() &#123;</span><br><span class="line">    rpio.write(<span class="keyword">this</span>._resetPin, rpio.LOW);</span><br><span class="line">    rpio.msleep(<span class="number">10</span>);</span><br><span class="line">    rpio.write(<span class="keyword">this</span>._resetPin, rpio.HIGH);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  command(buffer) &#123;</span><br><span class="line">    rpio.spiWrite(buffer, buffer.length);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  data(buffer) &#123;</span><br><span class="line">    <span class="comment">// Set DC to high to write data</span></span><br><span class="line">    rpio.write(<span class="keyword">this</span>._dcPin, rpio.HIGH);</span><br><span class="line"></span><br><span class="line">    rpio.spiWrite(buffer, buffer.length);</span><br><span class="line"></span><br><span class="line">    rpio.write(<span class="keyword">this</span>._dcPin, rpio.LOW);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  end() &#123;</span><br><span class="line">    rpio.spiEnd();</span><br><span class="line">    rpio.close(<span class="keyword">this</span>._resetPin, rpio.PIN_RESET);</span><br><span class="line">    rpio.close(<span class="keyword">this</span>._dcPin, rpio.PIN_RESET);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  scroll() &#123;</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.RIGHT_HORIZ_SCROLL]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.ACTIVATE_SCROLL]));</span><br><span class="line">    <span class="keyword">this</span>.data(<span class="keyword">this</span>._screenBuffer);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  drawToDisplay() &#123;</span><br><span class="line">    <span class="keyword">let</span> pixelArray = []</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> page = <span class="number">0</span>; page &lt; <span class="number">8</span>; page++) &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> col = <span class="number">0</span>; col &lt; <span class="number">128</span>; col++) &#123;</span><br><span class="line">        <span class="keyword">const</span> imageData = <span class="keyword">this</span>._ctx.getImageData(col, page * <span class="number">8</span>, <span class="number">1</span>, <span class="number">8</span>)</span><br><span class="line">        <span class="keyword">let</span> byte = <span class="number">0x00</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>, j = <span class="number">0</span>; i &lt; imageData.data.length; i += <span class="number">4</span>, j++) &#123;</span><br><span class="line">          <span class="keyword">const</span> r = imageData.data[i]</span><br><span class="line">          <span class="keyword">const</span> g = imageData.data[i + <span class="number">1</span>]</span><br><span class="line">          <span class="keyword">const</span> b = imageData.data[i + <span class="number">2</span>]</span><br><span class="line">          <span class="keyword">const</span> a = imageData.data[i + <span class="number">3</span>]</span><br><span class="line">          <span class="keyword">const</span> average = <span class="number">0.21</span> * r + <span class="number">0.72</span> * g + <span class="number">0.07</span> * b</span><br><span class="line">          <span class="keyword">const</span> bit = average &lt; <span class="number">128</span> ? <span class="number">1</span> : <span class="number">0</span></span><br><span class="line">          byte += bit &lt;&lt; j</span><br><span class="line">        &#125;</span><br><span class="line">        pixelArray.push(byte)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>._screenBuffer = Buffer.from(pixelArray)</span><br><span class="line">    <span class="keyword">this</span>.draw()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = SSD1306;</span><br></pre></td></tr></table></figure>
+
+<p>尝试绘制文字</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 引入</span></span><br><span class="line"><span class="keyword">const</span> SSD1306 = <span class="built_in">require</span>(<span class="string">'ssd1306'</span>)</span><br><span class="line"><span class="keyword">const</span> rpio = <span class="built_in">require</span>(<span class="string">"rpio"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建实例</span></span><br><span class="line"><span class="keyword">const</span> ssd1306 = <span class="keyword">new</span> SSD1306(&#123;</span><br><span class="line">  width: <span class="number">128</span>,</span><br><span class="line">  height: <span class="number">64</span>,</span><br><span class="line">  resetPin: <span class="number">24</span>,</span><br><span class="line">  dcPin: <span class="number">23</span>,</span><br><span class="line">  spiChip: <span class="number">0</span>,</span><br><span class="line">  rpio,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化</span></span><br><span class="line">ssd1306.init()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取canvas 2d 上下文</span></span><br><span class="line"><span class="keyword">const</span> ctx = ssd1306.getContext(<span class="string">'2d'</span>)</span><br><span class="line"></span><br><span class="line">ctx.strokeStyle = <span class="string">'#000'</span></span><br><span class="line">ctx.strokeRect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">128</span>, <span class="number">64</span>)</span><br><span class="line"></span><br><span class="line">ctx.font = <span class="string">'18px arial'</span></span><br><span class="line">ctx.fillStyle = <span class="string">'rgba(0, 0, 0, 1)'</span></span><br><span class="line">ctx.textAlign = <span class="string">'center'</span></span><br><span class="line">ctx.fillText(<span class="string">`Hello World`</span>, <span class="number">64</span>, <span class="number">32</span>)</span><br><span class="line">ssd1306.drawToDisplay()</span><br><span class="line"><span class="string">`</span></span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <tags>
         <tag>树莓派</tag>
+        <tag>nodejs</tag>
+        <tag>canvas</tag>
+        <tag>ssd1306</tag>
+        <tag>oled</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派安装gammu</title>
+    <url>/2020/06/07/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85gammu/</url>
+    <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install gammu</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gammu-config</span><br></pre></td></tr></table></figure>
+
+<img src="/2020/06/07/树莓派安装gammu/2020-06-07_151207.gif">
+
+<h2 id="发送短信"><a href="#发送短信" class="headerlink" title="发送短信"></a>发送短信</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gammu sendsms TEXT 19965412404 -TEXT <span class="string">'from raspberrypi(测试短信)'</span> -unicode</span><br></pre></td></tr></table></figure>
+
+<img src="/2020/06/07/树莓派安装gammu/2020-06-07_152304.gif">
+
+<img src="/2020/06/07/树莓派安装gammu/2020-06-07_152603.gif">
+]]></content>
+      <tags>
+        <tag>树莓派</tag>
         <tag>EC20模块</tag>
+        <tag>gammu</tag>
       </tags>
   </entry>
   <entry>
@@ -1043,144 +1116,6 @@
 <p>其他命令：</p>
 <p>Usage : scrot [OPTIONS]… [FILE]<br>-h, –help 查看帮助<br>-v, –version 获取版本信息<br>-d, –delay NUM 延时NUM秒后截屏<br>-s, –select 鼠标选择一个区域后截屏<br>-u, –focused 截取当前活动窗口(可以配合 -d 延时后改变活动窗口) </p>
 <p><strong>注意</strong>：scrot只能在窗口存在时才能使用，当putty以ssh连接树莓派时，输入命令sudo scrot会报错 <code>giblib error: Can&#39;t open X display. It *is* running, yeah?</code></p>
-]]></content>
-      <tags>
-        <tag>树莓派</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>树莓派安装gammu</title>
-    <url>/2020/06/07/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85gammu/</url>
-    <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install gammu</span><br></pre></td></tr></table></figure>
-
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gammu-config</span><br></pre></td></tr></table></figure>
-
-<img src="/2020/06/07/树莓派安装gammu/2020-06-07_151207.gif">
-
-<h2 id="发送短信"><a href="#发送短信" class="headerlink" title="发送短信"></a>发送短信</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gammu sendsms TEXT 19965412404 -TEXT <span class="string">'from raspberrypi(测试短信)'</span> -unicode</span><br></pre></td></tr></table></figure>
-
-<img src="/2020/06/07/树莓派安装gammu/2020-06-07_152304.gif">
-
-<img src="/2020/06/07/树莓派安装gammu/2020-06-07_152603.gif">
-]]></content>
-      <tags>
-        <tag>树莓派</tag>
-        <tag>EC20模块</tag>
-        <tag>gammu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>树莓派使用nodejs驱动ssd1306 128*64 oled显示屏</title>
-    <url>/2021/01/11/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BD%BF%E7%94%A8nodejs%E9%A9%B1%E5%8A%A8ssd1306-128-64-oled%E6%98%BE%E7%A4%BA%E5%B1%8F/</url>
-    <content><![CDATA[<h2 id="一、oled屏幕"><a href="#一、oled屏幕" class="headerlink" title="一、oled屏幕"></a>一、oled屏幕</h2><p>分辨率： 128 * 64<br>尺寸：0.96英寸<br>驱动芯片：ssd1306<br>电压：3.3~5V<br>功耗：0.06w<br>寿命：16000h<br>显示：双色（黄、蓝）<br>字库：无内置字库（软件控制显示）<br>通信： 4线spi/i2c（默认spi，使用i2c需调整相应屏后电阻）</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 针脚</span><br><span class="line">GND ------- 接地</span><br><span class="line">VCC ------- 3.3 ~ 5V</span><br><span class="line">D0  ------- 时钟线</span><br><span class="line">D1  ------- 数据线</span><br><span class="line">RES ------- 复位（低电平有效）</span><br><span class="line">DC  ------- spi 通信 data/command 选择；i2c通信时设置i2c地址</span><br><span class="line">cs  ------- 片选（spi通信，低电平有效）</span><br></pre></td></tr></table></figure>
-
-<img src="/2021/01/11/树莓派使用nodejs驱动ssd1306-128-64-oled显示屏/IMG_20210111_220337.jpg">
-<img src="/2021/01/11/树莓派使用nodejs驱动ssd1306-128-64-oled显示屏/IMG_20210111_220051.jpg">
-
-<h2 id="SPI通信"><a href="#SPI通信" class="headerlink" title="SPI通信"></a>SPI通信</h2><p>SPI(Serial Peripheral Interface) 串行外设接口。 以主从方式进行工作，一台master主机可以连接多台slave从机，通过CS片选可以指定选中的从机。通常为4线或3线（单向传输数据）</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 4wire SPI</span><br><span class="line">SCLK ------ 时钟</span><br><span class="line">MOSI ------ Master Out Slave Input</span><br><span class="line">MISO ------ Maset Input Slave Out</span><br><span class="line">CS   ------ 片选</span><br></pre></td></tr></table></figure>
-
-<h2 id="二、连接raspberrypi"><a href="#二、连接raspberrypi" class="headerlink" title="二、连接raspberrypi"></a>二、连接raspberrypi</h2><p>1.启用spi</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo raspi-config</span><br></pre></td></tr></table></figure>
-
-<p>找到advanced options 下的spi，选择启用</p>
-<p>2.连接</p>
-<img src="/2021/01/11/树莓派使用nodejs驱动ssd1306-128-64-oled显示屏/raspberry-pi-pin.png">
-
-<h2 id="三、点亮"><a href="#三、点亮" class="headerlink" title="三、点亮"></a>三、点亮</h2><p>在github上查找相关ssd1306的相关js驱动，找到一个可用的驱动，为防止丢失，已Fork <a href="https://github.com/yancoding/ssd1306-spi" target="_blank" rel="noopener">https://github.com/yancoding/ssd1306-spi</a></p>
-<p>index.js</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> rpio = <span class="built_in">require</span>(<span class="string">"rpio"</span>);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SSD1306</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(&#123;</span><br><span class="line">    width,</span><br><span class="line">    height,</span><br><span class="line">    resetPin,</span><br><span class="line">    dcPin,</span><br><span class="line">    spiChip,</span><br><span class="line">    rpio</span><br><span class="line">  &#125;) &#123;</span><br><span class="line">    <span class="keyword">this</span>.EXTERNAL_VCC = <span class="number">0x1</span></span><br><span class="line">    <span class="keyword">this</span>.SWITCH_CAP_VCC = <span class="number">0x2</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.SET_LOW_COLUMN = <span class="number">0x00</span></span><br><span class="line">    <span class="keyword">this</span>.SET_HIGH_COLUMN = <span class="number">0x10</span></span><br><span class="line">    <span class="keyword">this</span>.SET_MEMORY_MODE = <span class="number">0x20</span></span><br><span class="line">    <span class="keyword">this</span>.SET_COL_ADDRESS = <span class="number">0x21</span></span><br><span class="line">    <span class="keyword">this</span>.SET_PAGE_ADDRESS = <span class="number">0x22</span></span><br><span class="line">    <span class="keyword">this</span>.RIGHT_HORIZ_SCROLL = <span class="number">0x26</span></span><br><span class="line">    <span class="keyword">this</span>.LEFT_HORIZ_SCROLL = <span class="number">0x27</span></span><br><span class="line">    <span class="keyword">this</span>.VERT_AND_RIGHT_HORIZ_SCROLL = <span class="number">0x29</span></span><br><span class="line">    <span class="keyword">this</span>.VERT_AND_LEFT_HORIZ_SCROLL = <span class="number">0x2A</span></span><br><span class="line">    <span class="keyword">this</span>.DEACTIVATE_SCROLL = <span class="number">0x2E</span></span><br><span class="line">    <span class="keyword">this</span>.ACTIVATE_SCROLL = <span class="number">0x2F</span></span><br><span class="line">    <span class="keyword">this</span>.SET_START_LINE = <span class="number">0x40</span></span><br><span class="line">    <span class="keyword">this</span>.SET_CONTRAST = <span class="number">0x81</span></span><br><span class="line">    <span class="keyword">this</span>.CHARGE_PUMP = <span class="number">0x8D</span></span><br><span class="line">    <span class="keyword">this</span>.SEG_REMAP = <span class="number">0xA0</span></span><br><span class="line">    <span class="keyword">this</span>.SET_VERT_SCROLL_AREA = <span class="number">0xA3</span></span><br><span class="line">    <span class="keyword">this</span>.DISPLAY_ALL_ON_RESUME = <span class="number">0xA4</span></span><br><span class="line">    <span class="keyword">this</span>.DISPLAY_ALL_ON = <span class="number">0xA5</span></span><br><span class="line">    <span class="keyword">this</span>.NORMAL_DISPLAY = <span class="number">0xA6</span></span><br><span class="line">    <span class="keyword">this</span>.INVERT_DISPLAY = <span class="number">0xA7</span></span><br><span class="line">    <span class="keyword">this</span>.DISPLAY_OFF = <span class="number">0xAE</span></span><br><span class="line">    <span class="keyword">this</span>.DISPLAY_ON = <span class="number">0xAF</span></span><br><span class="line">    <span class="keyword">this</span>.COM_SCAN_INC = <span class="number">0xC0</span></span><br><span class="line">    <span class="keyword">this</span>.COM_SCAN_DEC = <span class="number">0xC8</span></span><br><span class="line">    <span class="keyword">this</span>.SET_DISPLAY_OFFSET = <span class="number">0xD3</span></span><br><span class="line">    <span class="keyword">this</span>.SET_COM_PINS = <span class="number">0xDA</span></span><br><span class="line">    <span class="keyword">this</span>.SET_VCOM_DETECT = <span class="number">0xDB</span></span><br><span class="line">    <span class="keyword">this</span>.SET_DISPLAY_CLOCK_DIV = <span class="number">0xD5</span></span><br><span class="line">    <span class="keyword">this</span>.SET_PRECHARGE = <span class="number">0xD9</span></span><br><span class="line">    <span class="keyword">this</span>.SET_MULTIPLEX = <span class="number">0xA8</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.MEMORY_MODE_HORIZ = <span class="number">0x00</span></span><br><span class="line">    <span class="keyword">this</span>.MEMORY_MODE_VERT = <span class="number">0x01</span></span><br><span class="line">    <span class="keyword">this</span>.MEMORY_MODE_PAGE = <span class="number">0x02</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> options = &#123;</span><br><span class="line">      gpiomem: <span class="literal">false</span>,</span><br><span class="line">      mapping: <span class="string">"gpio"</span>,</span><br><span class="line">      ...rpio</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>._screenWidth = width;</span><br><span class="line">    <span class="keyword">this</span>._screenHeight = height;</span><br><span class="line">    <span class="keyword">this</span>._resetPin = resetPin;</span><br><span class="line">    <span class="keyword">this</span>._dcPin = dcPin;</span><br><span class="line">    <span class="keyword">this</span>._spiChip = spiChip;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>._rpioOptions = options;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>._screenBuffer = Buffer.alloc((width * height) / <span class="number">8</span>).fill(<span class="number">0x00</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  init() &#123;</span><br><span class="line">    rpio.init(<span class="keyword">this</span>._rpioOptions);</span><br><span class="line">    rpio.spiBegin();</span><br><span class="line">    rpio.spiChipSelect(<span class="keyword">this</span>._spiChip);</span><br><span class="line">    <span class="comment">// 8MHz</span></span><br><span class="line">    rpio.spiSetClockDivider(<span class="number">128</span>);</span><br><span class="line"></span><br><span class="line">    rpio.open(<span class="keyword">this</span>._resetPin, rpio.OUTPUT, rpio.HIGH);</span><br><span class="line">    rpio.open(<span class="keyword">this</span>._dcPin, rpio.OUTPUT, rpio.LOW);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Init the OLED screen</span></span><br><span class="line">    rpio.msleep(<span class="number">0.01</span>);</span><br><span class="line">    <span class="keyword">this</span>.reset();</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.DISPLAY_OFF]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_DISPLAY_CLOCK_DIV, <span class="number">0x80</span>]));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Setup the right screen size</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>._screenHeight === <span class="number">64</span>) &#123;</span><br><span class="line">      <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_MULTIPLEX, <span class="number">0x3F</span>]));</span><br><span class="line">      <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_COM_PINS, <span class="number">0x12</span>]));</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_MULTIPLEX, <span class="number">0x1F</span>]));</span><br><span class="line">      <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_COM_PINS, <span class="number">0x02</span>]));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_DISPLAY_OFFSET, <span class="number">0x00</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_START_LINE | <span class="number">0x00</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.CHARGE_PUMP, <span class="number">0x14</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_MEMORY_MODE, <span class="number">0x00</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SEG_REMAP | <span class="number">0x01</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.COM_SCAN_DEC]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_CONTRAST, <span class="number">0x8f</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_PRECHARGE, <span class="number">0xf1</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_VCOM_DETECT, <span class="number">0x40</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.DISPLAY_ALL_ON_RESUME]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.NORMAL_DISPLAY]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.DISPLAY_ON]));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  clearDisplay() &#123;</span><br><span class="line">    <span class="keyword">this</span>._screenBuffer.fill(<span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  invertDisplay() &#123;</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.INVERT_DISPLAY]));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  normalDisplay() &#123;</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.NORMAL_DISPLAY]));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  draw() &#123;</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_MEMORY_MODE, <span class="keyword">this</span>.MEMORY_MODE_HORIZ]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_PAGE_ADDRESS, <span class="number">0x00</span>, <span class="number">0x07</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_COL_ADDRESS, <span class="number">0x00</span>, <span class="number">0x7f</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.DISPLAY_ON]));</span><br><span class="line">    <span class="keyword">this</span>.data(<span class="keyword">this</span>._screenBuffer);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  drawPixel(x, y, on) &#123;</span><br><span class="line">    <span class="keyword">if</span> (x &lt; <span class="number">0</span> || x &gt; <span class="keyword">this</span>._screenWidth - <span class="number">1</span> || y &lt; <span class="number">0</span> || y &gt; <span class="keyword">this</span>._screenHeight - <span class="number">1</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> page = <span class="built_in">Math</span>.floor(y / <span class="number">8</span>);</span><br><span class="line">    <span class="keyword">let</span> offset = y % <span class="number">8</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (on) &#123;</span><br><span class="line">      <span class="keyword">this</span>._screenBuffer[page * <span class="keyword">this</span>._screenWidth + x] |= (<span class="number">0x1</span> &lt;&lt; offset);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>._screenBuffer[page * <span class="keyword">this</span>._screenWidth + x] &amp;= ((<span class="number">0x1</span> &lt;&lt; offset) ^ <span class="number">0xff</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  reset() &#123;</span><br><span class="line">    rpio.write(<span class="keyword">this</span>._resetPin, rpio.LOW);</span><br><span class="line">    rpio.msleep(<span class="number">10</span>);</span><br><span class="line">    rpio.write(<span class="keyword">this</span>._resetPin, rpio.HIGH);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  command(buffer) &#123;</span><br><span class="line">    rpio.spiWrite(buffer, buffer.length);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  data(buffer) &#123;</span><br><span class="line">    <span class="comment">// Set DC to high to write data</span></span><br><span class="line">    rpio.write(<span class="keyword">this</span>._dcPin, rpio.HIGH);</span><br><span class="line"></span><br><span class="line">    rpio.spiWrite(buffer, buffer.length);</span><br><span class="line"></span><br><span class="line">    rpio.write(<span class="keyword">this</span>._dcPin, rpio.LOW);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  end() &#123;</span><br><span class="line">    rpio.spiEnd();</span><br><span class="line">    rpio.close(<span class="keyword">this</span>._resetPin, rpio.PIN_RESET);</span><br><span class="line">    rpio.close(<span class="keyword">this</span>._dcPin, rpio.PIN_RESET);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = SSD1306;</span><br></pre></td></tr></table></figure>
-
-<p>使用该驱动</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 引入</span></span><br><span class="line"><span class="keyword">const</span> SSD1306 = <span class="built_in">require</span>(<span class="string">'ssd1306'</span>)</span><br><span class="line"><span class="keyword">const</span> rpio = <span class="built_in">require</span>(<span class="string">"rpio"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建实例</span></span><br><span class="line"><span class="keyword">const</span> ssd1306 = <span class="keyword">new</span> SSD1306(&#123;</span><br><span class="line">  width: <span class="number">128</span>,</span><br><span class="line">  height: <span class="number">64</span>,</span><br><span class="line">  resetPin: <span class="number">24</span>,</span><br><span class="line">  dcPin: <span class="number">23</span>,</span><br><span class="line">  spiChip: <span class="number">0</span>,</span><br><span class="line">  rpio,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化</span></span><br><span class="line">ssd1306.init()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 依次点亮每个点阵</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; <span class="number">128</span>; i++) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">1</span>; j &lt; <span class="number">64</span>; j++) &#123;</span><br><span class="line">    ssd1306.drawPixel(i, j, <span class="literal">true</span>)</span><br><span class="line">    ssd1306.draw()</span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果可以依次点亮屏幕上的每一点，说明oled一切正常，可以尝试做些其他的事情了</p>
-<h2 id="四、一个像素点是如何点亮的？"><a href="#四、一个像素点是如何点亮的？" class="headerlink" title="四、一个像素点是如何点亮的？"></a>四、一个像素点是如何点亮的？</h2><p>其实oled与大多数的点阵屏幕点亮原理都很类似，具体还要看下使用手册</p>
-<p>oled 水平共有64个共阴极，那么如果在某一像素点上加上高电平，即可点亮该点</p>
-]]></content>
-      <tags>
-        <tag>树莓派</tag>
-        <tag>nodejs</tag>
-        <tag>canvas</tag>
-        <tag>ssd1306</tag>
-        <tag>oled</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>树莓派安装mongodb</title>
-    <url>/2019/07/17/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85mongodb/</url>
-    <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install mongodb</span><br></pre></td></tr></table></figure>
-
-<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><p>用以上命令安装完成后，执行 <code>mongo</code> 命令，并没有连接成功</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MongoDB shell version: 2.4.14</span><br><span class="line">connecting to: test</span><br><span class="line">Wed Jul 17 22:40:55.765 Error: couldn&apos;t connect to server 127.0.0.1:27017 at src/mongo/shell/mongo.js:145</span><br><span class="line">exception: connect failed</span><br></pre></td></tr></table></figure>
-
-<p>查看安装打印的信息中，有这么一条 <code>无法创建主目录&quot;/var/lib/mongodb&quot;</code>, 说明 mongodb 缺少权限</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo service mongodb stop</span><br><span class="line">sudo chown -R mongodb:mongodb /var/lib/mongodb</span><br><span class="line">sudo service mongodb start</span><br></pre></td></tr></table></figure>
-
-<p>修改目录权限后再次执行 <code>mongo</code> 命令，显示连接成功</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">MongoDB shell version: 2.4.14</span><br><span class="line">connecting to: test</span><br><span class="line">Welcome to the MongoDB shell.</span><br><span class="line">For interactive help, type "help".</span><br><span class="line">For more comprehensive documentation, see</span><br><span class="line">        http://docs.mongodb.org/</span><br><span class="line">Questions? Try the support group</span><br><span class="line">        http://groups.google.com/group/mongodb-user</span><br><span class="line">Server has startup warnings:</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten]</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten] ** NOTE: This is a 32 bit MongoDB binary.</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten] **       32 bit builds are limited to less than 2GB of data (or less with --journal).</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten] **       See http://dochub.mongodb.org/core/32bit</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten]</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"></span></span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>MongoDB</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>树莓派搭建LAMP服务</title>
-    <url>/2018/03/11/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%90%AD%E5%BB%BALAMP%E6%9C%8D%E5%8A%A1/</url>
-    <content><![CDATA[<h2 id="LAMP的含义"><a href="#LAMP的含义" class="headerlink" title="LAMP的含义"></a>LAMP的含义</h2><p>Linux - 操作系统</p>
-<p>Apache - web服务器软件</p>
-<p>MySQL - 数据库</p>
-<p>PHP - 使用语言</p>
-<h2 id="安装LAMP"><a href="#安装LAMP" class="headerlink" title="安装LAMP"></a>安装LAMP</h2><p>更新软件列表</p>
-<p><code>sudo apt-get update</code></p>
-<p>升级软件</p>
-<p><code>sudo apt-get upgrade</code></p>
-<p>安装Apache</p>
-<p><code>sudo apt-get install apache2</code></p>
-<p>输入 y 回车 继续即可</p>
-<p>安装MySQL</p>
-<p><code>sudo apt-get install mysql-server</code></p>
-<p>输入 y 回车 继续即可</p>
-<p>(<strong>注</strong>：在安装数据库MySQL过程中并没有提示设置root密码，此时密码为空，可能与我之前为启用树莓派的root账户有关)</p>
-<p>安装PHP </p>
-<p><code>sudo apt-get install php</code></p>
-<p>输入 y 回车 继续即可</p>
-<p>安装PHP访问MySQL所需要的库</p>
-<p><code>sudo apt-get install php-mysql</code></p>
-<p>输入 y 回车 继续即可</p>
-<h2 id="查看web站点"><a href="#查看web站点" class="headerlink" title="查看web站点"></a>查看web站点</h2><p>在浏览器内输入树莓派局域网IP，可以看到Apache的默认页面</p>
-<img src="/2018/03/11/树莓派搭建LAMP服务/2018-03-11-192347_830x386_scrot.png">]]></content>
-      <tags>
-        <tag>树莓派</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>树莓派禁止休眠、保持屏幕常亮</title>
-    <url>/2020/03/21/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%A6%81%E6%AD%A2%E4%BC%91%E7%9C%A0%E3%80%81%E4%BF%9D%E6%8C%81%E5%B1%8F%E5%B9%95%E5%B8%B8%E4%BA%AE/</url>
-    <content><![CDATA[<h2 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo vi /etc/lightdm/lightdm.conf</span><br></pre></td></tr></table></figure>
-
-<p>找到<br><code>#xserver-command=X</code><br>修改为<br><code>xserver-command=X -s 0 -dpms</code></p>
-<p>保存后重启即可</p>
-<p>参考文章</p>
-<ul>
-<li><a href="https://blog.csdn.net/u011720560/article/details/78288128" target="_blank" rel="noopener">树莓派禁止休眠、屏幕常亮</a></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>树莓派</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>树莓派鼠标空闲时隐藏光标</title>
-    <url>/2020/03/21/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%BC%A0%E6%A0%87%E7%A9%BA%E9%97%B2%E6%97%B6%E9%9A%90%E8%97%8F%E5%85%89%E6%A0%87/</url>
-    <content><![CDATA[<h2 id="安装uncluter"><a href="#安装uncluter" class="headerlink" title="安装uncluter"></a>安装uncluter</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install unclutter</span><br></pre></td></tr></table></figure>
-
-<p>安装后，默认鼠标空闲2s后就会被隐藏</p>
-<p>参考文章:</p>
-<ul>
-<li><a href="https://debaday.debian.net/2007/03/27/unclutter-hide-the-mouse-cursor-after-a-period-of-inactivity/" target="_blank" rel="noopener">unclutter: hide the mouse cursor after a period of inactivity</a></li>
-<li><a href="https://ubuntu-tutorials.com/2008/07/07/auto-hide-your-mouse-pointer-when-idle-with-unclutter/" target="_blank" rel="noopener">Auto-Hide Your Mouse Pointer When Idle With “Unclutter”</a> </li>
-</ul>
 ]]></content>
       <tags>
         <tag>树莓派</tag>
@@ -1220,6 +1155,23 @@
       </tags>
   </entry>
   <entry>
+    <title>树莓派安装mongodb</title>
+    <url>/2019/07/17/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85mongodb/</url>
+    <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install mongodb</span><br></pre></td></tr></table></figure>
+
+<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><p>用以上命令安装完成后，执行 <code>mongo</code> 命令，并没有连接成功</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MongoDB shell version: 2.4.14</span><br><span class="line">connecting to: test</span><br><span class="line">Wed Jul 17 22:40:55.765 Error: couldn&apos;t connect to server 127.0.0.1:27017 at src/mongo/shell/mongo.js:145</span><br><span class="line">exception: connect failed</span><br></pre></td></tr></table></figure>
+
+<p>查看安装打印的信息中，有这么一条 <code>无法创建主目录&quot;/var/lib/mongodb&quot;</code>, 说明 mongodb 缺少权限</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo service mongodb stop</span><br><span class="line">sudo chown -R mongodb:mongodb /var/lib/mongodb</span><br><span class="line">sudo service mongodb start</span><br></pre></td></tr></table></figure>
+
+<p>修改目录权限后再次执行 <code>mongo</code> 命令，显示连接成功</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">MongoDB shell version: 2.4.14</span><br><span class="line">connecting to: test</span><br><span class="line">Welcome to the MongoDB shell.</span><br><span class="line">For interactive help, type "help".</span><br><span class="line">For more comprehensive documentation, see</span><br><span class="line">        http://docs.mongodb.org/</span><br><span class="line">Questions? Try the support group</span><br><span class="line">        http://groups.google.com/group/mongodb-user</span><br><span class="line">Server has startup warnings:</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten]</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten] ** NOTE: This is a 32 bit MongoDB binary.</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten] **       32 bit builds are limited to less than 2GB of data (or less with --journal).</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten] **       See http://dochub.mongodb.org/core/32bit</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten]</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"></span></span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>MongoDB</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>树莓派开机自动启动chrome浏览器</title>
     <url>/2020/05/11/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E5%90%AF%E5%8A%A8chrome%E6%B5%8F%E8%A7%88%E5%99%A8/</url>
     <content><![CDATA[<h2 id="1-chrome-命令行启动（不可通过ssh连接，可以尝试在真机，或者vnc连接情况下）"><a href="#1-chrome-命令行启动（不可通过ssh连接，可以尝试在真机，或者vnc连接情况下）" class="headerlink" title="1.chrome 命令行启动（不可通过ssh连接，可以尝试在真机，或者vnc连接情况下）"></a>1.chrome 命令行启动（不可通过ssh连接，可以尝试在真机，或者vnc连接情况下）</h2><p>打开谷歌</p>
@@ -1256,77 +1208,33 @@
       </tags>
   </entry>
   <entry>
-    <title>管理富文本编辑器里上传的文件</title>
-    <url>/2019/07/18/%E7%AE%A1%E7%90%86%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E9%87%8C%E4%B8%8A%E4%BC%A0%E7%9A%84%E6%96%87%E4%BB%B6/</url>
-    <content><![CDATA[<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>富文本编辑器会提供插入图片或视频的功能，该功能一般情况时执行插入操作时上传相关文件，由服务器返回静态文件的url地址，前端通过插入img或是video标签，并将返回的url赋予src属性，这样就可以在前端看到我们插入的文件了，但是用户可能会插入新的文件或是删除已插入的文件，但是在前端我们只是删除img或是video标签，服务器上该资源的文件还是存在的，并没有被清除，事实上此时用户没有提交，我们也不能直接进行删除，毕竟用户还可能执行撤销操作，如果直接删除了服务器资源，就会导致文件资源404，找不到该资源，又要重新上传，用户体验太差。</p>
-<h2 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h2><blockquote>
-<p>前端提供需要清除文件的地址数组</p>
-</blockquote>
-<p>用户打开富文本编辑器，这可能是新建的或是对已有的内容进行编辑，我们可以初始化一个数组<code>let uploads = []</code>,如果是编辑操作，我们先通过<code>querySelectorAll(&#39;[src]&#39;)</code>得到文件相应的 dom 数组，后面进行遍历，将每一项的src值push到uploads数组里，这样我们就得到了以前上传并使用中的文件列表；在后续的上传操作中，每次上传我们都会将文件地址push到uploads数组里；当用户进行提交操作时，我们可以遍历出内容中所有的file并push到 <code>let files = []</code>数组中。</p>
-<p>此时我们得到了两个数组，一个是 <code>uploads</code> 上传文件的数组，另一个是 <code>files</code> 内容中有效的文件数组，那取其差集，就是我们要清除的无用文件的数组 <code>useless</code>了，将该数组传到服务器，就可以清除相关的无用文件了。</p>
-<blockquote>
-<p>这里有个小问题，如何取两个数组差集的问题，可以这样写：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> uploads = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>, <span class="string">'f'</span>]</span><br><span class="line"><span class="keyword">let</span> files = [<span class="string">'b'</span>, <span class="string">'e'</span>]</span><br><span class="line"><span class="keyword">let</span> useless = []</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;files.length; i++) &#123;</span><br><span class="line">   <span class="keyword">let</span> index = uploads.indexOf(files[i])</span><br><span class="line">   uploads.splice(index,<span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line">useless = uploads</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`useless: <span class="subst">$&#123;useless&#125;</span>`</span>)</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>这种实现由什么缺陷呢：整体上看，这种实现确实了我们的预期功能，并且后台也很简单，只需提供一个可以接收删除文件数组的接口，并执行删除就可以了；现实其实后台并没有这么简单，删除操作一般是危险的，需要我们警惕的，如果该实现上传到服务器的文件并没有进行数据库记录，只是放置在 <code>static/uploads/</code> 的目录下，那就没有办法设置谁由权限删除某一个文件，也就是说只要提供删除数组，所有的可以操作编辑器的用户都可以进行删除操作，显然这是有安全问题的，所以对上传的文件一定要做数据库记录，并设置所有者，执行删除操作时也需要判断操作是否来自所有者。</p>
-<p>既然上述存在的问题必须通过添加数据库记录来解决，那我们可以将上传的文件绑定到指定的内容id；对于新创建的内容，新上传的文件记录的内容id为null，当我们提交编辑器内容时，我们将files各记录的内容id设置为实际值；如果是编辑已有的内容，我们此时已有该内容的id，将该内容id下的所有文件记录的内容id设置为null，我们将files里的指定为该内容id，之后我们可以定期清理内容id为null的文件，即可清除无用的上传文件，这有点类似于js中内存垃圾清理实现方式之一的引用计数。</p>
-<table>
-<thead>
-<tr>
-<th>id</th>
-<th>article_id</th>
-<th>file_url</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>0</td>
-<td>null</td>
-<td>‘<a href="http://domain.com/pic.jpg&#39;" target="_blank" rel="noopener">http://domain.com/pic.jpg&#39;</a></td>
-</tr>
-<tr>
-<td>1</td>
-<td>1</td>
-<td>‘<a href="http://domain.com/pic.jpg&#39;" target="_blank" rel="noopener">http://domain.com/pic.jpg&#39;</a></td>
-</tr>
-<tr>
-<td>2</td>
-<td>1</td>
-<td>‘<a href="http://domain.com/pic.jpg&#39;" target="_blank" rel="noopener">http://domain.com/pic.jpg&#39;</a></td>
-</tr>
-<tr>
-<td>3</td>
-<td>1</td>
-<td>‘<a href="http://domain.com/pic.jpg&#39;" target="_blank" rel="noopener">http://domain.com/pic.jpg&#39;</a></td>
-</tr>
-<tr>
-<td>4</td>
-<td>1</td>
-<td>‘<a href="http://domain.com/pic.jpg&#39;" target="_blank" rel="noopener">http://domain.com/pic.jpg&#39;</a></td>
-</tr>
-<tr>
-<td>5</td>
-<td>1</td>
-<td>‘<a href="http://domain.com/pic.jpg&#39;" target="_blank" rel="noopener">http://domain.com/pic.jpg&#39;</a></td>
-</tr>
-</tbody></table>
-]]></content>
-  </entry>
-  <entry>
-    <title>第一次使用hexo</title>
-    <url>/2019/05/21/%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8hexo/</url>
-    <content><![CDATA[<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><p>全局安装hexo命令行工具<br><code>npm install hexo-cli -g</code></p>
-<p>初始化一个hexo项目，我们取名为blog，这会创建一个blog项目文件夹<br><code>hexo init blog</code></p>
-<p>切换到项目目录<br><code>cd blog</code></p>
-<p>安装项目依赖<br><code>npm intall</code></p>
-<p>这时我们就可以启动本地服务，在本机查看我们的站点<br><code>hexo server</code></p>
-<h2 id="先写个文章试试吧"><a href="#先写个文章试试吧" class="headerlink" title="先写个文章试试吧"></a>先写个文章试试吧</h2><p>比如我要写一篇文章叫 “第一次使用hexo”，可以这样<br><code>hexo new &#39;第一次使用hexo&#39;</code></p>
-<p>创建好新文章后，我们可以在项目的<code>source</code>下的<code>_posts</code>文件夹下看到新建的post文件<code>第一次使用hexo.md</code>,为Markdown文件</p>
-<p>这时我们就可以用markdown语法写文章了，写完保存后，我们需要将Markdown文件生成静态的html文件<br><code>hexo g</code></p>
-<p>静态文件生成后，我们就可以运行我们的服务，在站点上查看我们刚刚写的文章啦。注意，hexo是支持热重载的，所以我们添加内容保存后，直接刷新我们的站点页面，就可以直接查看到我们刚刚添加的文章内容，不需要重启服务<br><code>hexo server</code></p>
-<p>以上就是hexo最基本的操作了，如果你只在意文章内容，不在意外观，其实已经可以满足你的需求了。当然，hexo还有更多的功能，具体可见hexo官方文档 <a href="https://hexo.io/" target="_blank" rel="noopener">https://hexo.io/</a></p>
-]]></content>
+    <title>树莓派搭建LAMP服务</title>
+    <url>/2018/03/11/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%90%AD%E5%BB%BALAMP%E6%9C%8D%E5%8A%A1/</url>
+    <content><![CDATA[<h2 id="LAMP的含义"><a href="#LAMP的含义" class="headerlink" title="LAMP的含义"></a>LAMP的含义</h2><p>Linux - 操作系统</p>
+<p>Apache - web服务器软件</p>
+<p>MySQL - 数据库</p>
+<p>PHP - 使用语言</p>
+<h2 id="安装LAMP"><a href="#安装LAMP" class="headerlink" title="安装LAMP"></a>安装LAMP</h2><p>更新软件列表</p>
+<p><code>sudo apt-get update</code></p>
+<p>升级软件</p>
+<p><code>sudo apt-get upgrade</code></p>
+<p>安装Apache</p>
+<p><code>sudo apt-get install apache2</code></p>
+<p>输入 y 回车 继续即可</p>
+<p>安装MySQL</p>
+<p><code>sudo apt-get install mysql-server</code></p>
+<p>输入 y 回车 继续即可</p>
+<p>(<strong>注</strong>：在安装数据库MySQL过程中并没有提示设置root密码，此时密码为空，可能与我之前为启用树莓派的root账户有关)</p>
+<p>安装PHP </p>
+<p><code>sudo apt-get install php</code></p>
+<p>输入 y 回车 继续即可</p>
+<p>安装PHP访问MySQL所需要的库</p>
+<p><code>sudo apt-get install php-mysql</code></p>
+<p>输入 y 回车 继续即可</p>
+<h2 id="查看web站点"><a href="#查看web站点" class="headerlink" title="查看web站点"></a>查看web站点</h2><p>在浏览器内输入树莓派局域网IP，可以看到Apache的默认页面</p>
+<img src="/2018/03/11/树莓派搭建LAMP服务/2018-03-11-192347_830x386_scrot.png">]]></content>
       <tags>
-        <tag>hexo</tag>
+        <tag>树莓派</tag>
       </tags>
   </entry>
   <entry>
@@ -1557,5 +1465,111 @@
       <tags>
         <tag>树莓派</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>树莓派禁止休眠、保持屏幕常亮</title>
+    <url>/2020/03/21/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%A6%81%E6%AD%A2%E4%BC%91%E7%9C%A0%E3%80%81%E4%BF%9D%E6%8C%81%E5%B1%8F%E5%B9%95%E5%B8%B8%E4%BA%AE/</url>
+    <content><![CDATA[<h2 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo vi /etc/lightdm/lightdm.conf</span><br></pre></td></tr></table></figure>
+
+<p>找到<br><code>#xserver-command=X</code><br>修改为<br><code>xserver-command=X -s 0 -dpms</code></p>
+<p>保存后重启即可</p>
+<p>参考文章</p>
+<ul>
+<li><a href="https://blog.csdn.net/u011720560/article/details/78288128" target="_blank" rel="noopener">树莓派禁止休眠、屏幕常亮</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>树莓派</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派鼠标空闲时隐藏光标</title>
+    <url>/2020/03/21/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%BC%A0%E6%A0%87%E7%A9%BA%E9%97%B2%E6%97%B6%E9%9A%90%E8%97%8F%E5%85%89%E6%A0%87/</url>
+    <content><![CDATA[<h2 id="安装uncluter"><a href="#安装uncluter" class="headerlink" title="安装uncluter"></a>安装uncluter</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install unclutter</span><br></pre></td></tr></table></figure>
+
+<p>安装后，默认鼠标空闲2s后就会被隐藏</p>
+<p>参考文章:</p>
+<ul>
+<li><a href="https://debaday.debian.net/2007/03/27/unclutter-hide-the-mouse-cursor-after-a-period-of-inactivity/" target="_blank" rel="noopener">unclutter: hide the mouse cursor after a period of inactivity</a></li>
+<li><a href="https://ubuntu-tutorials.com/2008/07/07/auto-hide-your-mouse-pointer-when-idle-with-unclutter/" target="_blank" rel="noopener">Auto-Hide Your Mouse Pointer When Idle With “Unclutter”</a> </li>
+</ul>
+]]></content>
+      <tags>
+        <tag>树莓派</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>第一次使用hexo</title>
+    <url>/2019/05/21/%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8hexo/</url>
+    <content><![CDATA[<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><p>全局安装hexo命令行工具<br><code>npm install hexo-cli -g</code></p>
+<p>初始化一个hexo项目，我们取名为blog，这会创建一个blog项目文件夹<br><code>hexo init blog</code></p>
+<p>切换到项目目录<br><code>cd blog</code></p>
+<p>安装项目依赖<br><code>npm intall</code></p>
+<p>这时我们就可以启动本地服务，在本机查看我们的站点<br><code>hexo server</code></p>
+<h2 id="先写个文章试试吧"><a href="#先写个文章试试吧" class="headerlink" title="先写个文章试试吧"></a>先写个文章试试吧</h2><p>比如我要写一篇文章叫 “第一次使用hexo”，可以这样<br><code>hexo new &#39;第一次使用hexo&#39;</code></p>
+<p>创建好新文章后，我们可以在项目的<code>source</code>下的<code>_posts</code>文件夹下看到新建的post文件<code>第一次使用hexo.md</code>,为Markdown文件</p>
+<p>这时我们就可以用markdown语法写文章了，写完保存后，我们需要将Markdown文件生成静态的html文件<br><code>hexo g</code></p>
+<p>静态文件生成后，我们就可以运行我们的服务，在站点上查看我们刚刚写的文章啦。注意，hexo是支持热重载的，所以我们添加内容保存后，直接刷新我们的站点页面，就可以直接查看到我们刚刚添加的文章内容，不需要重启服务<br><code>hexo server</code></p>
+<p>以上就是hexo最基本的操作了，如果你只在意文章内容，不在意外观，其实已经可以满足你的需求了。当然，hexo还有更多的功能，具体可见hexo官方文档 <a href="https://hexo.io/" target="_blank" rel="noopener">https://hexo.io/</a></p>
+]]></content>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>管理富文本编辑器里上传的文件</title>
+    <url>/2019/07/18/%E7%AE%A1%E7%90%86%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E9%87%8C%E4%B8%8A%E4%BC%A0%E7%9A%84%E6%96%87%E4%BB%B6/</url>
+    <content><![CDATA[<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>富文本编辑器会提供插入图片或视频的功能，该功能一般情况时执行插入操作时上传相关文件，由服务器返回静态文件的url地址，前端通过插入img或是video标签，并将返回的url赋予src属性，这样就可以在前端看到我们插入的文件了，但是用户可能会插入新的文件或是删除已插入的文件，但是在前端我们只是删除img或是video标签，服务器上该资源的文件还是存在的，并没有被清除，事实上此时用户没有提交，我们也不能直接进行删除，毕竟用户还可能执行撤销操作，如果直接删除了服务器资源，就会导致文件资源404，找不到该资源，又要重新上传，用户体验太差。</p>
+<h2 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h2><blockquote>
+<p>前端提供需要清除文件的地址数组</p>
+</blockquote>
+<p>用户打开富文本编辑器，这可能是新建的或是对已有的内容进行编辑，我们可以初始化一个数组<code>let uploads = []</code>,如果是编辑操作，我们先通过<code>querySelectorAll(&#39;[src]&#39;)</code>得到文件相应的 dom 数组，后面进行遍历，将每一项的src值push到uploads数组里，这样我们就得到了以前上传并使用中的文件列表；在后续的上传操作中，每次上传我们都会将文件地址push到uploads数组里；当用户进行提交操作时，我们可以遍历出内容中所有的file并push到 <code>let files = []</code>数组中。</p>
+<p>此时我们得到了两个数组，一个是 <code>uploads</code> 上传文件的数组，另一个是 <code>files</code> 内容中有效的文件数组，那取其差集，就是我们要清除的无用文件的数组 <code>useless</code>了，将该数组传到服务器，就可以清除相关的无用文件了。</p>
+<blockquote>
+<p>这里有个小问题，如何取两个数组差集的问题，可以这样写：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> uploads = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>, <span class="string">'f'</span>]</span><br><span class="line"><span class="keyword">let</span> files = [<span class="string">'b'</span>, <span class="string">'e'</span>]</span><br><span class="line"><span class="keyword">let</span> useless = []</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;files.length; i++) &#123;</span><br><span class="line">   <span class="keyword">let</span> index = uploads.indexOf(files[i])</span><br><span class="line">   uploads.splice(index,<span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line">useless = uploads</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`useless: <span class="subst">$&#123;useless&#125;</span>`</span>)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>这种实现由什么缺陷呢：整体上看，这种实现确实了我们的预期功能，并且后台也很简单，只需提供一个可以接收删除文件数组的接口，并执行删除就可以了；现实其实后台并没有这么简单，删除操作一般是危险的，需要我们警惕的，如果该实现上传到服务器的文件并没有进行数据库记录，只是放置在 <code>static/uploads/</code> 的目录下，那就没有办法设置谁由权限删除某一个文件，也就是说只要提供删除数组，所有的可以操作编辑器的用户都可以进行删除操作，显然这是有安全问题的，所以对上传的文件一定要做数据库记录，并设置所有者，执行删除操作时也需要判断操作是否来自所有者。</p>
+<p>既然上述存在的问题必须通过添加数据库记录来解决，那我们可以将上传的文件绑定到指定的内容id；对于新创建的内容，新上传的文件记录的内容id为null，当我们提交编辑器内容时，我们将files各记录的内容id设置为实际值；如果是编辑已有的内容，我们此时已有该内容的id，将该内容id下的所有文件记录的内容id设置为null，我们将files里的指定为该内容id，之后我们可以定期清理内容id为null的文件，即可清除无用的上传文件，这有点类似于js中内存垃圾清理实现方式之一的引用计数。</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>article_id</th>
+<th>file_url</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>null</td>
+<td>‘<a href="http://domain.com/pic.jpg&#39;" target="_blank" rel="noopener">http://domain.com/pic.jpg&#39;</a></td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>‘<a href="http://domain.com/pic.jpg&#39;" target="_blank" rel="noopener">http://domain.com/pic.jpg&#39;</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>‘<a href="http://domain.com/pic.jpg&#39;" target="_blank" rel="noopener">http://domain.com/pic.jpg&#39;</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td>1</td>
+<td>‘<a href="http://domain.com/pic.jpg&#39;" target="_blank" rel="noopener">http://domain.com/pic.jpg&#39;</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td>1</td>
+<td>‘<a href="http://domain.com/pic.jpg&#39;" target="_blank" rel="noopener">http://domain.com/pic.jpg&#39;</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td>1</td>
+<td>‘<a href="http://domain.com/pic.jpg&#39;" target="_blank" rel="noopener">http://domain.com/pic.jpg&#39;</a></td>
+</tr>
+</tbody></table>
+]]></content>
   </entry>
 </search>
