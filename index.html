@@ -259,7 +259,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">41</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">42</span></a>
 
   </li>
         
@@ -369,6 +369,207 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/2021/01/25/前端如何实现准确的倒计时效果/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yancoding">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yan blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2021/01/25/前端如何实现准确的倒计时效果/" class="post-title-link" itemprop="url">前端如何实现准确的倒计时效果</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-01-25 22:07:38" itemprop="dateCreated datePublished" datetime="2021-01-25T22:07:38+08:00">2021-01-25</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-01-26 23:01:11" itemprop="dateModified" datetime="2021-01-26T23:01:11+08:00">2021-01-26</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">2.1k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">2 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-场景"><a href="#1-场景" class="headerlink" title="1.场景"></a>1.场景</h2><p>试想，现在有这样一个场景，用户有一个观看视频的任务，任务的总时间为3min，观看达到这个时间用户即可完成此任务，我们需要做一个完成倒计时，来提示用户还剩多长时间即可完成该任务。</p>
+<p>最容易想到的实现方式是使用定时器setInterval，每隔1s倒计时减1，用户暂停播放时清除定时器，开始播放时重启定时器</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> countdown = <span class="number">3</span> * <span class="number">60</span></span><br><span class="line"><span class="keyword">let</span> timer = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 停止倒计时</span></span><br><span class="line"><span class="keyword">const</span> stop = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  clearInterval(timer)</span><br><span class="line">  timer = <span class="literal">null</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 开始倒计时</span></span><br><span class="line"><span class="keyword">const</span> start = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (!timer) &#123;</span><br><span class="line">    timer = setInterval(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (countdown &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        countdown--</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'countdown: '</span>, countdown)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'done'</span>)</span><br><span class="line">        stop()</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, <span class="number">1000</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样的实现方式在一般情况下不会出现大的问题，但是如果用户暂停次数比较多的话，会发现用户实际播放时长大于倒计时所记的时长。</p>
+<p>想个比较及端的例子，用户每次播放时长不超过1s，那么我们的倒计时一直保持不变，显然我们实现的倒计时是不准确的，不可靠的。</p>
+<p>可能你会想着缩短setInterval的间隔来减少这种误差，但是间隔过小，又有阻塞的可能，定时器本身也不是那么精确，总有几毫秒的误差，而且显然这种做法略显笨拙，</p>
+<p>这时我们就要思考是不是需要换一种实现方式，更优雅一些。</p>
+<p>要想每次暂停播放不损失那不到1s的时间，我们只有精确到ms才行，既然不能用setInterval间隔1ms，那我们是可以取当前时间的毫秒数的，这个是非常精确的，本身就是以ms为单位的</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> countdown = <span class="number">3</span> * <span class="number">60</span></span><br><span class="line"><span class="keyword">let</span> time = <span class="number">0</span></span><br><span class="line"><span class="keyword">let</span> startTime = <span class="number">0</span></span><br><span class="line"><span class="keyword">let</span> timer = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 停止倒计时</span></span><br><span class="line"><span class="keyword">const</span> stop = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  time += (<span class="built_in">Date</span>.now() - startTime)</span><br><span class="line">  clearInterval(timer)</span><br><span class="line">  timer = <span class="literal">null</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 开始倒计时</span></span><br><span class="line"><span class="keyword">const</span> start = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (!timer) &#123;</span><br><span class="line">    startTime = <span class="built_in">Date</span>.now()</span><br><span class="line">    timer = setInterval(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> currentCountdown = countdown - <span class="built_in">Math</span>.floor((<span class="built_in">Date</span>.now() - startTime + time) / <span class="number">1000</span>) </span><br><span class="line">      <span class="keyword">if</span> (currentCountdown &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'countdown: '</span>, currentCountdown)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'done'</span>)</span><br><span class="line">        stop()</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, <span class="number">1000</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里我们依然使用了setInterval，但是只是用来每隔一秒读取倒计时，用来实现用户视图层的更新，实际与倒计时实现并无太大关联，我们可以封装一个倒计时</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Countdown</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 传入倒计时初始值(s)</span></span><br><span class="line">  <span class="keyword">constructor</span>(countdown) &#123;</span><br><span class="line">    <span class="keyword">this</span>.lastTime = <span class="number">0</span></span><br><span class="line">    <span class="keyword">this</span>.startTime = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">this</span>.countdown = countdown</span><br><span class="line">    <span class="keyword">this</span>.stoped = <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 开始计时</span></span><br><span class="line">  start() &#123;</span><br><span class="line">    <span class="keyword">this</span>.startTime = <span class="built_in">Date</span>.now()</span><br><span class="line">    <span class="keyword">this</span>.stoped = <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 停止计时</span></span><br><span class="line">  stop() &#123;</span><br><span class="line">    <span class="keyword">this</span>.lastTime += <span class="built_in">Date</span>.now() - <span class="keyword">this</span>.startTime</span><br><span class="line">    <span class="keyword">this</span>.stoped = <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 获取倒计时</span></span><br><span class="line">  getCountdown() &#123;</span><br><span class="line">    <span class="keyword">let</span> result</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.stoped) &#123;</span><br><span class="line">      result = <span class="keyword">this</span>.countdown - <span class="built_in">Math</span>.floor(<span class="keyword">this</span>.lastTime / <span class="number">1000</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> currentTime = <span class="built_in">Date</span>.now() - <span class="keyword">this</span>.startTime + <span class="keyword">this</span>.lastTime</span><br><span class="line">      result = <span class="keyword">this</span>.countdown - <span class="built_in">Math</span>.floor(currentTime / <span class="number">1000</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result &gt;= <span class="number">0</span> ? result : <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一但我们创建了一个<code>Countdown</code>实例，就可以随时通过调用实例的<code>getCountdown</code>方法获取当前的倒计时。在未开始<code>start</code>时，会返回倒计时总秒数；</p>
+<p>开始倒计时后，我们可以指定一定的时间间隔读取当前的倒计时，如果你想每秒更新view的倒计时，可以每秒取样，或是更小的时间间隔；</p>
+<p>停止倒计时后，我们只能读取到一个固定值，除非再次开启倒计时；</p>
+<p>倒计时为0时，将一直返回0，表示倒计时完成，可以将此视为完成标志；</p>
+<p><a href="/demo/post/2.html">查看效果</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -793,12 +994,24 @@
                 
               
 
-              <time title="创建时间：2021-01-11 21:22:27 / 修改时间：23:48:18" itemprop="dateCreated datePublished" datetime="2021-01-11T21:22:27+08:00">2021-01-11</time>
+              <time title="创建时间：2021-01-11 21:22:27" itemprop="dateCreated datePublished" datetime="2021-01-11T21:22:27+08:00">2021-01-11</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-01-27 00:41:33" itemprop="dateModified" datetime="2021-01-27T00:41:33+08:00">2021-01-27</time>
               
             
           </span>
@@ -826,7 +1039,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">530</span>
+                <span title="本文字数">4.9k</span>
               
 
               
@@ -840,7 +1053,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">1 分钟</span>
+                <span title="阅读时长">4 分钟</span>
               
             </div>
           
@@ -877,6 +1090,17 @@
 <p>找到advanced options 下的spi，选择启用</p>
 <p>2.连接</p>
 <img src="/2021/01/11/树莓派使用nodejs驱动ssd1306-128-64-oled显示屏/raspberry-pi-pin.png">
+
+<h2 id="三、点亮"><a href="#三、点亮" class="headerlink" title="三、点亮"></a>三、点亮</h2><p>在github上查找相关ssd1306的相关js驱动，找到一个可用的驱动，为防止丢失，已Fork <a href="https://github.com/yancoding/ssd1306-spi" target="_blank" rel="noopener">https://github.com/yancoding/ssd1306-spi</a></p>
+<p>index.js</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> rpio = <span class="built_in">require</span>(<span class="string">"rpio"</span>);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SSD1306</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(&#123;</span><br><span class="line">    width,</span><br><span class="line">    height,</span><br><span class="line">    resetPin,</span><br><span class="line">    dcPin,</span><br><span class="line">    spiChip,</span><br><span class="line">    rpio</span><br><span class="line">  &#125;) &#123;</span><br><span class="line">    <span class="keyword">this</span>.EXTERNAL_VCC = <span class="number">0x1</span></span><br><span class="line">    <span class="keyword">this</span>.SWITCH_CAP_VCC = <span class="number">0x2</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.SET_LOW_COLUMN = <span class="number">0x00</span></span><br><span class="line">    <span class="keyword">this</span>.SET_HIGH_COLUMN = <span class="number">0x10</span></span><br><span class="line">    <span class="keyword">this</span>.SET_MEMORY_MODE = <span class="number">0x20</span></span><br><span class="line">    <span class="keyword">this</span>.SET_COL_ADDRESS = <span class="number">0x21</span></span><br><span class="line">    <span class="keyword">this</span>.SET_PAGE_ADDRESS = <span class="number">0x22</span></span><br><span class="line">    <span class="keyword">this</span>.RIGHT_HORIZ_SCROLL = <span class="number">0x26</span></span><br><span class="line">    <span class="keyword">this</span>.LEFT_HORIZ_SCROLL = <span class="number">0x27</span></span><br><span class="line">    <span class="keyword">this</span>.VERT_AND_RIGHT_HORIZ_SCROLL = <span class="number">0x29</span></span><br><span class="line">    <span class="keyword">this</span>.VERT_AND_LEFT_HORIZ_SCROLL = <span class="number">0x2A</span></span><br><span class="line">    <span class="keyword">this</span>.DEACTIVATE_SCROLL = <span class="number">0x2E</span></span><br><span class="line">    <span class="keyword">this</span>.ACTIVATE_SCROLL = <span class="number">0x2F</span></span><br><span class="line">    <span class="keyword">this</span>.SET_START_LINE = <span class="number">0x40</span></span><br><span class="line">    <span class="keyword">this</span>.SET_CONTRAST = <span class="number">0x81</span></span><br><span class="line">    <span class="keyword">this</span>.CHARGE_PUMP = <span class="number">0x8D</span></span><br><span class="line">    <span class="keyword">this</span>.SEG_REMAP = <span class="number">0xA0</span></span><br><span class="line">    <span class="keyword">this</span>.SET_VERT_SCROLL_AREA = <span class="number">0xA3</span></span><br><span class="line">    <span class="keyword">this</span>.DISPLAY_ALL_ON_RESUME = <span class="number">0xA4</span></span><br><span class="line">    <span class="keyword">this</span>.DISPLAY_ALL_ON = <span class="number">0xA5</span></span><br><span class="line">    <span class="keyword">this</span>.NORMAL_DISPLAY = <span class="number">0xA6</span></span><br><span class="line">    <span class="keyword">this</span>.INVERT_DISPLAY = <span class="number">0xA7</span></span><br><span class="line">    <span class="keyword">this</span>.DISPLAY_OFF = <span class="number">0xAE</span></span><br><span class="line">    <span class="keyword">this</span>.DISPLAY_ON = <span class="number">0xAF</span></span><br><span class="line">    <span class="keyword">this</span>.COM_SCAN_INC = <span class="number">0xC0</span></span><br><span class="line">    <span class="keyword">this</span>.COM_SCAN_DEC = <span class="number">0xC8</span></span><br><span class="line">    <span class="keyword">this</span>.SET_DISPLAY_OFFSET = <span class="number">0xD3</span></span><br><span class="line">    <span class="keyword">this</span>.SET_COM_PINS = <span class="number">0xDA</span></span><br><span class="line">    <span class="keyword">this</span>.SET_VCOM_DETECT = <span class="number">0xDB</span></span><br><span class="line">    <span class="keyword">this</span>.SET_DISPLAY_CLOCK_DIV = <span class="number">0xD5</span></span><br><span class="line">    <span class="keyword">this</span>.SET_PRECHARGE = <span class="number">0xD9</span></span><br><span class="line">    <span class="keyword">this</span>.SET_MULTIPLEX = <span class="number">0xA8</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.MEMORY_MODE_HORIZ = <span class="number">0x00</span></span><br><span class="line">    <span class="keyword">this</span>.MEMORY_MODE_VERT = <span class="number">0x01</span></span><br><span class="line">    <span class="keyword">this</span>.MEMORY_MODE_PAGE = <span class="number">0x02</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> options = &#123;</span><br><span class="line">      gpiomem: <span class="literal">false</span>,</span><br><span class="line">      mapping: <span class="string">"gpio"</span>,</span><br><span class="line">      ...rpio</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>._screenWidth = width;</span><br><span class="line">    <span class="keyword">this</span>._screenHeight = height;</span><br><span class="line">    <span class="keyword">this</span>._resetPin = resetPin;</span><br><span class="line">    <span class="keyword">this</span>._dcPin = dcPin;</span><br><span class="line">    <span class="keyword">this</span>._spiChip = spiChip;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>._rpioOptions = options;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>._screenBuffer = Buffer.alloc((width * height) / <span class="number">8</span>).fill(<span class="number">0x00</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  init() &#123;</span><br><span class="line">    rpio.init(<span class="keyword">this</span>._rpioOptions);</span><br><span class="line">    rpio.spiBegin();</span><br><span class="line">    rpio.spiChipSelect(<span class="keyword">this</span>._spiChip);</span><br><span class="line">    <span class="comment">// 8MHz</span></span><br><span class="line">    rpio.spiSetClockDivider(<span class="number">128</span>);</span><br><span class="line"></span><br><span class="line">    rpio.open(<span class="keyword">this</span>._resetPin, rpio.OUTPUT, rpio.HIGH);</span><br><span class="line">    rpio.open(<span class="keyword">this</span>._dcPin, rpio.OUTPUT, rpio.LOW);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Init the OLED screen</span></span><br><span class="line">    rpio.msleep(<span class="number">0.01</span>);</span><br><span class="line">    <span class="keyword">this</span>.reset();</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.DISPLAY_OFF]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_DISPLAY_CLOCK_DIV, <span class="number">0x80</span>]));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Setup the right screen size</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>._screenHeight === <span class="number">64</span>) &#123;</span><br><span class="line">      <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_MULTIPLEX, <span class="number">0x3F</span>]));</span><br><span class="line">      <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_COM_PINS, <span class="number">0x12</span>]));</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_MULTIPLEX, <span class="number">0x1F</span>]));</span><br><span class="line">      <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_COM_PINS, <span class="number">0x02</span>]));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_DISPLAY_OFFSET, <span class="number">0x00</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_START_LINE | <span class="number">0x00</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.CHARGE_PUMP, <span class="number">0x14</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_MEMORY_MODE, <span class="number">0x00</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SEG_REMAP | <span class="number">0x01</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.COM_SCAN_DEC]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_CONTRAST, <span class="number">0x8f</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_PRECHARGE, <span class="number">0xf1</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_VCOM_DETECT, <span class="number">0x40</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.DISPLAY_ALL_ON_RESUME]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.NORMAL_DISPLAY]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.DISPLAY_ON]));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  clearDisplay() &#123;</span><br><span class="line">    <span class="keyword">this</span>._screenBuffer.fill(<span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  invertDisplay() &#123;</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.INVERT_DISPLAY]));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  normalDisplay() &#123;</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.NORMAL_DISPLAY]));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  draw() &#123;</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_MEMORY_MODE, <span class="keyword">this</span>.MEMORY_MODE_HORIZ]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_PAGE_ADDRESS, <span class="number">0x00</span>, <span class="number">0x07</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.SET_COL_ADDRESS, <span class="number">0x00</span>, <span class="number">0x7f</span>]));</span><br><span class="line">    <span class="keyword">this</span>.command(Buffer.from([<span class="keyword">this</span>.DISPLAY_ON]));</span><br><span class="line">    <span class="keyword">this</span>.data(<span class="keyword">this</span>._screenBuffer);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  drawPixel(x, y, on) &#123;</span><br><span class="line">    <span class="keyword">if</span> (x &lt; <span class="number">0</span> || x &gt; <span class="keyword">this</span>._screenWidth - <span class="number">1</span> || y &lt; <span class="number">0</span> || y &gt; <span class="keyword">this</span>._screenHeight - <span class="number">1</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> page = <span class="built_in">Math</span>.floor(y / <span class="number">8</span>);</span><br><span class="line">    <span class="keyword">let</span> offset = y % <span class="number">8</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (on) &#123;</span><br><span class="line">      <span class="keyword">this</span>._screenBuffer[page * <span class="keyword">this</span>._screenWidth + x] |= (<span class="number">0x1</span> &lt;&lt; offset);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>._screenBuffer[page * <span class="keyword">this</span>._screenWidth + x] &amp;= ((<span class="number">0x1</span> &lt;&lt; offset) ^ <span class="number">0xff</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  reset() &#123;</span><br><span class="line">    rpio.write(<span class="keyword">this</span>._resetPin, rpio.LOW);</span><br><span class="line">    rpio.msleep(<span class="number">10</span>);</span><br><span class="line">    rpio.write(<span class="keyword">this</span>._resetPin, rpio.HIGH);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  command(buffer) &#123;</span><br><span class="line">    rpio.spiWrite(buffer, buffer.length);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  data(buffer) &#123;</span><br><span class="line">    <span class="comment">// Set DC to high to write data</span></span><br><span class="line">    rpio.write(<span class="keyword">this</span>._dcPin, rpio.HIGH);</span><br><span class="line"></span><br><span class="line">    rpio.spiWrite(buffer, buffer.length);</span><br><span class="line"></span><br><span class="line">    rpio.write(<span class="keyword">this</span>._dcPin, rpio.LOW);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  end() &#123;</span><br><span class="line">    rpio.spiEnd();</span><br><span class="line">    rpio.close(<span class="keyword">this</span>._resetPin, rpio.PIN_RESET);</span><br><span class="line">    rpio.close(<span class="keyword">this</span>._dcPin, rpio.PIN_RESET);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = SSD1306;</span><br></pre></td></tr></table></figure>
+
+<p>使用该驱动</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 引入</span></span><br><span class="line"><span class="keyword">const</span> SSD1306 = <span class="built_in">require</span>(<span class="string">'ssd1306'</span>)</span><br><span class="line"><span class="keyword">const</span> rpio = <span class="built_in">require</span>(<span class="string">"rpio"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建实例</span></span><br><span class="line"><span class="keyword">const</span> ssd1306 = <span class="keyword">new</span> SSD1306(&#123;</span><br><span class="line">  width: <span class="number">128</span>,</span><br><span class="line">  height: <span class="number">64</span>,</span><br><span class="line">  resetPin: <span class="number">24</span>,</span><br><span class="line">  dcPin: <span class="number">23</span>,</span><br><span class="line">  spiChip: <span class="number">0</span>,</span><br><span class="line">  rpio,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化</span></span><br><span class="line">ssd1306.init()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 依次点亮每个点阵</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; <span class="number">128</span>; i++) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">1</span>; j &lt; <span class="number">64</span>; j++) &#123;</span><br><span class="line">    ssd1306.drawPixel(i, j, <span class="literal">true</span>)</span><br><span class="line">    ssd1306.draw()</span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果可以依次点亮屏幕上的每一点，说明oled一切正常，可以尝试做些其他的事情了</p>
+<h2 id="四、一个像素点是如何点亮的？"><a href="#四、一个像素点是如何点亮的？" class="headerlink" title="四、一个像素点是如何点亮的？"></a>四、一个像素点是如何点亮的？</h2><p>其实oled与大多数的点阵屏幕点亮原理都很类似，具体还要看下使用手册</p>
+<p>oled 水平共有64个共阴极，那么如果在某一像素点上加上高电平，即可点亮该点</p>
 
           
         
@@ -2121,187 +2345,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/2020/06/07/树莓派安装gammu/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yancoding">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yan blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/06/07/树莓派安装gammu/" class="post-title-link" itemprop="url">树莓派安装gammu</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-06-07 14:52:38 / 修改时间：15:26:48" itemprop="dateCreated datePublished" datetime="2020-06-07T14:52:38+08:00">2020-06-07</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">102</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">1 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install gammu</span><br></pre></td></tr></table></figure>
-
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gammu-config</span><br></pre></td></tr></table></figure>
-
-<img src="/2020/06/07/树莓派安装gammu/2020-06-07_151207.gif">
-
-<h2 id="发送短信"><a href="#发送短信" class="headerlink" title="发送短信"></a>发送短信</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gammu sendsms TEXT 19965412404 -TEXT <span class="string">'from raspberrypi(测试短信)'</span> -unicode</span><br></pre></td></tr></table></figure>
-
-<img src="/2020/06/07/树莓派安装gammu/2020-06-07_152304.gif">
-
-<img src="/2020/06/07/树莓派安装gammu/2020-06-07_152603.gif">
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2350,7 +2393,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-count">42</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2498,7 +2541,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">42k</span>
+    <span title="站点总字数">48k</span>
   
 
   
@@ -2509,7 +2552,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">38 分钟</span>
+    <span title="站点阅读时长">44 分钟</span>
   
 </div>
 

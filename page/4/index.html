@@ -259,7 +259,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">41</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">42</span></a>
 
   </li>
         
@@ -369,6 +369,218 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/2019/05/25/hexo创建自定义页面/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yancoding">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yan blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/25/hexo创建自定义页面/" class="post-title-link" itemprop="url">hexo创建自定义页面</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-25 11:43:44" itemprop="dateCreated datePublished" datetime="2019-05-25T11:43:44+08:00">2019-05-25</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-21 23:07:08" itemprop="dateModified" datetime="2019-06-21T23:07:08+08:00">2019-06-21</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">889</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="为什么要在-hexo-中使用自定义页面"><a href="#为什么要在-hexo-中使用自定义页面" class="headerlink" title="为什么要在 hexo 中使用自定义页面"></a>为什么要在 hexo 中使用自定义页面</h2><p>在hexo中我们并不是只是用来写文字文章，有时我们也想自定义一些页面，这些页面是完全独立于主题样式的，比如在hexo中放上自己用html写的个人简历，又或是自己的一些前端Demo。</p>
+<h2 id="如何设置自定义页面"><a href="#如何设置自定义页面" class="headerlink" title="如何设置自定义页面"></a>如何设置自定义页面</h2><p>默认情况下source目录下的post, page等都会进行主题模板的渲染，生成相应的静态页面，但hexo中也提供了相应的配置，阻止模板渲染，实现自定义页面</p>
+<p>这里我们想放上我们的静态Demo，这里我们先新建一个页面用来存放我们的demo list</p>
+<p><code>hexo new page &#39;demo&#39;</code></p>
+<p>新建后，source目录下添加了一个demo目录，demo目录下还有一个index目录和index.md文件，我将index目录名命名为list，用来存放我的demos，index.md用来存放相应的demo链接。</p>
+<h3 id="1-通过-layout-false"><a href="#1-通过-layout-false" class="headerlink" title="1.通过 layout: false"></a>1.通过 <strong>layout: false</strong></h3><p>如果我们想让index.html变成独立页面，我们只需在文件的头部添加一下内容：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">layout: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<p>然后这个页面在 <code>hexo generate</code> 时变不会进行渲染，而是直接移动到public 目录下</p>
+<p>这个方法有一定的局限性，页面过多时就不太适合了，每个都添加也不现实</p>
+<h3 id="2-通过-skip-render"><a href="#2-通过-skip-render" class="headerlink" title="2.通过 skip_render"></a>2.通过 <strong>skip_render</strong></h3><p>通过配置文件 <strong>_config.yml</strong> 的 <strong>skip_render</strong> 选项</p>
+<p>例如我们想要跳过source/demo/list目录下的所有文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">skip_render: demo/list/*</span><br></pre></td></tr></table></figure>
+
+<p>如果想要跳过source/demo/list目录下的所有文件及其子文件夹的所有文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">skip_render: demo/list/**</span><br></pre></td></tr></table></figure>
+
+<p>当然也可以指定某一文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">skip_render: demo/list/test.html</span><br></pre></td></tr></table></figure>
+
+<p>多个指定文件或路径时</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">skip_render: </span><br><span class="line">- demo/list/test.html</span><br><span class="line">- demo/list/demo1/**</span><br></pre></td></tr></table></figure>
+
+<p><strong>注：</strong> 修改配置文件后，并不会立即生效，需要重启服务，重新生成静态页面才行</p>
+<p>参考资料：</p>
+<ul>
+<li><a href="http://blog.fangchengjin.cn/hexo-custom-page.html" target="_blank" rel="noopener">Hexo博客跳过渲染，创建自定义网页</a></li>
+<li><a href="http://xchb.work/2017/04/08/hexo%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6-skip-render-%E9%85%8D%E7%BD%AE/" target="_blank" rel="noopener">hexo忽略文件(skip_render)配置</a></li>
+<li><a href="https://hexo.io/docs/configuration#Directory" target="_blank" rel="noopener">hexo文档-Configuration</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -2250,225 +2462,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/2018/01/14/树莓派3B开箱/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yancoding">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yan blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/01/14/树莓派3B开箱/" class="post-title-link" itemprop="url">树莓派3B开箱</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-01-14 19:58:28" itemprop="dateCreated datePublished" datetime="2018-01-14T19:58:28+08:00">2018-01-14</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-06-21 23:07:08" itemprop="dateModified" datetime="2019-06-21T23:07:08+08:00">2019-06-21</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">415</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">1 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="开箱清单"><a href="#开箱清单" class="headerlink" title="开箱清单"></a>开箱清单</h2><ul>
-<li>树莓派3代B型</li>
-<li>2.5A带开关5V电源</li>
-<li>闪迪32G内存卡</li>
-<li>散热片一套</li>
-<li>铝合金外壳一个</li>
-</ul>
-<h2 id="开箱组装"><a href="#开箱组装" class="headerlink" title="开箱组装"></a>开箱组装</h2><h3 id="树莓派3代，B型，E14中国版"><a href="#树莓派3代，B型，E14中国版" class="headerlink" title="树莓派3代，B型，E14中国版"></a>树莓派3代，B型，E14中国版</h3><img src="/2018/01/14/树莓派3B开箱/IMG_20180110_143901.jpg">
-
-<p>3B的外包装盒依然延续上一代简洁大方的特点，并突出板载WiFi和蓝牙功能</p>
-<h3 id="5V-2-5A电源"><a href="#5V-2-5A电源" class="headerlink" title="5V 2.5A电源"></a>5V 2.5A电源</h3><p>以前玩树莓派都是直接用手机电源，有些电源输出电流过小，会造成树莓派不稳定，树莓派3B推荐使用2.5A的电源（这个电源带开关，用起来还是挺方便的，不用频繁拔插电源，也延长了电源口的使用寿命，话说这次买的电源质量挺好的，做工很实）</p>
-<img src="/2018/01/14/树莓派3B开箱/IMG_20180110_143751.jpg">
-
-<h3 id="闪迪32G-class10-内存卡"><a href="#闪迪32G-class10-内存卡" class="headerlink" title="闪迪32G class10 内存卡"></a>闪迪32G class10 内存卡</h3><p>树莓派内存卡一般用8 ~ 64G（那我为什么要用32G呢，当然是为了节约成本，这个性价比最高，太大了也没有多大的用途）</p>
-<img src="/2018/01/14/树莓派3B开箱/IMG_20180110_143936.jpg">
-
-<h3 id="两铜一铝散热片"><a href="#两铜一铝散热片" class="headerlink" title="两铜一铝散热片"></a>两铜一铝散热片</h3><p>树莓派背面内存颗粒散热片还带有树莓派的logo，很不错</p>
-<img src="/2018/01/14/树莓派3B开箱/IMG_20180110_143924.jpg">
-
-<h3 id="铝合金外壳"><a href="#铝合金外壳" class="headerlink" title="铝合金外壳"></a>铝合金外壳</h3><img src="/2018/01/14/树莓派3B开箱/IMG_20180110_144613.jpg">
-
-<p>树莓派3已经发售很久了，可为什么现在才买呢，嗯嗯，原因就是它，金属质感的外表，无可挑剔的做工，简直完美</p>
-<h3 id="防静电包装"><a href="#防静电包装" class="headerlink" title="防静电包装"></a>防静电包装</h3><img src="/2018/01/14/树莓派3B开箱/IMG_20180110_144444.jpg">
-
-<img src="/2018/01/14/树莓派3B开箱/IMG_20180110_144522.jpg">
-
-<img src="/2018/01/14/树莓派3B开箱/IMG_20180110_144539.jpg">
-
-<h3 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h3><img src="/2018/01/14/树莓派3B开箱/IMG_20180110_145536.jpg">
-
-<h3 id="南桥和CPU"><a href="#南桥和CPU" class="headerlink" title="南桥和CPU"></a>南桥和CPU</h3><img src="/2018/01/14/树莓派3B开箱/IMG_20180110_145709.jpg">
-
-<p>外壳的做工很好,板子只有一颗固定螺丝</p>
-<img src="/2018/01/14/树莓派3B开箱/IMG_20180110_150530.jpg">
-
-<p>安装完成</p>
-<img src="/2018/01/14/树莓派3B开箱/IMG_20180110_150808.jpg">
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2517,7 +2510,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-count">42</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2665,7 +2658,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">42k</span>
+    <span title="站点总字数">48k</span>
   
 
   
@@ -2676,7 +2669,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">38 分钟</span>
+    <span title="站点阅读时长">44 分钟</span>
   
 </div>
 
