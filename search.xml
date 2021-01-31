@@ -42,31 +42,6 @@
       </tags>
   </entry>
   <entry>
-    <title>MongoDB笔记</title>
-    <url>/2019/07/06/MongoDB%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h2 id="安装MongoDB服务"><a href="#安装MongoDB服务" class="headerlink" title="安装MongoDB服务"></a>安装MongoDB服务</h2><p>这里下载的时MongoDB 4 Windows社区版本，4之后的版本跟之前的有很大的不同，不需要自行指定数据库和日志目录了，这里安装过程只修改了安装目录，从默认的c盘自定义为d盘，其他均为默认选项，一并安装了compass，这里大多人都不推荐安装compass，说是会卡住，这里安装确实看起来像是卡住了，但就如安装信息说的这里可能需要 a few minutes，事实上这里安装进度不变保持了10分钟左右就安装好了，所以不用太担心，只是网络原因，假死而已</p>
-<p>当然为了方便连接 MongoDB 实例，记得要将MongoDB安装目录下的bin目录添加到系统变量，这样我们就可以直接在shell 里直接输入 <code>mongo</code> 即可连接到MongoDB服务</p>
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h2 id="mongo"><a href="#mongo" class="headerlink" title="mongo"></a>mongo</h2><p>连接到本地的 MongoDB 实例，使用默认服务端口 <code>27017</code></p>
-<p>如果修改了本地 MongoDB 实例默认的服务端口，连接时我们也可以通过 <code>--port</code> 参数指定端口</p>
-<p>例如</p>
-<p><code>mongo --port 28015</code></p>
-<h3 id="show-dbs"><a href="#show-dbs" class="headerlink" title="show dbs"></a>show dbs</h3><p>查看所有的数据库</p>
-<h3 id="db"><a href="#db" class="headerlink" title="db"></a>db</h3><p>查看当前数据库</p>
-<h3 id="use-DATABASE-NAME"><a href="#use-DATABASE-NAME" class="headerlink" title="use DATABASE_NAME"></a>use DATABASE_NAME</h3><p>切换数据库（不论存在与否）</p>
-<h2 id="db-DATABASE-NAME-insert"><a href="#db-DATABASE-NAME-insert" class="headerlink" title="db.DATABASE_NAME.insert()"></a>db.DATABASE_NAME.insert()</h2><p>向 DATABASE_NAME 数据库插入数据</p>
-<p>例如</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">db.test.insert(&#123;&quot;description&quot;: &quot;这是一条测试数据&quot;&#125;)</span><br></pre></td></tr></table></figure>
-
-<p><strong>注：</strong> 该命令不需要切换数据库</p>
-<h3 id="db-dropDatabase"><a href="#db-dropDatabase" class="headerlink" title="db.dropDatabase()"></a>db.dropDatabase()</h3><p>删除当前数据库</p>
-<h3 id="db-createCollection-name-options"><a href="#db-createCollection-name-options" class="headerlink" title="db.createCollection(name[,options])"></a>db.createCollection(name[,options])</h3><p>在当前数据库创建集合 COLLECTION_NAME</p>
-<h3 id="db-COLLECTION-NAME-drop"><a href="#db-COLLECTION-NAME-drop" class="headerlink" title="db.COLLECTION_NAME.drop()"></a>db.COLLECTION_NAME.drop()</h3><p>在当前数据库删除集合 COLLECTION_NAME</p>
-]]></content>
-      <tags>
-        <tag>MongoDB</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>BitLocker加密分区</title>
     <url>/2019/05/24/BitLocker%E5%8A%A0%E5%AF%86%E5%88%86%E5%8C%BA/</url>
     <content><![CDATA[<h2 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h2><p>打开磁盘管理</p>
@@ -122,6 +97,31 @@
 ]]></content>
       <tags>
         <tag>windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MongoDB笔记</title>
+    <url>/2019/07/06/MongoDB%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="安装MongoDB服务"><a href="#安装MongoDB服务" class="headerlink" title="安装MongoDB服务"></a>安装MongoDB服务</h2><p>这里下载的时MongoDB 4 Windows社区版本，4之后的版本跟之前的有很大的不同，不需要自行指定数据库和日志目录了，这里安装过程只修改了安装目录，从默认的c盘自定义为d盘，其他均为默认选项，一并安装了compass，这里大多人都不推荐安装compass，说是会卡住，这里安装确实看起来像是卡住了，但就如安装信息说的这里可能需要 a few minutes，事实上这里安装进度不变保持了10分钟左右就安装好了，所以不用太担心，只是网络原因，假死而已</p>
+<p>当然为了方便连接 MongoDB 实例，记得要将MongoDB安装目录下的bin目录添加到系统变量，这样我们就可以直接在shell 里直接输入 <code>mongo</code> 即可连接到MongoDB服务</p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h2 id="mongo"><a href="#mongo" class="headerlink" title="mongo"></a>mongo</h2><p>连接到本地的 MongoDB 实例，使用默认服务端口 <code>27017</code></p>
+<p>如果修改了本地 MongoDB 实例默认的服务端口，连接时我们也可以通过 <code>--port</code> 参数指定端口</p>
+<p>例如</p>
+<p><code>mongo --port 28015</code></p>
+<h3 id="show-dbs"><a href="#show-dbs" class="headerlink" title="show dbs"></a>show dbs</h3><p>查看所有的数据库</p>
+<h3 id="db"><a href="#db" class="headerlink" title="db"></a>db</h3><p>查看当前数据库</p>
+<h3 id="use-DATABASE-NAME"><a href="#use-DATABASE-NAME" class="headerlink" title="use DATABASE_NAME"></a>use DATABASE_NAME</h3><p>切换数据库（不论存在与否）</p>
+<h2 id="db-DATABASE-NAME-insert"><a href="#db-DATABASE-NAME-insert" class="headerlink" title="db.DATABASE_NAME.insert()"></a>db.DATABASE_NAME.insert()</h2><p>向 DATABASE_NAME 数据库插入数据</p>
+<p>例如</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">db.test.insert(&#123;&quot;description&quot;: &quot;这是一条测试数据&quot;&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>注：</strong> 该命令不需要切换数据库</p>
+<h3 id="db-dropDatabase"><a href="#db-dropDatabase" class="headerlink" title="db.dropDatabase()"></a>db.dropDatabase()</h3><p>删除当前数据库</p>
+<h3 id="db-createCollection-name-options"><a href="#db-createCollection-name-options" class="headerlink" title="db.createCollection(name[,options])"></a>db.createCollection(name[,options])</h3><p>在当前数据库创建集合 COLLECTION_NAME</p>
+<h3 id="db-COLLECTION-NAME-drop"><a href="#db-COLLECTION-NAME-drop" class="headerlink" title="db.COLLECTION_NAME.drop()"></a>db.COLLECTION_NAME.drop()</h3><p>在当前数据库删除集合 COLLECTION_NAME</p>
+]]></content>
+      <tags>
+        <tag>MongoDB</tag>
       </tags>
   </entry>
   <entry>
@@ -195,67 +195,6 @@
       </tags>
   </entry>
   <entry>
-    <title>centos安装socks5服务</title>
-    <url>/2020/05/10/centos%E5%AE%89%E8%A3%85socks5%E6%9C%8D%E5%8A%A1/</url>
-    <content><![CDATA[<h2 id="1-安装依赖"><a href="#1-安装依赖" class="headerlink" title="1.安装依赖"></a>1.安装依赖</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum -y install gcc gcc-c++ automake make pam-devel openldap-deve</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-安装socks5"><a href="#2-安装socks5" class="headerlink" title="2.安装socks5"></a>2.安装socks5</h2><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget https://jaist.dl.sourceforge.net/project/ss5/ss5/3.8.9-8/ss5-3.8.9-8.tar.gz</span><br></pre></td></tr></table></figure>
-
-<h3 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">tar -zxvf ss5-3.8.9-8.tar.gz</span><br></pre></td></tr></table></figure>
-
-<h3 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd ss5-3.8.9</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-启动服务"><a href="#3-启动服务" class="headerlink" title="3.启动服务"></a>3.启动服务</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">service ss5 start</span><br></pre></td></tr></table></figure>
-
-<p>echo “env: /etc/init.d/ss5: Permission denied”</p>
-<p>修改权限后再次启动</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chmod a+x /etc/init.d/ss5</span><br><span class="line">service ss5 start</span><br></pre></td></tr></table></figure>
-
-<p>此时服务已启动，但还不能正常使用，需要进行服务配置</p>
-<h2 id="4-服务配置"><a href="#4-服务配置" class="headerlink" title="4.服务配置"></a>4.服务配置</h2><p>找到 <code>auth</code> 和 <code>permit</code>, 取消注释，如下</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> ///////////////////////////////////////////////////////////////////////////////////</span></span><br><span class="line"><span class="meta">#</span><span class="bash">       SHost           SPort           Authentication</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">auth    0.0.0.0/0               -               -</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> /////////////////////////////////////////////////////////////////////////////////////////////////</span></span><br><span class="line"><span class="meta">#</span><span class="bash">      Auth     SHost           SPort   DHost           DPort   Fixup   Group   Band    ExpDate</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">permit -        0.0.0.0/0       -       0.0.0.0/0       -       -       -       -       -</span><br></pre></td></tr></table></figure>
-
-<p>重启服务</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">service ss5 restart</span><br></pre></td></tr></table></figure>
-
-<p>socks5默认服务端口为<code>1080</code>, 查看系统端口列表</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">firewall-cmd --zone=public --list-ports</span><br></pre></td></tr></table></figure>
-
-<p>如果还没有开启, 则开启1080端口</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">firewall-cmd --add-port=1080/tcp --permanent</span><br><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
-
-<p>至此，服务已可以连接，任何用户均可连接</p>
-<h2 id="5-配置用户"><a href="#5-配置用户" class="headerlink" title="5.配置用户"></a>5.配置用户</h2><p>编辑</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vi /etc/opt/ss5/ss5.conf</span><br></pre></td></tr></table></figure>
-
-<p>找到 <code>auth</code> 和 <code>permit</code>, 修改如下</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> ///////////////////////////////////////////////////////////////////////////////////</span></span><br><span class="line"><span class="meta">#</span><span class="bash">       SHost           SPort           Authentication</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">auth    0.0.0.0/0               -               u</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> /////////////////////////////////////////////////////////////////////////////////////////////////</span></span><br><span class="line"><span class="meta">#</span><span class="bash">      Auth     SHost           SPort   DHost           DPort   Fixup   Group   Band    ExpDate</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">permit u        0.0.0.0/0       -       0.0.0.0/0       -       -       -       -       -</span><br></pre></td></tr></table></figure>
-
-<p>编辑</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim /etc/opt/ss5/ss5.passwd</span><br></pre></td></tr></table></figure>
-
-<p>添加一行用户，账户与密码空格隔开</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">username password</span><br></pre></td></tr></table></figure>
-
-<p>重启服务</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">service ss5 restart</span><br></pre></td></tr></table></figure>
-
-<p>此时在连接代理服务则需要账户密码才可连接成功</p>
-<p>参考文章</p>
-<ul>
-<li><a href="https://blog.csdn.net/zjiang1994/article/details/74925039" target="_blank" rel="noopener">CentOS7 配置SOCKS5代理服务</a></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>cenos7</tag>
-        <tag>socks5</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>centos 安装 nginx</title>
     <url>/2020/04/04/centos-%E5%AE%89%E8%A3%85-nginx/</url>
     <content><![CDATA[<h2 id="1-系统版本"><a href="#1-系统版本" class="headerlink" title="1, 系统版本"></a>1, 系统版本</h2><p>当前安装的系统版本为：CentOS 7 x64 并且没有 SELinux</p>
@@ -317,6 +256,67 @@
 <p>end：表示过渡从第一步时间的结束开始(不会直接看到过渡效果)</p>
 <p><strong>注意：</strong> transition-delay 将包含于步进函数的第一步，即第一步的持续时间为均分时间加上延迟时间</p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>centos安装socks5服务</title>
+    <url>/2020/05/10/centos%E5%AE%89%E8%A3%85socks5%E6%9C%8D%E5%8A%A1/</url>
+    <content><![CDATA[<h2 id="1-安装依赖"><a href="#1-安装依赖" class="headerlink" title="1.安装依赖"></a>1.安装依赖</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum -y install gcc gcc-c++ automake make pam-devel openldap-deve</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-安装socks5"><a href="#2-安装socks5" class="headerlink" title="2.安装socks5"></a>2.安装socks5</h2><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget https://jaist.dl.sourceforge.net/project/ss5/ss5/3.8.9-8/ss5-3.8.9-8.tar.gz</span><br></pre></td></tr></table></figure>
+
+<h3 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">tar -zxvf ss5-3.8.9-8.tar.gz</span><br></pre></td></tr></table></figure>
+
+<h3 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd ss5-3.8.9</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-启动服务"><a href="#3-启动服务" class="headerlink" title="3.启动服务"></a>3.启动服务</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">service ss5 start</span><br></pre></td></tr></table></figure>
+
+<p>echo “env: /etc/init.d/ss5: Permission denied”</p>
+<p>修改权限后再次启动</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chmod a+x /etc/init.d/ss5</span><br><span class="line">service ss5 start</span><br></pre></td></tr></table></figure>
+
+<p>此时服务已启动，但还不能正常使用，需要进行服务配置</p>
+<h2 id="4-服务配置"><a href="#4-服务配置" class="headerlink" title="4.服务配置"></a>4.服务配置</h2><p>找到 <code>auth</code> 和 <code>permit</code>, 取消注释，如下</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> ///////////////////////////////////////////////////////////////////////////////////</span></span><br><span class="line"><span class="meta">#</span><span class="bash">       SHost           SPort           Authentication</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">auth    0.0.0.0/0               -               -</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> /////////////////////////////////////////////////////////////////////////////////////////////////</span></span><br><span class="line"><span class="meta">#</span><span class="bash">      Auth     SHost           SPort   DHost           DPort   Fixup   Group   Band    ExpDate</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">permit -        0.0.0.0/0       -       0.0.0.0/0       -       -       -       -       -</span><br></pre></td></tr></table></figure>
+
+<p>重启服务</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">service ss5 restart</span><br></pre></td></tr></table></figure>
+
+<p>socks5默认服务端口为<code>1080</code>, 查看系统端口列表</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">firewall-cmd --zone=public --list-ports</span><br></pre></td></tr></table></figure>
+
+<p>如果还没有开启, 则开启1080端口</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">firewall-cmd --add-port=1080/tcp --permanent</span><br><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+
+<p>至此，服务已可以连接，任何用户均可连接</p>
+<h2 id="5-配置用户"><a href="#5-配置用户" class="headerlink" title="5.配置用户"></a>5.配置用户</h2><p>编辑</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vi /etc/opt/ss5/ss5.conf</span><br></pre></td></tr></table></figure>
+
+<p>找到 <code>auth</code> 和 <code>permit</code>, 修改如下</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> ///////////////////////////////////////////////////////////////////////////////////</span></span><br><span class="line"><span class="meta">#</span><span class="bash">       SHost           SPort           Authentication</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">auth    0.0.0.0/0               -               u</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> /////////////////////////////////////////////////////////////////////////////////////////////////</span></span><br><span class="line"><span class="meta">#</span><span class="bash">      Auth     SHost           SPort   DHost           DPort   Fixup   Group   Band    ExpDate</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">permit u        0.0.0.0/0       -       0.0.0.0/0       -       -       -       -       -</span><br></pre></td></tr></table></figure>
+
+<p>编辑</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim /etc/opt/ss5/ss5.passwd</span><br></pre></td></tr></table></figure>
+
+<p>添加一行用户，账户与密码空格隔开</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">username password</span><br></pre></td></tr></table></figure>
+
+<p>重启服务</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">service ss5 restart</span><br></pre></td></tr></table></figure>
+
+<p>此时在连接代理服务则需要账户密码才可连接成功</p>
+<p>参考文章</p>
+<ul>
+<li><a href="https://blog.csdn.net/zjiang1994/article/details/74925039" target="_blank" rel="noopener">CentOS7 配置SOCKS5代理服务</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>cenos7</tag>
+        <tag>socks5</tag>
+      </tags>
   </entry>
   <entry>
     <title>frp反向代理</title>
@@ -661,15 +661,6 @@
       </tags>
   </entry>
   <entry>
-    <title>人脸识别face-api.js使用</title>
-    <url>/2020/06/12/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%ABface-api-js%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p><a href="https://github.com/justadudewhohacks/face-api.js" target="_blank" rel="noopener">face-api.js</a>基于 <a href="https://github.com/tensorflow/tfjs" target="_blank" rel="noopener">tensorflow.js</a></p>
-<h2 id="browser端"><a href="#browser端" class="headerlink" title="browser端"></a>browser端</h2>]]></content>
-      <tags>
-        <tag>js</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>window实体机ubuntu系统安装</title>
     <url>/2020/05/12/window%E5%AE%9E%E4%BD%93%E6%9C%BAubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[<h2 id="情形"><a href="#情形" class="headerlink" title="情形"></a>情形</h2><ul>
@@ -703,15 +694,13 @@
       </tags>
   </entry>
   <entry>
-    <title>小程序ios环境下finally报错</title>
-    <url>/2021/01/16/%E5%B0%8F%E7%A8%8B%E5%BA%8Fios%E7%8E%AF%E5%A2%83%E4%B8%8Bfinally%E6%8A%A5%E9%94%99/</url>
-    <content><![CDATA[<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>判断是否存在finally方法，不存在则在Promise原型上添加finally方法</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 兼容ios真机环境下Promise对象不存在finally方法</span></span><br><span class="line"><span class="keyword">if</span> (!<span class="built_in">Promise</span>.prototype.finally) &#123;</span><br><span class="line">  <span class="built_in">Promise</span>.prototype.finally = <span class="function"><span class="keyword">function</span>(<span class="params">callback</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">      callback &amp;&amp; callback(res)</span><br><span class="line">    &#125;, error =&gt; &#123;</span><br><span class="line">      callback &amp;&amp; callback(error)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Promise finally实现</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.prototype.finally = <span class="function"><span class="keyword">function</span> (<span class="params">callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> P = <span class="keyword">this</span>.constructor;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.then(</span><br><span class="line">    value  =&gt; P.resolve(callback()).then(<span class="function"><span class="params">()</span> =&gt;</span> value),</span><br><span class="line">    reason =&gt; P.resolve(callback()).then(<span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="keyword">throw</span> reason &#125;)</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-]]></content>
+    <title>人脸识别face-api.js使用</title>
+    <url>/2020/06/12/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%ABface-api-js%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p><a href="https://github.com/justadudewhohacks/face-api.js" target="_blank" rel="noopener">face-api.js</a>基于 <a href="https://github.com/tensorflow/tfjs" target="_blank" rel="noopener">tensorflow.js</a></p>
+<h2 id="browser端"><a href="#browser端" class="headerlink" title="browser端"></a>browser端</h2>]]></content>
+      <tags>
+        <tag>js</tag>
+      </tags>
   </entry>
   <entry>
     <title>前端如何实现准确的倒计时效果</title>
@@ -767,6 +756,17 @@
       <tags>
         <tag>html</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>小程序ios环境下finally报错</title>
+    <url>/2021/01/16/%E5%B0%8F%E7%A8%8B%E5%BA%8Fios%E7%8E%AF%E5%A2%83%E4%B8%8Bfinally%E6%8A%A5%E9%94%99/</url>
+    <content><![CDATA[<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>判断是否存在finally方法，不存在则在Promise原型上添加finally方法</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 兼容ios真机环境下Promise对象不存在finally方法</span></span><br><span class="line"><span class="keyword">if</span> (!<span class="built_in">Promise</span>.prototype.finally) &#123;</span><br><span class="line">  <span class="built_in">Promise</span>.prototype.finally = <span class="function"><span class="keyword">function</span>(<span class="params">callback</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">      callback &amp;&amp; callback(res)</span><br><span class="line">    &#125;, error =&gt; &#123;</span><br><span class="line">      callback &amp;&amp; callback(error)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Promise finally实现</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.prototype.finally = <span class="function"><span class="keyword">function</span> (<span class="params">callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> P = <span class="keyword">this</span>.constructor;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.then(</span><br><span class="line">    value  =&gt; P.resolve(callback()).then(<span class="function"><span class="params">()</span> =&gt;</span> value),</span><br><span class="line">    reason =&gt; P.resolve(callback()).then(<span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="keyword">throw</span> reason &#125;)</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+]]></content>
   </entry>
   <entry>
     <title>提交next主题到站点仓库</title>
@@ -1068,24 +1068,28 @@
       </tags>
   </entry>
   <entry>
-    <title>树莓派安装gammu</title>
-    <url>/2020/06/07/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85gammu/</url>
-    <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install gammu</span><br></pre></td></tr></table></figure>
+    <title>树莓派如何关闭显示输出？</title>
+    <url>/2021/01/31/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%A6%82%E4%BD%95%E5%85%B3%E9%97%AD%E6%98%BE%E7%A4%BA%E8%BE%93%E5%87%BA%EF%BC%9F/</url>
+    <content><![CDATA[<h2 id="一、尝试"><a href="#一、尝试" class="headerlink" title="一、尝试"></a>一、尝试</h2><p>树莓派通过hdmi连接了一块1920*1080的屏幕，平时时竖屏放置，用来显示日历和其他一些信息，树莓派7*24小时运行, 导致屏幕一直处于工作状态，所以我打算只在一定的时间内进行显示输出</p>
+<p>在百度上搜索了如何休眠之类的方法，找到可以通过<code>xset</code>的相关命令使树莓派进入休眠或是唤醒</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// 强制进入休眠</span><br><span class="line">sudo xset dpms force off</span><br><span class="line">// 强制唤醒</span><br><span class="line">sudo xset dpms force on</span><br></pre></td></tr></table></figure>
 
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gammu-config</span><br></pre></td></tr></table></figure>
+<p>但是在我尝试强制进入休眠时，屏幕只是短暂黑了下屏，再次恢复正常，并不行，不知道哪里出了问题，尝试重新写入系统镜像，用一个新系统试下</p>
+<p>新系统启动后屏幕变回了默认的横屏模式，神奇的事发生了，这时再执行强制进入休眠，竟然成功了，当鼠标移动可以正常唤醒，可是当我重启设置了启动时，旋转90deg时，休眠命令再次失效了，多次在横屏竖屏切换尝试了几次，竖屏下都不行，只有横屏下休眠命令可以正常工作，看来是个bug（似乎之前竖屏下，自动休眠就没有正常工作过，应该也是这个原因导致的）</p>
+<p>虽然在横屏模式下可以实现命令休眠，但是发现屏幕并没有熄灭，好像只是换了一个黑色的屏保，这点与预期有差距，我们是想让显示屏熄灭，进入待机状态</p>
+<p>之后又百度了很久，没有发现什么好的办法。只得转到google上继续查找，最终找到了turn off hdmi的相关命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// 关闭显示输出</span><br><span class="line">sudo vcgencmd display_power 0</span><br><span class="line">// 开启显示输出</span><br><span class="line">sudo vcgencmd display_power 1</span><br></pre></td></tr></table></figure>
 
-<img src="/2020/06/07/树莓派安装gammu/2020-06-07_151207.gif">
+<p>运行关闭显示输出命令后，屏幕熄灭、进入待机状态，此时树莓派依然是正常工作状态，如果你通过vnc连接树莓派，会发现一切如常，说明这个命令是在硬件层面关闭了显示输出</p>
+<h2 id="二、定时任务"><a href="#二、定时任务" class="headerlink" title="二、定时任务"></a>二、定时任务</h2><p>编辑定时任务</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo crontab -e</span><br></pre></td></tr></table></figure>
 
-<h2 id="发送短信"><a href="#发送短信" class="headerlink" title="发送短信"></a>发送短信</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gammu sendsms TEXT 19965412404 -TEXT <span class="string">'from raspberrypi(测试短信)'</span> -unicode</span><br></pre></td></tr></table></figure>
+<p>添加</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 每天7点开启显示</span><br><span class="line">0 7 * * * vcgencmd display_power 1</span><br><span class="line"></span><br><span class="line"># 周一至周五每天8点关闭显示</span><br><span class="line">0 8 * * 1-5 vcgencmd display_power 0</span><br><span class="line"></span><br><span class="line"># 周一至周五每天19-30开启显示</span><br><span class="line">30 19 * * 1-5 vcgencmd display_power 1</span><br><span class="line"></span><br><span class="line"># 每天1点关闭显示</span><br><span class="line">0 1 * * * vcgencmd display_power 0</span><br></pre></td></tr></table></figure>
 
-<img src="/2020/06/07/树莓派安装gammu/2020-06-07_152304.gif">
-
-<img src="/2020/06/07/树莓派安装gammu/2020-06-07_152603.gif">
 ]]></content>
       <tags>
         <tag>树莓派</tag>
-        <tag>EC20模块</tag>
-        <tag>gammu</tag>
       </tags>
   </entry>
   <entry>
@@ -1122,6 +1126,44 @@
       </tags>
   </entry>
   <entry>
+    <title>树莓派安装gammu</title>
+    <url>/2020/06/07/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85gammu/</url>
+    <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install gammu</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gammu-config</span><br></pre></td></tr></table></figure>
+
+<img src="/2020/06/07/树莓派安装gammu/2020-06-07_151207.gif">
+
+<h2 id="发送短信"><a href="#发送短信" class="headerlink" title="发送短信"></a>发送短信</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gammu sendsms TEXT 19965412404 -TEXT <span class="string">'from raspberrypi(测试短信)'</span> -unicode</span><br></pre></td></tr></table></figure>
+
+<img src="/2020/06/07/树莓派安装gammu/2020-06-07_152304.gif">
+
+<img src="/2020/06/07/树莓派安装gammu/2020-06-07_152603.gif">
+]]></content>
+      <tags>
+        <tag>树莓派</tag>
+        <tag>EC20模块</tag>
+        <tag>gammu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派安装mongodb</title>
+    <url>/2019/07/17/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85mongodb/</url>
+    <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install mongodb</span><br></pre></td></tr></table></figure>
+
+<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><p>用以上命令安装完成后，执行 <code>mongo</code> 命令，并没有连接成功</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MongoDB shell version: 2.4.14</span><br><span class="line">connecting to: test</span><br><span class="line">Wed Jul 17 22:40:55.765 Error: couldn&apos;t connect to server 127.0.0.1:27017 at src/mongo/shell/mongo.js:145</span><br><span class="line">exception: connect failed</span><br></pre></td></tr></table></figure>
+
+<p>查看安装打印的信息中，有这么一条 <code>无法创建主目录&quot;/var/lib/mongodb&quot;</code>, 说明 mongodb 缺少权限</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo service mongodb stop</span><br><span class="line">sudo chown -R mongodb:mongodb /var/lib/mongodb</span><br><span class="line">sudo service mongodb start</span><br></pre></td></tr></table></figure>
+
+<p>修改目录权限后再次执行 <code>mongo</code> 命令，显示连接成功</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">MongoDB shell version: 2.4.14</span><br><span class="line">connecting to: test</span><br><span class="line">Welcome to the MongoDB shell.</span><br><span class="line">For interactive help, type "help".</span><br><span class="line">For more comprehensive documentation, see</span><br><span class="line">        http://docs.mongodb.org/</span><br><span class="line">Questions? Try the support group</span><br><span class="line">        http://groups.google.com/group/mongodb-user</span><br><span class="line">Server has startup warnings:</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten]</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten] ** NOTE: This is a 32 bit MongoDB binary.</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten] **       32 bit builds are limited to less than 2GB of data (or less with --journal).</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten] **       See http://dochub.mongodb.org/core/32bit</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten]</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"></span></span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>MongoDB</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>树莓派屏幕旋转和触摸旋转</title>
     <url>/2020/08/22/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%B1%8F%E5%B9%95%E6%97%8B%E8%BD%AC%E5%92%8C%E8%A7%A6%E6%91%B8%E6%97%8B%E8%BD%AC/</url>
     <content><![CDATA[<h2 id="一、屏幕"><a href="#一、屏幕" class="headerlink" title="一、屏幕"></a>一、屏幕</h2><p>这是一块<code>DFROBOT</code>产的5’’ 800x480 TFT 电容屏</p>
@@ -1132,7 +1174,7 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim /boot/config.txt</span><br></pre></td></tr></table></figure>
 
 <p>添加</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 默认</span></span><br><span class="line">display_rotate=0</span><br><span class="line"><span class="comment"># 90deg</span></span><br><span class="line">display_rotate=0</span><br><span class="line"><span class="comment"># 180deg</span></span><br><span class="line">display_rotate=0</span><br><span class="line"><span class="comment"># 270deg</span></span><br><span class="line">display_rotate=0</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 默认</span></span><br><span class="line">display_rotate=0</span><br><span class="line"><span class="comment"># 90deg</span></span><br><span class="line">display_rotate=1</span><br><span class="line"><span class="comment"># 180deg</span></span><br><span class="line">display_rotate=2</span><br><span class="line"><span class="comment"># 270deg</span></span><br><span class="line">display_rotate=3</span><br></pre></td></tr></table></figure>
 
 <p>可以根据需要添加旋转值（顺时针的）</p>
 <p>然后重启即可生效<code>sudo shutdown -r now</code></p>
@@ -1152,23 +1194,6 @@
       <tags>
         <tag>树莓派</tag>
         <tag>屏幕</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>树莓派安装mongodb</title>
-    <url>/2019/07/17/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85mongodb/</url>
-    <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install mongodb</span><br></pre></td></tr></table></figure>
-
-<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><p>用以上命令安装完成后，执行 <code>mongo</code> 命令，并没有连接成功</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MongoDB shell version: 2.4.14</span><br><span class="line">connecting to: test</span><br><span class="line">Wed Jul 17 22:40:55.765 Error: couldn&apos;t connect to server 127.0.0.1:27017 at src/mongo/shell/mongo.js:145</span><br><span class="line">exception: connect failed</span><br></pre></td></tr></table></figure>
-
-<p>查看安装打印的信息中，有这么一条 <code>无法创建主目录&quot;/var/lib/mongodb&quot;</code>, 说明 mongodb 缺少权限</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo service mongodb stop</span><br><span class="line">sudo chown -R mongodb:mongodb /var/lib/mongodb</span><br><span class="line">sudo service mongodb start</span><br></pre></td></tr></table></figure>
-
-<p>修改目录权限后再次执行 <code>mongo</code> 命令，显示连接成功</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">MongoDB shell version: 2.4.14</span><br><span class="line">connecting to: test</span><br><span class="line">Welcome to the MongoDB shell.</span><br><span class="line">For interactive help, type "help".</span><br><span class="line">For more comprehensive documentation, see</span><br><span class="line">        http://docs.mongodb.org/</span><br><span class="line">Questions? Try the support group</span><br><span class="line">        http://groups.google.com/group/mongodb-user</span><br><span class="line">Server has startup warnings:</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten]</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten] ** NOTE: This is a 32 bit MongoDB binary.</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten] **       32 bit builds are limited to less than 2GB of data (or less with --journal).</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten] **       See http://dochub.mongodb.org/core/32bit</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten]</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"></span></span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>MongoDB</tag>
       </tags>
   </entry>
   <entry>
@@ -1499,24 +1524,6 @@
       </tags>
   </entry>
   <entry>
-    <title>第一次使用hexo</title>
-    <url>/2019/05/21/%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8hexo/</url>
-    <content><![CDATA[<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><p>全局安装hexo命令行工具<br><code>npm install hexo-cli -g</code></p>
-<p>初始化一个hexo项目，我们取名为blog，这会创建一个blog项目文件夹<br><code>hexo init blog</code></p>
-<p>切换到项目目录<br><code>cd blog</code></p>
-<p>安装项目依赖<br><code>npm intall</code></p>
-<p>这时我们就可以启动本地服务，在本机查看我们的站点<br><code>hexo server</code></p>
-<h2 id="先写个文章试试吧"><a href="#先写个文章试试吧" class="headerlink" title="先写个文章试试吧"></a>先写个文章试试吧</h2><p>比如我要写一篇文章叫 “第一次使用hexo”，可以这样<br><code>hexo new &#39;第一次使用hexo&#39;</code></p>
-<p>创建好新文章后，我们可以在项目的<code>source</code>下的<code>_posts</code>文件夹下看到新建的post文件<code>第一次使用hexo.md</code>,为Markdown文件</p>
-<p>这时我们就可以用markdown语法写文章了，写完保存后，我们需要将Markdown文件生成静态的html文件<br><code>hexo g</code></p>
-<p>静态文件生成后，我们就可以运行我们的服务，在站点上查看我们刚刚写的文章啦。注意，hexo是支持热重载的，所以我们添加内容保存后，直接刷新我们的站点页面，就可以直接查看到我们刚刚添加的文章内容，不需要重启服务<br><code>hexo server</code></p>
-<p>以上就是hexo最基本的操作了，如果你只在意文章内容，不在意外观，其实已经可以满足你的需求了。当然，hexo还有更多的功能，具体可见hexo官方文档 <a href="https://hexo.io/" target="_blank" rel="noopener">https://hexo.io/</a></p>
-]]></content>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>管理富文本编辑器里上传的文件</title>
     <url>/2019/07/18/%E7%AE%A1%E7%90%86%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E9%87%8C%E4%B8%8A%E4%BC%A0%E7%9A%84%E6%96%87%E4%BB%B6/</url>
     <content><![CDATA[<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>富文本编辑器会提供插入图片或视频的功能，该功能一般情况时执行插入操作时上传相关文件，由服务器返回静态文件的url地址，前端通过插入img或是video标签，并将返回的url赋予src属性，这样就可以在前端看到我们插入的文件了，但是用户可能会插入新的文件或是删除已插入的文件，但是在前端我们只是删除img或是video标签，服务器上该资源的文件还是存在的，并没有被清除，事实上此时用户没有提交，我们也不能直接进行删除，毕竟用户还可能执行撤销操作，如果直接删除了服务器资源，就会导致文件资源404，找不到该资源，又要重新上传，用户体验太差。</p>
@@ -1571,5 +1578,23 @@
 </tr>
 </tbody></table>
 ]]></content>
+  </entry>
+  <entry>
+    <title>第一次使用hexo</title>
+    <url>/2019/05/21/%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8hexo/</url>
+    <content><![CDATA[<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><p>全局安装hexo命令行工具<br><code>npm install hexo-cli -g</code></p>
+<p>初始化一个hexo项目，我们取名为blog，这会创建一个blog项目文件夹<br><code>hexo init blog</code></p>
+<p>切换到项目目录<br><code>cd blog</code></p>
+<p>安装项目依赖<br><code>npm intall</code></p>
+<p>这时我们就可以启动本地服务，在本机查看我们的站点<br><code>hexo server</code></p>
+<h2 id="先写个文章试试吧"><a href="#先写个文章试试吧" class="headerlink" title="先写个文章试试吧"></a>先写个文章试试吧</h2><p>比如我要写一篇文章叫 “第一次使用hexo”，可以这样<br><code>hexo new &#39;第一次使用hexo&#39;</code></p>
+<p>创建好新文章后，我们可以在项目的<code>source</code>下的<code>_posts</code>文件夹下看到新建的post文件<code>第一次使用hexo.md</code>,为Markdown文件</p>
+<p>这时我们就可以用markdown语法写文章了，写完保存后，我们需要将Markdown文件生成静态的html文件<br><code>hexo g</code></p>
+<p>静态文件生成后，我们就可以运行我们的服务，在站点上查看我们刚刚写的文章啦。注意，hexo是支持热重载的，所以我们添加内容保存后，直接刷新我们的站点页面，就可以直接查看到我们刚刚添加的文章内容，不需要重启服务<br><code>hexo server</code></p>
+<p>以上就是hexo最基本的操作了，如果你只在意文章内容，不在意外观，其实已经可以满足你的需求了。当然，hexo还有更多的功能，具体可见hexo官方文档 <a href="https://hexo.io/" target="_blank" rel="noopener">https://hexo.io/</a></p>
+]]></content>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
   </entry>
 </search>
