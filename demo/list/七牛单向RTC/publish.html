@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #localstream,
+    #canvas {
+      width: 320px;
+      height: 240px;
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <div style="border: 1px solid; display: inline-block;">
+    <p>本地画面</p>
+    <div id="localstream"></div>
+    <button onclick="preview()">开启画面预览</button>
+  </div>
+  <div style="border: 1px solid; display: inline-block;">
+    <p>截图</p>
+    <canvas id="canvas"></canvas>
+    <button onclick="takePhoto()">拍照</button>
+  </div>
+  <button onclick="joinRoom()">加入房间</button>
+  <button onclick="pushStream()">开始推流</button><br>
+  <p>roomToken: </p>
+  <textarea name="" id="textarea" cols="30" rows="10"></textarea>
+  <script src="./pili-rtc-web.js"></script>
+  <script>
+    // 提取本地存储的roomToken, 回显
+    document.getElementById('textarea').value = window.localStorage.getItem('roomToken-pub')
+    // 本地流
+    let localStream = null
+    // 打印七牛云RTC版本号
+    console.log("current version is", QNRTC.version);
+    // 当前房间会话
+    const myRoom = new QNRTC.StreamModeSession()
+    // 本地画面预览
+    const preview = () => {
+      QNRTC.deviceManager.getLocalStream({
+          audio: {
+            enabled: false,
+          },
+          video: {
+            enabled: true,
+            width: 320,
+            height: 240,
+          },
+        })
+        .then(stream => {
+          localStream = stream
+          const localEl = document.getElementById('localstream')
+          localStream.play(localEl, true)
+        })
+        .catch(err => {
+          console.log(err)
+          alert('摄像头打开失败，请刷新页面后重试')
+        })
+    }
+    // 拍照
+    const takePhoto = () => {
+      let canvas = document.getElementById('canvas')
+      let ctx = canvas.getContext('2d')
+      canvas.width = 320
+      canvas.height = 240
+      ctx.drawImage(localStream.video, 0, 0, 320, 240)
+    }
+    // 加入房间
+    const joinRoom = () => {
+      const roomToken = document.getElementById('textarea').value
+      localStorage.setItem('roomToken-pub', roomToken)
+      myRoom.joinRoomWithToken(roomToken)
+        .then(() => {
+          console.log('join room success')
+        })
+        .catch(err => {
+          console.log(err)
+          alert('加入房间失败，请检查roomToken后重试')
+        })
+    }
+
+    // 开始推流
+    const pushStream = () => {
+      myRoom.publish(localStream)
+        .then(() => {
+          console.log('publish success')
+          myRoom.setDefaultMergeStream(320, 240)
+        })
+        .catch(err => {
+          console.log(err)
+          alert('推流失败，请检查相关配置')
+        })
+    }
+  </script>
+</body>
+
+</html>

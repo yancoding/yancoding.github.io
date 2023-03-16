@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #remotestream {
+      width: 320px;
+      height: 240px;
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <div style="border: 1px solid; display: inline-block;">
+    <p>远程画面</p>
+    <div id="remotestream"></div>
+    <button onclick="joinRoom()">加入房间</button>
+  </div>
+  <p>roomToken: </p>
+  <textarea name="" id="textarea" cols="30" rows="10"></textarea>
+  <script src="./pili-rtc-web.js"></script>
+  <script>
+    // 提取本地存储的roomToken, 回显
+    document.getElementById('textarea').value = window.localStorage.getItem('roomToken-sub')
+    // 打印七牛云RTC版本号
+    console.log("current version is", QNRTC.version);
+    // 当前房间会话
+    const myRoom = new QNRTC.StreamModeSession()
+
+    // 加入房间
+    const joinRoom = () => {
+      const roomToken = document.getElementById('textarea').value
+      localStorage.setItem('roomToken-sub', roomToken)
+      myRoom.joinRoomWithToken(roomToken)
+        .then(() => {
+          console.log('join room success')
+          autoSubscribe(myRoom)
+        })
+        .catch(err => {
+          console.log(err)
+          alert('加入房间失败，请检查roomToken后重试')
+        })
+    }
+    // 订阅指定用户视频流
+    async function subscribe(myRoom, userId) {
+      const remoteStream = await myRoom.subscribe(userId)
+      const remoteEl = document.getElementById('remotestream')
+      remoteStream.play(remoteEl)
+    }
+    // 自动订阅
+    function autoSubscribe(myRoom) {
+      const users = myRoom.users
+      console.log('room current users: ', users)
+
+      for (const user of users) {
+        if (user.userId !== myRoom.userId && user.published) {
+          subscribe(myRoom, user.userId)
+            .then(() => console.log('subscribe success'))
+            .catch(err => console.log('subscribe error: ', err))
+        }
+      }
+      // 有用户发布推流时，进行自动订阅
+      myRoom.on('user-publish', user => {
+        console.log('user', user.userId, 'is published')
+        subscribe(myRoom, user.userId)
+          .then(() => console.log('subscribe success'))
+          .catch(err => console.log('subscribe error: ', err))
+      })
+    }
+  </script>
+</body>
+
+</html>

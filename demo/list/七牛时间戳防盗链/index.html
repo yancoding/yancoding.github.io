@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .input-item {
+      display: flex;
+      flex-wrap: nowrap;
+      margin-bottom: 10px;
+    }
+
+    .input-item label {
+      width: 150px;
+      flex: none;
+    }
+
+    .input-item input {
+      flex: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <form name="form">
+    <fieldset>
+      <legend>生成时间戳防盗链</legend>
+      <div class="input-item">
+        <label for="key">密钥key: </label>
+        <input name="key" type="text">
+      </div>
+      <div class="input-item">
+        <label for="url">原地址url: </label>
+        <input name="url" type="text">
+      </div>
+      <div class="input-item">
+        <label for="time">有效期time: </label>
+        <input name="time" type="text">分钟
+      </div>
+      <button id="confirmButton" type="button">确认</button>
+      <div class="result"></div>
+    </fieldset>
+  </form>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.js" integrity="sha512-NQVmLzNy4Lr5QTrmXvq/WzTMUnRHmv7nyIT/M6LyGPBS+TIeRxZ+YQaqWxjpRpvRMQSuYPQURZz/+pLi81xXeA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    window.addEventListener('load', () => {
+      var formEl = document.querySelector('form[name=form]')
+      var keyInputEl = document.querySelector('input[name=key]')
+      var urlInputEl = document.querySelector('input[name=url]')
+      var timeInputEl = document.querySelector('input[name=time]')
+      var confirmButtonEl = document.querySelector('#confirmButton')
+      var resultEl = document.querySelector('.result')
+
+      // 生成防盗链地址
+      const generateUrl = function(key, url, time) {
+        url = new URL(url)
+        const pathname = url.pathname
+        const urlSearchParams = new URLSearchParams(url.search)
+        const unixTime = (Math.round(Date.now() / 1000) + time * 60).toString(16)
+        let s = `${key}${encodeURI(pathname)}${unixTime}`
+        let sign = CryptoJS.MD5(s).toString().toLowerCase()
+        urlSearchParams.append('sign', sign)
+        urlSearchParams.append('t', unixTime)
+        return `${url.origin}${url.pathname}?${urlSearchParams}`
+      }
+
+      // 输入时
+      formEl.addEventListener('input', e => {
+        const target = e.target
+        window.localStorage.setItem(`qiniu_${target.name}`, target.value)
+      })
+
+      // 确认时
+      confirmButtonEl.addEventListener('click', e => {
+        const target = e.target
+        const key = keyInputEl.value.trim()
+        const url = urlInputEl.value.trim()
+        const time = timeInputEl.value.trim()
+        if (key === '') {
+          alert('请输入密钥key')
+        } else if (url === '') {
+          alert('请输入地址url')
+        } else if (time === '') {
+          alert('请输入过期时间time')
+        } else {
+          const result = generateUrl(key, url, time)
+          resultEl.innerText = result
+        }
+      })
+
+      // 回显数据
+      formEl.querySelectorAll('input').forEach(el => {
+        el.value = window.localStorage.getItem(`qiniu_${el.name}`) || ''
+      })
+    })
+  </script>
+</body>
+
+</html>

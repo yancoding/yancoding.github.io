@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>窗口效果</title>
+	<link rel="shortcut icon" href="favicon.ico">
+	<style>
+		body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div,dl,dt,dd,input{margin: 0;padding: 0;}
+		body{
+			font-size: 12px;
+			font-family: "微软雅黑";
+			/*禁止用户选中*/
+			-webkit-user-select:none;	
+			-moz-user-select:none;
+			-ms-user-select:none;
+			user-select:none;
+		}
+		li{list-style: none;}
+		a{
+			text-decoration: none;
+		}
+		input{
+			border: none;
+			outline: none;
+		}
+		/*app*/
+		.app{
+			margin: 15px;
+		}
+		.app ul{
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+		.app ul img{
+			display: block;
+			width: 64px;
+			text-decoration: none;
+			color: #000;
+			/*border: 1px solid red;*/
+		}
+		.app img{
+			display: inline-block;
+			width: 100%;
+		}
+		/*window*/
+		.window{
+			/*min-width: 1022px;*/
+			/*min-height: 670px;*/
+			background-color: #fff;
+			box-shadow: 0 3px 12px #999;
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			resize: both;
+			overflow: auto;
+			display: none;
+
+			/*border: 1px solid red;*/
+		}
+		.window_header{
+			width: 100%;
+			height: 50px;
+			background-color: #C62F2F;
+		}
+		.window_header_logo a{
+			float: left;
+			padding: 25px 75px;
+			background: url(images/logo.png) 15px 15px no-repeat;
+			font-size: 0;
+
+			/*border: 1px solid blue;*/
+		}
+		.window_header_backforward{
+			float: left;
+			margin-top: 13px;
+			margin-left: 54px;
+			width: 53px;
+			height: 22px;
+
+			/*border: 1px solid blue;*/
+		}
+		.window_header_back{
+			float: left;
+			padding: 4px 9px;
+			border: 1px solid #A82828;
+			border-top-left-radius: 3px;
+			border-bottom-left-radius: 3px;
+			overflow: hidden;
+			font-size: 0;
+		}
+		.window_header_forward{
+			float: right;
+			padding: 4px 9px;
+			margin-left: -1px;
+			border: 1px solid #A82828;
+			border-top-right-radius: 3px;
+			border-bottom-right-radius: 3px;
+			overflow: hidden;
+			font-size: 0;
+		}
+		.window_header_search{
+			float: left;
+			margin-top: 14px;
+			margin-left: 10px;
+			position: relative;
+
+			/*border: 1px solid blue;*/
+
+		}
+		.window_header_search input{
+			width: 200px;
+			height: 20px;
+			line-height: 12px;
+			color: #fff;
+			font-family: 新宋体/*，Arial, Helvetica, sans-serif*/;
+			word-spacing: 0px;
+			border:1px solid #a82828;
+			border-radius: 11px;
+			/*background-color: rgba(0,0,0,0.5);*/
+			color: #CF5151;
+			background-color: #a82828;
+			padding: 0 8px;
+		}
+		.window_header_search i{
+			float: right;
+			width: 15px;
+			height: 20px;
+			position: absolute;
+			top: 1px;
+			right: 8px;
+			background: url(images/search.png) 0 0 no-repeat;
+		}
+		/****************right*******************/
+		.window_header_skin{
+			position: absolute;
+			top: 0;
+			right: 205px;
+			/*border: 1px solid blue;*/
+		}
+		.window_header_skin a{
+			display: block;
+			padding: 17px 13px 0;
+			opacity: .7;
+			filter: Alpha(opacity = 70);
+		}
+		.window_header_skin_content{
+			position: absolute;
+			top: 50px;
+			right: 65px;
+			width: 320px;
+			height: 252px;
+			background-color: white;
+			border: 1px solid #C9C9C9;
+			border-radius: 3px;
+			box-shadow: 0 0 4px rgba(0,0,0,.5);
+			display: none;
+			z-index: 999;
+		}
+		.window_header_skin_content i.arrow{
+			display: block;
+			position: absolute;
+			top: -20px;
+			right: 150px;
+			box-sizing: border-box;
+			border-width: 10px;
+			border-style: dashed dashed solid dashed;
+			border-color: transparent transparent #fff transparent;
+		}
+		.window_header_skin_content a.theme{
+			position: absolute;
+			top: 14px;
+			left: 15px;
+			color: #000;
+			border-bottom: 2px solid #888888;
+			opacity: 1;
+			filter: Alpha(opacity = 100);
+		}
+		.window_header_skin_content a.color{
+			position: absolute;
+			top: 14px;
+			left: 57px;
+			color: #000;
+			/*border-bottom: 2px solid #888888;*/
+			opacity: .6;
+			filter: Alpha(opacity = 60);
+		}
+		.window_header_skin_content i.line{
+			position: absolute;
+			top: 32px;
+			left: 15px;
+			width: 290px;
+			border-top: 1px solid #e1e1e1;
+		}
+		.window_header_skin_content_theme{
+			position: absolute;
+			top: 40px;
+			left: 10px;
+			width: 300px;
+			height: 200px;
+			/*border: 1px solid red;*/
+			margin-bottom: 12px;
+
+		}
+		.window_header_skin_content_theme a{
+			float: left;
+			margin:3px;
+			padding: 2px;
+			font-size: 0;
+			line-height: 0;
+		}
+		.window_header_skin_content_theme a:hover{
+			border: 1px solid #C62F2F;
+			margin:3px;
+			padding: 1px;
+		}
+		.window_header_skin_content_theme img{
+			margin: 0;
+			padding: 0;
+			
+		}
+		.window_header_message{
+			position: absolute;
+			top: 0;
+			right: 163px;
+			/*border: 1px solid blue;*/
+		}
+		.window_header_message a{
+			display: block;
+			padding: 17px 13px 0;
+			opacity: .7;
+			filter: Alpha(opacity = 70);
+		}
+		.window_header_settings{
+			position: absolute;
+			top: 0;
+			right: 122px;
+			/*border: 1px solid blue;*/
+		}
+		.window_header_settings a{
+			display: block;
+			padding: 17px 13px 0;
+			opacity: .7;
+			filter: Alpha(opacity = 70);
+		}
+		.window_header_line{
+			position: absolute;
+			top: 15px;
+			right: 103px;
+			height: 20px;
+			width: 13px;
+			border-left: 1px solid #A82828;
+		}
+		.window_header_mini{
+			position: absolute;
+			top: 0;
+			right: 80px;
+			/*border: 1px solid blue;*/
+		}
+		.window_header_mini a{
+			display: block;
+			padding: 19px 5px 0;
+			opacity: .5;
+			filter: Alpha(opacity = 50);
+		}
+		.window_header_min{
+			position: absolute;
+			top: 0;
+			right: 57px;
+			/*border: 1px solid blue;*/
+		}
+		.window_header_min a{
+			display: block;
+			padding: 19px 5px 0;
+			opacity: .5;
+			filter: Alpha(opacity = 50);
+		}
+		.window_header_max{
+			position: absolute;
+			top: 0;
+			right: 34px;
+			/*border: 1px solid blue;*/
+		}
+		.window_header_max a{
+			display: block;
+			padding: 19px 5px 0;
+			opacity: .5;
+			filter: Alpha(opacity = 50);
+		}
+		.window_header_close{
+			position: absolute;
+			top: 0;
+			right: 12px;
+			/*border: 1px solid blue;*/
+		}
+		.window_header_close a{
+			display: block;
+			padding: 19px 5px 0;
+			opacity: .5;
+			filter: Alpha(opacity = 50);
+		}
+		.window_header a:hover{
+			opacity: 1;
+			filter: Alpha(opacity = 100);
+
+		}
+
+		/*content*/
+		.window_container{
+			position: absolute;
+			top: 50px;
+			left: 0;
+			right: 0;
+			bottom: 48px;
+			border-bottom: 1px solid #E1E1E2;
+		}
+		.window_container_aside{
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			min-width: 199px;
+			width: 199px;
+			float: left;
+			overflow-x: hidden;
+			overflow-y: hidden;
+		}
+		.window_container_aside_list h3{
+			font-size: 12px;
+			font-weight: normal;
+			height: 32px;
+			line-height: 32px;
+			padding-left: 10px;
+		}
+		.window_container_aside_list ul{
+			padding-bottom: 10px;
+		}
+		.window_container_aside_list a{
+			display: block;
+			height:32px;
+			line-height: 32px;
+			color: #000;
+			border-left: 3px solid #fff;
+			padding-left: 40px;
+			background-image: url(images/icon/icon_list.png);
+			background-repeat: no-repeat;
+			opacity: .7;
+			filter: Alpha(opacity = 70);
+		}
+		.window_container_aside_list a:hover{
+			border-left: 3px solid #C62F2F;
+			background-color: #E6E7EA;
+			opacity: 1;
+			filter: Alpha(opacity = 100);
+		}
+		.window_container_aside_song{
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			height: 58px;
+			background-color: #fff;
+			border-top: 1px solid #E1E1E2;
+			/*display: none;*/
+		}
+		.window_container_aside_song img{
+			width: 58px;
+			height: 58px;
+			border-left: 1px solid #E1E1E2;
+			border-right: 1px solid #E1E1E2;
+		}
+		.window_container_movebar{
+			position: absolute;
+			top: 0;
+			left: 199px;
+			bottom: 0;
+			width: 1px;
+			background-color: #E1E1E2;
+			cursor: e-resize;
+		}
+
+		.window_container_page{
+			position: absolute;
+			top: 0;
+			left: 200px;
+			right: 0;
+			bottom: 0;
+			min-width: 822px;
+			float: right;
+		}
+		.window_container_page_header,
+		.window_container_page_content{
+			margin: 0 30px;
+			text-align: center;
+		}
+		.window_container_page_header ul{
+			height: 42px;
+			border-bottom: 1px solid #E1E1E2;
+		}
+		.window_container_page_header li{
+			display: inline-block;
+		}
+		.window_container_page_header a{
+			display: block;
+			width: 56px;
+			height: 40px;
+			line-height: 40px;
+			margin: 0 15px;
+			text-align: center;
+			font-size: 14px;
+			color: #000;
+		}
+		.window_container_page_header a:hover{
+			color: #C62F2F;
+			border-bottom: 2px solid #C62F2F;
+		}
+		.window_footer{
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			height: 48px;
+			font-size: 0;
+			background-color: #fff;
+		}
+		.window_footer a{
+			display: inline-block;
+			background-color: #E83C3C;
+			background-image: url(images/icon/player.png);
+			background-repeat: no-repeat;
+			
+		}
+		.window_footer .prebtn{
+			width: 31px;
+			height: 30px;
+			margin-left: 30px;
+			margin-top: 9px;
+			border-radius: 15px;
+			background-position: 0px -1px;
+		}
+		.window_footer .playbtn{
+			width: 34px;
+			height: 34px;
+			margin-left: 24px;
+			margin-top: 7px;
+			border-radius: 17px;
+			background-position: 0px -61px;
+		}
+		.window_footer .nextbtn{
+			width: 31px;
+			height: 30px;
+			margin-left: 24px;
+			margin-top: 9px;
+			border-radius: 15px;
+			background-position: 0px -31px;
+		}
+	</style>
+</head>
+<body>
+	<div class="app">
+		<ul>
+			<li ondblclick="javascript:showWindow('cloudmusic');"><img src="images/neteasy.png" alt="" >cloudmusic</li>
+		</ul>
+	</div>
+	<div class="window" id="cloudmusic">
+		<div class="window_header" id="window_header" ondblclick="javascript:maxWindow('cloudmusic');">
+			<div class="window_header_logo"><a href="javascript:;" class="logo">logo</a></div>
+			<div class="window_header_backforward" id="window_header_backforward">
+				<a href="javascript:;" class="window_header_back"><img src="images/back.png" alt=""></a>
+				<a href="javascript:;" class="window_header_forward"><img src="images/forward.png" alt=""></a>
+			</div>
+			<div class="window_header_search">
+				<input type="text" value="搜索音乐，歌手，歌词，用户" onfocus="if(this.value == '搜索音乐，歌手，歌词，用户'){this.value = '';this.style.color = '#fff'}" onblur="if(this.value == ''){this.value = '搜索音乐，歌手，歌词，用户';this.style.color = '#CF5151'}"><i></i>
+			</div>
+			<div class="window_header_download"></div>
+			<div class="window_header_login"></div>
+			<div class="window_header_skin"><a href="javascript:showSkin();"><img src="images/skin.png" alt=""></a></div>
+			<div class="window_header_skin_content">
+				<i class="arrow"></i>
+				<i class="line"></i>
+				<a href="javascript:;" class="theme">主题</a>
+				<a href="javascript:;" class="color">纯色</a>
+				<div class="window_header_skin_content_theme">
+					<a href="javascript:;"><img src="{url}" alt=""></a>
+				</div>
+				<div class="window_header_skin_content_color">
+					<a href="javascript:;"><img src="{url}" alt=""></a>
+				</div>
+				<div class="window_header_skin_content_color">
+					
+				</div>
+			</div>
+			<div class="window_header_message"><a href="javascript:;"><img src="images/message.png" alt=""></a></div>
+			<div class="window_header_settings"><a href="javascript:;"><img src="images/settings.png" alt=""></a></div>
+			<div class="window_header_line"></div>
+			<div class="window_header_mini"><a href="javascript:;"><img src="images/mini.png" alt=""></a></div>
+			<div class="window_header_min"><a href="javascript:hideWindow('cloudmusic');"><img src="images/min.png" alt=""></a></div>
+			<div class="window_header_max"><a href="javascript:maxWindow('cloudmusic');"><img src="images/max.png" alt=""></a></div>
+			<div class="window_header_close"><a href="javascript:hideWindow('cloudmusic');"><img src="images/close.png" alt=""></a></div>
+
+		</div>
+		<div class="window_container">
+			<div class="window_container_aside" id="window_container_aside">
+				<div class="window_container_aside_list" id="window_container_aside_list">
+					<h3 id="window_container_aside_list_title">{list_title}</h3>
+					<ul id="window_container_aside_list_item">
+						<li><a href="javascript:;" style="background-position: {bgp}">{list_item}</a></li>
+					</ul>
+				</div>
+				<div class="window_container_aside_song" id="window_container_aside_song">
+					<img src="images/theme/酷炫黑.png" alt="">
+				</div>
+			</div>
+			<div class="window_container_movebar" id="window_container_movebar"></div>
+			<div class="window_container_page" id="window_container_page">
+				<div class="window_container_page_header">
+					<ul>
+						<li><a href="javascript:;">个性推荐</a></li>
+						<li><a href="javascript:;">歌单</a></li>
+						<li><a href="javascript:;">主播电台</a></li>
+						<li><a href="javascript:;">排行榜</a></li>
+						<li><a href="javascript:;">歌手</a></li>
+						<li><a href="javascript:;">最新音乐</a></li>
+					</ul>
+				</div>
+				<div class="window_container_page_content">
+					<div class="banner-content">
+						<a href="{url}"><img src="{picUrl}" alt=""></a>
+						<a href="{url}"><img src="{picUrl}" alt=""></a>
+						<a href="{url}"><img src="{picUrl}" alt=""></a>
+						<a href="javascript:;" class="button_left"></a>
+						<a href="javascript:;" class="button_right"></a>
+					</div>
+					<div class="dots">
+						<a href=""></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="window_footer">
+			<a href="javascript:;" class="prebtn"></a>
+			<a href="javascript:;" class="playbtn"></a>
+			<a href="javascript:;" class="nextbtn"></a>	
+			<!-- <div class="window_footer_player">
+				<a href="javascript:;" class="prebtn"></a>
+				<a href="javascript:;" class="playbtn"></a>
+				<a href="javascript:;" class="nextbtn"></a>	
+			</div> -->
+		</div>
+	</div>
+	<script src="data.js"></script>
+	<script>
+		//获取元素对象
+		function g(id){ return document.getElementById(id);}
+		function g_class(className){return document.getElementsByClassName(className);}
+
+		//居中 - 窗口window
+		function autoCenter(id){
+			var el = g(id);
+			var bodyW = document.documentElement.clientWidth;
+			var bodyH = document.documentElement.clientHeight;
+
+			var elW = el.offsetWidth;
+			var elH = el.offsetHeight;
+			var elL = 0;
+			var elT = 0;
+
+			if(elW > bodyW){
+				el.style.left = '0px';
+				// console.log('elW > bodyW');
+			}
+			else{
+				el.style.left = (bodyW - elW) / 2 +'px';
+				elL = el.offsetLeft;
+				el.style.maxWidth = bodyW - elL +'px';
+				console.log('maxWidth = ' + (bodyW-elL));
+			}
+			if(elH > bodyH){
+				el.style.top = '0px';
+				// console.log('elH > bodyH');
+			}
+			else{
+				el.style.top = (bodyH - elH) / 2 +'px';
+				elT = el.offsetTop;
+				el.style.maxHeight = bodyH - elT +'px';
+				// console.log('maxHeight = ' + (bodyH-elT));
+			}
+		}
+
+		//显示打开APP的窗口
+		function showWindow(id){
+			var el = g(id);
+			el.style.minWidth = '1022px'
+			el.style.minHeight = '670px'
+			el.style.display = 'block';
+			g('window_header_backforward').style.marginLeft = '54px';
+			autoCenter(id);
+		}
+
+		//最大化APP窗口
+		var max = false;
+		var lastLeft = 0,
+			lastTop = 0,
+			clientW = 0,
+			clientH = 0,
+			lastOffsetWidth = 0,
+			lastOffsetHeight = 0;
+
+		function maxWindow(id){
+
+			var el = g(id);
+			if (max == false) {
+				//记录上一次的窗口状态
+				lastLeft = el.offsetLeft;
+				lastTop = el.offsetTop;
+				lastOffsetWidth = el.offsetWidth;
+				lastOffsetHeight = el.offsetHeight;
+				clientW = document.documentElement.clientWidth;
+				clientH = document.documentElement.clientHeight;
+				el.style.maxWidth = 'none';
+				el.style.maxHeight = 'none';
+				el.style.width = '100%';
+				el.style.height = '100%';
+				el.style.top = '0px';
+				el.style.left = '0px';
+				max = true;
+				el.style.resize = 'none';	//最大化时禁止用户resize
+			}
+			else {
+				el.style.left = lastLeft + 'px';
+				el.style.top = lastTop + 'px';
+				el.style.width = lastOffsetWidth + 'px';
+				el.style.height = lastOffsetHeight + 'px';
+				el.style.maxWidth = clientW - lastLeft +'px';
+				el.style.maxHeight = clientH - lastTop +'px';
+				
+				max = false;
+				g(id).style.resize = 'both';	//非最大化时允许用户resize
+			}
+		}
+
+		//隐藏APP的窗口
+		function hideWindow(id){
+			g(id).style.display = 'none';
+		}
+		//	拖动窗口
+		g('window_header').addEventListener('mousedown',function(e){
+			var e = e || window.event;
+			var windowOffsetX = 0;	//窗口偏移
+			var windowOffsetY = 0;
+			var mousedownX = e.pageX	//鼠标点击位置
+			var mousedownY = e.pageY
+			var offsetTop = g('cloudmusic').offsetTop;	//点击时窗口位置
+			var offsetLeft = g('cloudmusic').offsetLeft;
+
+			var isDraging = true;	//拖动标记
+
+			document.onmousemove = function(e){
+				var e = e || window.event;
+				var mouseX = e.pageX;	//鼠标当前的位置
+				var mouseY = e.pageY;
+				var windowX = 0;
+				var windowY = 0;
+
+				if(isDraging === true){
+					windowOffsetX = mouseX - mousedownX;
+					windowOffsetY = mouseY - mousedownY;
+
+					windowX = offsetLeft + windowOffsetX;	//窗口当前位置
+					windowY = offsetTop + windowOffsetY;
+
+					//范围限定，moveX > 0 并且 move < (页面最大宽度 - 窗口宽度)
+					//          moveY > 0 并且 moveY (页面最大高度 - 窗口高度)
+
+					var pageWidth = document.documentElement.clientWidth;
+					var pageHeight = document.documentElement.clientHeight;
+					// console.log(pageWidth, pageWidth);
+
+					var cloudmusicWidth = g('cloudmusic').offsetWidth;
+					var cloudmusicHeight = g('cloudmusic').offsetHeight;
+
+					var maxX = pageWidth - cloudmusicWidth;
+					var maxY = pageHeight - cloudmusicHeight;
+
+					windowX = Math.min(Math.max(0, maxX), Math.max(0, windowX));
+					windowY = Math.min(Math.max(0, maxY), Math.max(0, windowY));
+					// console.log(windowX,windowY);
+					
+					g('cloudmusic').style.left = windowX +'px';
+					g('cloudmusic').style.top = windowY +'px';
+					g('cloudmusic').style.maxWidth = pageWidth - windowX + 'px';	//重置最大宽高
+					g('cloudmusic').style.maxHeight = pageHeight - windowY + 'px';
+				}
+			}
+			document.onmouseup = function(){
+				isDraging = false;
+			}
+		})
+
+		//	重置窗口时 - 窗口居中
+		window.onresize = function(){
+			autoCenter('cloudmusic');
+		}
+
+		//	两栏适应 aside and page 及相关
+		g('window_container_movebar').addEventListener('mousedown', function(e){
+			var e = e || window.event;
+			var mousedownX = e.pageX;	//鼠标点击位置
+
+			var addWidth = g('cloudmusic').offsetWidth - 1022 + 199 - g('window_container_aside').offsetWidth;
+			var cutWidth = g('cloudmusic').offsetWidth - 1022 - addWidth;
+			var movebarL = g('window_container_movebar').offsetLeft;
+			var asideW = g('window_container_aside').offsetWidth;
+			var pageL = g('window_container_page').offsetLeft;
+			var marginL = parseInt(g('window_header_backforward').style.marginLeft);
+			var isMoving = true;	//移动标记
+
+			// console.log('mousedownX = ', mousedownX);
+
+			document.onmousemove = function(e){
+				var e = e || window.event;
+				var mouseX = e.pageX;
+				if(isMoving === true){
+					offsetX = mouseX - mousedownX;
+					if (offsetX > 0) {
+					offsetX = Math.min(offsetX, addWidth);
+					g('window_container_movebar').style.left = movebarL + offsetX +'px';
+					g('window_container_aside').style.width = asideW + offsetX +'px';
+					g('window_container_page').style.left = pageL + offsetX +'px';
+					g('window_header_backforward').style.marginLeft = marginL + offsetX +'px';
+
+				} else {
+					offsetX = Math.max( offsetX, -cutWidth);
+					g('window_container_movebar').style.left = movebarL + offsetX +'px';
+					g('window_container_aside').style.width = asideW + offsetX +'px';
+					g('window_container_page').style.left = pageL + offsetX +'px';
+					g('window_header_backforward').style.marginLeft = marginL + offsetX +'px';
+				}
+
+				}
+			}
+			document.onmouseup = function(e){
+				isMoving = false;
+			}
+		})
+
+
+		//	显示皮肤界面
+		var showSk = false;
+		function showSkin(){
+			if (showSk == false) {
+			g_class('window_header_skin_content')[0].style.display = 'block';
+			showSk = true;
+			} else {
+				g_class('window_header_skin_content')[0].style.display = 'none';
+				showSk = false;
+			}
+		}
+		//	加载theme列表
+		var theme_list = [];
+		var theme_list_tpl = g_class('window_header_skin_content_theme')[0].innerHTML;
+		for (var i = 0; i < theme.length; i++) {
+			theme_list.push(theme_list_tpl.replace(/\{url\}/g, theme[i].url));
+			// console.log(theme[i].url);
+		}
+		g_class('window_header_skin_content_theme')[0].innerHTML = theme_list.join('');
+		
+		//加载aside列表
+		(function(){
+			var asideList = '';
+			var asideTitle_tpl = g('window_container_aside_list_title').innerHTML;
+			var asideItem_tpl = g('window_container_aside_list_item').innerHTML;
+
+			for(t in aside_list){
+				var asideItem = '';
+				for(i in aside_list[t].list_item){
+					asideItem = asideItem + asideItem_tpl.replace(/\{list_item\}/, aside_list[t].list_item[i].item).replace(/\{bgp\}/g, aside_list[t].list_item[i].bgp);
+				}
+				asideList = asideList + '<h3>' + asideTitle_tpl.replace(/\{list_title\}/g, aside_list[t].list_title) + '</h3>' + asideItem;
+			}
+			// console.log(asideList);
+			g('window_container_aside_list').innerHTML = asideList;
+		}());
+
+		//aside_list 滚动条
+		var aside_list = g('window_container_aside_list');
+		var offsetH =aside_list.offsetHeight;
+		var viewH = g('window_container_aside').offsetHeight - g('window_container_aside_song').offsetHeight;
+		if (viewH < offsetH) {
+			aside_list.style.right = '8px';
+
+		} else {}
+
+		
+
+	</script>
+</body>
+</html>

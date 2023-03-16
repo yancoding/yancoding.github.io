@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #localTracks {
+      width: 480px;
+      height: 360px;
+      display: block;
+    }
+
+    .show-box {
+      display: inline-block;
+      border: 1px solid;
+    }
+    #localCamera,
+    #localScreen,
+    #cameraCanvas,
+    #screenCanvas {
+      display: block;
+      width: 480px;
+      height: 360px;
+    }
+  </style>
+</head>
+
+<body>
+  <div style="border: 1px solid; display: inline-block;">
+    <p>本地画面</p>
+    <div class="show-box">
+      摄像头
+      <div id="localCamera"></div>
+    </div>
+    <div class="show-box">
+      屏幕
+      <div id="localScreen"></div>
+    </div>
+    <br>
+    <button onclick="preview()">开启画面预览</button>
+  </div>
+  <div style="border: 1px solid; display: inline-block;">
+    <p>截图</p>
+    <div class="show-box">
+      摄像头
+      <canvas id="cameraCanvas" style="width: 480px; height: 360px;"></canvas>
+    </div>
+    <div class="show-box">
+      屏幕
+      <canvas id="screenCanvas" style="width: 480px; height: 360px;"></canvas>
+    </div>
+    <br>
+    <button onclick="takePhoto()">进行截图</button>
+  </div>
+  <button onclick="joinRoom()">加入房间</button>
+  <button onclick="pushStream()">开始推流</button><br>
+  <p>roomToken: </p>
+  <textarea name="" id="textarea" cols="30" rows="10"></textarea>
+  <script src="./pili-rtc-web.js"></script>
+  <script>
+    // 提取本地存储的roomToken, 回显
+    document.getElementById('textarea').value = window.localStorage.getItem('roomToken-pub')
+    // 本地轨道
+    let localTracks = null
+    // 打印七牛云RTC版本号
+    console.log('七牛云RTC版本号', QNRTC.version);
+    // 当前房间会话
+    const myRoom = new QNRTC.TrackModeSession()
+    // 本地画面预览
+    const preview = () => {
+      QNRTC.deviceManager.getLocalTracks({
+          audio: {
+            enabled: true,
+            tag: 'audio',
+          },
+          video: {
+            enabled: true,
+            tag: 'video',
+            width: 480,
+            height: 360,
+          },
+          screen: {
+            enabled: true,
+            tag: 'screen',
+          },
+        })
+        .then(tracks => {
+          localTracks = tracks
+          console.log('本地localTracks获取成功: ', localTracks)
+          const localCameraEl = document.querySelector('#localCamera')
+          const localScreenEl = document.querySelector('#localScreen')
+          for (const track of localTracks) {
+            switch(track.info.tag) {
+              case 'audio':
+                break
+              case 'video':
+                track.play(localCameraEl, true)
+                break
+              case 'screen':
+                track.play(localScreenEl, true)
+                break
+            }
+          }
+        })
+        .catch(err => {
+          console.log('本地localTracks获取失败！！！', err)
+          alert('摄像头打开失败，点击确定刷新页面')
+          location.reload()
+        })
+    }
+    // 拍照
+    const takePhoto = () => {
+      for (const track of localTracks) {
+        let ctx = null
+        let el = null
+        let width 
+        let height
+        switch(track.info.tag) {
+          case 'video':
+            el = track.mediaElement
+            width = el.videoWidth
+            height = el.videoHeight
+            console.log(width, height)
+            let cameraCanvas = document.getElementById('cameraCanvas')
+            ctx = cameraCanvas.getContext('2d')
+            cameraCanvas.width = width
+            cameraCanvas.height = height
+            ctx.drawImage(el, 0, 0, width, height)
+            break
+          case 'screen':
+            el = track.mediaElement
+            width = el.videoWidth
+            height = el.videoHeight
+            console.log(width, height)
+            if ((width / height) > (480 / 360)) {
+              height = Math.floor(height / (width / 480))
+              width = 480
+            } else {
+              width = Math.floor(width / (height / 360))
+              height = 360
+            }
+            console.log(width, height)
+            let screenCanvas = document.getElementById('screenCanvas')
+            ctx = screenCanvas.getContext('2d')
+            screenCanvas.width = width
+            screenCanvas.height = height
+            ctx.drawImage(el, 0, 0, width, height)     
+            break
+        }
+        continue
+      }
+    }
+    // 加入房间
+    const joinRoom = () => {
+      const roomToken = document.getElementById('textarea').value
+      localStorage.setItem('roomToken-pub', roomToken)
+      myRoom.joinRoomWithToken(roomToken)
+        .then(() => {
+          console.log('加入房间成功')
+        })
+        .catch(err => {
+          console.log('加入房间失败: ', err)
+          alert('加入房间失败，请检查roomToken后重试')
+        })
+    }
+
+    // 开始推流
+    const pushStream = () => {
+      myRoom.publish(localTracks)
+        .then(() => {
+          console.log('推流成功')
+          myRoom.setDefaultMergeStream(480, 360);
+        })
+        .catch(err => {
+          console.log('推流失败: ', err)
+          alert('推流失败，请检查相关配置')
+        })
+    }
+  </script>
+</body>
+
+</html>

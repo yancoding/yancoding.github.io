@@ -1,0 +1,145 @@
+/*app-aside*/
+#nav-item{
+	width: auto;
+	height: 40px;
+	line-height: 40px;
+	padding-left: 25px;
+	margin-left: 10px;
+	color: #B2BFC5;
+	background-image: url(../images/权限管理.png);
+	background-size: 20px 20px;
+	background-repeat: no-repeat;
+	background-position: 0px 10px;
+}
+#app-aside ul li a{
+	display: block;
+	width: auto;
+	height: 40px;
+	line-height: 40px;
+	color: #B2BFC5;
+	padding-left: 40px;
+	border-left: 3px solid #fff;
+	background-size: 20px 20px;
+	background-repeat: no-repeat;
+	background-position: 15px 10px;
+}
+#app-aside ul li a:hover{
+	color: #58A5B9;
+}
+#app-aside ul li a.active{
+	background-color: #F3F7F8;
+	border-left: 3px solid #58A5B9;
+	color: #58A5B9;
+}
+/**/
+#nav-item-sub{
+	width: auto;
+	height: 50px;
+	line-height: 50px;
+	font-size: 14px;
+	color: #333;
+	padding-left: 20px;
+	border-bottom: 1px solid #EFEFEF;
+}
+#company-list{
+	margin-left: 20px;
+}
+#company-list li{
+	height: 36px;
+	font-size: 14px;
+}
+#company-list .company span{
+	display: inline-block;
+	margin-top: 10px;
+	background: url(../images/文件夹.png) no-repeat 0 2px/16px 16px;
+	padding-left: 20px;
+}
+#company-list .company a{
+	display: inline-block;
+	padding: 8px;
+	margin-right: 6px;
+	font-size: 0;
+	background: url(../images/减少.png) no-repeat 0 0px/16px 16px;
+}
+#company-list .close-icon a{
+	background: url(../images/增加.png) no-repeat 0 0px/16px 16px;
+}
+#company-list .company-subs{
+	margin-left: 30px;
+}
+#company-list .close-list{
+	display: none;
+}
+#company-list .company-subs li{
+	padding-left: 20px;
+	margin-top: 10px;
+}
+#company-list .company-subs li a{
+	color: #333;
+}
+#company-list .company-subs .have-sub{
+	background: url(../images/文件夹.png) no-repeat 0 2px/16px 16px;
+}
+#table-title{
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	right: 0;
+	border-bottom: 1px solid #3D94AF;
+}
+#table-title p{
+	display: inline-block;
+	border: 1px solid #3D94AF;
+	border-bottom: 1px solid #fff;
+	transform: translate(0,1px);
+	color: #58A5B7;
+	font-weight: bold;
+	padding: 5px;
+}
+#table{
+	position: absolute;
+	top: 70px;
+	left: 22px;
+	right: 20px;
+}
+#table table{
+	border: 1px solid #EFEFEF;
+	border-collapse: collapse;
+	width: 100%;
+}
+#table td,th{
+	border-top: 1px solid #EFEFEF;
+	text-align: center;
+	font-size: 14px;
+	width: auto;
+	height: 40px;
+	line-height: 40px;
+}
+#table table th{
+	background-color: #E5E5E5;
+	border-right: 1px solid #fff;
+}
+#table table td a{
+	color: #7EA3D8;
+	margin: 0 15px;
+}
+#change-page{
+	position: absolute;
+	right: 20px;
+	bottom: 5px;
+}
+#change-page button{
+	border: 1px solid #CCCCCC;
+	background-color: #fff;
+	padding: 5px;
+	font-size: 12px;
+}
+#change-page .page{
+	border: 1px solid #CCCCCC;
+	padding: 5px;
+	font-size: 12px;
+}
+#change-page .prevent-page i{
+	color: #57A5B9;
+	font-style: normal;
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="countdown1"></div>
+  <button id="button1">start</button>
+
+  <div class="countdown2"></div>
+  <button id="button2">start</button>
+
+  <script>
+    window.addEventListener('load', () => {
+      const button1 = document.getElementById('button1')
+      let countdown = 3 * 60
+      let timer = null
+
+      // 停止倒计时
+      const stop = () => {
+        clearInterval(timer)
+        timer = null
+      }
+
+      // 开始倒计时
+      const start = () => {
+        if (!timer) {
+          timer = setInterval(() => {
+            if (countdown > 0) {
+              countdown--
+              document.querySelector('.countdown1').innerText = countdown
+              console.log('countdown: ', countdown)
+            } else {
+              console.log('done')
+              stop()
+            }
+          }, 1000)
+        }
+      }
+
+      button1.addEventListener('click', e => {
+        console.log(e.target)
+        const el = e.target
+        if (el.innerText == 'start') {
+          start()
+          el.innerText = 'stop'
+        } else {
+          stop()
+          el.innerText = 'start'
+        }
+      })
+    })
+
+    window.addEventListener('load', () => {
+      const button = document.getElementById('button2')
+      const countdownEl = document.querySelector('.countdown2')
+      let countdown = 3 * 60
+      let time = 0
+      let startTime = 0
+      let timer = null
+
+      // 停止倒计时
+      const stop = () => {
+        time += (Date.now() - startTime)
+        console.log(time)
+        clearInterval(timer)
+        timer = null
+      }
+
+      // 开始倒计时
+      const start = () => {
+        if (!timer) {
+          startTime = Date.now()
+          let currentCountdown = countdown - Math.floor((Date.now() - startTime + time) / 1000) 
+          countdownEl.innerText = currentCountdown
+          console.log('countdown: ', currentCountdown)
+          timer = setInterval(() => {
+            let currentCountdown = countdown - Math.floor((Date.now() - startTime + time) / 1000) 
+            if (currentCountdown > 0) {
+              countdownEl.innerText = currentCountdown
+              console.log('countdown: ', currentCountdown)
+            } else {
+              console.log('done')
+              stop()
+            }
+          }, 1000)
+        }
+      }
+
+      button.addEventListener('click', e => {
+        const el = e.target
+        if (el.innerText == 'start') {
+          start()
+          el.innerText = 'stop'
+        } else {
+          stop()
+          el.innerText = 'start'
+        }
+      })
+    })
+
+  </script>
+</body>
+
+</html>

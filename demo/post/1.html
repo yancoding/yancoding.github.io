@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <fieldset>
+    <legend>无label</legend>
+    <input type="radio" name="option1" value="a" checked>选项A
+    <input type="radio" name="option1" value="b">选项B
+  </fieldset>
+  
+  <fieldset>
+    <legend>label for="id"</legend>
+    <input type="radio" id="optionA" name="option2" value="a" checked><label for="optionA">选项A</label>
+    <input type="radio" id="optionB" name="option2" value="b"><label for="optionB">选项B</label>
+  </fieldset>
+
+  <fieldset>
+    <legend>label 内嵌input</legend>
+    <label><input type="radio" name="option3" value="a" checked>选项A</label>
+    <label><input type="radio" name="option3" value="b">选项B</label>
+  </fieldset>
+
+  <script>
+    const radioEls = document.querySelectorAll('input[type=radio]')
+    radioEls.forEach(el => {
+      el._checked = el.checked
+      el.addEventListener('click', e => {
+        const target = e.target
+        if (target._checked) {
+          target.checked = target._checked = false
+        } else {
+          document.querySelectorAll(`input[name=${target.name}]`).forEach(el => {
+            el.checked = el._checked = false
+          })
+          target.checked = target._checked = true
+        }
+      })
+    })
+  </script>
+</body>
+
+</html>

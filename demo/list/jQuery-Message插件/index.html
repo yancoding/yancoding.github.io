@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- <link rel="stylesheet" href="https://unpkg.com/element-ui@2.3.9/lib/theme-chalk/index.css"> -->
+  <link rel="stylesheet" href="./theme-chalk/index.css">
+  <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.js"></script>
+  <style>
+    .el-message__closeBtn:focus,
+    .el-message__content:focus {
+      outline-width: 0
+    }
+
+    .el-message {
+      min-width: 380px;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      border-radius: 4px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: #EBEEF5;
+      position: fixed;
+      left: 50%;
+      top: 20px;
+      -webkit-transform: translateX(-50%);
+      transform: translateX(-50%);
+      background-color: #edf2fc;
+      -webkit-transition: opacity .3s, top .4s, -webkit-transform .4s;
+      transition: opacity .3s, top .4s, -webkit-transform .4s;
+      transition: opacity .3s, transform .4s, top .4s;
+      transition: opacity .3s, transform .4s, top .4s, -webkit-transform .4s;
+      overflow: hidden;
+      padding: 15px 15px 15px 20px;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center
+    }
+
+    .el-message.is-center {
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center
+    }
+
+    .el-message.is-closable .el-message__content {
+      padding-right: 16px
+    }
+
+    .el-message p {
+      margin: 0
+    }
+
+    .el-message--info .el-message__content {
+      color: #909399
+    }
+
+    .el-message--success {
+      background-color: #f0f9eb;
+      border-color: #e1f3d8
+    }
+
+    .el-message--success .el-message__content {
+      color: #67C23A
+    }
+
+    .el-message--warning {
+      background-color: #fdf6ec;
+      border-color: #faecd8
+    }
+
+    .el-message--warning .el-message__content {
+      color: #E6A23C
+    }
+
+    .el-message--error {
+      background-color: #fef0f0;
+      border-color: #fde2e2
+    }
+
+    .el-message--error .el-message__content {
+      color: #F56C6C
+    }
+
+    .el-message__icon {
+      margin-right: 10px
+    }
+
+    .el-message__content {
+      padding: 0;
+      font-size: 14px;
+      line-height: 1
+    }
+
+    .el-message__closeBtn {
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #C0C4CC;
+      font-size: 16px
+    }
+
+    .el-message__closeBtn:hover {
+      color: #909399
+    }
+
+    .el-message .el-icon-success {
+      color: #67C23A
+    }
+
+    .el-message .el-icon-error {
+      color: #F56C6C
+    }
+
+    .el-message .el-icon-info {
+      color: #909399
+    }
+
+    .el-message .el-icon-warning {
+      color: #E6A23C
+    }
+
+    .el-message-fade-enter,
+    .el-message-fade-leave-active {
+      opacity: 0;
+      -webkit-transform: translate(-50%, -100%);
+      transform: translate(-50%, -100%)
+    }
+  </style>
+</head>
+
+<body>
+  <button id="button">show message</button>
+  <script>
+    (function($) {
+      var typeMap = {
+        success: 'success',
+        info: 'info',
+        warning: 'warning',
+        error: 'error',
+      }
+
+      var Message = function(options) {
+        // 当前实例
+        var _this = this
+
+        // 定时器
+        var timer = null
+
+        // 是否关闭
+        var closed = false
+
+        // 默认配置选
+        var defaultOptions = {
+          message: '',
+          type: 'info',
+          iconClass: '',
+          dangerouslyUseHTMLSting: false,
+          customClass: '',
+          duration: 3000,
+          showClose: false,
+          center: false,
+          offset: 20,
+        }
+
+        // 混入配置
+        this.options = Object.assign({}, defaultOptions, options)
+        
+        // 消息容器
+        var $messageEl = $('<div></div>', {
+          class: 'el-message el-message-fade-enter ' + this.options.customClass,
+          style: 'top: ' + this.options.offset + 'px; z-index: ' + (this.options.zIndex || 2000),
+          mouseenter: function() {
+            _this.clearTimer()
+          },
+          mouseleave: function() {
+            _this.startTimer()
+          },
+        })
+
+        // 添加消息类型
+        if (this.options.type && !this.options.iconClass) {
+          $messageEl.addClass('el-message--' + this.options.type)
+        }
+
+        // 是否可关闭
+        if (this.options.showClose) {
+          $messageEl.addClass('is-closable')
+        }
+
+        // 是否居中
+        if (this.options.center) {
+          $messageEl.addClass('is-center')
+        }
+
+        // 图标icon
+        if (this.options.iconClass) {
+          $('<i></i>', {
+            class: this.options.iconClass,
+          }).appendTo($messageEl)
+        } else {
+          $('<i></i>', {
+            class: 'el-message__icon el-icon-' + typeMap[this.options.type],
+          }).appendTo($messageEl)
+        }
+
+        // 消息内容
+        if (this.options.dangerouslyUseHTMLSting) {
+          $(this.options.message).addClass('el-message__content').appendTo($messageEl)
+        } else {
+          $('<p></p>', {
+            class: 'el-message__content',
+          }).text(this.options.message).appendTo($messageEl)
+        }
+
+        // 关闭按钮
+        if (this.options.showClose) {
+          var $closeBtn = $('<i></i>', {
+            class: 'el-message__closeBtn el-icon-close',
+          })
+          $closeBtn.click(function() {
+            _this.close()
+          })
+          $closeBtn.appendTo($messageEl)
+        }
+
+        this.$messageEl = $messageEl
+
+        // append to body
+        $('body').append($messageEl)
+
+        // 开启定时器
+        _this.startTimer()
+        setTimeout(() => {
+          $messageEl.removeClass('el-message-fade-enter')
+        }, 100);
+      }
+
+      // 关闭
+      Message.prototype.close = function() {
+        var _this = this
+        _this.$messageEl.addClass('el-message-fade-leave-active')
+        setTimeout(function() {
+          _this.$messageEl.remove()
+        }, 500);
+        if (typeof _this.onclose === 'function') {
+          _this.onclose()
+        }
+      }
+
+      // 开启定时器
+      Message.prototype.startTimer = function() {
+        var _this = this
+        if (_this.options.duration > 0) {
+          _this.timer = setTimeout(function() {
+            if (!_this.closed) {
+              _this.close()
+            }
+          }, _this.options.duration)
+        }
+      }
+
+      // 清除定时器
+      Message.prototype.clearTimer = function() {
+        clearTimeout(this.timer)
+      }
+
+      // 挂载到$
+      $.message = function(options) {
+        return new Message(options)
+      }
+
+    })(jQuery)
+
+    $(function() {
+      $('#button').click(function() {
+        // instance
+        var message = $.message({
+          dangerouslyUseHTMLSting: false,
+          message: '我居中了吗？',
+          center: true,
+          iconClass: '',
+          type: 'error',
+          showClose: true,
+          offset: 50,
+          duration: 0,
+        })
+
+        console.log(message)
+        message.onclose = function() {
+          console.log('close')
+        }
+      })
+    })
+    
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>文件上传预览</title>
+    <style>
+    video,
+    img{
+        width: 300px;
+    }
+    </style>
+</head>
+
+<body>
+    <form action="">
+        <fieldset>
+            <legend>上传视频文件</legend>
+            <input type="file" accept="video/*">
+            <h3>视频预览</h3>
+            <video id="video" src="" controls></video>
+        </fieldset>
+        <fieldset>
+            <legend>上传图片文件</legend>
+            <input type="file" accept="image/*">
+            <h3>图片预览</h3>
+            <img id="img" src="" alt="">
+        </fieldset>
+    </form>
+    <script>
+        let form = document.querySelector('form')
+        let videoEl = document.getElementById('video')
+        let imgEl = document.getElementById('img')
+        form.addEventListener('change', event => {
+            if(event.target.type === 'file') {
+                let file = event.target.files[0]
+                if(event.target.accept.indexOf('video') >= 0) {
+                    videoEl.src = getObjectURL(file)
+                }else if(event.target.accept.indexOf('image') >= 0) {
+                    imgEl.src = getObjectURL(file)
+                }
+            }
+        })
+        let getObjectURL = file => {
+            let url = ''
+            if (window.createObjectURL != undefined) { 
+                // basic
+                url = window.createObjectURL(file);
+            } else if (window.URL != undefined) { 
+                // mozilla(firefox)
+                url = window.URL.createObjectURL(file);
+            } else if (window.webkitURL != undefined) { 
+                // webkit or chrome
+                url = window.webkitURL.createObjectURL(file);
+            }
+            return url
+        }
+    </script>
+</body>
+
+</html>
