@@ -88,7 +88,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">36</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">46</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-demo"><a href="/demo/" rel="section"><i class="fa fa-rocket fa-fw"></i>Demo</a></li><li class="menu-item menu-item-component"><a href="/component/" rel="section"><i class="fa fa-th-large fa-fw"></i>Component</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">36</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">47</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-demo"><a href="/demo/" rel="section"><i class="fa fa-rocket fa-fw"></i>Demo</a></li><li class="menu-item menu-item-component"><a href="/component/" rel="section"><i class="fa fa-th-large fa-fw"></i>Component</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -159,7 +159,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">47</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -201,6 +201,98 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/posts/b7408c7cc9cf/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="yancoding">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yan blog">
+      <meta itemprop="description" content="yan blog">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | yan blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/b7408c7cc9cf/" class="post-title-link" itemprop="url">提交next主题到站点仓库</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-06-22 00:03:31" itemprop="dateCreated datePublished" datetime="2019-06-22T00:03:31+08:00">2019-06-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-14 00:10:01" itemprop="dateModified" datetime="2023-03-14T00:10:01+08:00">2023-03-14</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>354</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>由于安装 next 主题时，使用的时 <code>git clone https://github.com/theme-next/hexo-theme-next themes/next</code>,直接克隆的 next 主题仓库，当我们要提交站点到仓库时，会发现提交的 themes&#x2F;next&#x2F; 是空目录，没有内容，通过 <code>git status</code> 命令查看仓库状态，有条信息是 <code>modified: themes/next (modified content)</code>，并表明该修改在子模块内，要提交的话也要在子模块仓库里提交</p>
+<p>我们可以删除目录 <code>themes/next</code> 的版本控制，使得该目录属于站点仓库的版本控制之内，之后便可以正常提交了</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">rm</span> -rf --cached themes/next/</span><br><span class="line">git add themes/next/*</span><br><span class="line">git commit</span><br><span class="line">git push</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -452,145 +544,6 @@
 <li><a target="_blank" rel="noopener" href="http://blog.fangchengjin.cn/hexo-custom-page.html">Hexo博客跳过渲染，创建自定义网页</a></li>
 <li><a target="_blank" rel="noopener" href="http://xchb.work/2017/04/08/hexo%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6-skip-render-%E9%85%8D%E7%BD%AE/">hexo忽略文件(skip_render)配置</a></li>
 <li><a target="_blank" rel="noopener" href="https://hexo.io/docs/configuration#Directory">hexo文档-Configuration</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/posts/859f8fc33df4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.png">
-      <meta itemprop="name" content="yancoding">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yan blog">
-      <meta itemprop="description" content="yan blog">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | yan blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/859f8fc33df4/" class="post-title-link" itemprop="url">BitLocker加密分区</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-05-24 00:20:45" itemprop="dateCreated datePublished" datetime="2019-05-24T00:20:45+08:00">2019-05-24</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-03-14 00:10:01" itemprop="dateModified" datetime="2023-03-14T00:10:01+08:00">2023-03-14</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.7k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h2><p>打开磁盘管理</p>
-<img src="/posts/859f8fc33df4/TIM%E6%88%AA%E5%9B%BE20190524094220.jpg" class="">
-
-<p>对该分区进行<strong>压缩分区</strong></p>
-<img src="/posts/859f8fc33df4/TIM%E6%88%AA%E5%9B%BE20190524094330.jpg" class="">
-
-<p>可以将压缩分区量设置为 102400 即从当前分区压缩出 100G 的分区大小</p>
-<img src="/posts/859f8fc33df4/TIM%E6%88%AA%E5%9B%BE20190524094426.jpg" class="">
-
-<p>将这 100G 未分配分区<strong>添加简单券</strong></p>
-<img src="/posts/859f8fc33df4/TIM%E6%88%AA%E5%9B%BE20190524094512.jpg" class="">
-
-<p>到此，我们已经划分出了 100G 容量大小的可用分区</p>
-<h2 id="对分区启用BitLocker加密"><a href="#对分区启用BitLocker加密" class="headerlink" title="对分区启用BitLocker加密"></a>对分区启用BitLocker加密</h2><p>右键 <strong>启用BitLocker</strong> </p>
-<img src="/posts/859f8fc33df4/TIM%E6%88%AA%E5%9B%BE20190524094606.jpg" class="">
-
-<p>设置好密码并保存好BitLocker恢复秘钥后，就可以点击 <strong>启动加密</strong> 对分区进行加密</p>
-<img src="/posts/859f8fc33df4/TIM%E6%88%AA%E5%9B%BE20190524094706.jpg" class="">
-
-<p>整个加密时间很长，这里 100G 的分区用了20min左右</p>
-<img src="/posts/859f8fc33df4/TIM%E6%88%AA%E5%9B%BE20190524094850.jpg" class="">
-
-<h2 id="锁定-BitLocker-分区"><a href="#锁定-BitLocker-分区" class="headerlink" title="锁定 BitLocker 分区"></a>锁定 BitLocker 分区</h2><h3 id="1-命令和批处理"><a href="#1-命令和批处理" class="headerlink" title="1.命令和批处理"></a>1.命令和批处理</h3><p>加密分区后，每次电脑开机再访问分区，都要输入一次密码，但是我们怎么锁定分区呢，这里默认是电脑关闭时会锁定BitLocker分区，但如果想立即锁定分区，防止其他人窥探呢</p>
-<p>默认情况下电脑上并没有直接面向用户开启这个功能，但是可以通过命令行进行suoding</p>
-<p><code>manage-bde -lock i:</code></p>
-<p>这里的 <strong>i</strong> 是我们的卷标</p>
-<p>每次输入命令进行锁定，实在是太麻烦里<br>这里我们可以用批处理，将该命令放到一个批处理文件里，需要锁定时，直接双击运行该批处理程序就好了</p>
-<p>新建 <strong>记事本</strong>，粘贴下面的内容</p>
-<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">title</span> 锁定加密分区i</span><br><span class="line">manage-bde -lock i:</span><br><span class="line"><span class="built_in">echo</span> 按任意键退出</span><br><span class="line"><span class="built_in">pause</span> &gt; <span class="built_in">NUL</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>选择另存为，设置编码方式为：<strong>ANSI</strong> 防止中文乱码</p>
-<p>这时我们直接运行该批处理就可以锁定 分区i</p>
-<h3 id="2-添加右键菜单"><a href="#2-添加右键菜单" class="headerlink" title="2.添加右键菜单"></a>2.添加右键菜单</h3><p>使用批处理看起来还是挺方便的，但是当我们不止一个加密分区，而是多个的时候，我们为了锁定多个分区，要分别设置批处理，这样就麻烦里些；如果是移动硬盘的话，这样更麻烦了，因为我们在挂在移动硬盘时并不知道他的盘符是几，编写固定的批处理文件这里就不适用了</p>
-<p>终极解决办法是为磁盘驱动器添加右键菜单，这样我们只要右键菜单，点击锁定Bitlocker，即可锁定相应的分区</p>
-<p>新建一个记事本，粘贴一下内容</p>
-<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">Windows Registry Editor Version <span class="number">5</span>.<span class="number">00</span></span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\Drive\shell\runas]</span><br><span class="line">@=&quot;锁定 BitLocker&quot;</span><br><span class="line">&quot;AppliesTo&quot;=&quot;System.Volume.BitLockerProtection:=System.Volume.BitLockerProtection#On OR System.Volume.BitLockerProtection:=System.Volume.BitLockerProtection#Encrypting OR System.Volume.BitLockerProtection:=System.Volume.BitLockerProtection#Suspended) AND System.Volume.BitLockerCanChangePassphraseByProxy:=System.StructuredQueryType.Boolean#True&quot;</span><br><span class="line">&quot;Icon&quot;=&quot;<span class="variable">%SystemRoot%</span>\\\\System32\\\\shell32.dll,<span class="number">47</span>&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\Drive\shell\runas\command]</span><br><span class="line">@=&quot;<span class="built_in">cmd</span>  /v:on /k   <span class="built_in">set</span> bdestr=%<span class="number">1</span> &amp;&amp; <span class="built_in">set</span> bdedrv=<span class="variable">!bdestr:~0,2!</span> &amp;&amp; manage-bde.exe  -lock <span class="variable">!bdedrv!</span> -ForceDismount&amp; <span class="keyword">exit</span>&quot;</span><br></pre></td></tr></table></figure>
-<p>保存为 <strong>.reg</strong> 文件</p>
-<p>双击运行，会添加相应的注册表项</p>
-<p>再次查看磁盘右键菜单，会发现多出一个菜单项 <strong>锁定 BitLocker</strong></p>
-<img src="/posts/859f8fc33df4/2019-05-24_210854.png" class="">
-
-<p>点击即可锁定相应的磁盘分区</p>
-<p>参考文章：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="http://www.xitonghe.com/jiaocheng/Windows10-7781.html">Win10系统右键菜单添加“手动BITLOCKER锁定加密”的方法</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.winhelponline.com/blog/change-default-icon-file-type-windows/">How to Change the Icon for a File Type in Windows?</a></li>
-<li><a target="_blank" rel="noopener" href="https://help4windows.com/windows_7_shell32_dll.shtml">Windows 7 “shell32” Icons</a></li>
-<li><a target="_blank" rel="noopener" href="https://diymediahome.org/windows-icons-reference-list-with-details-locations-images/">Windows Icons: Full list with details, locations &amp; images</a></li>
 </ul>
 
       

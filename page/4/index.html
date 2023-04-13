@@ -88,7 +88,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">36</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">46</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-demo"><a href="/demo/" rel="section"><i class="fa fa-rocket fa-fw"></i>Demo</a></li><li class="menu-item menu-item-component"><a href="/component/" rel="section"><i class="fa fa-th-large fa-fw"></i>Component</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">36</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">47</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-demo"><a href="/demo/" rel="section"><i class="fa fa-rocket fa-fw"></i>Demo</a></li><li class="menu-item menu-item-component"><a href="/component/" rel="section"><i class="fa fa-th-large fa-fw"></i>Component</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -159,7 +159,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">47</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -201,6 +201,120 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/posts/40c19e61f591/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="yancoding">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yan blog">
+      <meta itemprop="description" content="yan blog">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | yan blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/40c19e61f591/" class="post-title-link" itemprop="url">树莓派屏幕旋转和触摸旋转</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-22 22:02:34" itemprop="dateCreated datePublished" datetime="2020-08-22T22:02:34+08:00">2020-08-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-14 00:10:01" itemprop="dateModified" datetime="2023-03-14T00:10:01+08:00">2023-03-14</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="一、屏幕"><a href="#一、屏幕" class="headerlink" title="一、屏幕"></a>一、屏幕</h2><p>这是一块<code>DFROBOT</code>产的5’’ 800x480 TFT 电容屏</p>
+<img src="/posts/40c19e61f591/FoQwMT9e2z_oup3m1X9coEFCH2Ct.jpg" class="">
+
+<p>默认是按长边方向显示的，如果竖屏使用的话，就需要调整屏幕方向和触摸方向</p>
+<h2 id="二、屏幕旋转"><a href="#二、屏幕旋转" class="headerlink" title="二、屏幕旋转"></a>二、屏幕旋转</h2><p>修改屏幕旋转可以修改启动配置文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim /boot/config.txt</span><br></pre></td></tr></table></figure>
+
+<p>添加</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 默认</span></span><br><span class="line">display_rotate=0</span><br><span class="line"><span class="comment"># 90deg</span></span><br><span class="line">display_rotate=1</span><br><span class="line"><span class="comment"># 180deg</span></span><br><span class="line">display_rotate=2</span><br><span class="line"><span class="comment"># 270deg</span></span><br><span class="line">display_rotate=3</span><br></pre></td></tr></table></figure>
+
+<p>可以根据需要添加旋转值（顺时针的）</p>
+<p>然后重启即可生效<code>sudo shutdown -r now</code></p>
+<h2 id="三、触摸旋转"><a href="#三、触摸旋转" class="headerlink" title="三、触摸旋转"></a>三、触摸旋转</h2><p>如果只是屏幕进行了旋转的话，触摸还是保持默认方向，就无法正常操作了，需要调整与屏幕方向一致才行</p>
+<p>编辑配置</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim /usr/share/X11/xorg.conf.d/40-libinput.conf</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line"># Match on all types of devices but joysticks</span><br><span class="line">#</span><br><span class="line"># If you want to configure your devices, do not copy this file.</span><br><span class="line"># Instead, use a config snippet that contains something like this:</span><br><span class="line">#</span><br><span class="line"># Section &quot;InputClass&quot;</span><br><span class="line">#   Identifier &quot;something or other&quot;</span><br><span class="line">#   MatchDriver &quot;libinput&quot;</span><br><span class="line">#</span><br><span class="line">#   MatchIsTouchpad &quot;on&quot;</span><br><span class="line">#   ... other Match directives ...</span><br><span class="line">#   Option &quot;someoption&quot; &quot;value&quot;</span><br><span class="line"># EndSection</span><br><span class="line">#</span><br><span class="line"># This applies the option any libinput device also matched by the other</span><br><span class="line"># directives. See the xorg.conf(5) man page for more info on</span><br><span class="line"># matching devices.</span><br><span class="line"></span><br><span class="line">Section &quot;InputClass&quot;</span><br><span class="line">        Identifier &quot;libinput pointer catchall&quot;</span><br><span class="line">        MatchIsPointer &quot;on&quot;</span><br><span class="line">        MatchDevicePath &quot;/dev/input/event*&quot;</span><br><span class="line">        Driver &quot;libinput&quot;</span><br><span class="line">EndSection</span><br><span class="line"></span><br><span class="line">Section &quot;InputClass&quot;</span><br><span class="line">        Identifier &quot;libinput keyboard catchall&quot;</span><br><span class="line">        MatchIsKeyboard &quot;on&quot;</span><br><span class="line">        MatchDevicePath &quot;/dev/input/event*&quot;</span><br><span class="line">        Driver &quot;libinput&quot;</span><br><span class="line">EndSection</span><br><span class="line"></span><br><span class="line">Section &quot;InputClass&quot;</span><br><span class="line">        Identifier &quot;libinput touchpad catchall&quot;</span><br><span class="line">        MatchIsTouchpad &quot;on&quot;</span><br><span class="line">        MatchDevicePath &quot;/dev/input/event*&quot;</span><br><span class="line">        Driver &quot;libinput&quot;</span><br><span class="line">EndSection</span><br><span class="line"></span><br><span class="line">Section &quot;InputClass&quot;</span><br><span class="line">        Identifier &quot;libinput touchscreen catchall&quot;</span><br><span class="line">        # 90deg</span><br><span class="line">        Option &quot;CalibrationMatrix&quot; &quot;0 1 0 -1 0 1 0 0 1&quot;</span><br><span class="line">        MatchIsTouchscreen &quot;on&quot;</span><br><span class="line">        MatchDevicePath &quot;/dev/input/event*&quot;</span><br><span class="line">        Driver &quot;libinput&quot;</span><br><span class="line">EndSection</span><br><span class="line"></span><br><span class="line">Section &quot;InputClass&quot;</span><br><span class="line">        Identifier &quot;libinput tablet catchall&quot;</span><br><span class="line">        MatchIsTablet &quot;on&quot;</span><br><span class="line">        MatchDevicePath &quot;/dev/input/event*&quot;</span><br><span class="line">        Driver &quot;libinput&quot;</span><br><span class="line">EndSection</span><br></pre></td></tr></table></figure>
+
+<p>在<code>libinput touchscreen catchall</code>部分添加一行<code>Option &quot;CalibrationMatrix&quot; &quot;0 1 0 -1 0 1 0 0 1&quot;</code></p>
+<p>注意：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line"># 90 deg</span><br><span class="line">Option &quot;CalibrationMatrix&quot; &quot;0 1 0 -1 0 1 0 0 1&quot;</span><br><span class="line"></span><br><span class="line"># 180 deg</span><br><span class="line">Option &quot;CalibrationMatrix&quot; &quot;-1 0 1 0 -1 1 0 0 1&quot;</span><br><span class="line"></span><br><span class="line"># 270 deg</span><br><span class="line">Option &quot;CalibrationMatrix&quot; &quot;0 -1 1 1 0 0 0 0 1&quot;</span><br></pre></td></tr></table></figure>
+
+<p>重启即可</p>
+<img src="/posts/40c19e61f591/IMG_20200823_123704.jpg" class="">
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -453,128 +567,6 @@
 
 <p>然后在我们的player播放器的video元素添加类</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">id</span>=<span class="string">&quot;player&quot;</span> <span class="attr">class</span>=<span class="string">&quot;video-js vjs-theme-city&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/posts/a9b098fb9eb3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.png">
-      <meta itemprop="name" content="yancoding">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yan blog">
-      <meta itemprop="description" content="yan blog">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | yan blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/a9b098fb9eb3/" class="post-title-link" itemprop="url">Android手机作http代理服务器</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-08-08 20:30:33" itemprop="dateCreated datePublished" datetime="2020-08-08T20:30:33+08:00">2020-08-08</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-03-14 00:10:01" itemprop="dateModified" datetime="2023-03-14T00:10:01+08:00">2023-03-14</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>896</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="一、前情"><a href="#一、前情" class="headerlink" title="一、前情"></a>一、前情</h2><p>为了可以上google，以前都是自己租vps搭ss，可是0202年确实太不稳定了，用不了几周就被ban了，还是去找些免费vpn吧，目前市面上里免费vpn最稳定的算<code>老王vpn</code>了，网速还是很不错的，可以满足日常使用，但是目前只有移动端，没有pc端，虽然可以通过移动端获取pc连线码，但是确实太麻烦了，而且在pc上的体验也原不如移动端<br>目前手里刚好有一个刚退休的android手机，没有坏，可以正常使用，那么如果用这部手机使用老王连上vpn，那么其他设备再通过这个手机上网不就可以上google了吗，嗯，确实可以，那就让手机做http代理服务器吧</p>
-<h2 id="二、搭建http代理"><a href="#二、搭建http代理" class="headerlink" title="二、搭建http代理"></a>二、搭建http代理</h2><p>在网上查了下，想要用手机作为代理服务器大致有两种方式：</p>
-<ul>
-<li><p>通过termux在类linux环境使用python的proxy.py实现手机端代理（繁琐对个人技术要求高，且新版的proxy.py对移动端兼容不太好，不在使用这种方式）</p>
-</li>
-<li><p>通过<code>proxy server</code> app（简单易用）</p>
-</li>
-</ul>
-<h3 id="1-安装proxy-server"><a href="#1-安装proxy-server" class="headerlink" title="1.安装proxy server"></a>1.安装proxy server</h3><p>在google play商店搜索 <code>proxy server</code>，即可安装</p>
-<h3 id="2-配置"><a href="#2-配置" class="headerlink" title="2.配置"></a>2.配置</h3><p>打开app，选择添加一个proxy server</p>
-<img src="/posts/a9b098fb9eb3/%E6%88%AA%E5%B1%8F_20200809_140254.jpg" class="">
-
-<p>在配置页，随便起个名字，在添加个端口号，返回确认保存即可</p>
-<img src="/posts/a9b098fb9eb3/%E6%88%AA%E5%B1%8F_20200822_122904.jpg" class="">
-
-<p>查看信息，这里可以看到手机端的ip地址</p>
-<img src="/posts/a9b098fb9eb3/%E6%88%AA%E5%B1%8F_20200809_142726.jpg" class="">
-
-<p>点击<code>start</code>按钮即可启动代理服务，底部可以查看服务日志</p>
-<img src="/posts/a9b098fb9eb3/%E6%88%AA%E5%B1%8F_20200809_142735.jpg" class="">
-
-<h2 id="三、连接服务"><a href="#三、连接服务" class="headerlink" title="三、连接服务"></a>三、连接服务</h2><h3 id="1-手动设置代理"><a href="#1-手动设置代理" class="headerlink" title="1.手动设置代理"></a>1.手动设置代理</h3><p>这里的手动设置代理是指自己指定固定的代理地址及端口号，只能指定一个代理服务</p>
-<p>这是window10是下手动代理设置，输入手机端的ip及端口号，即可连接</p>
-<img src="/posts/a9b098fb9eb3/2020-08-22_132246.jpg" class="">
-
-
-
-<h3 id="2-使用代理脚本"><a href="#2-使用代理脚本" class="headerlink" title="2.使用代理脚本"></a>2.使用代理脚本</h3><p>手动设置代理会有一些局限性，所有的流量都会走我们的代理服务器，有时候我们并不想这样，可能只是google等国外的流量才是我们想代理的，国内的也走代理的话，那就绕远路了，使用代理脚本是可以有选择性的，我们可以指定访问哪些站点走代理，或是走不同的代理，通常是一个<code>pac</code>文件</p>
-<p>如果想找到pac文件，可以在github上搜索pac文件的相关内容</p>
-<p>我们可以在手机端启动一个http静态服务器，放置pac文件，以便于可以通过url访问到pac文件</p>
-<p>然后在其他设备设置脚本代理，输入pac的地址</p>
-<img src="/posts/a9b098fb9eb3/2020-08-22_134653.jpg" class="">
 
       
     </div>

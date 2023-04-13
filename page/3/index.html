@@ -88,7 +88,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">36</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">46</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-demo"><a href="/demo/" rel="section"><i class="fa fa-rocket fa-fw"></i>Demo</a></li><li class="menu-item menu-item-component"><a href="/component/" rel="section"><i class="fa fa-th-large fa-fw"></i>Component</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">36</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">47</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-demo"><a href="/demo/" rel="section"><i class="fa fa-rocket fa-fw"></i>Demo</a></li><li class="menu-item menu-item-component"><a href="/component/" rel="section"><i class="fa fa-th-large fa-fw"></i>Component</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -159,7 +159,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">47</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -201,6 +201,113 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/posts/23d019055100/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="yancoding">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yan blog">
+      <meta itemprop="description" content="yan blog">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | yan blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/23d019055100/" class="post-title-link" itemprop="url">如何取消单选按钮的选中状态</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-01-19 22:11:57" itemprop="dateCreated datePublished" datetime="2021-01-19T22:11:57+08:00">2021-01-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-14 00:10:01" itemprop="dateModified" datetime="2023-03-14T00:10:01+08:00">2023-03-14</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="1-常规用法"><a href="#1-常规用法" class="headerlink" title="1.常规用法"></a>1.常规用法</h2><p>单选按钮通常用于用户在一组选项中选中某一项的场景中，一但用户选中其中一项，是不可以再次点击以取消选中的。</p>
+<p>常见的写法有以下几种</p>
+<p>无label的</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;option&quot;</span> <span class="attr">value</span>=<span class="string">&quot;a&quot;</span> <span class="attr">checked</span>&gt;</span>选项A</span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;option&quot;</span> <span class="attr">value</span>=<span class="string">&quot;b&quot;</span>&gt;</span>选项B</span><br></pre></td></tr></table></figure>
+
+<p>通过for关联</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">id</span>=<span class="string">&quot;optionA&quot;</span> <span class="attr">name</span>=<span class="string">&quot;option2&quot;</span> <span class="attr">value</span>=<span class="string">&quot;a&quot;</span> <span class="attr">checked</span>&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;optionA&quot;</span>&gt;</span>选项A<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">id</span>=<span class="string">&quot;optionB&quot;</span> <span class="attr">name</span>=<span class="string">&quot;option2&quot;</span> <span class="attr">value</span>=<span class="string">&quot;b&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;optionB&quot;</span>&gt;</span>选项B<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>或是直接将input放到对应的label中</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;option3&quot;</span> <span class="attr">value</span>=<span class="string">&quot;a&quot;</span> <span class="attr">checked</span>&gt;</span>选项A<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;option3&quot;</span> <span class="attr">value</span>=<span class="string">&quot;b&quot;</span>&gt;</span>选项B<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-取消选中"><a href="#2-取消选中" class="headerlink" title="2.取消选中"></a>2.取消选中</h2><p>如果有需求需要允许用户将已经选中的单选按钮取消选中，这个需求其实并不是非常常见，但也算有实际的需求场景，还算合理<br>但是默认提供的单选按钮是无法取消选中的，那么只有通过相应的事件进行处理了</p>
+<p>对于一组单选按钮，他们是相互关联的，选中其一，则其他的会取消选中；那么我们可以监听单选的click事件<br>如果<br>1.已经选中，那么设置元素的checked &#x3D; false，取消选中<br>2.未选中，那么设置元素的checked &#x3D; true， 选中；同组的其它单选元素的checked &#x3D; false</p>
+<p>但在实际处理中会发现，我们并不知道click前的状态，因为点击后，我们事件的e.target.checked都会为true，所以我们应该记录下click之前的状态</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> radioEls = <span class="variable language_">document</span>.<span class="title function_">querySelectorAll</span>(<span class="string">&#x27;input[type=radio]&#x27;</span>)</span><br><span class="line">  radioEls.<span class="title function_">forEach</span>(<span class="function"><span class="params">el</span> =&gt;</span> &#123;</span><br><span class="line">    el.<span class="property">_checked</span> = el.<span class="property">checked</span></span><br><span class="line">    el.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> target = e.<span class="property">target</span></span><br><span class="line">      <span class="keyword">if</span> (target.<span class="property">_checked</span>) &#123;</span><br><span class="line">        target.<span class="property">checked</span> = target.<span class="property">_checked</span> = <span class="literal">false</span></span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable language_">document</span>.<span class="title function_">querySelectorAll</span>(<span class="string">`input[name=<span class="subst">$&#123;target.name&#125;</span>]`</span>).<span class="title function_">forEach</span>(<span class="function"><span class="params">el</span> =&gt;</span> &#123;</span><br><span class="line">          el.<span class="property">checked</span> = el.<span class="property">_checked</span> = <span class="literal">false</span></span><br><span class="line">        &#125;)</span><br><span class="line">        target.<span class="property">checked</span> = target.<span class="property">_checked</span> = <span class="literal">true</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+
+<p><a href="/demo/post/1.html">查看效果</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -433,120 +540,6 @@ ctx.textAlign = &#39;center&#39;
 ctx.fillText(`Hello World`, 64, 32)
 ssd1306.drawToDisplay()
 </code></pre>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/posts/40c19e61f591/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.png">
-      <meta itemprop="name" content="yancoding">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yan blog">
-      <meta itemprop="description" content="yan blog">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | yan blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/40c19e61f591/" class="post-title-link" itemprop="url">树莓派屏幕旋转和触摸旋转</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-08-22 22:02:34" itemprop="dateCreated datePublished" datetime="2020-08-22T22:02:34+08:00">2020-08-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-03-14 00:10:01" itemprop="dateModified" datetime="2023-03-14T00:10:01+08:00">2023-03-14</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>2.1k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="一、屏幕"><a href="#一、屏幕" class="headerlink" title="一、屏幕"></a>一、屏幕</h2><p>这是一块<code>DFROBOT</code>产的5’’ 800x480 TFT 电容屏</p>
-<img src="/posts/40c19e61f591/FoQwMT9e2z_oup3m1X9coEFCH2Ct.jpg" class="">
-
-<p>默认是按长边方向显示的，如果竖屏使用的话，就需要调整屏幕方向和触摸方向</p>
-<h2 id="二、屏幕旋转"><a href="#二、屏幕旋转" class="headerlink" title="二、屏幕旋转"></a>二、屏幕旋转</h2><p>修改屏幕旋转可以修改启动配置文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim /boot/config.txt</span><br></pre></td></tr></table></figure>
-
-<p>添加</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 默认</span></span><br><span class="line">display_rotate=0</span><br><span class="line"><span class="comment"># 90deg</span></span><br><span class="line">display_rotate=1</span><br><span class="line"><span class="comment"># 180deg</span></span><br><span class="line">display_rotate=2</span><br><span class="line"><span class="comment"># 270deg</span></span><br><span class="line">display_rotate=3</span><br></pre></td></tr></table></figure>
-
-<p>可以根据需要添加旋转值（顺时针的）</p>
-<p>然后重启即可生效<code>sudo shutdown -r now</code></p>
-<h2 id="三、触摸旋转"><a href="#三、触摸旋转" class="headerlink" title="三、触摸旋转"></a>三、触摸旋转</h2><p>如果只是屏幕进行了旋转的话，触摸还是保持默认方向，就无法正常操作了，需要调整与屏幕方向一致才行</p>
-<p>编辑配置</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim /usr/share/X11/xorg.conf.d/40-libinput.conf</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line"># Match on all types of devices but joysticks</span><br><span class="line">#</span><br><span class="line"># If you want to configure your devices, do not copy this file.</span><br><span class="line"># Instead, use a config snippet that contains something like this:</span><br><span class="line">#</span><br><span class="line"># Section &quot;InputClass&quot;</span><br><span class="line">#   Identifier &quot;something or other&quot;</span><br><span class="line">#   MatchDriver &quot;libinput&quot;</span><br><span class="line">#</span><br><span class="line">#   MatchIsTouchpad &quot;on&quot;</span><br><span class="line">#   ... other Match directives ...</span><br><span class="line">#   Option &quot;someoption&quot; &quot;value&quot;</span><br><span class="line"># EndSection</span><br><span class="line">#</span><br><span class="line"># This applies the option any libinput device also matched by the other</span><br><span class="line"># directives. See the xorg.conf(5) man page for more info on</span><br><span class="line"># matching devices.</span><br><span class="line"></span><br><span class="line">Section &quot;InputClass&quot;</span><br><span class="line">        Identifier &quot;libinput pointer catchall&quot;</span><br><span class="line">        MatchIsPointer &quot;on&quot;</span><br><span class="line">        MatchDevicePath &quot;/dev/input/event*&quot;</span><br><span class="line">        Driver &quot;libinput&quot;</span><br><span class="line">EndSection</span><br><span class="line"></span><br><span class="line">Section &quot;InputClass&quot;</span><br><span class="line">        Identifier &quot;libinput keyboard catchall&quot;</span><br><span class="line">        MatchIsKeyboard &quot;on&quot;</span><br><span class="line">        MatchDevicePath &quot;/dev/input/event*&quot;</span><br><span class="line">        Driver &quot;libinput&quot;</span><br><span class="line">EndSection</span><br><span class="line"></span><br><span class="line">Section &quot;InputClass&quot;</span><br><span class="line">        Identifier &quot;libinput touchpad catchall&quot;</span><br><span class="line">        MatchIsTouchpad &quot;on&quot;</span><br><span class="line">        MatchDevicePath &quot;/dev/input/event*&quot;</span><br><span class="line">        Driver &quot;libinput&quot;</span><br><span class="line">EndSection</span><br><span class="line"></span><br><span class="line">Section &quot;InputClass&quot;</span><br><span class="line">        Identifier &quot;libinput touchscreen catchall&quot;</span><br><span class="line">        # 90deg</span><br><span class="line">        Option &quot;CalibrationMatrix&quot; &quot;0 1 0 -1 0 1 0 0 1&quot;</span><br><span class="line">        MatchIsTouchscreen &quot;on&quot;</span><br><span class="line">        MatchDevicePath &quot;/dev/input/event*&quot;</span><br><span class="line">        Driver &quot;libinput&quot;</span><br><span class="line">EndSection</span><br><span class="line"></span><br><span class="line">Section &quot;InputClass&quot;</span><br><span class="line">        Identifier &quot;libinput tablet catchall&quot;</span><br><span class="line">        MatchIsTablet &quot;on&quot;</span><br><span class="line">        MatchDevicePath &quot;/dev/input/event*&quot;</span><br><span class="line">        Driver &quot;libinput&quot;</span><br><span class="line">EndSection</span><br></pre></td></tr></table></figure>
-
-<p>在<code>libinput touchscreen catchall</code>部分添加一行<code>Option &quot;CalibrationMatrix&quot; &quot;0 1 0 -1 0 1 0 0 1&quot;</code></p>
-<p>注意：</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line"># 90 deg</span><br><span class="line">Option &quot;CalibrationMatrix&quot; &quot;0 1 0 -1 0 1 0 0 1&quot;</span><br><span class="line"></span><br><span class="line"># 180 deg</span><br><span class="line">Option &quot;CalibrationMatrix&quot; &quot;-1 0 1 0 -1 1 0 0 1&quot;</span><br><span class="line"></span><br><span class="line"># 270 deg</span><br><span class="line">Option &quot;CalibrationMatrix&quot; &quot;0 -1 1 1 0 0 0 0 1&quot;</span><br></pre></td></tr></table></figure>
-
-<p>重启即可</p>
-<img src="/posts/40c19e61f591/IMG_20200823_123704.jpg" class="">
 
       
     </div>

@@ -88,7 +88,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">36</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">46</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-demo"><a href="/demo/" rel="section"><i class="fa fa-rocket fa-fw"></i>Demo</a></li><li class="menu-item menu-item-component"><a href="/component/" rel="section"><i class="fa fa-th-large fa-fw"></i>Component</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">36</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">47</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-demo"><a href="/demo/" rel="section"><i class="fa fa-rocket fa-fw"></i>Demo</a></li><li class="menu-item menu-item-component"><a href="/component/" rel="section"><i class="fa fa-th-large fa-fw"></i>Component</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -159,7 +159,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">47</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -201,6 +201,118 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/posts/32217327e163/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="yancoding">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yan blog">
+      <meta itemprop="description" content="yan blog">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | yan blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/32217327e163/" class="post-title-link" itemprop="url">树莓派搭建LAMP服务</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-03-11 01:33:43" itemprop="dateCreated datePublished" datetime="2018-03-11T01:33:43+08:00">2018-03-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-14 00:10:01" itemprop="dateModified" datetime="2023-03-14T00:10:01+08:00">2023-03-14</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>374</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="LAMP的含义"><a href="#LAMP的含义" class="headerlink" title="LAMP的含义"></a>LAMP的含义</h2><p>Linux - 操作系统</p>
+<p>Apache - web服务器软件</p>
+<p>MySQL - 数据库</p>
+<p>PHP - 使用语言</p>
+<h2 id="安装LAMP"><a href="#安装LAMP" class="headerlink" title="安装LAMP"></a>安装LAMP</h2><p>更新软件列表</p>
+<p><code>sudo apt-get update</code></p>
+<p>升级软件</p>
+<p><code>sudo apt-get upgrade</code></p>
+<p>安装Apache</p>
+<p><code>sudo apt-get install apache2</code></p>
+<p>输入 y 回车 继续即可</p>
+<p>安装MySQL</p>
+<p><code>sudo apt-get install mysql-server</code></p>
+<p>输入 y 回车 继续即可</p>
+<p>(<strong>注</strong>：在安装数据库MySQL过程中并没有提示设置root密码，此时密码为空，可能与我之前为启用树莓派的root账户有关)</p>
+<p>安装PHP </p>
+<p><code>sudo apt-get install php</code></p>
+<p>输入 y 回车 继续即可</p>
+<p>安装PHP访问MySQL所需要的库</p>
+<p><code>sudo apt-get install php-mysql</code></p>
+<p>输入 y 回车 继续即可</p>
+<h2 id="查看web站点"><a href="#查看web站点" class="headerlink" title="查看web站点"></a>查看web站点</h2><p>在浏览器内输入树莓派局域网IP，可以看到Apache的默认页面</p>
+<img src="/posts/32217327e163/2018-03-11-192347_830x386_scrot.png" class="">
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -451,132 +563,6 @@
 <p>其他命令：</p>
 <p>Usage : scrot [OPTIONS]… [FILE]<br>-h, –help 查看帮助<br>-v, –version 获取版本信息<br>-d, –delay NUM 延时NUM秒后截屏<br>-s, –select 鼠标选择一个区域后截屏<br>-u, –focused 截取当前活动窗口(可以配合 -d 延时后改变活动窗口) </p>
 <p><strong>注意</strong>：scrot只能在窗口存在时才能使用，当putty以ssh连接树莓派时，输入命令sudo scrot会报错 <code>giblib error: Can&#39;t open X display. It *is* running, yeah?</code></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/posts/c9ac426b4a37/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.png">
-      <meta itemprop="name" content="yancoding">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yan blog">
-      <meta itemprop="description" content="yan blog">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | yan blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/c9ac426b4a37/" class="post-title-link" itemprop="url">树莓派3B开箱</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2018-01-14 19:58:28" itemprop="dateCreated datePublished" datetime="2018-01-14T19:58:28+08:00">2018-01-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-03-14 00:10:01" itemprop="dateModified" datetime="2023-03-14T00:10:01+08:00">2023-03-14</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>415</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="开箱清单"><a href="#开箱清单" class="headerlink" title="开箱清单"></a>开箱清单</h2><ul>
-<li>树莓派3代B型</li>
-<li>2.5A带开关5V电源</li>
-<li>闪迪32G内存卡</li>
-<li>散热片一套</li>
-<li>铝合金外壳一个</li>
-</ul>
-<h2 id="开箱组装"><a href="#开箱组装" class="headerlink" title="开箱组装"></a>开箱组装</h2><h3 id="树莓派3代，B型，E14中国版"><a href="#树莓派3代，B型，E14中国版" class="headerlink" title="树莓派3代，B型，E14中国版"></a>树莓派3代，B型，E14中国版</h3><img src="/posts/c9ac426b4a37/IMG_20180110_143901.jpg" class="">
-
-<p>3B的外包装盒依然延续上一代简洁大方的特点，并突出板载WiFi和蓝牙功能</p>
-<h3 id="5V-2-5A电源"><a href="#5V-2-5A电源" class="headerlink" title="5V 2.5A电源"></a>5V 2.5A电源</h3><p>以前玩树莓派都是直接用手机电源，有些电源输出电流过小，会造成树莓派不稳定，树莓派3B推荐使用2.5A的电源（这个电源带开关，用起来还是挺方便的，不用频繁拔插电源，也延长了电源口的使用寿命，话说这次买的电源质量挺好的，做工很实）</p>
-<img src="/posts/c9ac426b4a37/IMG_20180110_143751.jpg" class="">
-
-<h3 id="闪迪32G-class10-内存卡"><a href="#闪迪32G-class10-内存卡" class="headerlink" title="闪迪32G class10 内存卡"></a>闪迪32G class10 内存卡</h3><p>树莓派内存卡一般用8 ~ 64G（那我为什么要用32G呢，当然是为了节约成本，这个性价比最高，太大了也没有多大的用途）</p>
-<img src="/posts/c9ac426b4a37/IMG_20180110_143936.jpg" class="">
-
-<h3 id="两铜一铝散热片"><a href="#两铜一铝散热片" class="headerlink" title="两铜一铝散热片"></a>两铜一铝散热片</h3><p>树莓派背面内存颗粒散热片还带有树莓派的logo，很不错</p>
-<img src="/posts/c9ac426b4a37/IMG_20180110_143924.jpg" class="">
-
-<h3 id="铝合金外壳"><a href="#铝合金外壳" class="headerlink" title="铝合金外壳"></a>铝合金外壳</h3><img src="/posts/c9ac426b4a37/IMG_20180110_144613.jpg" class="">
-
-<p>树莓派3已经发售很久了，可为什么现在才买呢，嗯嗯，原因就是它，金属质感的外表，无可挑剔的做工，简直完美</p>
-<h3 id="防静电包装"><a href="#防静电包装" class="headerlink" title="防静电包装"></a>防静电包装</h3><img src="/posts/c9ac426b4a37/IMG_20180110_144444.jpg" class="">
-<img src="/posts/c9ac426b4a37/IMG_20180110_144522.jpg" class="">
-
-<img src="/posts/c9ac426b4a37/IMG_20180110_144539.jpg" class="">
-
-<h3 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h3><img src="/posts/c9ac426b4a37/IMG_20180110_145536.jpg" class="">
-
-<h3 id="南桥和CPU"><a href="#南桥和CPU" class="headerlink" title="南桥和CPU"></a>南桥和CPU</h3><img src="/posts/c9ac426b4a37/IMG_20180110_145709.jpg" class="">
-
-<p>外壳的做工很好,板子只有一颗固定螺丝</p>
-<img src="/posts/c9ac426b4a37/IMG_20180110_150530.jpg" class="">
-
-<p>安装完成</p>
-<img src="/posts/c9ac426b4a37/IMG_20180110_150808.jpg" class="">
 
       
     </div>
