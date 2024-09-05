@@ -112,6 +112,43 @@
       </tags>
   </entry>
   <entry>
+    <title>Keil c51安装</title>
+    <url>/posts/597ee90642c5/</url>
+    <content><![CDATA[<h2 id="一、下载"><a href="#一、下载" class="headerlink" title="一、下载"></a>一、下载</h2><p>在keil官网下载安装需要填写一些信息</p>
+<img src="/posts/597ee90642c5/Snipaste_2023-05-05_22-59-04.png" class="">
+
+<p>填写提交后便可进入下载页面</p>
+<img src="/posts/597ee90642c5/Snipaste_2023-05-05_22-59-51.png" class="">
+
+<h2 id="二、安装"><a href="#二、安装" class="headerlink" title="二、安装"></a>二、安装</h2><p>一直点击下一步即可完成安装</p>
+<img src="/posts/597ee90642c5/Snipaste_2023-05-05_23-10-36.png" class="">
+
+<img src="/posts/597ee90642c5/Snipaste_2023-05-05_23-11-33.png" class="">
+
+<img src="/posts/597ee90642c5/Snipaste_2023-05-05_23-11-54.png" class="">
+
+<img src="/posts/597ee90642c5/Snipaste_2023-05-05_23-12-46.png" class="">
+
+<img src="/posts/597ee90642c5/Snipaste_2023-05-05_23-13-18.png" class="">
+
+<h2 id="三、运行"><a href="#三、运行" class="headerlink" title="三、运行"></a>三、运行</h2><p>点击 keil 的程序图标即可启动</p>
+<img src="/posts/597ee90642c5/Snipaste_2023-05-05_23-14-50.png" class="">
+
+<img src="/posts/597ee90642c5/Snipaste_2023-05-05_23-20-28.png" class="">
+
+<h2 id="四、处理软件界面模糊的问题"><a href="#四、处理软件界面模糊的问题" class="headerlink" title="四、处理软件界面模糊的问题"></a>四、处理软件界面模糊的问题</h2><p>由于电脑分辨率较高（4K），导致keil的界面模糊</p>
+<p>可以通过右键修改keil的属性</p>
+<img src="/posts/597ee90642c5/Snipaste_2023-05-05_23-40-26.png" class="">
+
+<img src="/posts/597ee90642c5/Snipaste_2023-05-05_23-41-01.png" class="">
+
+<img src="/posts/597ee90642c5/Snipaste_2023-05-05_23-41-29.png" class="">
+]]></content>
+      <tags>
+        <tag>单片机</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MongoDB笔记</title>
     <url>/posts/94d7489d7eb0/</url>
     <content><![CDATA[<h2 id="安装MongoDB服务"><a href="#安装MongoDB服务" class="headerlink" title="安装MongoDB服务"></a>安装MongoDB服务</h2><p>这里下载的时MongoDB 4 Windows社区版本，4之后的版本跟之前的有很大的不同，不需要自行指定数据库和日志目录了，这里安装过程只修改了安装目录，从默认的c盘自定义为d盘，其他均为默认选项，一并安装了compass，这里大多人都不推荐安装compass，说是会卡住，这里安装确实看起来像是卡住了，但就如安装信息说的这里可能需要 a few minutes，事实上这里安装进度不变保持了10分钟左右就安装好了，所以不用太担心，只是网络原因，假死而已</p>
@@ -134,6 +171,76 @@
 ]]></content>
       <tags>
         <tag>MongoDB</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SEO优化学习笔记</title>
+    <url>/posts/0efe0a32e8cd/</url>
+    <content><![CDATA[<h2 id="SEO与SEM的区别"><a href="#SEO与SEM的区别" class="headerlink" title="SEO与SEM的区别"></a>SEO与SEM的区别</h2><p>SEO (Search Engine Optimization 搜索引擎优化)<br>SEM (Search Engine Marketing 搜索引擎营销)</p>
+<p>SEO 通过免费的方式提高网站排名<br>SEM 通过向搜索引擎付费的方式来提高网站的排名</p>
+<h2 id="SEO与SEM的对比"><a href="#SEO与SEM的对比" class="headerlink" title="SEO与SEM的对比"></a>SEO与SEM的对比</h2><p>SEO投入较低，SEM投入较高</p>
+<p>SEO短期投入，效益快；SEM长期投入，增长慢</p>
+<p>新广告法对搜索引擎广告位做了一定的限制，广告位减少，SEM投入，竞争加大；SEO有了更大的效用空间</p>
+<h2 id="IP、PV、UV"><a href="#IP、PV、UV" class="headerlink" title="IP、PV、UV"></a>IP、PV、UV</h2><p>IP ：独立IP访问的用户数(一个家庭或公司使用一个IP访问该网站，只能计作一个IP)</p>
+<p>PV ：页面浏览量或点击量(刷新页面也统计在内)</p>
+<p>UV ：独立访客数(不同的设备都会统计在内)</p>
+<h2 id="搜索引擎的发展历史"><a href="#搜索引擎的发展历史" class="headerlink" title="搜索引擎的发展历史"></a>搜索引擎的发展历史</h2><p>搜索引擎的前身是导航网址(导航网址所能容纳的链接有限，互联网高速发展，网站也越来越多，搜索引擎应运而生)</p>
+<p>早期的搜索引擎有：1995年大卫·费罗和美籍华人杨致远创建了全球第一家因特网导航服务网站雅虎；之后的1998年谷歌成立；2000年从硅谷回来的李彦宏创办了百度</p>
+<p>搜索引擎占有率: <a href="http://gs.statcounter.com/search-engine-market-share">http://gs.statcounter.com/search-engine-market-share</a></p>
+<h2 id="SEO的排名机制"><a href="#SEO的排名机制" class="headerlink" title="SEO的排名机制"></a>SEO的排名机制</h2><p>搜索引擎通过蜘蛛爬取网站内容，再将内容分类后存储再数据库中，所以通过搜索引擎显示的搜索内容并不一定是最新的，会有一定的时间间隔</p>
+<p>搜索引擎会通过算法评估网站内容质量，并给网站分配不同的权重，权重越高，蜘蛛抓取网站内容的频率越高，排名越靠前</p>
+<h2 id="搜索引擎提交入口"><a href="#搜索引擎提交入口" class="headerlink" title="搜索引擎提交入口"></a>搜索引擎提交入口</h2><p>百度搜索网站提交入口</p>
+<p>Google搜索网站提交入口</p>
+<p>360搜索网站提交入口</p>
+<p>搜狗搜索网站提交入口</p>
+<p>必应搜索网站提交入口</p>
+<h2 id="SEO优化的最重要的三个要素"><a href="#SEO优化的最重要的三个要素" class="headerlink" title="SEO优化的最重要的三个要素"></a>SEO优化的最重要的三个要素</h2><p>标题</p>
+<p>关键字</p>
+<p>描述</p>
+<h2 id="外链与内链"><a href="#外链与内链" class="headerlink" title="外链与内链"></a>外链与内链</h2><p>外链是指网站与网站之间的链接(例如友情链接，与权重较高的网站交换友情链接有助于提高自身的权重)</p>
+<p>友情链接交换的注意事项：<br>1.要和内容相近的网站进行交换<br>2.外链分为单向外链和双向外链(单向外链若指向自己的网站，则爬虫单向进入自己的网站，不会反回，更有利于抓取自己的网站，提高权重；双向外链则双方共同成长，一同进步)<br>3.灌水式外链：在各大论坛发布的内容中植入自己的网站链接(单向外链，损人利己者)，是一种不友好的SEO优化方式</p>
+<p>内链是指网站内的链接</p>
+<p>内链有助于提高搜索引擎对网站各页面的抓取率</p>
+<h2 id="内容质量"><a href="#内容质量" class="headerlink" title="内容质量"></a>内容质量</h2><p>1.更新(不断地更新网站内容有助于搜索引擎的抓取，如果一个网站更新较少或不再更新内容，搜索引擎便会减少抓取频率)</p>
+<p>2.质量(网站的内容质量越高，搜索引擎的抓取频率也会越高)</p>
+<p>3.原创(搜索引擎会对抓取的内容进行比对、查重，如果网站内容原创内容较少，或只是一些伪原创，则搜索引擎会降低对该网站的抓取频率，降低权重)</p>
+<p>4.关键词密度(2% ~ 8%)不要关键词堆砌</p>
+<h2 id="黑帽与沙盒"><a href="#黑帽与沙盒" class="headerlink" title="黑帽与沙盒"></a>黑帽与沙盒</h2><p>黑帽是指采用一些作弊或违规的手段来优化网站的SEO</p>
+<img src="/posts/0efe0a32e8cd/%E9%BB%91%E5%B8%BDSEO.jpg" class="">
+<p>搜索引擎会对一些采用黑帽手段来提升网站权重，增加效益的网站进行惩罚，列入黑名单，降低权重，减少抓取或不在抓取，不再显示在搜索页面，称之为网站被放入了沙盒</p>
+<h2 id="话术设置"><a href="#话术设置" class="headerlink" title="话术设置"></a>话术设置</h2><p>好的话术会吸引更多的点击量，特别是对内容的标题和描述，但不要只为了点击量而故意更改标题，而使文题不符，会使读者产生一种欺骗感，会加大读者对网站的反感 (而自媒体的快速发展，每个人都可以在网上发布内容，成为“小编”，但也有内容较差，并带有欺诈性质标题的自媒体存在，当然这些并不会长存)</p>
+<h2 id="关键词的挖掘"><a href="#关键词的挖掘" class="headerlink" title="关键词的挖掘"></a>关键词的挖掘</h2><p>1.头脑风暴(集思广益)</p>
+<p>2.利用搜索引擎相关搜索(可以通过相关搜索查看排名靠前的网站关键词，来优化自己网站的关键词，还有下方的相关搜索项)</p>
+<p>3.利用工具(例如:百度指数<a href="http://index.baidu.com/%E6%9F%A5%E7%9C%8B%E7%9B%B8%E5%85%B3%E5%85%B3%E9%94%AE%E8%AF%8D%E7%9A%84%E6%90%9C%E7%B4%A2%E9%A2%91%E7%8E%87">http://index.baidu.com/查看相关关键词的搜索频率</a>)</p>
+<p>4.利用长尾关键词(在有相同关键词时，搜索引擎会最先显示权重较高的网站，对于权重较低的网站想要在搜索页面排名靠前，与权重较高的网站使用相同的关键词并不占优势，这时我们可以使用长尾关键词。长尾关键词搜索率并不稳定，但更有目的性，一旦用户进行了长尾关键词的搜索，那我们的网站将会排名靠前，优先显示，前期网站可采用长尾关键词来引入流量，提高权重，当我们的网站权重已经较高时，我们便可以使用搜索频率较高的短关键词与同类网站竞争)</p>
+<h2 id="选择域名"><a href="#选择域名" class="headerlink" title="选择域名"></a>选择域名</h2><p>1.后缀的选择<br>.com(公司或商业组织)<br>.top(国际通用的顶级域名)<br>.org(非盈利的组织)<br>.gov(政府部门)<br>.edu(教育组织)<br>.net(网络服务提供商) </p>
+<p>2.短域名(更易记忆)</p>
+<p>3.语义(易于联想记忆)</p>
+<p>4.域名的历史使用记录(不要使用有不良记录的域名，会影响网站的后期发展，可以先在搜索引擎中搜索域名，查看是否有不良内容)</p>
+<h2 id="服务器的选择"><a href="#服务器的选择" class="headerlink" title="服务器的选择"></a>服务器的选择</h2><p>1.要响应速度快</p>
+<p>2.要稳定</p>
+<h2 id="代码优化"><a href="#代码优化" class="headerlink" title="代码优化"></a>代码优化</h2><p>1.代码去冗余(减少冗余代码、代码精简化、模块化)</p>
+<p>2.自动化(工具：grunt、gulp、webPack、tinyPNG…)</p>
+<p>3.语义化</p>
+<h2 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h2><p>1.200 (2开头的表示网页响应成功)</p>
+<p>2.300 (302、304表示重定向)</p>
+<p>3.404 (网页不存在)</p>
+<p>4.500 (5、6开头的表示服务器错误)</p>
+<h2 id="站群模式"><a href="#站群模式" class="headerlink" title="站群模式"></a>站群模式</h2><p>例如淘宝客、镜像网站(共享流量)</p>
+<h2 id="其他的一些优化手段"><a href="#其他的一些优化手段" class="headerlink" title="其他的一些优化手段"></a>其他的一些优化手段</h2><p>1.提升客户体验 (易用性、UI优化等等)</p>
+<p>2.内容形式的多样性 (视频，社区)</p>
+<p>3.代码属性的优化 (alt:简介；title；logo等)</p>
+<p>4.相关搜索引擎的产品的协助 (例如文库、问答等这些网站具有很高的权重，植入的单向外链会带来很大的流量)</p>
+<h2 id="日志分析"><a href="#日志分析" class="headerlink" title="日志分析"></a>日志分析</h2><p>1.每个搜索引擎的总体取量</p>
+<p>2.记录搜索引擎蜘蛛的不重复取量</p>
+<p>3.每个目录、每个搜索引擎的抓取量</p>
+<p>4.统计搜索引擎抓取的状态码</p>
+<p>5.统计搜索引擎抓取的次数，时间</p>
+<h2 id="统计工具"><a href="#统计工具" class="headerlink" title="统计工具"></a>统计工具</h2><p>1.CNZZ</p>
+<p>2.爱站网<a href="https://www.aizhan.com/%E3%80%81%E7%AB%99%E9%95%BF%E5%B7%A5%E5%85%B7http://tool.chinaz.com/">https://www.aizhan.com/、站长工具http://tool.chinaz.com/</a></p>
+]]></content>
+      <tags>
+        <tag>SEO</tag>
       </tags>
   </entry>
   <entry>
@@ -259,76 +366,6 @@
 <p>end：表示过渡从第一步时间的结束开始(不会直接看到过渡效果)</p>
 <p><strong>注意：</strong> transition-delay 将包含于步进函数的第一步，即第一步的持续时间为均分时间加上延迟时间</p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>SEO优化学习笔记</title>
-    <url>/posts/0efe0a32e8cd/</url>
-    <content><![CDATA[<h2 id="SEO与SEM的区别"><a href="#SEO与SEM的区别" class="headerlink" title="SEO与SEM的区别"></a>SEO与SEM的区别</h2><p>SEO (Search Engine Optimization 搜索引擎优化)<br>SEM (Search Engine Marketing 搜索引擎营销)</p>
-<p>SEO 通过免费的方式提高网站排名<br>SEM 通过向搜索引擎付费的方式来提高网站的排名</p>
-<h2 id="SEO与SEM的对比"><a href="#SEO与SEM的对比" class="headerlink" title="SEO与SEM的对比"></a>SEO与SEM的对比</h2><p>SEO投入较低，SEM投入较高</p>
-<p>SEO短期投入，效益快；SEM长期投入，增长慢</p>
-<p>新广告法对搜索引擎广告位做了一定的限制，广告位减少，SEM投入，竞争加大；SEO有了更大的效用空间</p>
-<h2 id="IP、PV、UV"><a href="#IP、PV、UV" class="headerlink" title="IP、PV、UV"></a>IP、PV、UV</h2><p>IP ：独立IP访问的用户数(一个家庭或公司使用一个IP访问该网站，只能计作一个IP)</p>
-<p>PV ：页面浏览量或点击量(刷新页面也统计在内)</p>
-<p>UV ：独立访客数(不同的设备都会统计在内)</p>
-<h2 id="搜索引擎的发展历史"><a href="#搜索引擎的发展历史" class="headerlink" title="搜索引擎的发展历史"></a>搜索引擎的发展历史</h2><p>搜索引擎的前身是导航网址(导航网址所能容纳的链接有限，互联网高速发展，网站也越来越多，搜索引擎应运而生)</p>
-<p>早期的搜索引擎有：1995年大卫·费罗和美籍华人杨致远创建了全球第一家因特网导航服务网站雅虎；之后的1998年谷歌成立；2000年从硅谷回来的李彦宏创办了百度</p>
-<p>搜索引擎占有率: <a href="http://gs.statcounter.com/search-engine-market-share">http://gs.statcounter.com/search-engine-market-share</a></p>
-<h2 id="SEO的排名机制"><a href="#SEO的排名机制" class="headerlink" title="SEO的排名机制"></a>SEO的排名机制</h2><p>搜索引擎通过蜘蛛爬取网站内容，再将内容分类后存储再数据库中，所以通过搜索引擎显示的搜索内容并不一定是最新的，会有一定的时间间隔</p>
-<p>搜索引擎会通过算法评估网站内容质量，并给网站分配不同的权重，权重越高，蜘蛛抓取网站内容的频率越高，排名越靠前</p>
-<h2 id="搜索引擎提交入口"><a href="#搜索引擎提交入口" class="headerlink" title="搜索引擎提交入口"></a>搜索引擎提交入口</h2><p>百度搜索网站提交入口</p>
-<p>Google搜索网站提交入口</p>
-<p>360搜索网站提交入口</p>
-<p>搜狗搜索网站提交入口</p>
-<p>必应搜索网站提交入口</p>
-<h2 id="SEO优化的最重要的三个要素"><a href="#SEO优化的最重要的三个要素" class="headerlink" title="SEO优化的最重要的三个要素"></a>SEO优化的最重要的三个要素</h2><p>标题</p>
-<p>关键字</p>
-<p>描述</p>
-<h2 id="外链与内链"><a href="#外链与内链" class="headerlink" title="外链与内链"></a>外链与内链</h2><p>外链是指网站与网站之间的链接(例如友情链接，与权重较高的网站交换友情链接有助于提高自身的权重)</p>
-<p>友情链接交换的注意事项：<br>1.要和内容相近的网站进行交换<br>2.外链分为单向外链和双向外链(单向外链若指向自己的网站，则爬虫单向进入自己的网站，不会反回，更有利于抓取自己的网站，提高权重；双向外链则双方共同成长，一同进步)<br>3.灌水式外链：在各大论坛发布的内容中植入自己的网站链接(单向外链，损人利己者)，是一种不友好的SEO优化方式</p>
-<p>内链是指网站内的链接</p>
-<p>内链有助于提高搜索引擎对网站各页面的抓取率</p>
-<h2 id="内容质量"><a href="#内容质量" class="headerlink" title="内容质量"></a>内容质量</h2><p>1.更新(不断地更新网站内容有助于搜索引擎的抓取，如果一个网站更新较少或不再更新内容，搜索引擎便会减少抓取频率)</p>
-<p>2.质量(网站的内容质量越高，搜索引擎的抓取频率也会越高)</p>
-<p>3.原创(搜索引擎会对抓取的内容进行比对、查重，如果网站内容原创内容较少，或只是一些伪原创，则搜索引擎会降低对该网站的抓取频率，降低权重)</p>
-<p>4.关键词密度(2% ~ 8%)不要关键词堆砌</p>
-<h2 id="黑帽与沙盒"><a href="#黑帽与沙盒" class="headerlink" title="黑帽与沙盒"></a>黑帽与沙盒</h2><p>黑帽是指采用一些作弊或违规的手段来优化网站的SEO</p>
-<img src="/posts/0efe0a32e8cd/%E9%BB%91%E5%B8%BDSEO.jpg" class="">
-<p>搜索引擎会对一些采用黑帽手段来提升网站权重，增加效益的网站进行惩罚，列入黑名单，降低权重，减少抓取或不在抓取，不再显示在搜索页面，称之为网站被放入了沙盒</p>
-<h2 id="话术设置"><a href="#话术设置" class="headerlink" title="话术设置"></a>话术设置</h2><p>好的话术会吸引更多的点击量，特别是对内容的标题和描述，但不要只为了点击量而故意更改标题，而使文题不符，会使读者产生一种欺骗感，会加大读者对网站的反感 (而自媒体的快速发展，每个人都可以在网上发布内容，成为“小编”，但也有内容较差，并带有欺诈性质标题的自媒体存在，当然这些并不会长存)</p>
-<h2 id="关键词的挖掘"><a href="#关键词的挖掘" class="headerlink" title="关键词的挖掘"></a>关键词的挖掘</h2><p>1.头脑风暴(集思广益)</p>
-<p>2.利用搜索引擎相关搜索(可以通过相关搜索查看排名靠前的网站关键词，来优化自己网站的关键词，还有下方的相关搜索项)</p>
-<p>3.利用工具(例如:百度指数<a href="http://index.baidu.com/%E6%9F%A5%E7%9C%8B%E7%9B%B8%E5%85%B3%E5%85%B3%E9%94%AE%E8%AF%8D%E7%9A%84%E6%90%9C%E7%B4%A2%E9%A2%91%E7%8E%87">http://index.baidu.com/查看相关关键词的搜索频率</a>)</p>
-<p>4.利用长尾关键词(在有相同关键词时，搜索引擎会最先显示权重较高的网站，对于权重较低的网站想要在搜索页面排名靠前，与权重较高的网站使用相同的关键词并不占优势，这时我们可以使用长尾关键词。长尾关键词搜索率并不稳定，但更有目的性，一旦用户进行了长尾关键词的搜索，那我们的网站将会排名靠前，优先显示，前期网站可采用长尾关键词来引入流量，提高权重，当我们的网站权重已经较高时，我们便可以使用搜索频率较高的短关键词与同类网站竞争)</p>
-<h2 id="选择域名"><a href="#选择域名" class="headerlink" title="选择域名"></a>选择域名</h2><p>1.后缀的选择<br>.com(公司或商业组织)<br>.top(国际通用的顶级域名)<br>.org(非盈利的组织)<br>.gov(政府部门)<br>.edu(教育组织)<br>.net(网络服务提供商) </p>
-<p>2.短域名(更易记忆)</p>
-<p>3.语义(易于联想记忆)</p>
-<p>4.域名的历史使用记录(不要使用有不良记录的域名，会影响网站的后期发展，可以先在搜索引擎中搜索域名，查看是否有不良内容)</p>
-<h2 id="服务器的选择"><a href="#服务器的选择" class="headerlink" title="服务器的选择"></a>服务器的选择</h2><p>1.要响应速度快</p>
-<p>2.要稳定</p>
-<h2 id="代码优化"><a href="#代码优化" class="headerlink" title="代码优化"></a>代码优化</h2><p>1.代码去冗余(减少冗余代码、代码精简化、模块化)</p>
-<p>2.自动化(工具：grunt、gulp、webPack、tinyPNG…)</p>
-<p>3.语义化</p>
-<h2 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h2><p>1.200 (2开头的表示网页响应成功)</p>
-<p>2.300 (302、304表示重定向)</p>
-<p>3.404 (网页不存在)</p>
-<p>4.500 (5、6开头的表示服务器错误)</p>
-<h2 id="站群模式"><a href="#站群模式" class="headerlink" title="站群模式"></a>站群模式</h2><p>例如淘宝客、镜像网站(共享流量)</p>
-<h2 id="其他的一些优化手段"><a href="#其他的一些优化手段" class="headerlink" title="其他的一些优化手段"></a>其他的一些优化手段</h2><p>1.提升客户体验 (易用性、UI优化等等)</p>
-<p>2.内容形式的多样性 (视频，社区)</p>
-<p>3.代码属性的优化 (alt:简介；title；logo等)</p>
-<p>4.相关搜索引擎的产品的协助 (例如文库、问答等这些网站具有很高的权重，植入的单向外链会带来很大的流量)</p>
-<h2 id="日志分析"><a href="#日志分析" class="headerlink" title="日志分析"></a>日志分析</h2><p>1.每个搜索引擎的总体取量</p>
-<p>2.记录搜索引擎蜘蛛的不重复取量</p>
-<p>3.每个目录、每个搜索引擎的抓取量</p>
-<p>4.统计搜索引擎抓取的状态码</p>
-<p>5.统计搜索引擎抓取的次数，时间</p>
-<h2 id="统计工具"><a href="#统计工具" class="headerlink" title="统计工具"></a>统计工具</h2><p>1.CNZZ</p>
-<p>2.爱站网<a href="https://www.aizhan.com/%E3%80%81%E7%AB%99%E9%95%BF%E5%B7%A5%E5%85%B7http://tool.chinaz.com/">https://www.aizhan.com/、站长工具http://tool.chinaz.com/</a></p>
-]]></content>
-      <tags>
-        <tag>SEO</tag>
-      </tags>
   </entry>
   <entry>
     <title>frp反向代理</title>
@@ -524,6 +561,23 @@
 ]]></content>
   </entry>
   <entry>
+    <title>js上传视频图片预览</title>
+    <url>/posts/6eb7991bfc44/</url>
+    <content><![CDATA[<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p><a href="demo/list/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%A2%84%E8%A7%88">文件上传预览</a></p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>HTML</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">legend</span>&gt;</span>上传视频文件<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">accept</span>=<span class="string">&quot;video/*&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>视频预览<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">video</span> <span class="attr">id</span>=<span class="string">&quot;video&quot;</span> <span class="attr">src</span>=<span class="string">&quot;&quot;</span> <span class="attr">controls</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">legend</span>&gt;</span>上传图片文件<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">accept</span>=<span class="string">&quot;image/*&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>图片预览<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">&quot;img&quot;</span> <span class="attr">src</span>=<span class="string">&quot;&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>CSS</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">video</span>,</span><br><span class="line"><span class="selector-tag">img</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>JS</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> form = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;form&#x27;</span>)</span><br><span class="line">    <span class="keyword">let</span> videoEl = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;video&#x27;</span>)</span><br><span class="line">    <span class="keyword">let</span> imgEl = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;img&#x27;</span>)</span><br><span class="line">    form.<span class="title function_">addEventListener</span>(<span class="string">&#x27;change&#x27;</span>, <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(event.<span class="property">target</span>.<span class="property">type</span> === <span class="string">&#x27;file&#x27;</span>) &#123;</span><br><span class="line">            <span class="keyword">let</span> file = event.<span class="property">target</span>.<span class="property">files</span>[<span class="number">0</span>]</span><br><span class="line">            <span class="keyword">if</span>(event.<span class="property">target</span>.<span class="property">accept</span>.<span class="title function_">indexOf</span>(<span class="string">&#x27;video&#x27;</span>) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                videoEl.<span class="property">src</span> = <span class="title function_">getObjectURL</span>(file)</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(event.<span class="property">target</span>.<span class="property">accept</span>.<span class="title function_">indexOf</span>(<span class="string">&#x27;image&#x27;</span>) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                imgEl.<span class="property">src</span> = <span class="title function_">getObjectURL</span>(file)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">let</span> <span class="title function_">getObjectURL</span> = file =&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> url = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable language_">window</span>.<span class="property">createObjectURL</span> != <span class="literal">undefined</span>) &#123; </span><br><span class="line">            <span class="comment">// basic</span></span><br><span class="line">            url = <span class="variable language_">window</span>.<span class="title function_">createObjectURL</span>(file);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="variable language_">window</span>.<span class="property">URL</span> != <span class="literal">undefined</span>) &#123; </span><br><span class="line">            <span class="comment">// mozilla(firefox)</span></span><br><span class="line">            url = <span class="variable language_">window</span>.<span class="property">URL</span>.<span class="title function_">createObjectURL</span>(file);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="variable language_">window</span>.<span class="property">webkitURL</span> != <span class="literal">undefined</span>) &#123; </span><br><span class="line">            <span class="comment">// webkit or chrome</span></span><br><span class="line">            url = <span class="variable language_">window</span>.<span class="property">webkitURL</span>.<span class="title function_">createObjectURL</span>(file);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> url</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>js</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>koa2文件上传</title>
     <url>/posts/1aa9bbc06798/</url>
     <content><![CDATA[<h2 id="创建项目目录"><a href="#创建项目目录" class="headerlink" title="创建项目目录"></a>创建项目目录</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> uploadFile</span><br><span class="line"><span class="built_in">cd</span> uploadFile</span><br></pre></td></tr></table></figure>
@@ -560,23 +614,6 @@
 ]]></content>
       <tags>
         <tag>mac</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>js上传视频图片预览</title>
-    <url>/posts/6eb7991bfc44/</url>
-    <content><![CDATA[<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p><a href="demo/list/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%A2%84%E8%A7%88">文件上传预览</a></p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>HTML</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">legend</span>&gt;</span>上传视频文件<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">accept</span>=<span class="string">&quot;video/*&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>视频预览<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">video</span> <span class="attr">id</span>=<span class="string">&quot;video&quot;</span> <span class="attr">src</span>=<span class="string">&quot;&quot;</span> <span class="attr">controls</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">legend</span>&gt;</span>上传图片文件<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">accept</span>=<span class="string">&quot;image/*&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>图片预览<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">&quot;img&quot;</span> <span class="attr">src</span>=<span class="string">&quot;&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>CSS</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">video</span>,</span><br><span class="line"><span class="selector-tag">img</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>JS</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> form = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;form&#x27;</span>)</span><br><span class="line">    <span class="keyword">let</span> videoEl = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;video&#x27;</span>)</span><br><span class="line">    <span class="keyword">let</span> imgEl = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;img&#x27;</span>)</span><br><span class="line">    form.<span class="title function_">addEventListener</span>(<span class="string">&#x27;change&#x27;</span>, <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(event.<span class="property">target</span>.<span class="property">type</span> === <span class="string">&#x27;file&#x27;</span>) &#123;</span><br><span class="line">            <span class="keyword">let</span> file = event.<span class="property">target</span>.<span class="property">files</span>[<span class="number">0</span>]</span><br><span class="line">            <span class="keyword">if</span>(event.<span class="property">target</span>.<span class="property">accept</span>.<span class="title function_">indexOf</span>(<span class="string">&#x27;video&#x27;</span>) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                videoEl.<span class="property">src</span> = <span class="title function_">getObjectURL</span>(file)</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(event.<span class="property">target</span>.<span class="property">accept</span>.<span class="title function_">indexOf</span>(<span class="string">&#x27;image&#x27;</span>) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                imgEl.<span class="property">src</span> = <span class="title function_">getObjectURL</span>(file)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">let</span> <span class="title function_">getObjectURL</span> = file =&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> url = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable language_">window</span>.<span class="property">createObjectURL</span> != <span class="literal">undefined</span>) &#123; </span><br><span class="line">            <span class="comment">// basic</span></span><br><span class="line">            url = <span class="variable language_">window</span>.<span class="title function_">createObjectURL</span>(file);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="variable language_">window</span>.<span class="property">URL</span> != <span class="literal">undefined</span>) &#123; </span><br><span class="line">            <span class="comment">// mozilla(firefox)</span></span><br><span class="line">            url = <span class="variable language_">window</span>.<span class="property">URL</span>.<span class="title function_">createObjectURL</span>(file);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="variable language_">window</span>.<span class="property">webkitURL</span> != <span class="literal">undefined</span>) &#123; </span><br><span class="line">            <span class="comment">// webkit or chrome</span></span><br><span class="line">            url = <span class="variable language_">window</span>.<span class="property">webkitURL</span>.<span class="title function_">createObjectURL</span>(file);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> url</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -1052,66 +1089,6 @@
       </tags>
   </entry>
   <entry>
-    <title>树莓派pi和root账户密码</title>
-    <url>/posts/0b5febe6de76/</url>
-    <content><![CDATA[<h2 id="pi账户"><a href="#pi账户" class="headerlink" title="pi账户"></a>pi账户</h2><p>pi是树莓派的默认账户，默认密码为 raspberry</p>
-<p>修改默认密码</p>
-<p><code>sudo raspi-config</code></p>
-<img src="/posts/0b5febe6de76/2018-03-11-221228_655x390_scrot.png" class="">
-
-<p>选择的一项 Change User Password，输入两次新密码即可完成密码修改</p>
-<img src="/posts/0b5febe6de76/2018-03-11-221635_655x390_scrot.png" class="">
-
-<h2 id="root账户"><a href="#root账户" class="headerlink" title="root账户"></a>root账户</h2><p>树莓派的root账户在默认情况下是禁用的，且密码为空，所以root账户在未启用时，无论输入什么密码均是错误密码</p>
-<p>设置root密码</p>
-<p><code>sudo passwd root</code></p>
-<p>输入两次新设置的密码后提示密码更新成功</p>
-<img src="/posts/0b5febe6de76/2018-03-11-222638_655x390_scrot.png" class="">
-
-
-<h2 id="pi和root账户切换"><a href="#pi和root账户切换" class="headerlink" title="pi和root账户切换"></a>pi和root账户切换</h2><p>输入</p>
-<p><code>su root</code></p>
-<p>和密码后便可登录root账户</p>
-<p>输入</p>
-<p><code>su pi</code></p>
-<p>后便可切换到pi账户</p>
-<h2 id="如何锁定root账户"><a href="#如何锁定root账户" class="headerlink" title="如何锁定root账户"></a>如何锁定root账户</h2><p>输入</p>
-<p><code>sudo passwd --lock root</code></p>
-<p>锁定root账户后，我们再尝试用root账户登录，会提示Authentication failure(验证失败)</p>
-<p>当我们输入</p>
-<p><code>sudo passwd --unlock root</code></p>
-<p>后，便可解锁root账户</p>
-<p>再次登录root账户成功</p>
-]]></content>
-      <tags>
-        <tag>树莓派</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>树莓派如何关闭显示输出？</title>
-    <url>/posts/25aa1f481aea/</url>
-    <content><![CDATA[<h2 id="一、尝试"><a href="#一、尝试" class="headerlink" title="一、尝试"></a>一、尝试</h2><p>树莓派通过hdmi连接了一块1920*1080的屏幕，平时时竖屏放置，用来显示日历和其他一些信息，树莓派7*24小时运行, 导致屏幕一直处于工作状态，所以我打算只在一定的时间内进行显示输出</p>
-<p>在百度上搜索了如何休眠之类的方法，找到可以通过<code>xset</code>的相关命令使树莓派进入休眠或是唤醒</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// 强制进入休眠</span><br><span class="line">sudo xset dpms force off</span><br><span class="line">// 强制唤醒</span><br><span class="line">sudo xset dpms force on</span><br></pre></td></tr></table></figure>
-
-<p>但是在我尝试强制进入休眠时，屏幕只是短暂黑了下屏，再次恢复正常，并不行，不知道哪里出了问题，尝试重新写入系统镜像，用一个新系统试下</p>
-<p>新系统启动后屏幕变回了默认的横屏模式，神奇的事发生了，这时再执行强制进入休眠，竟然成功了，当鼠标移动可以正常唤醒，可是当我重启设置了启动时，旋转90deg时，休眠命令再次失效了，多次在横屏竖屏切换尝试了几次，竖屏下都不行，只有横屏下休眠命令可以正常工作，看来是个bug（似乎之前竖屏下，自动休眠就没有正常工作过，应该也是这个原因导致的）</p>
-<p>虽然在横屏模式下可以实现命令休眠，但是发现屏幕并没有熄灭，好像只是换了一个黑色的屏保，这点与预期有差距，我们是想让显示屏熄灭，进入待机状态</p>
-<p>之后又百度了很久，没有发现什么好的办法。只得转到google上继续查找，最终找到了turn off hdmi的相关命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// 关闭显示输出</span><br><span class="line">sudo vcgencmd display_power 0</span><br><span class="line">// 开启显示输出</span><br><span class="line">sudo vcgencmd display_power 1</span><br></pre></td></tr></table></figure>
-
-<p>运行关闭显示输出命令后，屏幕熄灭、进入待机状态，此时树莓派依然是正常工作状态，如果你通过vnc连接树莓派，会发现一切如常，说明这个命令是在硬件层面关闭了显示输出</p>
-<h2 id="二、定时任务"><a href="#二、定时任务" class="headerlink" title="二、定时任务"></a>二、定时任务</h2><p>编辑定时任务</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo crontab -e</span><br></pre></td></tr></table></figure>
-
-<p>添加</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line"># 每天7:30开启显示</span><br><span class="line">30 7 * * * vcgencmd display_power 1</span><br><span class="line"></span><br><span class="line"># 周一至周五每天8点关闭显示</span><br><span class="line">0 8 * * 1-5 vcgencmd display_power 0</span><br><span class="line"></span><br><span class="line"># 周一至周五每天19点开启显示</span><br><span class="line">0 19 * * 1-5 vcgencmd display_power 1</span><br><span class="line"></span><br><span class="line"># 每天0:30点关闭显示</span><br><span class="line">30 0 * * * vcgencmd display_power 0</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>树莓派</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>树莓派EC20模块联网</title>
     <url>/posts/3c0ad28a2fa4/</url>
     <content><![CDATA[<h2 id="一、EC20模块"><a href="#一、EC20模块" class="headerlink" title="一、EC20模块"></a>一、EC20模块</h2><p>模块有两个usb接口，其中靠近SIM卡的是电源接口，如果没有接独立供电接口的话，可能会导致板子发热，不稳定</p>
@@ -1159,6 +1136,42 @@
       <tags>
         <tag>树莓派</tag>
         <tag>EC20模块</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派pi和root账户密码</title>
+    <url>/posts/0b5febe6de76/</url>
+    <content><![CDATA[<h2 id="pi账户"><a href="#pi账户" class="headerlink" title="pi账户"></a>pi账户</h2><p>pi是树莓派的默认账户，默认密码为 raspberry</p>
+<p>修改默认密码</p>
+<p><code>sudo raspi-config</code></p>
+<img src="/posts/0b5febe6de76/2018-03-11-221228_655x390_scrot.png" class="">
+
+<p>选择的一项 Change User Password，输入两次新密码即可完成密码修改</p>
+<img src="/posts/0b5febe6de76/2018-03-11-221635_655x390_scrot.png" class="">
+
+<h2 id="root账户"><a href="#root账户" class="headerlink" title="root账户"></a>root账户</h2><p>树莓派的root账户在默认情况下是禁用的，且密码为空，所以root账户在未启用时，无论输入什么密码均是错误密码</p>
+<p>设置root密码</p>
+<p><code>sudo passwd root</code></p>
+<p>输入两次新设置的密码后提示密码更新成功</p>
+<img src="/posts/0b5febe6de76/2018-03-11-222638_655x390_scrot.png" class="">
+
+
+<h2 id="pi和root账户切换"><a href="#pi和root账户切换" class="headerlink" title="pi和root账户切换"></a>pi和root账户切换</h2><p>输入</p>
+<p><code>su root</code></p>
+<p>和密码后便可登录root账户</p>
+<p>输入</p>
+<p><code>su pi</code></p>
+<p>后便可切换到pi账户</p>
+<h2 id="如何锁定root账户"><a href="#如何锁定root账户" class="headerlink" title="如何锁定root账户"></a>如何锁定root账户</h2><p>输入</p>
+<p><code>sudo passwd --lock root</code></p>
+<p>锁定root账户后，我们再尝试用root账户登录，会提示Authentication failure(验证失败)</p>
+<p>当我们输入</p>
+<p><code>sudo passwd --unlock root</code></p>
+<p>后，便可解锁root账户</p>
+<p>再次登录root账户成功</p>
+]]></content>
+      <tags>
+        <tag>树莓派</tag>
       </tags>
   </entry>
   <entry>
@@ -1238,6 +1251,30 @@ ssd1306.drawToDisplay()
       </tags>
   </entry>
   <entry>
+    <title>树莓派如何关闭显示输出？</title>
+    <url>/posts/25aa1f481aea/</url>
+    <content><![CDATA[<h2 id="一、尝试"><a href="#一、尝试" class="headerlink" title="一、尝试"></a>一、尝试</h2><p>树莓派通过hdmi连接了一块1920*1080的屏幕，平时时竖屏放置，用来显示日历和其他一些信息，树莓派7*24小时运行, 导致屏幕一直处于工作状态，所以我打算只在一定的时间内进行显示输出</p>
+<p>在百度上搜索了如何休眠之类的方法，找到可以通过<code>xset</code>的相关命令使树莓派进入休眠或是唤醒</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// 强制进入休眠</span><br><span class="line">sudo xset dpms force off</span><br><span class="line">// 强制唤醒</span><br><span class="line">sudo xset dpms force on</span><br></pre></td></tr></table></figure>
+
+<p>但是在我尝试强制进入休眠时，屏幕只是短暂黑了下屏，再次恢复正常，并不行，不知道哪里出了问题，尝试重新写入系统镜像，用一个新系统试下</p>
+<p>新系统启动后屏幕变回了默认的横屏模式，神奇的事发生了，这时再执行强制进入休眠，竟然成功了，当鼠标移动可以正常唤醒，可是当我重启设置了启动时，旋转90deg时，休眠命令再次失效了，多次在横屏竖屏切换尝试了几次，竖屏下都不行，只有横屏下休眠命令可以正常工作，看来是个bug（似乎之前竖屏下，自动休眠就没有正常工作过，应该也是这个原因导致的）</p>
+<p>虽然在横屏模式下可以实现命令休眠，但是发现屏幕并没有熄灭，好像只是换了一个黑色的屏保，这点与预期有差距，我们是想让显示屏熄灭，进入待机状态</p>
+<p>之后又百度了很久，没有发现什么好的办法。只得转到google上继续查找，最终找到了turn off hdmi的相关命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// 关闭显示输出</span><br><span class="line">sudo vcgencmd display_power 0</span><br><span class="line">// 开启显示输出</span><br><span class="line">sudo vcgencmd display_power 1</span><br></pre></td></tr></table></figure>
+
+<p>运行关闭显示输出命令后，屏幕熄灭、进入待机状态，此时树莓派依然是正常工作状态，如果你通过vnc连接树莓派，会发现一切如常，说明这个命令是在硬件层面关闭了显示输出</p>
+<h2 id="二、定时任务"><a href="#二、定时任务" class="headerlink" title="二、定时任务"></a>二、定时任务</h2><p>编辑定时任务</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo crontab -e</span><br></pre></td></tr></table></figure>
+
+<p>添加</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line"># 每天7:30开启显示</span><br><span class="line">30 7 * * * vcgencmd display_power 1</span><br><span class="line"></span><br><span class="line"># 周一至周五每天8点关闭显示</span><br><span class="line">0 8 * * 1-5 vcgencmd display_power 0</span><br><span class="line"></span><br><span class="line"># 周一至周五每天19点开启显示</span><br><span class="line">0 19 * * 1-5 vcgencmd display_power 1</span><br><span class="line"></span><br><span class="line"># 每天0:30点关闭显示</span><br><span class="line">30 0 * * * vcgencmd display_power 0</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>树莓派</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>树莓派如何截屏</title>
     <url>/posts/5ccd0e4749cf/</url>
     <content><![CDATA[<h2 id="安装scrot"><a href="#安装scrot" class="headerlink" title="安装scrot"></a>安装scrot</h2><p>在终端里输入命令:</p>
@@ -1268,6 +1305,27 @@ ssd1306.drawToDisplay()
 ]]></content>
       <tags>
         <tag>树莓派</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派安装gammu</title>
+    <url>/posts/4508ad670cba/</url>
+    <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install gammu</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gammu-config</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/4508ad670cba/2020-06-07_151207.gif" class="">
+
+<h2 id="发送短信"><a href="#发送短信" class="headerlink" title="发送短信"></a>发送短信</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gammu sendsms TEXT 19965412404 -TEXT <span class="string">&#x27;from raspberrypi(测试短信)&#x27;</span> -unicode</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/4508ad670cba/2020-06-07_152304.gif" class="">
+
+<img src="/posts/4508ad670cba/2020-06-07_152603.gif" class="">
+]]></content>
+      <tags>
+        <tag>树莓派</tag>
+        <tag>EC20模块</tag>
+        <tag>gammu</tag>
       </tags>
   </entry>
   <entry>
@@ -1321,27 +1379,6 @@ ssd1306.drawToDisplay()
       </tags>
   </entry>
   <entry>
-    <title>树莓派安装gammu</title>
-    <url>/posts/4508ad670cba/</url>
-    <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install gammu</span><br></pre></td></tr></table></figure>
-
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gammu-config</span><br></pre></td></tr></table></figure>
-
-<img src="/posts/4508ad670cba/2020-06-07_151207.gif" class="">
-
-<h2 id="发送短信"><a href="#发送短信" class="headerlink" title="发送短信"></a>发送短信</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gammu sendsms TEXT 19965412404 -TEXT <span class="string">&#x27;from raspberrypi(测试短信)&#x27;</span> -unicode</span><br></pre></td></tr></table></figure>
-
-<img src="/posts/4508ad670cba/2020-06-07_152304.gif" class="">
-
-<img src="/posts/4508ad670cba/2020-06-07_152603.gif" class="">
-]]></content>
-      <tags>
-        <tag>树莓派</tag>
-        <tag>EC20模块</tag>
-        <tag>gammu</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>树莓派开机自动启动chrome浏览器</title>
     <url>/posts/caf5a23a233a/</url>
     <content><![CDATA[<h2 id="1-chrome-命令行启动（不可通过ssh连接，可以尝试在真机，或者vnc连接情况下）"><a href="#1-chrome-命令行启动（不可通过ssh连接，可以尝试在真机，或者vnc连接情况下）" class="headerlink" title="1.chrome 命令行启动（不可通过ssh连接，可以尝试在真机，或者vnc连接情况下）"></a>1.chrome 命令行启动（不可通过ssh连接，可以尝试在真机，或者vnc连接情况下）</h2><p>打开谷歌</p>
@@ -1375,6 +1412,36 @@ ssd1306.drawToDisplay()
       <tags>
         <tag>树莓派</tag>
         <tag>chrome</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派搭建LAMP服务</title>
+    <url>/posts/32217327e163/</url>
+    <content><![CDATA[<h2 id="LAMP的含义"><a href="#LAMP的含义" class="headerlink" title="LAMP的含义"></a>LAMP的含义</h2><p>Linux - 操作系统</p>
+<p>Apache - web服务器软件</p>
+<p>MySQL - 数据库</p>
+<p>PHP - 使用语言</p>
+<h2 id="安装LAMP"><a href="#安装LAMP" class="headerlink" title="安装LAMP"></a>安装LAMP</h2><p>更新软件列表</p>
+<p><code>sudo apt-get update</code></p>
+<p>升级软件</p>
+<p><code>sudo apt-get upgrade</code></p>
+<p>安装Apache</p>
+<p><code>sudo apt-get install apache2</code></p>
+<p>输入 y 回车 继续即可</p>
+<p>安装MySQL</p>
+<p><code>sudo apt-get install mysql-server</code></p>
+<p>输入 y 回车 继续即可</p>
+<p>(<strong>注</strong>：在安装数据库MySQL过程中并没有提示设置root密码，此时密码为空，可能与我之前为启用树莓派的root账户有关)</p>
+<p>安装PHP </p>
+<p><code>sudo apt-get install php</code></p>
+<p>输入 y 回车 继续即可</p>
+<p>安装PHP访问MySQL所需要的库</p>
+<p><code>sudo apt-get install php-mysql</code></p>
+<p>输入 y 回车 继续即可</p>
+<h2 id="查看web站点"><a href="#查看web站点" class="headerlink" title="查看web站点"></a>查看web站点</h2><p>在浏览器内输入树莓派局域网IP，可以看到Apache的默认页面</p>
+<img src="/posts/32217327e163/2018-03-11-192347_830x386_scrot.png" class="">]]></content>
+      <tags>
+        <tag>树莓派</tag>
       </tags>
   </entry>
   <entry>
@@ -1643,36 +1710,6 @@ ssd1306.drawToDisplay()
 <li><a href="https://ubuntu-tutorials.com/2008/07/07/auto-hide-your-mouse-pointer-when-idle-with-unclutter/">Auto-Hide Your Mouse Pointer When Idle With “Unclutter”</a></li>
 </ul>
 ]]></content>
-      <tags>
-        <tag>树莓派</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>树莓派搭建LAMP服务</title>
-    <url>/posts/32217327e163/</url>
-    <content><![CDATA[<h2 id="LAMP的含义"><a href="#LAMP的含义" class="headerlink" title="LAMP的含义"></a>LAMP的含义</h2><p>Linux - 操作系统</p>
-<p>Apache - web服务器软件</p>
-<p>MySQL - 数据库</p>
-<p>PHP - 使用语言</p>
-<h2 id="安装LAMP"><a href="#安装LAMP" class="headerlink" title="安装LAMP"></a>安装LAMP</h2><p>更新软件列表</p>
-<p><code>sudo apt-get update</code></p>
-<p>升级软件</p>
-<p><code>sudo apt-get upgrade</code></p>
-<p>安装Apache</p>
-<p><code>sudo apt-get install apache2</code></p>
-<p>输入 y 回车 继续即可</p>
-<p>安装MySQL</p>
-<p><code>sudo apt-get install mysql-server</code></p>
-<p>输入 y 回车 继续即可</p>
-<p>(<strong>注</strong>：在安装数据库MySQL过程中并没有提示设置root密码，此时密码为空，可能与我之前为启用树莓派的root账户有关)</p>
-<p>安装PHP </p>
-<p><code>sudo apt-get install php</code></p>
-<p>输入 y 回车 继续即可</p>
-<p>安装PHP访问MySQL所需要的库</p>
-<p><code>sudo apt-get install php-mysql</code></p>
-<p>输入 y 回车 继续即可</p>
-<h2 id="查看web站点"><a href="#查看web站点" class="headerlink" title="查看web站点"></a>查看web站点</h2><p>在浏览器内输入树莓派局域网IP，可以看到Apache的默认页面</p>
-<img src="/posts/32217327e163/2018-03-11-192347_830x386_scrot.png" class="">]]></content>
       <tags>
         <tag>树莓派</tag>
       </tags>

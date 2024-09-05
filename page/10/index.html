@@ -88,7 +88,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">36</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">47</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-demo"><a href="/demo/" rel="section"><i class="fa fa-rocket fa-fw"></i>Demo</a></li><li class="menu-item menu-item-component"><a href="/component/" rel="section"><i class="fa fa-th-large fa-fw"></i>Component</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">37</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">48</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-demo"><a href="/demo/" rel="section"><i class="fa fa-rocket fa-fw"></i>Demo</a></li><li class="menu-item menu-item-component"><a href="/component/" rel="section"><i class="fa fa-th-large fa-fw"></i>Component</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -159,13 +159,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">37</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -201,6 +201,147 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/posts/7ce395675d7c/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="yancoding">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yan blog">
+      <meta itemprop="description" content="yan blog">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | yan blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/7ce395675d7c/" class="post-title-link" itemprop="url">管理富文本编辑器里上传的文件</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-07-18 09:51:56" itemprop="dateCreated datePublished" datetime="2019-07-18T09:51:56+08:00">2019-07-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-09-05 11:11:07" itemprop="dateModified" datetime="2024-09-05T11:11:07+08:00">2024-09-05</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.7k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>富文本编辑器会提供插入图片或视频的功能，该功能一般情况时执行插入操作时上传相关文件，由服务器返回静态文件的url地址，前端通过插入img或是video标签，并将返回的url赋予src属性，这样就可以在前端看到我们插入的文件了，但是用户可能会插入新的文件或是删除已插入的文件，但是在前端我们只是删除img或是video标签，服务器上该资源的文件还是存在的，并没有被清除，事实上此时用户没有提交，我们也不能直接进行删除，毕竟用户还可能执行撤销操作，如果直接删除了服务器资源，就会导致文件资源404，找不到该资源，又要重新上传，用户体验太差。</p>
+<h2 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h2><blockquote>
+<p>前端提供需要清除文件的地址数组</p>
+</blockquote>
+<p>用户打开富文本编辑器，这可能是新建的或是对已有的内容进行编辑，我们可以初始化一个数组<code>let uploads = []</code>,如果是编辑操作，我们先通过<code>querySelectorAll(&#39;[src]&#39;)</code>得到文件相应的 dom 数组，后面进行遍历，将每一项的src值push到uploads数组里，这样我们就得到了以前上传并使用中的文件列表；在后续的上传操作中，每次上传我们都会将文件地址push到uploads数组里；当用户进行提交操作时，我们可以遍历出内容中所有的file并push到 <code>let files = []</code>数组中。</p>
+<p>此时我们得到了两个数组，一个是 <code>uploads</code> 上传文件的数组，另一个是 <code>files</code> 内容中有效的文件数组，那取其差集，就是我们要清除的无用文件的数组 <code>useless</code>了，将该数组传到服务器，就可以清除相关的无用文件了。</p>
+<blockquote>
+<p>这里有个小问题，如何取两个数组差集的问题，可以这样写：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> uploads = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;f&#x27;</span>]</span><br><span class="line"><span class="keyword">let</span> files = [<span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;e&#x27;</span>]</span><br><span class="line"><span class="keyword">let</span> useless = []</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;files.<span class="property">length</span>; i++) &#123;</span><br><span class="line">  <span class="keyword">let</span> index = uploads.<span class="title function_">indexOf</span>(files[i])</span><br><span class="line">  uploads.<span class="title function_">splice</span>(index,<span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line">useless = uploads</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`useless: <span class="subst">$&#123;useless&#125;</span>`</span>)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>这种实现由什么缺陷呢：整体上看，这种实现确实了我们的预期功能，并且后台也很简单，只需提供一个可以接收删除文件数组的接口，并执行删除就可以了；现实其实后台并没有这么简单，删除操作一般是危险的，需要我们警惕的，如果该实现上传到服务器的文件并没有进行数据库记录，只是放置在 <code>static/uploads/</code> 的目录下，那就没有办法设置谁由权限删除某一个文件，也就是说只要提供删除数组，所有的可以操作编辑器的用户都可以进行删除操作，显然这是有安全问题的，所以对上传的文件一定要做数据库记录，并设置所有者，执行删除操作时也需要判断操作是否来自所有者。</p>
+<p>既然上述存在的问题必须通过添加数据库记录来解决，那我们可以将上传的文件绑定到指定的内容id；对于新创建的内容，新上传的文件记录的内容id为null，当我们提交编辑器内容时，我们将files各记录的内容id设置为实际值；如果是编辑已有的内容，我们此时已有该内容的id，将该内容id下的所有文件记录的内容id设置为null，我们将files里的指定为该内容id，之后我们可以定期清理内容id为null的文件，即可清除无用的上传文件，这有点类似于js中内存垃圾清理实现方式之一的引用计数。</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>article_id</th>
+<th>file_url</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>null</td>
+<td>‘<a target="_blank" rel="noopener" href="http://domain.com/pic.jpg&#39;">http://domain.com/pic.jpg&#39;</a></td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>‘<a target="_blank" rel="noopener" href="http://domain.com/pic.jpg&#39;">http://domain.com/pic.jpg&#39;</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>‘<a target="_blank" rel="noopener" href="http://domain.com/pic.jpg&#39;">http://domain.com/pic.jpg&#39;</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td>1</td>
+<td>‘<a target="_blank" rel="noopener" href="http://domain.com/pic.jpg&#39;">http://domain.com/pic.jpg&#39;</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td>1</td>
+<td>‘<a target="_blank" rel="noopener" href="http://domain.com/pic.jpg&#39;">http://domain.com/pic.jpg&#39;</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td>1</td>
+<td>‘<a target="_blank" rel="noopener" href="http://domain.com/pic.jpg&#39;">http://domain.com/pic.jpg&#39;</a></td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -246,7 +387,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-03-14 00:10:01" itemprop="dateModified" datetime="2023-03-14T00:10:01+08:00">2023-03-14</time>
+      <time title="修改时间：2024-09-05 11:11:07" itemprop="dateModified" datetime="2024-09-05T11:11:07+08:00">2024-09-05</time>
     </span>
 
   
@@ -345,7 +486,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-03-14 00:10:01" itemprop="dateModified" datetime="2023-03-14T00:10:01+08:00">2023-03-14</time>
+      <time title="修改时间：2024-09-05 11:11:07" itemprop="dateModified" datetime="2024-09-05T11:11:07+08:00">2024-09-05</time>
     </span>
 
   
@@ -408,105 +549,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/posts/6eb7991bfc44/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.png">
-      <meta itemprop="name" content="yancoding">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yan blog">
-      <meta itemprop="description" content="yan blog">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | yan blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/6eb7991bfc44/" class="post-title-link" itemprop="url">js上传视频图片预览</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-07-02 22:24:34" itemprop="dateCreated datePublished" datetime="2019-07-02T22:24:34+08:00">2019-07-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-03-14 00:10:01" itemprop="dateModified" datetime="2023-03-14T00:10:01+08:00">2023-03-14</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.4k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p><a href="demo/list/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%A2%84%E8%A7%88">文件上传预览</a></p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>HTML</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">legend</span>&gt;</span>上传视频文件<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">accept</span>=<span class="string">&quot;video/*&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>视频预览<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">video</span> <span class="attr">id</span>=<span class="string">&quot;video&quot;</span> <span class="attr">src</span>=<span class="string">&quot;&quot;</span> <span class="attr">controls</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">legend</span>&gt;</span>上传图片文件<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">accept</span>=<span class="string">&quot;image/*&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>图片预览<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">&quot;img&quot;</span> <span class="attr">src</span>=<span class="string">&quot;&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>CSS</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">video</span>,</span><br><span class="line"><span class="selector-tag">img</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>JS</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> form = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;form&#x27;</span>)</span><br><span class="line">    <span class="keyword">let</span> videoEl = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;video&#x27;</span>)</span><br><span class="line">    <span class="keyword">let</span> imgEl = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;img&#x27;</span>)</span><br><span class="line">    form.<span class="title function_">addEventListener</span>(<span class="string">&#x27;change&#x27;</span>, <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(event.<span class="property">target</span>.<span class="property">type</span> === <span class="string">&#x27;file&#x27;</span>) &#123;</span><br><span class="line">            <span class="keyword">let</span> file = event.<span class="property">target</span>.<span class="property">files</span>[<span class="number">0</span>]</span><br><span class="line">            <span class="keyword">if</span>(event.<span class="property">target</span>.<span class="property">accept</span>.<span class="title function_">indexOf</span>(<span class="string">&#x27;video&#x27;</span>) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                videoEl.<span class="property">src</span> = <span class="title function_">getObjectURL</span>(file)</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(event.<span class="property">target</span>.<span class="property">accept</span>.<span class="title function_">indexOf</span>(<span class="string">&#x27;image&#x27;</span>) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                imgEl.<span class="property">src</span> = <span class="title function_">getObjectURL</span>(file)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">let</span> <span class="title function_">getObjectURL</span> = file =&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> url = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable language_">window</span>.<span class="property">createObjectURL</span> != <span class="literal">undefined</span>) &#123; </span><br><span class="line">            <span class="comment">// basic</span></span><br><span class="line">            url = <span class="variable language_">window</span>.<span class="title function_">createObjectURL</span>(file);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="variable language_">window</span>.<span class="property">URL</span> != <span class="literal">undefined</span>) &#123; </span><br><span class="line">            <span class="comment">// mozilla(firefox)</span></span><br><span class="line">            url = <span class="variable language_">window</span>.<span class="property">URL</span>.<span class="title function_">createObjectURL</span>(file);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="variable language_">window</span>.<span class="property">webkitURL</span> != <span class="literal">undefined</span>) &#123; </span><br><span class="line">            <span class="comment">// webkit or chrome</span></span><br><span class="line">            url = <span class="variable language_">window</span>.<span class="property">webkitURL</span>.<span class="title function_">createObjectURL</span>(file);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> url</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
@@ -520,7 +562,7 @@
 
 <div class="copyright">
   &copy; 2018 – 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
