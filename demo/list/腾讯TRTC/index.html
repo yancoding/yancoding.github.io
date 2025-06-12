@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .input-item {
+      display: flex;
+      flex-wrap: nowrap;
+      margin-bottom: 10px;
+    }
+
+    .input-item label {
+      width: 150px;
+      flex: none;
+    }
+
+    .input-item input {
+      flex: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <form name="form">
+    <fieldset>
+      <legend>TRTC参数</legend>
+      <div class="input-item">
+        <label for="sdkAppId">sdkAppId: </label>
+        <input name="sdkAppId" type="text">
+      </div>
+      <div class="input-item">
+        <label for="roomId">roomId: </label>
+        <input name="roomId" type="text">
+      </div>
+      <div class="input-item">
+        <label for="userId">userId: </label>
+        <input name="userId" type="text">
+      </div>
+      <div class="input-item">
+        <label for="userSig">userSig: </label>
+        <input name="userSig" type="text">
+      </div>
+      <button id="confirmButton" type="button">确认</button>
+    </fieldset>
+  </form>
+  <div id="video"></div>
+  <script src="./trtc.js"></script>
+  <script>
+    window.addEventListener('load', () => {
+      var formEl = document.querySelector('form[name=form]')
+      var confirmButtonEl = document.querySelector('#confirmButton')
+
+      let client = TRTC.create()
+
+      const publish = async () => {
+        await client.startLocalVideo({
+          view: document.getElementById('video'),
+          publish: false,
+          option: {
+            profile: { width: 480, height: 360, frameRate: 15, bitrate: 400 /* kbps */ },
+          },
+        })
+
+        // 进入房间
+        await client.enterRoom({
+          roomId: Number(formEl.querySelector('input[name=roomId]').value.trim()),
+          sdkAppId: Number(formEl.querySelector('input[name=sdkAppId]').value.trim()),
+          userId: formEl.querySelector('input[name=userId]').value.trim(),
+          userSig: formEl.querySelector('input[name=userSig]').value.trim(),
+        })
+
+        // 开始推流
+        await client.updateLocalVideo({ publish: true })
+      }
+
+      // 输入时
+      formEl.addEventListener('input', e => {
+        const target = e.target
+        window.localStorage.setItem(`trtc_${target.name}`, target.value)
+      })
+
+      // 确认时
+      confirmButtonEl.addEventListener('click', e => {
+        const target = e.target
+        const inputList = formEl.querySelectorAll('input[type=text]')
+        for(let i = 0; i < inputList.length; i++) {
+          if (inputList[i].value.trim() === '') {
+            alert(`请输入${inputList[i].name}`)
+            return
+          }
+        }
+        confirmButtonEl.remove()
+        publish()
+      })
+
+      // 回显数据
+      formEl.querySelectorAll('input').forEach(el => {
+        el.value = window.localStorage.getItem(`trtc_${el.name}`) || ''
+      })
+    })
+  </script>
+</body>
+
+</html>
