@@ -88,7 +88,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">37</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">48</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-demo"><a href="/demo/" rel="section"><i class="fa fa-rocket fa-fw"></i>Demo</a></li><li class="menu-item menu-item-component"><a href="/component/" rel="section"><i class="fa fa-th-large fa-fw"></i>Component</a></li><li class="menu-item menu-item-to-do-list"><a href="/to_do_list/" rel="section"><i class="fa fa-calendar fa-fw"></i>To Do List</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">40</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">49</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-demo"><a href="/demo/" rel="section"><i class="fa fa-rocket fa-fw"></i>Demo</a></li><li class="menu-item menu-item-component"><a href="/component/" rel="section"><i class="fa fa-th-large fa-fw"></i>Component</a></li><li class="menu-item menu-item-to-do-list"><a href="/to_do_list/" rel="section"><i class="fa fa-calendar fa-fw"></i>To Do List</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -159,13 +159,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-count">49</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-count">40</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -201,6 +201,202 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/posts/ddae8e390a11/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="yancoding">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yan blog">
+      <meta itemprop="description" content="yan blog">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | yan blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/ddae8e390a11/" class="post-title-link" itemprop="url">ubuntu下catimg的安装和使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-04-09 11:20:00 / 修改时间：11:36:27" itemprop="dateCreated datePublished" datetime="2026-04-09T11:20:00+08:00">2026-04-09</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><code>catimg</code> 是一个可以直接在终端里显示图片的小工具，适合在纯命令行环境里快速预览图片，也可以拿来做一些有意思的终端展示。</p>
+<p>它支持常见图片格式，常用场景有：</p>
+<ul>
+<li>在服务器或终端环境快速预览图片</li>
+<li>在 SSH 环境下简单查看图片内容</li>
+<li>在终端里展示 PNG、JPG、GIF 等图片</li>
+</ul>
+<h2 id="一、安装-catimg"><a href="#一、安装-catimg" class="headerlink" title="一、安装 catimg"></a>一、安装 catimg</h2><h3 id="1-优先使用-apt-安装"><a href="#1-优先使用-apt-安装" class="headerlink" title="1. 优先使用 apt 安装"></a>1. 优先使用 apt 安装</h3><p>先更新软件包索引：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
+
+<p>安装 <code>catimg</code>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install catimg</span><br></pre></td></tr></table></figure>
+
+<p>安装过程示意：</p>
+<img src="/posts/ddae8e390a11/install-catimg-demo.svg" class="">
+
+<p>安装完成后查看是否成功：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg -h</span><br></pre></td></tr></table></figure>
+
+<p>如果终端输出帮助信息，说明安装成功。</p>
+<h3 id="2-如果-apt-仓库里没有，再使用源码安装"><a href="#2-如果-apt-仓库里没有，再使用源码安装" class="headerlink" title="2. 如果 apt 仓库里没有，再使用源码安装"></a>2. 如果 apt 仓库里没有，再使用源码安装</h3><p>有些 Ubuntu 环境默认仓库里可能没有 <code>catimg</code>，这时可以从源码编译安装。</p>
+<p>先安装编译工具：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install git cmake build-essential</span><br></pre></td></tr></table></figure>
+
+<p>拉取源码：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/posva/catimg.git</span><br><span class="line"><span class="built_in">cd</span> catimg</span><br></pre></td></tr></table></figure>
+
+<p>编译并安装：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cmake .</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后检查版本或帮助信息：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg -h</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、基本使用"><a href="#二、基本使用" class="headerlink" title="二、基本使用"></a>二、基本使用</h2><p>最简单的用法就是直接指定一张图片：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg demo.png</span><br></pre></td></tr></table></figure>
+
+<p>如果终端支持 256 色，图片就会直接输出到当前终端窗口中。</p>
+<p>预览效果示意：</p>
+<img src="/posts/ddae8e390a11/catimg-preview-demo.svg" class="">
+
+<h2 id="三、常用参数"><a href="#三、常用参数" class="headerlink" title="三、常用参数"></a>三、常用参数</h2><h3 id="1-指定显示宽度"><a href="#1-指定显示宽度" class="headerlink" title="1. 指定显示宽度"></a>1. 指定显示宽度</h3><p>使用 <code>-w</code> 指定图片显示宽度：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg -w 80 demo.png</span><br></pre></td></tr></table></figure>
+
+<p>这里的 <code>80</code> 表示图片输出宽度。终端较窄时，手动指定宽度会更容易控制显示效果。</p>
+<h3 id="2-显示-GIF-并控制循环次数"><a href="#2-显示-GIF-并控制循环次数" class="headerlink" title="2. 显示 GIF 并控制循环次数"></a>2. 显示 GIF 并控制循环次数</h3><p><code>catimg</code> 支持 GIF，使用 <code>-l</code> 指定循环次数：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg -l 3 demo.gif</span><br></pre></td></tr></table></figure>
+
+<p>如果设置为负数，则表示一直循环：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg -l -1 demo.gif</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-指定分辨率模式"><a href="#3-指定分辨率模式" class="headerlink" title="3. 指定分辨率模式"></a>3. 指定分辨率模式</h3><p>可以通过 <code>-r</code> 指定分辨率模式：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg -r 1 demo.png</span><br></pre></td></tr></table></figure>
+
+<p>或者：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg -r 2 demo.png</span><br></pre></td></tr></table></figure>
+
+<p>一般来说：</p>
+<ul>
+<li><code>-r 1</code> 显示更保守</li>
+<li><code>-r 2</code> 显示更细一些</li>
+</ul>
+<p>可以根据自己的终端效果选择。</p>
+<h3 id="4-限制颜色转换"><a href="#4-限制颜色转换" class="headerlink" title="4. 限制颜色转换"></a>4. 限制颜色转换</h3><p>有些终端颜色支持较差，可以加上 <code>-c</code>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg -c demo.png</span><br></pre></td></tr></table></figure>
+
+<p>这样可以让颜色映射更稳定一些。</p>
+<p>常用参数组合示意：</p>
+<img src="/posts/ddae8e390a11/catimg-options-demo.svg" class="">
+
+<h2 id="四、使用示例"><a href="#四、使用示例" class="headerlink" title="四、使用示例"></a>四、使用示例</h2><h3 id="1-预览当前目录中的图片"><a href="#1-预览当前目录中的图片" class="headerlink" title="1. 预览当前目录中的图片"></a>1. 预览当前目录中的图片</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg ./test.png</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-按指定宽度显示"><a href="#2-按指定宽度显示" class="headerlink" title="2. 按指定宽度显示"></a>2. 按指定宽度显示</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg -w 120 ./test.jpg</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-在-SSH-终端里查看图片"><a href="#3-在-SSH-终端里查看图片" class="headerlink" title="3. 在 SSH 终端里查看图片"></a>3. 在 SSH 终端里查看图片</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg -w 60 ./qrcode.png</span><br></pre></td></tr></table></figure>
+
+<p>如果只是想快速确认图片内容，比如二维码、截图、流程图缩略图，这种方式还是很方便的。</p>
+<h2 id="五、常见问题"><a href="#五、常见问题" class="headerlink" title="五、常见问题"></a>五、常见问题</h2><h3 id="1-终端显示效果很差"><a href="#1-终端显示效果很差" class="headerlink" title="1. 终端显示效果很差"></a>1. 终端显示效果很差</h3><p><code>catimg</code> 依赖终端的颜色能力，如果当前终端不支持 256 色，显示效果会比较一般。</p>
+<p>可以先检查终端类型：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$TERM</span></span><br></pre></td></tr></table></figure>
+
+<p>常见比较合适的终端有：</p>
+<ul>
+<li><code>xterm-256color</code></li>
+<li><code>screen-256color</code></li>
+<li><code>tmux-256color</code></li>
+</ul>
+<h3 id="2-图片太大，看不全"><a href="#2-图片太大，看不全" class="headerlink" title="2. 图片太大，看不全"></a>2. 图片太大，看不全</h3><p>可以直接用 <code>-w</code> 限制宽度：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg -w 50 big.png</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-命令不存在"><a href="#3-命令不存在" class="headerlink" title="3. 命令不存在"></a>3. 命令不存在</h3><p>如果提示：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg: <span class="built_in">command</span> not found</span><br></pre></td></tr></table></figure>
+
+<p>可以按下面几个方向检查：</p>
+<ul>
+<li>确认是否已经安装成功</li>
+<li>如果是源码安装，确认 <code>/usr/local/bin</code> 是否在 <code>PATH</code> 中</li>
+<li>重新打开一个终端再试</li>
+</ul>
+<p>查看命令路径：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">which</span> catimg</span><br></pre></td></tr></table></figure>
+
+<h2 id="六、小结"><a href="#六、小结" class="headerlink" title="六、小结"></a>六、小结</h2><p><code>catimg</code> 很适合在 Ubuntu 终端中快速查看图片，安装也比较简单。</p>
+<p>如果仓库中能直接安装，优先使用：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install catimg</span><br></pre></td></tr></table></figure>
+
+<p>如果仓库里没有，再使用源码编译安装即可。</p>
+<p>参考文章</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/posva/catimg">catimg GitHub</a></li>
+<li><a target="_blank" rel="noopener" href="https://manpages.ubuntu.com/manpages/focal/en/man1/catimg.1.html">Ubuntu manpage: catimg</a></li>
+<li><a target="_blank" rel="noopener" href="https://packages.ubuntu.com/">Ubuntu Packages Search</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -246,7 +442,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-09-05 09:57:33" itemprop="dateModified" datetime="2024-09-05T09:57:33+08:00">2024-09-05</time>
+      <time title="修改时间：2023-05-06 00:17:35" itemprop="dateModified" datetime="2023-05-06T00:17:35+08:00">2023-05-06</time>
     </span>
 
   
@@ -357,15 +553,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2023-04-13 21:06:06" itemprop="dateCreated datePublished" datetime="2023-04-13T21:06:06+08:00">2023-04-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-09-05 09:57:33" itemprop="dateModified" datetime="2024-09-05T09:57:33+08:00">2024-09-05</time>
+      <time title="创建时间：2023-04-13 21:06:06 / 修改时间：23:06:19" itemprop="dateCreated datePublished" datetime="2023-04-13T21:06:06+08:00">2023-04-13</time>
     </span>
 
   
@@ -425,127 +615,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/posts/831dce22a672/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.png">
-      <meta itemprop="name" content="yancoding">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yan blog">
-      <meta itemprop="description" content="yan blog">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | yan blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/831dce22a672/" class="post-title-link" itemprop="url">iTerm2配置</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-03-17 00:29:54" itemprop="dateCreated datePublished" datetime="2023-03-17T00:29:54+08:00">2023-03-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-09-05 09:57:33" itemprop="dateModified" datetime="2024-09-05T09:57:33+08:00">2024-09-05</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>349</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="热键"><a href="#热键" class="headerlink" title="热键"></a>热键</h2><p>配置热键可以方便快速打开终端，而不必通过点击图标打开，可以极大提高使用效率</p>
-<p>首先需要启用热键</p>
-<img src="/posts/831dce22a672/2023-03-17-01-10-26.png" class="">
-
-<p>然后对热键进行配置</p>
-<img src="/posts/831dce22a672/2023-03-17-01-05-13.png" class="">
-
-<ol>
-<li>这里使用双击<code>command</code>作为热键</li>
-<li>勾选 <code>Floating window</code> 使其可以悬浮在其他窗口的上方（还有一点好处，如果你的终端设置了透明样式，这个透明样式可以显示出透明效果; 但是在普通情况下开启的终端，进行全屏后，将看不出透明效果，因为这时候的桌面背景被隐藏了）</li>
-</ol>
-<img src="/posts/831dce22a672/2023-03-17-01-21-08.png" class="">
-
-<ol start="3">
-<li>为了复用已经开启的终端窗口</li>
-</ol>
-<p>对窗口进行配置</p>
-<img src="/posts/831dce22a672/2023-03-17-01-23-25.png" class="">
-
-<ol>
-<li>设置新打开的窗口样式为全屏</li>
-<li>热键打开的窗口位置设置为当前光标所在的屏幕（假如你有多个显示屏）</li>
-<li>打开位置设置为所有空间，可以保证热键打开的窗口可以处于任意区域，否则只能出现在桌面一，因为其他桌面可能已经没有空间</li>
-</ol>
-<p>注意：有些时候更改设置后并不会生效，可以将iTerm2重启既可生效</p>
-<p>参考文章</p>
-<ul>
-<li><a href="url">title</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 </div>
@@ -557,7 +628,7 @@
 
 <div class="copyright">
   &copy; 2018 – 
-  <span itemprop="copyrightYear">2025</span>
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -569,14 +640,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">56k</span>
+    <span title="站点总字数">58k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">51 分钟</span>
+    <span title="站点阅读时长">53 分钟</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动

@@ -1,0 +1,37 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1200" y2="760" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E9E4F6"/>
+      <stop offset="1" stop-color="#D6CCE8"/>
+    </linearGradient>
+    <linearGradient id="terminal3" x1="90" y1="80" x2="1110" y2="680" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1B1C22"/>
+      <stop offset="1" stop-color="#0F1015"/>
+    </linearGradient>
+    <filter id="shadow3" x="50" y="50" width="1100" height="660" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#4B3D6B" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="760" fill="url(#bg3)"/>
+  <g filter="url(#shadow3)">
+    <rect x="80" y="80" width="1040" height="600" rx="28" fill="url(#terminal3)"/>
+    <rect x="80" y="80" width="1040" height="52" rx="28" fill="#2A2D35"/>
+    <rect x="80" y="106" width="1040" height="26" fill="#2A2D35"/>
+    <circle cx="118" cy="106" r="8" fill="#FF5F57"/>
+    <circle cx="146" cy="106" r="8" fill="#FEBC2E"/>
+    <circle cx="174" cy="106" r="8" fill="#28C840"/>
+    <text x="600" y="112" text-anchor="middle" fill="#D6DAE3" font-size="20" font-family="Menlo, Monaco, Consolas, monospace">ubuntu@server: ~/images</text>
+    <text x="130" y="184" fill="#A6E3A1" font-size="32" font-family="Menlo, Monaco, Consolas, monospace">常用参数示例</text>
+    <rect x="128" y="220" width="944" height="94" rx="18" fill="#181A20" stroke="#393C46"/>
+    <text x="160" y="272" fill="#8BE9FD" font-size="28" font-family="Menlo, Monaco, Consolas, monospace">$ catimg -w 80 demo.png</text>
+    <text x="600" y="272" fill="#D5D8E1" font-size="28" font-family="Menlo, Monaco, Consolas, monospace">限制输出宽度，适合窄终端</text>
+    <rect x="128" y="336" width="944" height="94" rx="18" fill="#181A20" stroke="#393C46"/>
+    <text x="160" y="388" fill="#8BE9FD" font-size="28" font-family="Menlo, Monaco, Consolas, monospace">$ catimg -l 3 demo.gif</text>
+    <text x="600" y="388" fill="#D5D8E1" font-size="28" font-family="Menlo, Monaco, Consolas, monospace">播放 GIF，并循环 3 次</text>
+    <rect x="128" y="452" width="944" height="94" rx="18" fill="#181A20" stroke="#393C46"/>
+    <text x="160" y="504" fill="#8BE9FD" font-size="28" font-family="Menlo, Monaco, Consolas, monospace">$ catimg -r 2 demo.png</text>
+    <text x="600" y="504" fill="#D5D8E1" font-size="28" font-family="Menlo, Monaco, Consolas, monospace">调整分辨率模式，获得更细的显示效果</text>
+    <rect x="128" y="568" width="944" height="70" rx="18" fill="#111218" stroke="#393C46"/>
+    <text x="160" y="614" fill="#F9E2AF" font-size="26" font-family="Menlo, Monaco, Consolas, monospace">建议先试默认参数，再按宽度和分辨率逐步调整</text>
+  </g>
+</svg>

@@ -368,14 +368,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>frp反向代理</title>
-    <url>/posts/1f5dbaa397e3/</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>frp</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>git基本用法</title>
     <url>/posts/cc4fed488750/</url>
     <content><![CDATA[<h2 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h2><h3 id="Windows系统"><a href="#Windows系统" class="headerlink" title="Windows系统"></a>Windows系统</h3><p>在git官网下载安装即可</p>
@@ -440,6 +432,14 @@
 <h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
       <tags>
         <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>frp反向代理</title>
+    <url>/posts/1f5dbaa397e3/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>frp</tag>
       </tags>
   </entry>
   <entry>
@@ -700,6 +700,129 @@
       <tags>
         <tag>android</tag>
         <tag>termux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ubuntu下catimg的安装和使用</title>
+    <url>/posts/ddae8e390a11/</url>
+    <content><![CDATA[<p><code>catimg</code> 是一个可以直接在终端里显示图片的小工具，适合在纯命令行环境里快速预览图片，也可以拿来做一些有意思的终端展示。</p>
+<p>它支持常见图片格式，常用场景有：</p>
+<ul>
+<li>在服务器或终端环境快速预览图片</li>
+<li>在 SSH 环境下简单查看图片内容</li>
+<li>在终端里展示 PNG、JPG、GIF 等图片</li>
+</ul>
+<h2 id="一、安装-catimg"><a href="#一、安装-catimg" class="headerlink" title="一、安装 catimg"></a>一、安装 catimg</h2><h3 id="1-优先使用-apt-安装"><a href="#1-优先使用-apt-安装" class="headerlink" title="1. 优先使用 apt 安装"></a>1. 优先使用 apt 安装</h3><p>先更新软件包索引：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
+
+<p>安装 <code>catimg</code>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install catimg</span><br></pre></td></tr></table></figure>
+
+<p>安装过程示意：</p>
+<img src="/posts/ddae8e390a11/install-catimg-demo.svg" class="">
+
+<p>安装完成后查看是否成功：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg -h</span><br></pre></td></tr></table></figure>
+
+<p>如果终端输出帮助信息，说明安装成功。</p>
+<h3 id="2-如果-apt-仓库里没有，再使用源码安装"><a href="#2-如果-apt-仓库里没有，再使用源码安装" class="headerlink" title="2. 如果 apt 仓库里没有，再使用源码安装"></a>2. 如果 apt 仓库里没有，再使用源码安装</h3><p>有些 Ubuntu 环境默认仓库里可能没有 <code>catimg</code>，这时可以从源码编译安装。</p>
+<p>先安装编译工具：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install git cmake build-essential</span><br></pre></td></tr></table></figure>
+
+<p>拉取源码：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/posva/catimg.git</span><br><span class="line"><span class="built_in">cd</span> catimg</span><br></pre></td></tr></table></figure>
+
+<p>编译并安装：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cmake .</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后检查版本或帮助信息：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg -h</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、基本使用"><a href="#二、基本使用" class="headerlink" title="二、基本使用"></a>二、基本使用</h2><p>最简单的用法就是直接指定一张图片：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg demo.png</span><br></pre></td></tr></table></figure>
+
+<p>如果终端支持 256 色，图片就会直接输出到当前终端窗口中。</p>
+<p>预览效果示意：</p>
+<img src="/posts/ddae8e390a11/catimg-preview-demo.svg" class="">
+
+<h2 id="三、常用参数"><a href="#三、常用参数" class="headerlink" title="三、常用参数"></a>三、常用参数</h2><h3 id="1-指定显示宽度"><a href="#1-指定显示宽度" class="headerlink" title="1. 指定显示宽度"></a>1. 指定显示宽度</h3><p>使用 <code>-w</code> 指定图片显示宽度：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg -w 80 demo.png</span><br></pre></td></tr></table></figure>
+
+<p>这里的 <code>80</code> 表示图片输出宽度。终端较窄时，手动指定宽度会更容易控制显示效果。</p>
+<h3 id="2-显示-GIF-并控制循环次数"><a href="#2-显示-GIF-并控制循环次数" class="headerlink" title="2. 显示 GIF 并控制循环次数"></a>2. 显示 GIF 并控制循环次数</h3><p><code>catimg</code> 支持 GIF，使用 <code>-l</code> 指定循环次数：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg -l 3 demo.gif</span><br></pre></td></tr></table></figure>
+
+<p>如果设置为负数，则表示一直循环：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg -l -1 demo.gif</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-指定分辨率模式"><a href="#3-指定分辨率模式" class="headerlink" title="3. 指定分辨率模式"></a>3. 指定分辨率模式</h3><p>可以通过 <code>-r</code> 指定分辨率模式：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg -r 1 demo.png</span><br></pre></td></tr></table></figure>
+
+<p>或者：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg -r 2 demo.png</span><br></pre></td></tr></table></figure>
+
+<p>一般来说：</p>
+<ul>
+<li><code>-r 1</code> 显示更保守</li>
+<li><code>-r 2</code> 显示更细一些</li>
+</ul>
+<p>可以根据自己的终端效果选择。</p>
+<h3 id="4-限制颜色转换"><a href="#4-限制颜色转换" class="headerlink" title="4. 限制颜色转换"></a>4. 限制颜色转换</h3><p>有些终端颜色支持较差，可以加上 <code>-c</code>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg -c demo.png</span><br></pre></td></tr></table></figure>
+
+<p>这样可以让颜色映射更稳定一些。</p>
+<p>常用参数组合示意：</p>
+<img src="/posts/ddae8e390a11/catimg-options-demo.svg" class="">
+
+<h2 id="四、使用示例"><a href="#四、使用示例" class="headerlink" title="四、使用示例"></a>四、使用示例</h2><h3 id="1-预览当前目录中的图片"><a href="#1-预览当前目录中的图片" class="headerlink" title="1. 预览当前目录中的图片"></a>1. 预览当前目录中的图片</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg ./test.png</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-按指定宽度显示"><a href="#2-按指定宽度显示" class="headerlink" title="2. 按指定宽度显示"></a>2. 按指定宽度显示</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg -w 120 ./test.jpg</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-在-SSH-终端里查看图片"><a href="#3-在-SSH-终端里查看图片" class="headerlink" title="3. 在 SSH 终端里查看图片"></a>3. 在 SSH 终端里查看图片</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg -w 60 ./qrcode.png</span><br></pre></td></tr></table></figure>
+
+<p>如果只是想快速确认图片内容，比如二维码、截图、流程图缩略图，这种方式还是很方便的。</p>
+<h2 id="五、常见问题"><a href="#五、常见问题" class="headerlink" title="五、常见问题"></a>五、常见问题</h2><h3 id="1-终端显示效果很差"><a href="#1-终端显示效果很差" class="headerlink" title="1. 终端显示效果很差"></a>1. 终端显示效果很差</h3><p><code>catimg</code> 依赖终端的颜色能力，如果当前终端不支持 256 色，显示效果会比较一般。</p>
+<p>可以先检查终端类型：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$TERM</span></span><br></pre></td></tr></table></figure>
+
+<p>常见比较合适的终端有：</p>
+<ul>
+<li><code>xterm-256color</code></li>
+<li><code>screen-256color</code></li>
+<li><code>tmux-256color</code></li>
+</ul>
+<h3 id="2-图片太大，看不全"><a href="#2-图片太大，看不全" class="headerlink" title="2. 图片太大，看不全"></a>2. 图片太大，看不全</h3><p>可以直接用 <code>-w</code> 限制宽度：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg -w 50 big.png</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-命令不存在"><a href="#3-命令不存在" class="headerlink" title="3. 命令不存在"></a>3. 命令不存在</h3><p>如果提示：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg: <span class="built_in">command</span> not found</span><br></pre></td></tr></table></figure>
+
+<p>可以按下面几个方向检查：</p>
+<ul>
+<li>确认是否已经安装成功</li>
+<li>如果是源码安装，确认 <code>/usr/local/bin</code> 是否在 <code>PATH</code> 中</li>
+<li>重新打开一个终端再试</li>
+</ul>
+<p>查看命令路径：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">which</span> catimg</span><br></pre></td></tr></table></figure>
+
+<h2 id="六、小结"><a href="#六、小结" class="headerlink" title="六、小结"></a>六、小结</h2><p><code>catimg</code> 很适合在 Ubuntu 终端中快速查看图片，安装也比较简单。</p>
+<p>如果仓库中能直接安装，优先使用：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install catimg</span><br></pre></td></tr></table></figure>
+
+<p>如果仓库里没有，再使用源码编译安装即可。</p>
+<p>参考文章</p>
+<ul>
+<li><a href="https://github.com/posva/catimg">catimg GitHub</a></li>
+<li><a href="https://manpages.ubuntu.com/manpages/focal/en/man1/catimg.1.html">Ubuntu manpage: catimg</a></li>
+<li><a href="https://packages.ubuntu.com/">Ubuntu Packages Search</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ubuntu</tag>
+        <tag>linux</tag>
+        <tag>terminal</tag>
+        <tag>catimg</tag>
       </tags>
   </entry>
   <entry>
@@ -1089,42 +1212,6 @@
       </tags>
   </entry>
   <entry>
-    <title>树莓派pi和root账户密码</title>
-    <url>/posts/0b5febe6de76/</url>
-    <content><![CDATA[<h2 id="pi账户"><a href="#pi账户" class="headerlink" title="pi账户"></a>pi账户</h2><p>pi是树莓派的默认账户，默认密码为 raspberry</p>
-<p>修改默认密码</p>
-<p><code>sudo raspi-config</code></p>
-<img src="/posts/0b5febe6de76/2018-03-11-221228_655x390_scrot.png" class="">
-
-<p>选择的一项 Change User Password，输入两次新密码即可完成密码修改</p>
-<img src="/posts/0b5febe6de76/2018-03-11-221635_655x390_scrot.png" class="">
-
-<h2 id="root账户"><a href="#root账户" class="headerlink" title="root账户"></a>root账户</h2><p>树莓派的root账户在默认情况下是禁用的，且密码为空，所以root账户在未启用时，无论输入什么密码均是错误密码</p>
-<p>设置root密码</p>
-<p><code>sudo passwd root</code></p>
-<p>输入两次新设置的密码后提示密码更新成功</p>
-<img src="/posts/0b5febe6de76/2018-03-11-222638_655x390_scrot.png" class="">
-
-
-<h2 id="pi和root账户切换"><a href="#pi和root账户切换" class="headerlink" title="pi和root账户切换"></a>pi和root账户切换</h2><p>输入</p>
-<p><code>su root</code></p>
-<p>和密码后便可登录root账户</p>
-<p>输入</p>
-<p><code>su pi</code></p>
-<p>后便可切换到pi账户</p>
-<h2 id="如何锁定root账户"><a href="#如何锁定root账户" class="headerlink" title="如何锁定root账户"></a>如何锁定root账户</h2><p>输入</p>
-<p><code>sudo passwd --lock root</code></p>
-<p>锁定root账户后，我们再尝试用root账户登录，会提示Authentication failure(验证失败)</p>
-<p>当我们输入</p>
-<p><code>sudo passwd --unlock root</code></p>
-<p>后，便可解锁root账户</p>
-<p>再次登录root账户成功</p>
-]]></content>
-      <tags>
-        <tag>树莓派</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>树莓派EC20模块联网</title>
     <url>/posts/3c0ad28a2fa4/</url>
     <content><![CDATA[<h2 id="一、EC20模块"><a href="#一、EC20模块" class="headerlink" title="一、EC20模块"></a>一、EC20模块</h2><p>模块有两个usb接口，其中靠近SIM卡的是电源接口，如果没有接独立供电接口的话，可能会导致板子发热，不稳定</p>
@@ -1172,6 +1259,42 @@
       <tags>
         <tag>树莓派</tag>
         <tag>EC20模块</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派pi和root账户密码</title>
+    <url>/posts/0b5febe6de76/</url>
+    <content><![CDATA[<h2 id="pi账户"><a href="#pi账户" class="headerlink" title="pi账户"></a>pi账户</h2><p>pi是树莓派的默认账户，默认密码为 raspberry</p>
+<p>修改默认密码</p>
+<p><code>sudo raspi-config</code></p>
+<img src="/posts/0b5febe6de76/2018-03-11-221228_655x390_scrot.png" class="">
+
+<p>选择的一项 Change User Password，输入两次新密码即可完成密码修改</p>
+<img src="/posts/0b5febe6de76/2018-03-11-221635_655x390_scrot.png" class="">
+
+<h2 id="root账户"><a href="#root账户" class="headerlink" title="root账户"></a>root账户</h2><p>树莓派的root账户在默认情况下是禁用的，且密码为空，所以root账户在未启用时，无论输入什么密码均是错误密码</p>
+<p>设置root密码</p>
+<p><code>sudo passwd root</code></p>
+<p>输入两次新设置的密码后提示密码更新成功</p>
+<img src="/posts/0b5febe6de76/2018-03-11-222638_655x390_scrot.png" class="">
+
+
+<h2 id="pi和root账户切换"><a href="#pi和root账户切换" class="headerlink" title="pi和root账户切换"></a>pi和root账户切换</h2><p>输入</p>
+<p><code>su root</code></p>
+<p>和密码后便可登录root账户</p>
+<p>输入</p>
+<p><code>su pi</code></p>
+<p>后便可切换到pi账户</p>
+<h2 id="如何锁定root账户"><a href="#如何锁定root账户" class="headerlink" title="如何锁定root账户"></a>如何锁定root账户</h2><p>输入</p>
+<p><code>sudo passwd --lock root</code></p>
+<p>锁定root账户后，我们再尝试用root账户登录，会提示Authentication failure(验证失败)</p>
+<p>当我们输入</p>
+<p><code>sudo passwd --unlock root</code></p>
+<p>后，便可解锁root账户</p>
+<p>再次登录root账户成功</p>
+]]></content>
+      <tags>
+        <tag>树莓派</tag>
       </tags>
   </entry>
   <entry>
@@ -1346,39 +1469,6 @@ ssd1306.drawToDisplay()
       </tags>
   </entry>
   <entry>
-    <title>树莓派屏幕旋转和触摸旋转</title>
-    <url>/posts/40c19e61f591/</url>
-    <content><![CDATA[<h2 id="一、屏幕"><a href="#一、屏幕" class="headerlink" title="一、屏幕"></a>一、屏幕</h2><p>这是一块<code>DFROBOT</code>产的5’’ 800x480 TFT 电容屏</p>
-<img src="/posts/40c19e61f591/FoQwMT9e2z_oup3m1X9coEFCH2Ct.jpg" class="">
-
-<p>默认是按长边方向显示的，如果竖屏使用的话，就需要调整屏幕方向和触摸方向</p>
-<h2 id="二、屏幕旋转"><a href="#二、屏幕旋转" class="headerlink" title="二、屏幕旋转"></a>二、屏幕旋转</h2><p>修改屏幕旋转可以修改启动配置文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim /boot/config.txt</span><br></pre></td></tr></table></figure>
-
-<p>添加</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 默认</span></span><br><span class="line">display_rotate=0</span><br><span class="line"><span class="comment"># 90deg</span></span><br><span class="line">display_rotate=1</span><br><span class="line"><span class="comment"># 180deg</span></span><br><span class="line">display_rotate=2</span><br><span class="line"><span class="comment"># 270deg</span></span><br><span class="line">display_rotate=3</span><br></pre></td></tr></table></figure>
-
-<p>可以根据需要添加旋转值（顺时针的）</p>
-<p>然后重启即可生效<code>sudo shutdown -r now</code></p>
-<h2 id="三、触摸旋转"><a href="#三、触摸旋转" class="headerlink" title="三、触摸旋转"></a>三、触摸旋转</h2><p>如果只是屏幕进行了旋转的话，触摸还是保持默认方向，就无法正常操作了，需要调整与屏幕方向一致才行</p>
-<p>编辑配置</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim /usr/share/X11/xorg.conf.d/40-libinput.conf</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line"># Match on all types of devices but joysticks</span><br><span class="line">#</span><br><span class="line"># If you want to configure your devices, do not copy this file.</span><br><span class="line"># Instead, use a config snippet that contains something like this:</span><br><span class="line">#</span><br><span class="line"># Section &quot;InputClass&quot;</span><br><span class="line">#   Identifier &quot;something or other&quot;</span><br><span class="line">#   MatchDriver &quot;libinput&quot;</span><br><span class="line">#</span><br><span class="line">#   MatchIsTouchpad &quot;on&quot;</span><br><span class="line">#   ... other Match directives ...</span><br><span class="line">#   Option &quot;someoption&quot; &quot;value&quot;</span><br><span class="line"># EndSection</span><br><span class="line">#</span><br><span class="line"># This applies the option any libinput device also matched by the other</span><br><span class="line"># directives. See the xorg.conf(5) man page for more info on</span><br><span class="line"># matching devices.</span><br><span class="line"></span><br><span class="line">Section &quot;InputClass&quot;</span><br><span class="line">        Identifier &quot;libinput pointer catchall&quot;</span><br><span class="line">        MatchIsPointer &quot;on&quot;</span><br><span class="line">        MatchDevicePath &quot;/dev/input/event*&quot;</span><br><span class="line">        Driver &quot;libinput&quot;</span><br><span class="line">EndSection</span><br><span class="line"></span><br><span class="line">Section &quot;InputClass&quot;</span><br><span class="line">        Identifier &quot;libinput keyboard catchall&quot;</span><br><span class="line">        MatchIsKeyboard &quot;on&quot;</span><br><span class="line">        MatchDevicePath &quot;/dev/input/event*&quot;</span><br><span class="line">        Driver &quot;libinput&quot;</span><br><span class="line">EndSection</span><br><span class="line"></span><br><span class="line">Section &quot;InputClass&quot;</span><br><span class="line">        Identifier &quot;libinput touchpad catchall&quot;</span><br><span class="line">        MatchIsTouchpad &quot;on&quot;</span><br><span class="line">        MatchDevicePath &quot;/dev/input/event*&quot;</span><br><span class="line">        Driver &quot;libinput&quot;</span><br><span class="line">EndSection</span><br><span class="line"></span><br><span class="line">Section &quot;InputClass&quot;</span><br><span class="line">        Identifier &quot;libinput touchscreen catchall&quot;</span><br><span class="line">        # 90deg</span><br><span class="line">        Option &quot;CalibrationMatrix&quot; &quot;0 1 0 -1 0 1 0 0 1&quot;</span><br><span class="line">        MatchIsTouchscreen &quot;on&quot;</span><br><span class="line">        MatchDevicePath &quot;/dev/input/event*&quot;</span><br><span class="line">        Driver &quot;libinput&quot;</span><br><span class="line">EndSection</span><br><span class="line"></span><br><span class="line">Section &quot;InputClass&quot;</span><br><span class="line">        Identifier &quot;libinput tablet catchall&quot;</span><br><span class="line">        MatchIsTablet &quot;on&quot;</span><br><span class="line">        MatchDevicePath &quot;/dev/input/event*&quot;</span><br><span class="line">        Driver &quot;libinput&quot;</span><br><span class="line">EndSection</span><br></pre></td></tr></table></figure>
-
-<p>在<code>libinput touchscreen catchall</code>部分添加一行<code>Option &quot;CalibrationMatrix&quot; &quot;0 1 0 -1 0 1 0 0 1&quot;</code></p>
-<p>注意：</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line"># 90 deg</span><br><span class="line">Option &quot;CalibrationMatrix&quot; &quot;0 1 0 -1 0 1 0 0 1&quot;</span><br><span class="line"></span><br><span class="line"># 180 deg</span><br><span class="line">Option &quot;CalibrationMatrix&quot; &quot;-1 0 1 0 -1 1 0 0 1&quot;</span><br><span class="line"></span><br><span class="line"># 270 deg</span><br><span class="line">Option &quot;CalibrationMatrix&quot; &quot;0 -1 1 1 0 0 0 0 1&quot;</span><br></pre></td></tr></table></figure>
-
-<p>重启即可</p>
-<img src="/posts/40c19e61f591/IMG_20200823_123704.jpg" class="">
-]]></content>
-      <tags>
-        <tag>树莓派</tag>
-        <tag>屏幕</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>树莓派开机自动启动chrome浏览器</title>
     <url>/posts/caf5a23a233a/</url>
     <content><![CDATA[<h2 id="1-chrome-命令行启动（不可通过ssh连接，可以尝试在真机，或者vnc连接情况下）"><a href="#1-chrome-命令行启动（不可通过ssh连接，可以尝试在真机，或者vnc连接情况下）" class="headerlink" title="1.chrome 命令行启动（不可通过ssh连接，可以尝试在真机，或者vnc连接情况下）"></a>1.chrome 命令行启动（不可通过ssh连接，可以尝试在真机，或者vnc连接情况下）</h2><p>打开谷歌</p>
@@ -1440,22 +1530,6 @@ ssd1306.drawToDisplay()
 <p>输入 y 回车 继续即可</p>
 <h2 id="查看web站点"><a href="#查看web站点" class="headerlink" title="查看web站点"></a>查看web站点</h2><p>在浏览器内输入树莓派局域网IP，可以看到Apache的默认页面</p>
 <img src="/posts/32217327e163/2018-03-11-192347_830x386_scrot.png" class="">]]></content>
-      <tags>
-        <tag>树莓派</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>树莓派禁止休眠、保持屏幕常亮</title>
-    <url>/posts/9832c248a2df/</url>
-    <content><![CDATA[<h2 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo vi /etc/lightdm/lightdm.conf</span><br></pre></td></tr></table></figure>
-
-<p>找到<br><code>#xserver-command=X</code><br>修改为<br><code>xserver-command=X -s 0 -dpms</code></p>
-<p>保存后重启即可</p>
-<p>参考文章</p>
-<ul>
-<li><a href="https://blog.csdn.net/u011720560/article/details/78288128">树莓派禁止休眠、屏幕常亮</a></li>
-</ul>
-]]></content>
       <tags>
         <tag>树莓派</tag>
       </tags>
@@ -1699,6 +1773,22 @@ ssd1306.drawToDisplay()
       </tags>
   </entry>
   <entry>
+    <title>树莓派禁止休眠、保持屏幕常亮</title>
+    <url>/posts/9832c248a2df/</url>
+    <content><![CDATA[<h2 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo vi /etc/lightdm/lightdm.conf</span><br></pre></td></tr></table></figure>
+
+<p>找到<br><code>#xserver-command=X</code><br>修改为<br><code>xserver-command=X -s 0 -dpms</code></p>
+<p>保存后重启即可</p>
+<p>参考文章</p>
+<ul>
+<li><a href="https://blog.csdn.net/u011720560/article/details/78288128">树莓派禁止休眠、屏幕常亮</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>树莓派</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>树莓派鼠标空闲时隐藏光标</title>
     <url>/posts/6f18ead3ddd8/</url>
     <content><![CDATA[<h2 id="安装uncluter"><a href="#安装uncluter" class="headerlink" title="安装uncluter"></a>安装uncluter</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install unclutter</span><br></pre></td></tr></table></figure>
@@ -1712,6 +1802,39 @@ ssd1306.drawToDisplay()
 ]]></content>
       <tags>
         <tag>树莓派</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派屏幕旋转和触摸旋转</title>
+    <url>/posts/40c19e61f591/</url>
+    <content><![CDATA[<h2 id="一、屏幕"><a href="#一、屏幕" class="headerlink" title="一、屏幕"></a>一、屏幕</h2><p>这是一块<code>DFROBOT</code>产的5’’ 800x480 TFT 电容屏</p>
+<img src="/posts/40c19e61f591/FoQwMT9e2z_oup3m1X9coEFCH2Ct.jpg" class="">
+
+<p>默认是按长边方向显示的，如果竖屏使用的话，就需要调整屏幕方向和触摸方向</p>
+<h2 id="二、屏幕旋转"><a href="#二、屏幕旋转" class="headerlink" title="二、屏幕旋转"></a>二、屏幕旋转</h2><p>修改屏幕旋转可以修改启动配置文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim /boot/config.txt</span><br></pre></td></tr></table></figure>
+
+<p>添加</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 默认</span></span><br><span class="line">display_rotate=0</span><br><span class="line"><span class="comment"># 90deg</span></span><br><span class="line">display_rotate=1</span><br><span class="line"><span class="comment"># 180deg</span></span><br><span class="line">display_rotate=2</span><br><span class="line"><span class="comment"># 270deg</span></span><br><span class="line">display_rotate=3</span><br></pre></td></tr></table></figure>
+
+<p>可以根据需要添加旋转值（顺时针的）</p>
+<p>然后重启即可生效<code>sudo shutdown -r now</code></p>
+<h2 id="三、触摸旋转"><a href="#三、触摸旋转" class="headerlink" title="三、触摸旋转"></a>三、触摸旋转</h2><p>如果只是屏幕进行了旋转的话，触摸还是保持默认方向，就无法正常操作了，需要调整与屏幕方向一致才行</p>
+<p>编辑配置</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim /usr/share/X11/xorg.conf.d/40-libinput.conf</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line"># Match on all types of devices but joysticks</span><br><span class="line">#</span><br><span class="line"># If you want to configure your devices, do not copy this file.</span><br><span class="line"># Instead, use a config snippet that contains something like this:</span><br><span class="line">#</span><br><span class="line"># Section &quot;InputClass&quot;</span><br><span class="line">#   Identifier &quot;something or other&quot;</span><br><span class="line">#   MatchDriver &quot;libinput&quot;</span><br><span class="line">#</span><br><span class="line">#   MatchIsTouchpad &quot;on&quot;</span><br><span class="line">#   ... other Match directives ...</span><br><span class="line">#   Option &quot;someoption&quot; &quot;value&quot;</span><br><span class="line"># EndSection</span><br><span class="line">#</span><br><span class="line"># This applies the option any libinput device also matched by the other</span><br><span class="line"># directives. See the xorg.conf(5) man page for more info on</span><br><span class="line"># matching devices.</span><br><span class="line"></span><br><span class="line">Section &quot;InputClass&quot;</span><br><span class="line">        Identifier &quot;libinput pointer catchall&quot;</span><br><span class="line">        MatchIsPointer &quot;on&quot;</span><br><span class="line">        MatchDevicePath &quot;/dev/input/event*&quot;</span><br><span class="line">        Driver &quot;libinput&quot;</span><br><span class="line">EndSection</span><br><span class="line"></span><br><span class="line">Section &quot;InputClass&quot;</span><br><span class="line">        Identifier &quot;libinput keyboard catchall&quot;</span><br><span class="line">        MatchIsKeyboard &quot;on&quot;</span><br><span class="line">        MatchDevicePath &quot;/dev/input/event*&quot;</span><br><span class="line">        Driver &quot;libinput&quot;</span><br><span class="line">EndSection</span><br><span class="line"></span><br><span class="line">Section &quot;InputClass&quot;</span><br><span class="line">        Identifier &quot;libinput touchpad catchall&quot;</span><br><span class="line">        MatchIsTouchpad &quot;on&quot;</span><br><span class="line">        MatchDevicePath &quot;/dev/input/event*&quot;</span><br><span class="line">        Driver &quot;libinput&quot;</span><br><span class="line">EndSection</span><br><span class="line"></span><br><span class="line">Section &quot;InputClass&quot;</span><br><span class="line">        Identifier &quot;libinput touchscreen catchall&quot;</span><br><span class="line">        # 90deg</span><br><span class="line">        Option &quot;CalibrationMatrix&quot; &quot;0 1 0 -1 0 1 0 0 1&quot;</span><br><span class="line">        MatchIsTouchscreen &quot;on&quot;</span><br><span class="line">        MatchDevicePath &quot;/dev/input/event*&quot;</span><br><span class="line">        Driver &quot;libinput&quot;</span><br><span class="line">EndSection</span><br><span class="line"></span><br><span class="line">Section &quot;InputClass&quot;</span><br><span class="line">        Identifier &quot;libinput tablet catchall&quot;</span><br><span class="line">        MatchIsTablet &quot;on&quot;</span><br><span class="line">        MatchDevicePath &quot;/dev/input/event*&quot;</span><br><span class="line">        Driver &quot;libinput&quot;</span><br><span class="line">EndSection</span><br></pre></td></tr></table></figure>
+
+<p>在<code>libinput touchscreen catchall</code>部分添加一行<code>Option &quot;CalibrationMatrix&quot; &quot;0 1 0 -1 0 1 0 0 1&quot;</code></p>
+<p>注意：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line"># 90 deg</span><br><span class="line">Option &quot;CalibrationMatrix&quot; &quot;0 1 0 -1 0 1 0 0 1&quot;</span><br><span class="line"></span><br><span class="line"># 180 deg</span><br><span class="line">Option &quot;CalibrationMatrix&quot; &quot;-1 0 1 0 -1 1 0 0 1&quot;</span><br><span class="line"></span><br><span class="line"># 270 deg</span><br><span class="line">Option &quot;CalibrationMatrix&quot; &quot;0 -1 1 1 0 0 0 0 1&quot;</span><br></pre></td></tr></table></figure>
+
+<p>重启即可</p>
+<img src="/posts/40c19e61f591/IMG_20200823_123704.jpg" class="">
+]]></content>
+      <tags>
+        <tag>树莓派</tag>
+        <tag>屏幕</tag>
       </tags>
   </entry>
   <entry>

@@ -88,7 +88,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">37</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">48</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-demo"><a href="/demo/" rel="section"><i class="fa fa-rocket fa-fw"></i>Demo</a></li><li class="menu-item menu-item-component"><a href="/component/" rel="section"><i class="fa fa-th-large fa-fw"></i>Component</a></li><li class="menu-item menu-item-to-do-list"><a href="/to_do_list/" rel="section"><i class="fa fa-calendar fa-fw"></i>To Do List</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">40</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">49</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-demo"><a href="/demo/" rel="section"><i class="fa fa-rocket fa-fw"></i>Demo</a></li><li class="menu-item menu-item-component"><a href="/component/" rel="section"><i class="fa fa-th-large fa-fw"></i>Component</a></li><li class="menu-item menu-item-to-do-list"><a href="/to_do_list/" rel="section"><i class="fa fa-calendar fa-fw"></i>To Do List</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -159,13 +159,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-count">49</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-count">40</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -210,6 +210,113 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/posts/94d7489d7eb0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="yancoding">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yan blog">
+      <meta itemprop="description" content="yan blog">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | yan blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/94d7489d7eb0/" class="post-title-link" itemprop="url">MongoDB笔记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-07-06 12:48:45" itemprop="dateCreated datePublished" datetime="2019-07-06T12:48:45+08:00">2019-07-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2019-07-17 23:02:00" itemprop="dateModified" datetime="2019-07-17T23:02:00+08:00">2019-07-17</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>742</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="安装MongoDB服务"><a href="#安装MongoDB服务" class="headerlink" title="安装MongoDB服务"></a>安装MongoDB服务</h2><p>这里下载的时MongoDB 4 Windows社区版本，4之后的版本跟之前的有很大的不同，不需要自行指定数据库和日志目录了，这里安装过程只修改了安装目录，从默认的c盘自定义为d盘，其他均为默认选项，一并安装了compass，这里大多人都不推荐安装compass，说是会卡住，这里安装确实看起来像是卡住了，但就如安装信息说的这里可能需要 a few minutes，事实上这里安装进度不变保持了10分钟左右就安装好了，所以不用太担心，只是网络原因，假死而已</p>
+<p>当然为了方便连接 MongoDB 实例，记得要将MongoDB安装目录下的bin目录添加到系统变量，这样我们就可以直接在shell 里直接输入 <code>mongo</code> 即可连接到MongoDB服务</p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h2 id="mongo"><a href="#mongo" class="headerlink" title="mongo"></a>mongo</h2><p>连接到本地的 MongoDB 实例，使用默认服务端口 <code>27017</code></p>
+<p>如果修改了本地 MongoDB 实例默认的服务端口，连接时我们也可以通过 <code>--port</code> 参数指定端口</p>
+<p>例如</p>
+<p><code>mongo --port 28015</code></p>
+<h3 id="show-dbs"><a href="#show-dbs" class="headerlink" title="show dbs"></a>show dbs</h3><p>查看所有的数据库</p>
+<h3 id="db"><a href="#db" class="headerlink" title="db"></a>db</h3><p>查看当前数据库</p>
+<h3 id="use-DATABASE-NAME"><a href="#use-DATABASE-NAME" class="headerlink" title="use DATABASE_NAME"></a>use DATABASE_NAME</h3><p>切换数据库（不论存在与否）</p>
+<h2 id="db-DATABASE-NAME-insert"><a href="#db-DATABASE-NAME-insert" class="headerlink" title="db.DATABASE_NAME.insert()"></a>db.DATABASE_NAME.insert()</h2><p>向 DATABASE_NAME 数据库插入数据</p>
+<p>例如</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">db.test.insert(&#123;&quot;description&quot;: &quot;这是一条测试数据&quot;&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>注：</strong> 该命令不需要切换数据库</p>
+<h3 id="db-dropDatabase"><a href="#db-dropDatabase" class="headerlink" title="db.dropDatabase()"></a>db.dropDatabase()</h3><p>删除当前数据库</p>
+<h3 id="db-createCollection-name-options"><a href="#db-createCollection-name-options" class="headerlink" title="db.createCollection(name[,options])"></a>db.createCollection(name[,options])</h3><p>在当前数据库创建集合 COLLECTION_NAME</p>
+<h3 id="db-COLLECTION-NAME-drop"><a href="#db-COLLECTION-NAME-drop" class="headerlink" title="db.COLLECTION_NAME.drop()"></a>db.COLLECTION_NAME.drop()</h3><p>在当前数据库删除集合 COLLECTION_NAME</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/posts/6eb7991bfc44/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -238,15 +345,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2019-07-02 22:24:34" itemprop="dateCreated datePublished" datetime="2019-07-02T22:24:34+08:00">2019-07-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-09-05 09:57:33" itemprop="dateModified" datetime="2024-09-05T09:57:33+08:00">2024-09-05</time>
+      <time title="创建时间：2019-07-02 22:24:34 / 修改时间：23:30:40" itemprop="dateCreated datePublished" datetime="2019-07-02T22:24:34+08:00">2019-07-02</time>
     </span>
 
   
@@ -345,7 +446,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-09-05 09:57:33" itemprop="dateModified" datetime="2024-09-05T09:57:33+08:00">2024-09-05</time>
+      <time title="修改时间：2019-07-18 09:48:13" itemprop="dateModified" datetime="2019-07-18T09:48:13+08:00">2019-07-18</time>
     </span>
 
   
@@ -400,99 +501,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/posts/dacfc9d3e07c/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.png">
-      <meta itemprop="name" content="yancoding">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yan blog">
-      <meta itemprop="description" content="yan blog">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | yan blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/dacfc9d3e07c/" class="post-title-link" itemprop="url">mysql数据库备份</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-06-25 00:11:57" itemprop="dateCreated datePublished" datetime="2019-06-25T00:11:57+08:00">2019-06-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-09-05 09:57:33" itemprop="dateModified" datetime="2024-09-05T09:57:33+08:00">2024-09-05</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>74</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="备份数据库"><a href="#备份数据库" class="headerlink" title="备份数据库"></a>备份数据库</h2><p><code>mysqldump -hhostname -uusername -ppassword databasename &gt; backupfile.sql</code></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 </div>
@@ -504,7 +514,7 @@
 
 <div class="copyright">
   &copy; 2018 – 
-  <span itemprop="copyrightYear">2025</span>
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -516,14 +526,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">56k</span>
+    <span title="站点总字数">58k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">51 分钟</span>
+    <span title="站点阅读时长">53 分钟</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
