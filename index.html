@@ -88,7 +88,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">40</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">49</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-demo"><a href="/demo/" rel="section"><i class="fa fa-rocket fa-fw"></i>Demo</a></li><li class="menu-item menu-item-component"><a href="/component/" rel="section"><i class="fa fa-th-large fa-fw"></i>Component</a></li><li class="menu-item menu-item-to-do-list"><a href="/to_do_list/" rel="section"><i class="fa fa-calendar fa-fw"></i>To Do List</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">42</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">50</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-demo"><a href="/demo/" rel="section"><i class="fa fa-rocket fa-fw"></i>Demo</a></li><li class="menu-item menu-item-component"><a href="/component/" rel="section"><i class="fa fa-th-large fa-fw"></i>Component</a></li><li class="menu-item menu-item-to-do-list"><a href="/to_do_list/" rel="section"><i class="fa fa-calendar fa-fw"></i>To Do List</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -159,13 +159,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-count">50</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-count">42</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -201,6 +201,210 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/posts/9129bc850836/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="yancoding">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yan blog">
+      <meta itemprop="description" content="yan blog">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | yan blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/9129bc850836/" class="post-title-link" itemprop="url">mac下安装docker-cli</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-04-14 11:10:00 / 修改时间：11:13:45" itemprop="dateCreated datePublished" datetime="2026-04-14T11:10:00+08:00">2026-04-14</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在 mac 上安装 Docker 时，很多人第一反应是直接安装 Docker Desktop。</p>
+<p>但是有些场景下，我们其实并不需要完整的桌面客户端，只想要命令行，也就是只使用 <code>docker</code> CLI。</p>
+<p>比如：</p>
+<ul>
+<li>只想连接远程 Linux 服务器上的 Docker 服务</li>
+<li>本地不想安装 Docker Desktop</li>
+<li>希望用更轻量的方式在命令行里操作容器</li>
+</ul>
+<p>这里介绍两种常见方式：</p>
+<ul>
+<li>只安装 <code>docker</code> 命令行工具</li>
+<li>安装 <code>docker</code> CLI，并配合 <code>colima</code> 在本机运行容器</li>
+</ul>
+<h2 id="一、先说明一下区别"><a href="#一、先说明一下区别" class="headerlink" title="一、先说明一下区别"></a>一、先说明一下区别</h2><p><code>docker</code> 这个命令本身只是客户端，真正负责运行容器的是 Docker daemon。</p>
+<p>在 Linux 上，通常是 Docker Engine 提供 daemon；<br>而在 mac 上，因为没有原生 Linux 容器运行环境，所以如果想在本机运行容器，一般还需要一个虚拟化运行环境。</p>
+<p>所以：</p>
+<ul>
+<li>如果你只是连接远程 Docker 主机，那么安装 CLI 就够了</li>
+<li>如果你想在当前这台 Mac 上直接执行 <code>docker run</code> 跑容器，那么除了 CLI，通常还要再配一个本地 runtime，比如 <code>colima</code></li>
+</ul>
+<h2 id="二、只安装-Docker-CLI"><a href="#二、只安装-Docker-CLI" class="headerlink" title="二、只安装 Docker CLI"></a>二、只安装 Docker CLI</h2><p>如果你只是想保留命令行工具，不安装 Docker Desktop，可以直接通过 Homebrew 安装：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install docker</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后查看版本：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker --version</span><br></pre></td></tr></table></figure>
+
+<p>或者：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker version</span><br></pre></td></tr></table></figure>
+
+<p>如果当前还没有可连接的 Docker daemon，那么执行 <code>docker version</code> 时，通常会看到客户端信息，但服务端可能连接失败，这属于正常现象。</p>
+<p>安装效果示意：</p>
+<img src="/posts/9129bc850836/docker-cli-install-demo.svg" class="">
+
+<h2 id="三、连接远程-Docker-主机"><a href="#三、连接远程-Docker-主机" class="headerlink" title="三、连接远程 Docker 主机"></a>三、连接远程 Docker 主机</h2><p>如果你的 Docker daemon 在远程 Linux 服务器上，那么本机只装 CLI 就可以了。</p>
+<h3 id="1-直接通过环境变量连接"><a href="#1-直接通过环境变量连接" class="headerlink" title="1. 直接通过环境变量连接"></a>1. 直接通过环境变量连接</h3><p>比如远程主机监听在：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tcp://192.168.1.10:2375</span><br></pre></td></tr></table></figure>
+
+<p>可以先设置：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> DOCKER_HOST=tcp://192.168.1.10:2375</span><br></pre></td></tr></table></figure>
+
+<p>然后执行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-使用-docker-context"><a href="#2-使用-docker-context" class="headerlink" title="2. 使用 docker context"></a>2. 使用 docker context</h3><p>相比直接写 <code>DOCKER_HOST</code>，<code>docker context</code> 更适合长期使用。</p>
+<p>创建一个远程 context：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker context create remote-server --docker <span class="string">&quot;host=tcp://192.168.1.10:2375&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>切换到这个 context：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker context use remote-server</span><br></pre></td></tr></table></figure>
+
+<p>查看当前 context：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker context <span class="built_in">ls</span></span><br></pre></td></tr></table></figure>
+
+<p>这样后续直接执行 <code>docker ps</code>、<code>docker images</code> 就会作用在对应的远程主机上。</p>
+<p>远程 context 使用示意：</p>
+<img src="/posts/9129bc850836/docker-context-demo.svg" class="">
+
+<h2 id="四、如果想在本机运行容器，可以配合-colima"><a href="#四、如果想在本机运行容器，可以配合-colima" class="headerlink" title="四、如果想在本机运行容器，可以配合 colima"></a>四、如果想在本机运行容器，可以配合 colima</h2><p>如果你不想安装 Docker Desktop，但又想在本机直接运行容器，那么一个常见做法是：</p>
+<ul>
+<li>安装 <code>docker</code></li>
+<li>安装 <code>colima</code></li>
+<li>由 <code>colima</code> 提供本地运行环境</li>
+</ul>
+<h3 id="1-安装-colima"><a href="#1-安装-colima" class="headerlink" title="1. 安装 colima"></a>1. 安装 colima</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install colima</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-启动-colima"><a href="#2-启动-colima" class="headerlink" title="2. 启动 colima"></a>2. 启动 colima</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">colima start</span><br></pre></td></tr></table></figure>
+
+<p><code>colima</code> 默认会使用 Docker runtime，启动成功后，<code>docker</code> CLI 就能直接连接到它。</p>
+<h3 id="3-验证是否正常"><a href="#3-验证是否正常" class="headerlink" title="3. 验证是否正常"></a>3. 验证是否正常</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker version</span><br></pre></td></tr></table></figure>
+
+<p>如果服务端信息也能正常显示，说明当前本机已经可以直接运行容器了。</p>
+<p>再试一个简单例子：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run --<span class="built_in">rm</span> hello-world</span><br></pre></td></tr></table></figure>
+
+<p>如果输出欢迎信息，说明整套 CLI + 本地 runtime 已经可以正常工作。</p>
+<p>本地通过 <code>colima</code> 运行容器示意：</p>
+<img src="/posts/9129bc850836/colima-runtime-demo.svg" class="">
+
+<h2 id="五、常用命令"><a href="#五、常用命令" class="headerlink" title="五、常用命令"></a>五、常用命令</h2><h3 id="1-查看当前-Docker-context"><a href="#1-查看当前-Docker-context" class="headerlink" title="1. 查看当前 Docker context"></a>1. 查看当前 Docker context</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker context <span class="built_in">ls</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-切换-context"><a href="#2-切换-context" class="headerlink" title="2. 切换 context"></a>2. 切换 context</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker context use default</span><br></pre></td></tr></table></figure>
+
+<p>或者：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker context use remote-server</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-停止-colima"><a href="#3-停止-colima" class="headerlink" title="3. 停止 colima"></a>3. 停止 colima</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">colima stop</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-重新启动-colima"><a href="#4-重新启动-colima" class="headerlink" title="4. 重新启动 colima"></a>4. 重新启动 colima</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">colima start</span><br></pre></td></tr></table></figure>
+
+<h2 id="六、常见问题"><a href="#六、常见问题" class="headerlink" title="六、常见问题"></a>六、常见问题</h2><h3 id="1-安装了-docker-但执行命令提示无法连接-daemon"><a href="#1-安装了-docker-但执行命令提示无法连接-daemon" class="headerlink" title="1. 安装了 docker 但执行命令提示无法连接 daemon"></a>1. 安装了 docker 但执行命令提示无法连接 daemon</h3><p>这通常不是 CLI 没装好，而是当前没有可用的 Docker daemon。</p>
+<p>可以按自己的场景检查：</p>
+<ul>
+<li>是否打算连接远程 Docker 主机</li>
+<li>是否已经设置 <code>DOCKER_HOST</code></li>
+<li>是否已经切换到正确的 <code>docker context</code></li>
+<li>如果是本机运行，是否已经执行 <code>colima start</code></li>
+</ul>
+<h3 id="2-我只安装-CLI，能不能直接在本机跑容器？"><a href="#2-我只安装-CLI，能不能直接在本机跑容器？" class="headerlink" title="2. 我只安装 CLI，能不能直接在本机跑容器？"></a>2. 我只安装 CLI，能不能直接在本机跑容器？</h3><p>一般不行。</p>
+<p>因为 mac 上只有 CLI 还不够，本地还需要一个实际运行容器的环境。<code>colima</code>、Docker Desktop 这类工具，本质上都是在帮你解决这个问题。</p>
+<h3 id="3-只安装-CLI-有什么好处？"><a href="#3-只安装-CLI-有什么好处？" class="headerlink" title="3. 只安装 CLI 有什么好处？"></a>3. 只安装 CLI 有什么好处？</h3><p>比较适合下面几类场景：</p>
+<ul>
+<li>只连接远程服务器</li>
+<li>本机不希望常驻桌面程序</li>
+<li>希望安装更轻量</li>
+</ul>
+<h2 id="七、小结"><a href="#七、小结" class="headerlink" title="七、小结"></a>七、小结</h2><p>如果你只是想在 mac 上使用 Docker 命令行，而不安装完整客户端，那么最简单的方式就是：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install docker</span><br></pre></td></tr></table></figure>
+
+<p>如果只是连接远程 Docker 主机，到这里就够了。</p>
+<p>如果还想在本机运行容器，又不想装 Docker Desktop，那么可以继续安装：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install colima</span><br><span class="line">colima start</span><br></pre></td></tr></table></figure>
+
+<p>这样就可以保留纯命令行的使用方式，同时又能在本机正常执行 <code>docker run</code>。</p>
+<p>参考文章</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.docker.com/installation/mac/">Docker Docs: Install Docker Desktop on Mac</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/cli/">Docker Docs: docker CLI reference</a></li>
+<li><a target="_blank" rel="noopener" href="https://formulae.brew.sh/formula/docker">Homebrew Formula: docker</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/abiosoft/colima">Colima GitHub</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -517,104 +721,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/posts/eb725f63ae59/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.png">
-      <meta itemprop="name" content="yancoding">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yan blog">
-      <meta itemprop="description" content="yan blog">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | yan blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/eb725f63ae59/" class="post-title-link" itemprop="url">mac安装文件提示文件已损坏</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2023-04-13 21:06:06 / 修改时间：23:06:19" itemprop="dateCreated datePublished" datetime="2023-04-13T21:06:06+08:00">2023-04-13</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>320</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>在终端中执行下面的命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo xattr -d com.apple.quarantine /Applications/xxxx.app</span><br></pre></td></tr></table></figure>
-
-<p><code>/Applications/xxxx.app</code>为应用的路径，可以直接拖拽应用到终端，不用手动输入路径</p>
-<p><code>xattr -d</code>命令是在macOS或类Unix系统中用于删除文件或目录的扩展属性（Extended Attributes）的命令。</p>
-<p>如果需要查看文件的具体附加属性，可以使用 xattr 命令，例如：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">xattr filename.txt</span></span><br><span class="line">com.apple.metadata:kMDItemWhereFroms</span><br></pre></td></tr></table></figure>
-
-<p>这个命令会列出文件 filename.txt 的所有附加属性。</p>
-<p>参考文章</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1665652">macOS 安装软件已损坏无法打开解决办法 (真好用！)
-</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
@@ -640,14 +746,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">58k</span>
+    <span title="站点总字数">60k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">53 分钟</span>
+    <span title="站点阅读时长">55 分钟</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动

@@ -112,6 +112,31 @@
       </tags>
   </entry>
   <entry>
+    <title>MongoDB笔记</title>
+    <url>/posts/94d7489d7eb0/</url>
+    <content><![CDATA[<h2 id="安装MongoDB服务"><a href="#安装MongoDB服务" class="headerlink" title="安装MongoDB服务"></a>安装MongoDB服务</h2><p>这里下载的时MongoDB 4 Windows社区版本，4之后的版本跟之前的有很大的不同，不需要自行指定数据库和日志目录了，这里安装过程只修改了安装目录，从默认的c盘自定义为d盘，其他均为默认选项，一并安装了compass，这里大多人都不推荐安装compass，说是会卡住，这里安装确实看起来像是卡住了，但就如安装信息说的这里可能需要 a few minutes，事实上这里安装进度不变保持了10分钟左右就安装好了，所以不用太担心，只是网络原因，假死而已</p>
+<p>当然为了方便连接 MongoDB 实例，记得要将MongoDB安装目录下的bin目录添加到系统变量，这样我们就可以直接在shell 里直接输入 <code>mongo</code> 即可连接到MongoDB服务</p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h2 id="mongo"><a href="#mongo" class="headerlink" title="mongo"></a>mongo</h2><p>连接到本地的 MongoDB 实例，使用默认服务端口 <code>27017</code></p>
+<p>如果修改了本地 MongoDB 实例默认的服务端口，连接时我们也可以通过 <code>--port</code> 参数指定端口</p>
+<p>例如</p>
+<p><code>mongo --port 28015</code></p>
+<h3 id="show-dbs"><a href="#show-dbs" class="headerlink" title="show dbs"></a>show dbs</h3><p>查看所有的数据库</p>
+<h3 id="db"><a href="#db" class="headerlink" title="db"></a>db</h3><p>查看当前数据库</p>
+<h3 id="use-DATABASE-NAME"><a href="#use-DATABASE-NAME" class="headerlink" title="use DATABASE_NAME"></a>use DATABASE_NAME</h3><p>切换数据库（不论存在与否）</p>
+<h2 id="db-DATABASE-NAME-insert"><a href="#db-DATABASE-NAME-insert" class="headerlink" title="db.DATABASE_NAME.insert()"></a>db.DATABASE_NAME.insert()</h2><p>向 DATABASE_NAME 数据库插入数据</p>
+<p>例如</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">db.test.insert(&#123;&quot;description&quot;: &quot;这是一条测试数据&quot;&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>注：</strong> 该命令不需要切换数据库</p>
+<h3 id="db-dropDatabase"><a href="#db-dropDatabase" class="headerlink" title="db.dropDatabase()"></a>db.dropDatabase()</h3><p>删除当前数据库</p>
+<h3 id="db-createCollection-name-options"><a href="#db-createCollection-name-options" class="headerlink" title="db.createCollection(name[,options])"></a>db.createCollection(name[,options])</h3><p>在当前数据库创建集合 COLLECTION_NAME</p>
+<h3 id="db-COLLECTION-NAME-drop"><a href="#db-COLLECTION-NAME-drop" class="headerlink" title="db.COLLECTION_NAME.drop()"></a>db.COLLECTION_NAME.drop()</h3><p>在当前数据库删除集合 COLLECTION_NAME</p>
+]]></content>
+      <tags>
+        <tag>MongoDB</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Keil c51安装</title>
     <url>/posts/597ee90642c5/</url>
     <content><![CDATA[<h2 id="一、下载"><a href="#一、下载" class="headerlink" title="一、下载"></a>一、下载</h2><p>在keil官网下载安装需要填写一些信息</p>
@@ -146,31 +171,6 @@
 ]]></content>
       <tags>
         <tag>单片机</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MongoDB笔记</title>
-    <url>/posts/94d7489d7eb0/</url>
-    <content><![CDATA[<h2 id="安装MongoDB服务"><a href="#安装MongoDB服务" class="headerlink" title="安装MongoDB服务"></a>安装MongoDB服务</h2><p>这里下载的时MongoDB 4 Windows社区版本，4之后的版本跟之前的有很大的不同，不需要自行指定数据库和日志目录了，这里安装过程只修改了安装目录，从默认的c盘自定义为d盘，其他均为默认选项，一并安装了compass，这里大多人都不推荐安装compass，说是会卡住，这里安装确实看起来像是卡住了，但就如安装信息说的这里可能需要 a few minutes，事实上这里安装进度不变保持了10分钟左右就安装好了，所以不用太担心，只是网络原因，假死而已</p>
-<p>当然为了方便连接 MongoDB 实例，记得要将MongoDB安装目录下的bin目录添加到系统变量，这样我们就可以直接在shell 里直接输入 <code>mongo</code> 即可连接到MongoDB服务</p>
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h2 id="mongo"><a href="#mongo" class="headerlink" title="mongo"></a>mongo</h2><p>连接到本地的 MongoDB 实例，使用默认服务端口 <code>27017</code></p>
-<p>如果修改了本地 MongoDB 实例默认的服务端口，连接时我们也可以通过 <code>--port</code> 参数指定端口</p>
-<p>例如</p>
-<p><code>mongo --port 28015</code></p>
-<h3 id="show-dbs"><a href="#show-dbs" class="headerlink" title="show dbs"></a>show dbs</h3><p>查看所有的数据库</p>
-<h3 id="db"><a href="#db" class="headerlink" title="db"></a>db</h3><p>查看当前数据库</p>
-<h3 id="use-DATABASE-NAME"><a href="#use-DATABASE-NAME" class="headerlink" title="use DATABASE_NAME"></a>use DATABASE_NAME</h3><p>切换数据库（不论存在与否）</p>
-<h2 id="db-DATABASE-NAME-insert"><a href="#db-DATABASE-NAME-insert" class="headerlink" title="db.DATABASE_NAME.insert()"></a>db.DATABASE_NAME.insert()</h2><p>向 DATABASE_NAME 数据库插入数据</p>
-<p>例如</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">db.test.insert(&#123;&quot;description&quot;: &quot;这是一条测试数据&quot;&#125;)</span><br></pre></td></tr></table></figure>
-
-<p><strong>注：</strong> 该命令不需要切换数据库</p>
-<h3 id="db-dropDatabase"><a href="#db-dropDatabase" class="headerlink" title="db.dropDatabase()"></a>db.dropDatabase()</h3><p>删除当前数据库</p>
-<h3 id="db-createCollection-name-options"><a href="#db-createCollection-name-options" class="headerlink" title="db.createCollection(name[,options])"></a>db.createCollection(name[,options])</h3><p>在当前数据库创建集合 COLLECTION_NAME</p>
-<h3 id="db-COLLECTION-NAME-drop"><a href="#db-COLLECTION-NAME-drop" class="headerlink" title="db.COLLECTION_NAME.drop()"></a>db.COLLECTION_NAME.drop()</h3><p>在当前数据库删除集合 COLLECTION_NAME</p>
-]]></content>
-      <tags>
-        <tag>MongoDB</tag>
       </tags>
   </entry>
   <entry>
@@ -595,6 +595,136 @@
       </tags>
   </entry>
   <entry>
+    <title>mac下安装docker-cli</title>
+    <url>/posts/9129bc850836/</url>
+    <content><![CDATA[<p>在 mac 上安装 Docker 时，很多人第一反应是直接安装 Docker Desktop。</p>
+<p>但是有些场景下，我们其实并不需要完整的桌面客户端，只想要命令行，也就是只使用 <code>docker</code> CLI。</p>
+<p>比如：</p>
+<ul>
+<li>只想连接远程 Linux 服务器上的 Docker 服务</li>
+<li>本地不想安装 Docker Desktop</li>
+<li>希望用更轻量的方式在命令行里操作容器</li>
+</ul>
+<p>这里介绍两种常见方式：</p>
+<ul>
+<li>只安装 <code>docker</code> 命令行工具</li>
+<li>安装 <code>docker</code> CLI，并配合 <code>colima</code> 在本机运行容器</li>
+</ul>
+<h2 id="一、先说明一下区别"><a href="#一、先说明一下区别" class="headerlink" title="一、先说明一下区别"></a>一、先说明一下区别</h2><p><code>docker</code> 这个命令本身只是客户端，真正负责运行容器的是 Docker daemon。</p>
+<p>在 Linux 上，通常是 Docker Engine 提供 daemon；<br>而在 mac 上，因为没有原生 Linux 容器运行环境，所以如果想在本机运行容器，一般还需要一个虚拟化运行环境。</p>
+<p>所以：</p>
+<ul>
+<li>如果你只是连接远程 Docker 主机，那么安装 CLI 就够了</li>
+<li>如果你想在当前这台 Mac 上直接执行 <code>docker run</code> 跑容器，那么除了 CLI，通常还要再配一个本地 runtime，比如 <code>colima</code></li>
+</ul>
+<h2 id="二、只安装-Docker-CLI"><a href="#二、只安装-Docker-CLI" class="headerlink" title="二、只安装 Docker CLI"></a>二、只安装 Docker CLI</h2><p>如果你只是想保留命令行工具，不安装 Docker Desktop，可以直接通过 Homebrew 安装：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install docker</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后查看版本：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker --version</span><br></pre></td></tr></table></figure>
+
+<p>或者：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker version</span><br></pre></td></tr></table></figure>
+
+<p>如果当前还没有可连接的 Docker daemon，那么执行 <code>docker version</code> 时，通常会看到客户端信息，但服务端可能连接失败，这属于正常现象。</p>
+<p>安装效果示意：</p>
+<img src="/posts/9129bc850836/docker-cli-install-demo.svg" class="">
+
+<h2 id="三、连接远程-Docker-主机"><a href="#三、连接远程-Docker-主机" class="headerlink" title="三、连接远程 Docker 主机"></a>三、连接远程 Docker 主机</h2><p>如果你的 Docker daemon 在远程 Linux 服务器上，那么本机只装 CLI 就可以了。</p>
+<h3 id="1-直接通过环境变量连接"><a href="#1-直接通过环境变量连接" class="headerlink" title="1. 直接通过环境变量连接"></a>1. 直接通过环境变量连接</h3><p>比如远程主机监听在：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tcp://192.168.1.10:2375</span><br></pre></td></tr></table></figure>
+
+<p>可以先设置：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> DOCKER_HOST=tcp://192.168.1.10:2375</span><br></pre></td></tr></table></figure>
+
+<p>然后执行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-使用-docker-context"><a href="#2-使用-docker-context" class="headerlink" title="2. 使用 docker context"></a>2. 使用 docker context</h3><p>相比直接写 <code>DOCKER_HOST</code>，<code>docker context</code> 更适合长期使用。</p>
+<p>创建一个远程 context：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker context create remote-server --docker <span class="string">&quot;host=tcp://192.168.1.10:2375&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>切换到这个 context：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker context use remote-server</span><br></pre></td></tr></table></figure>
+
+<p>查看当前 context：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker context <span class="built_in">ls</span></span><br></pre></td></tr></table></figure>
+
+<p>这样后续直接执行 <code>docker ps</code>、<code>docker images</code> 就会作用在对应的远程主机上。</p>
+<p>远程 context 使用示意：</p>
+<img src="/posts/9129bc850836/docker-context-demo.svg" class="">
+
+<h2 id="四、如果想在本机运行容器，可以配合-colima"><a href="#四、如果想在本机运行容器，可以配合-colima" class="headerlink" title="四、如果想在本机运行容器，可以配合 colima"></a>四、如果想在本机运行容器，可以配合 colima</h2><p>如果你不想安装 Docker Desktop，但又想在本机直接运行容器，那么一个常见做法是：</p>
+<ul>
+<li>安装 <code>docker</code></li>
+<li>安装 <code>colima</code></li>
+<li>由 <code>colima</code> 提供本地运行环境</li>
+</ul>
+<h3 id="1-安装-colima"><a href="#1-安装-colima" class="headerlink" title="1. 安装 colima"></a>1. 安装 colima</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install colima</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-启动-colima"><a href="#2-启动-colima" class="headerlink" title="2. 启动 colima"></a>2. 启动 colima</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">colima start</span><br></pre></td></tr></table></figure>
+
+<p><code>colima</code> 默认会使用 Docker runtime，启动成功后，<code>docker</code> CLI 就能直接连接到它。</p>
+<h3 id="3-验证是否正常"><a href="#3-验证是否正常" class="headerlink" title="3. 验证是否正常"></a>3. 验证是否正常</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker version</span><br></pre></td></tr></table></figure>
+
+<p>如果服务端信息也能正常显示，说明当前本机已经可以直接运行容器了。</p>
+<p>再试一个简单例子：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run --<span class="built_in">rm</span> hello-world</span><br></pre></td></tr></table></figure>
+
+<p>如果输出欢迎信息，说明整套 CLI + 本地 runtime 已经可以正常工作。</p>
+<p>本地通过 <code>colima</code> 运行容器示意：</p>
+<img src="/posts/9129bc850836/colima-runtime-demo.svg" class="">
+
+<h2 id="五、常用命令"><a href="#五、常用命令" class="headerlink" title="五、常用命令"></a>五、常用命令</h2><h3 id="1-查看当前-Docker-context"><a href="#1-查看当前-Docker-context" class="headerlink" title="1. 查看当前 Docker context"></a>1. 查看当前 Docker context</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker context <span class="built_in">ls</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-切换-context"><a href="#2-切换-context" class="headerlink" title="2. 切换 context"></a>2. 切换 context</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker context use default</span><br></pre></td></tr></table></figure>
+
+<p>或者：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker context use remote-server</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-停止-colima"><a href="#3-停止-colima" class="headerlink" title="3. 停止 colima"></a>3. 停止 colima</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">colima stop</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-重新启动-colima"><a href="#4-重新启动-colima" class="headerlink" title="4. 重新启动 colima"></a>4. 重新启动 colima</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">colima start</span><br></pre></td></tr></table></figure>
+
+<h2 id="六、常见问题"><a href="#六、常见问题" class="headerlink" title="六、常见问题"></a>六、常见问题</h2><h3 id="1-安装了-docker-但执行命令提示无法连接-daemon"><a href="#1-安装了-docker-但执行命令提示无法连接-daemon" class="headerlink" title="1. 安装了 docker 但执行命令提示无法连接 daemon"></a>1. 安装了 docker 但执行命令提示无法连接 daemon</h3><p>这通常不是 CLI 没装好，而是当前没有可用的 Docker daemon。</p>
+<p>可以按自己的场景检查：</p>
+<ul>
+<li>是否打算连接远程 Docker 主机</li>
+<li>是否已经设置 <code>DOCKER_HOST</code></li>
+<li>是否已经切换到正确的 <code>docker context</code></li>
+<li>如果是本机运行，是否已经执行 <code>colima start</code></li>
+</ul>
+<h3 id="2-我只安装-CLI，能不能直接在本机跑容器？"><a href="#2-我只安装-CLI，能不能直接在本机跑容器？" class="headerlink" title="2. 我只安装 CLI，能不能直接在本机跑容器？"></a>2. 我只安装 CLI，能不能直接在本机跑容器？</h3><p>一般不行。</p>
+<p>因为 mac 上只有 CLI 还不够，本地还需要一个实际运行容器的环境。<code>colima</code>、Docker Desktop 这类工具，本质上都是在帮你解决这个问题。</p>
+<h3 id="3-只安装-CLI-有什么好处？"><a href="#3-只安装-CLI-有什么好处？" class="headerlink" title="3. 只安装 CLI 有什么好处？"></a>3. 只安装 CLI 有什么好处？</h3><p>比较适合下面几类场景：</p>
+<ul>
+<li>只连接远程服务器</li>
+<li>本机不希望常驻桌面程序</li>
+<li>希望安装更轻量</li>
+</ul>
+<h2 id="七、小结"><a href="#七、小结" class="headerlink" title="七、小结"></a>七、小结</h2><p>如果你只是想在 mac 上使用 Docker 命令行，而不安装完整客户端，那么最简单的方式就是：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install docker</span><br></pre></td></tr></table></figure>
+
+<p>如果只是连接远程 Docker 主机，到这里就够了。</p>
+<p>如果还想在本机运行容器，又不想装 Docker Desktop，那么可以继续安装：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install colima</span><br><span class="line">colima start</span><br></pre></td></tr></table></figure>
+
+<p>这样就可以保留纯命令行的使用方式，同时又能在本机正常执行 <code>docker run</code>。</p>
+<p>参考文章</p>
+<ul>
+<li><a href="https://docs.docker.com/installation/mac/">Docker Docs: Install Docker Desktop on Mac</a></li>
+<li><a href="https://docs.docker.com/engine/reference/commandline/cli/">Docker Docs: docker CLI reference</a></li>
+<li><a href="https://formulae.brew.sh/formula/docker">Homebrew Formula: docker</a></li>
+<li><a href="https://github.com/abiosoft/colima">Colima GitHub</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>mac</tag>
+        <tag>docker</tag>
+        <tag>cli</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>mac安装文件提示文件已损坏</title>
     <url>/posts/eb725f63ae59/</url>
     <content><![CDATA[<p>在终端中执行下面的命令</p>
@@ -959,6 +1089,31 @@
       </tags>
   </entry>
   <entry>
+    <title>如何取消单选按钮的选中状态</title>
+    <url>/posts/23d019055100/</url>
+    <content><![CDATA[<h2 id="1-常规用法"><a href="#1-常规用法" class="headerlink" title="1.常规用法"></a>1.常规用法</h2><p>单选按钮通常用于用户在一组选项中选中某一项的场景中，一但用户选中其中一项，是不可以再次点击以取消选中的。</p>
+<p>常见的写法有以下几种</p>
+<p>无label的</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;option&quot;</span> <span class="attr">value</span>=<span class="string">&quot;a&quot;</span> <span class="attr">checked</span>&gt;</span>选项A</span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;option&quot;</span> <span class="attr">value</span>=<span class="string">&quot;b&quot;</span>&gt;</span>选项B</span><br></pre></td></tr></table></figure>
+
+<p>通过for关联</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">id</span>=<span class="string">&quot;optionA&quot;</span> <span class="attr">name</span>=<span class="string">&quot;option2&quot;</span> <span class="attr">value</span>=<span class="string">&quot;a&quot;</span> <span class="attr">checked</span>&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;optionA&quot;</span>&gt;</span>选项A<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">id</span>=<span class="string">&quot;optionB&quot;</span> <span class="attr">name</span>=<span class="string">&quot;option2&quot;</span> <span class="attr">value</span>=<span class="string">&quot;b&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;optionB&quot;</span>&gt;</span>选项B<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>或是直接将input放到对应的label中</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;option3&quot;</span> <span class="attr">value</span>=<span class="string">&quot;a&quot;</span> <span class="attr">checked</span>&gt;</span>选项A<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;option3&quot;</span> <span class="attr">value</span>=<span class="string">&quot;b&quot;</span>&gt;</span>选项B<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-取消选中"><a href="#2-取消选中" class="headerlink" title="2.取消选中"></a>2.取消选中</h2><p>如果有需求需要允许用户将已经选中的单选按钮取消选中，这个需求其实并不是非常常见，但也算有实际的需求场景，还算合理<br>但是默认提供的单选按钮是无法取消选中的，那么只有通过相应的事件进行处理了</p>
+<p>对于一组单选按钮，他们是相互关联的，选中其一，则其他的会取消选中；那么我们可以监听单选的click事件<br>如果<br>1.已经选中，那么设置元素的checked &#x3D; false，取消选中<br>2.未选中，那么设置元素的checked &#x3D; true， 选中；同组的其它单选元素的checked &#x3D; false</p>
+<p>但在实际处理中会发现，我们并不知道click前的状态，因为点击后，我们事件的e.target.checked都会为true，所以我们应该记录下click之前的状态</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> radioEls = <span class="variable language_">document</span>.<span class="title function_">querySelectorAll</span>(<span class="string">&#x27;input[type=radio]&#x27;</span>)</span><br><span class="line">  radioEls.<span class="title function_">forEach</span>(<span class="function"><span class="params">el</span> =&gt;</span> &#123;</span><br><span class="line">    el.<span class="property">_checked</span> = el.<span class="property">checked</span></span><br><span class="line">    el.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> target = e.<span class="property">target</span></span><br><span class="line">      <span class="keyword">if</span> (target.<span class="property">_checked</span>) &#123;</span><br><span class="line">        target.<span class="property">checked</span> = target.<span class="property">_checked</span> = <span class="literal">false</span></span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable language_">document</span>.<span class="title function_">querySelectorAll</span>(<span class="string">`input[name=<span class="subst">$&#123;target.name&#125;</span>]`</span>).<span class="title function_">forEach</span>(<span class="function"><span class="params">el</span> =&gt;</span> &#123;</span><br><span class="line">          el.<span class="property">checked</span> = el.<span class="property">_checked</span> = <span class="literal">false</span></span><br><span class="line">        &#125;)</span><br><span class="line">        target.<span class="property">checked</span> = target.<span class="property">_checked</span> = <span class="literal">true</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+
+<p><a href="/demo/post/1.html">查看效果</a></p>
+]]></content>
+      <tags>
+        <tag>html</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>前端如何实现准确的倒计时效果</title>
     <url>/posts/262808016b01/</url>
     <content><![CDATA[<h2 id="1-场景"><a href="#1-场景" class="headerlink" title="1.场景"></a>1.场景</h2><p>试想，现在有这样一个场景，用户有一个观看视频的任务，任务的总时间为3min，观看达到这个时间用户即可完成此任务，我们需要做一个完成倒计时，来提示用户还剩多长时间即可完成该任务。</p>
@@ -985,31 +1140,6 @@
 ]]></content>
       <tags>
         <tag>js</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何取消单选按钮的选中状态</title>
-    <url>/posts/23d019055100/</url>
-    <content><![CDATA[<h2 id="1-常规用法"><a href="#1-常规用法" class="headerlink" title="1.常规用法"></a>1.常规用法</h2><p>单选按钮通常用于用户在一组选项中选中某一项的场景中，一但用户选中其中一项，是不可以再次点击以取消选中的。</p>
-<p>常见的写法有以下几种</p>
-<p>无label的</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;option&quot;</span> <span class="attr">value</span>=<span class="string">&quot;a&quot;</span> <span class="attr">checked</span>&gt;</span>选项A</span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;option&quot;</span> <span class="attr">value</span>=<span class="string">&quot;b&quot;</span>&gt;</span>选项B</span><br></pre></td></tr></table></figure>
-
-<p>通过for关联</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">id</span>=<span class="string">&quot;optionA&quot;</span> <span class="attr">name</span>=<span class="string">&quot;option2&quot;</span> <span class="attr">value</span>=<span class="string">&quot;a&quot;</span> <span class="attr">checked</span>&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;optionA&quot;</span>&gt;</span>选项A<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">id</span>=<span class="string">&quot;optionB&quot;</span> <span class="attr">name</span>=<span class="string">&quot;option2&quot;</span> <span class="attr">value</span>=<span class="string">&quot;b&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;optionB&quot;</span>&gt;</span>选项B<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>或是直接将input放到对应的label中</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;option3&quot;</span> <span class="attr">value</span>=<span class="string">&quot;a&quot;</span> <span class="attr">checked</span>&gt;</span>选项A<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;option3&quot;</span> <span class="attr">value</span>=<span class="string">&quot;b&quot;</span>&gt;</span>选项B<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="2-取消选中"><a href="#2-取消选中" class="headerlink" title="2.取消选中"></a>2.取消选中</h2><p>如果有需求需要允许用户将已经选中的单选按钮取消选中，这个需求其实并不是非常常见，但也算有实际的需求场景，还算合理<br>但是默认提供的单选按钮是无法取消选中的，那么只有通过相应的事件进行处理了</p>
-<p>对于一组单选按钮，他们是相互关联的，选中其一，则其他的会取消选中；那么我们可以监听单选的click事件<br>如果<br>1.已经选中，那么设置元素的checked &#x3D; false，取消选中<br>2.未选中，那么设置元素的checked &#x3D; true， 选中；同组的其它单选元素的checked &#x3D; false</p>
-<p>但在实际处理中会发现，我们并不知道click前的状态，因为点击后，我们事件的e.target.checked都会为true，所以我们应该记录下click之前的状态</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> radioEls = <span class="variable language_">document</span>.<span class="title function_">querySelectorAll</span>(<span class="string">&#x27;input[type=radio]&#x27;</span>)</span><br><span class="line">  radioEls.<span class="title function_">forEach</span>(<span class="function"><span class="params">el</span> =&gt;</span> &#123;</span><br><span class="line">    el.<span class="property">_checked</span> = el.<span class="property">checked</span></span><br><span class="line">    el.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> target = e.<span class="property">target</span></span><br><span class="line">      <span class="keyword">if</span> (target.<span class="property">_checked</span>) &#123;</span><br><span class="line">        target.<span class="property">checked</span> = target.<span class="property">_checked</span> = <span class="literal">false</span></span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable language_">document</span>.<span class="title function_">querySelectorAll</span>(<span class="string">`input[name=<span class="subst">$&#123;target.name&#125;</span>]`</span>).<span class="title function_">forEach</span>(<span class="function"><span class="params">el</span> =&gt;</span> &#123;</span><br><span class="line">          el.<span class="property">checked</span> = el.<span class="property">_checked</span> = <span class="literal">false</span></span><br><span class="line">        &#125;)</span><br><span class="line">        target.<span class="property">checked</span> = target.<span class="property">_checked</span> = <span class="literal">true</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
-
-<p><a href="/demo/post/1.html">查看效果</a></p>
-]]></content>
-      <tags>
-        <tag>html</tag>
       </tags>
   </entry>
   <entry>
@@ -1168,50 +1298,6 @@
       </tags>
   </entry>
   <entry>
-    <title>树莓派3B开箱</title>
-    <url>/posts/c9ac426b4a37/</url>
-    <content><![CDATA[<h2 id="开箱清单"><a href="#开箱清单" class="headerlink" title="开箱清单"></a>开箱清单</h2><ul>
-<li>树莓派3代B型</li>
-<li>2.5A带开关5V电源</li>
-<li>闪迪32G内存卡</li>
-<li>散热片一套</li>
-<li>铝合金外壳一个</li>
-</ul>
-<h2 id="开箱组装"><a href="#开箱组装" class="headerlink" title="开箱组装"></a>开箱组装</h2><h3 id="树莓派3代，B型，E14中国版"><a href="#树莓派3代，B型，E14中国版" class="headerlink" title="树莓派3代，B型，E14中国版"></a>树莓派3代，B型，E14中国版</h3><img src="/posts/c9ac426b4a37/IMG_20180110_143901.jpg" class="">
-
-<p>3B的外包装盒依然延续上一代简洁大方的特点，并突出板载WiFi和蓝牙功能</p>
-<h3 id="5V-2-5A电源"><a href="#5V-2-5A电源" class="headerlink" title="5V 2.5A电源"></a>5V 2.5A电源</h3><p>以前玩树莓派都是直接用手机电源，有些电源输出电流过小，会造成树莓派不稳定，树莓派3B推荐使用2.5A的电源（这个电源带开关，用起来还是挺方便的，不用频繁拔插电源，也延长了电源口的使用寿命，话说这次买的电源质量挺好的，做工很实）</p>
-<img src="/posts/c9ac426b4a37/IMG_20180110_143751.jpg" class="">
-
-<h3 id="闪迪32G-class10-内存卡"><a href="#闪迪32G-class10-内存卡" class="headerlink" title="闪迪32G class10 内存卡"></a>闪迪32G class10 内存卡</h3><p>树莓派内存卡一般用8 ~ 64G（那我为什么要用32G呢，当然是为了节约成本，这个性价比最高，太大了也没有多大的用途）</p>
-<img src="/posts/c9ac426b4a37/IMG_20180110_143936.jpg" class="">
-
-<h3 id="两铜一铝散热片"><a href="#两铜一铝散热片" class="headerlink" title="两铜一铝散热片"></a>两铜一铝散热片</h3><p>树莓派背面内存颗粒散热片还带有树莓派的logo，很不错</p>
-<img src="/posts/c9ac426b4a37/IMG_20180110_143924.jpg" class="">
-
-<h3 id="铝合金外壳"><a href="#铝合金外壳" class="headerlink" title="铝合金外壳"></a>铝合金外壳</h3><img src="/posts/c9ac426b4a37/IMG_20180110_144613.jpg" class="">
-
-<p>树莓派3已经发售很久了，可为什么现在才买呢，嗯嗯，原因就是它，金属质感的外表，无可挑剔的做工，简直完美</p>
-<h3 id="防静电包装"><a href="#防静电包装" class="headerlink" title="防静电包装"></a>防静电包装</h3><img src="/posts/c9ac426b4a37/IMG_20180110_144444.jpg" class="">
-<img src="/posts/c9ac426b4a37/IMG_20180110_144522.jpg" class="">
-
-<img src="/posts/c9ac426b4a37/IMG_20180110_144539.jpg" class="">
-
-<h3 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h3><img src="/posts/c9ac426b4a37/IMG_20180110_145536.jpg" class="">
-
-<h3 id="南桥和CPU"><a href="#南桥和CPU" class="headerlink" title="南桥和CPU"></a>南桥和CPU</h3><img src="/posts/c9ac426b4a37/IMG_20180110_145709.jpg" class="">
-
-<p>外壳的做工很好,板子只有一颗固定螺丝</p>
-<img src="/posts/c9ac426b4a37/IMG_20180110_150530.jpg" class="">
-
-<p>安装完成</p>
-<img src="/posts/c9ac426b4a37/IMG_20180110_150808.jpg" class="">
-]]></content>
-      <tags>
-        <tag>树莓派</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>树莓派EC20模块联网</title>
     <url>/posts/3c0ad28a2fa4/</url>
     <content><![CDATA[<h2 id="一、EC20模块"><a href="#一、EC20模块" class="headerlink" title="一、EC20模块"></a>一、EC20模块</h2><p>模块有两个usb接口，其中靠近SIM卡的是电源接口，如果没有接独立供电接口的话，可能会导致板子发热，不稳定</p>
@@ -1262,6 +1348,50 @@
       </tags>
   </entry>
   <entry>
+    <title>树莓派3B开箱</title>
+    <url>/posts/c9ac426b4a37/</url>
+    <content><![CDATA[<h2 id="开箱清单"><a href="#开箱清单" class="headerlink" title="开箱清单"></a>开箱清单</h2><ul>
+<li>树莓派3代B型</li>
+<li>2.5A带开关5V电源</li>
+<li>闪迪32G内存卡</li>
+<li>散热片一套</li>
+<li>铝合金外壳一个</li>
+</ul>
+<h2 id="开箱组装"><a href="#开箱组装" class="headerlink" title="开箱组装"></a>开箱组装</h2><h3 id="树莓派3代，B型，E14中国版"><a href="#树莓派3代，B型，E14中国版" class="headerlink" title="树莓派3代，B型，E14中国版"></a>树莓派3代，B型，E14中国版</h3><img src="/posts/c9ac426b4a37/IMG_20180110_143901.jpg" class="">
+
+<p>3B的外包装盒依然延续上一代简洁大方的特点，并突出板载WiFi和蓝牙功能</p>
+<h3 id="5V-2-5A电源"><a href="#5V-2-5A电源" class="headerlink" title="5V 2.5A电源"></a>5V 2.5A电源</h3><p>以前玩树莓派都是直接用手机电源，有些电源输出电流过小，会造成树莓派不稳定，树莓派3B推荐使用2.5A的电源（这个电源带开关，用起来还是挺方便的，不用频繁拔插电源，也延长了电源口的使用寿命，话说这次买的电源质量挺好的，做工很实）</p>
+<img src="/posts/c9ac426b4a37/IMG_20180110_143751.jpg" class="">
+
+<h3 id="闪迪32G-class10-内存卡"><a href="#闪迪32G-class10-内存卡" class="headerlink" title="闪迪32G class10 内存卡"></a>闪迪32G class10 内存卡</h3><p>树莓派内存卡一般用8 ~ 64G（那我为什么要用32G呢，当然是为了节约成本，这个性价比最高，太大了也没有多大的用途）</p>
+<img src="/posts/c9ac426b4a37/IMG_20180110_143936.jpg" class="">
+
+<h3 id="两铜一铝散热片"><a href="#两铜一铝散热片" class="headerlink" title="两铜一铝散热片"></a>两铜一铝散热片</h3><p>树莓派背面内存颗粒散热片还带有树莓派的logo，很不错</p>
+<img src="/posts/c9ac426b4a37/IMG_20180110_143924.jpg" class="">
+
+<h3 id="铝合金外壳"><a href="#铝合金外壳" class="headerlink" title="铝合金外壳"></a>铝合金外壳</h3><img src="/posts/c9ac426b4a37/IMG_20180110_144613.jpg" class="">
+
+<p>树莓派3已经发售很久了，可为什么现在才买呢，嗯嗯，原因就是它，金属质感的外表，无可挑剔的做工，简直完美</p>
+<h3 id="防静电包装"><a href="#防静电包装" class="headerlink" title="防静电包装"></a>防静电包装</h3><img src="/posts/c9ac426b4a37/IMG_20180110_144444.jpg" class="">
+<img src="/posts/c9ac426b4a37/IMG_20180110_144522.jpg" class="">
+
+<img src="/posts/c9ac426b4a37/IMG_20180110_144539.jpg" class="">
+
+<h3 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h3><img src="/posts/c9ac426b4a37/IMG_20180110_145536.jpg" class="">
+
+<h3 id="南桥和CPU"><a href="#南桥和CPU" class="headerlink" title="南桥和CPU"></a>南桥和CPU</h3><img src="/posts/c9ac426b4a37/IMG_20180110_145709.jpg" class="">
+
+<p>外壳的做工很好,板子只有一颗固定螺丝</p>
+<img src="/posts/c9ac426b4a37/IMG_20180110_150530.jpg" class="">
+
+<p>安装完成</p>
+<img src="/posts/c9ac426b4a37/IMG_20180110_150808.jpg" class="">
+]]></content>
+      <tags>
+        <tag>树莓派</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>树莓派pi和root账户密码</title>
     <url>/posts/0b5febe6de76/</url>
     <content><![CDATA[<h2 id="pi账户"><a href="#pi账户" class="headerlink" title="pi账户"></a>pi账户</h2><p>pi是树莓派的默认账户，默认密码为 raspberry</p>
@@ -1292,6 +1422,63 @@
 <p><code>sudo passwd --unlock root</code></p>
 <p>后，便可解锁root账户</p>
 <p>再次登录root账户成功</p>
+]]></content>
+      <tags>
+        <tag>树莓派</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派如何关闭显示输出？</title>
+    <url>/posts/25aa1f481aea/</url>
+    <content><![CDATA[<h2 id="一、尝试"><a href="#一、尝试" class="headerlink" title="一、尝试"></a>一、尝试</h2><p>树莓派通过hdmi连接了一块1920*1080的屏幕，平时时竖屏放置，用来显示日历和其他一些信息，树莓派7*24小时运行, 导致屏幕一直处于工作状态，所以我打算只在一定的时间内进行显示输出</p>
+<p>在百度上搜索了如何休眠之类的方法，找到可以通过<code>xset</code>的相关命令使树莓派进入休眠或是唤醒</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// 强制进入休眠</span><br><span class="line">sudo xset dpms force off</span><br><span class="line">// 强制唤醒</span><br><span class="line">sudo xset dpms force on</span><br></pre></td></tr></table></figure>
+
+<p>但是在我尝试强制进入休眠时，屏幕只是短暂黑了下屏，再次恢复正常，并不行，不知道哪里出了问题，尝试重新写入系统镜像，用一个新系统试下</p>
+<p>新系统启动后屏幕变回了默认的横屏模式，神奇的事发生了，这时再执行强制进入休眠，竟然成功了，当鼠标移动可以正常唤醒，可是当我重启设置了启动时，旋转90deg时，休眠命令再次失效了，多次在横屏竖屏切换尝试了几次，竖屏下都不行，只有横屏下休眠命令可以正常工作，看来是个bug（似乎之前竖屏下，自动休眠就没有正常工作过，应该也是这个原因导致的）</p>
+<p>虽然在横屏模式下可以实现命令休眠，但是发现屏幕并没有熄灭，好像只是换了一个黑色的屏保，这点与预期有差距，我们是想让显示屏熄灭，进入待机状态</p>
+<p>之后又百度了很久，没有发现什么好的办法。只得转到google上继续查找，最终找到了turn off hdmi的相关命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// 关闭显示输出</span><br><span class="line">sudo vcgencmd display_power 0</span><br><span class="line">// 开启显示输出</span><br><span class="line">sudo vcgencmd display_power 1</span><br></pre></td></tr></table></figure>
+
+<p>运行关闭显示输出命令后，屏幕熄灭、进入待机状态，此时树莓派依然是正常工作状态，如果你通过vnc连接树莓派，会发现一切如常，说明这个命令是在硬件层面关闭了显示输出</p>
+<h2 id="二、定时任务"><a href="#二、定时任务" class="headerlink" title="二、定时任务"></a>二、定时任务</h2><p>编辑定时任务</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo crontab -e</span><br></pre></td></tr></table></figure>
+
+<p>添加</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line"># 每天7:30开启显示</span><br><span class="line">30 7 * * * vcgencmd display_power 1</span><br><span class="line"></span><br><span class="line"># 周一至周五每天8点关闭显示</span><br><span class="line">0 8 * * 1-5 vcgencmd display_power 0</span><br><span class="line"></span><br><span class="line"># 周一至周五每天19点开启显示</span><br><span class="line">0 19 * * 1-5 vcgencmd display_power 1</span><br><span class="line"></span><br><span class="line"># 每天0:30点关闭显示</span><br><span class="line">30 0 * * * vcgencmd display_power 0</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>树莓派</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派如何截屏</title>
+    <url>/posts/5ccd0e4749cf/</url>
+    <content><![CDATA[<h2 id="安装scrot"><a href="#安装scrot" class="headerlink" title="安装scrot"></a>安装scrot</h2><p>在终端里输入命令:</p>
+<p><code>scrot -v</code></p>
+<p>查看是否安装了scrot, 已经安装了scrot的会显示其版本信息</p>
+<img src="/posts/5ccd0e4749cf/QQ%E6%88%AA%E5%9B%BE20180308155232.jpg" class="">
+
+<p>没有安装的话，输入以下命令进行安装：</p>
+<p><code>sudo apt-get install scrot</code></p>
+<h2 id="查看scrot帮助"><a href="#查看scrot帮助" class="headerlink" title="查看scrot帮助"></a>查看scrot帮助</h2><p>安装完成后，输入命令</p>
+<p><code>scrot -h</code></p>
+<p>可以查看scrot的使用帮助</p>
+<img src="/posts/5ccd0e4749cf/QQ%E6%88%AA%E5%9B%BE20180308160435.jpg" class="">
+
+
+<p>4.scrot的常用命令</p>
+<p>截取整个窗口:</p>
+<p><code>sudo scrot</code></p>
+<p>效果与键盘上的截屏键Print Scr Sysrq相同</p>
+<p>默认保存在当前目录下</p>
+<p>默认文件名 2018-03-08-161715_1824x984_scrot.png</p>
+<p>自命名截图：</p>
+<p><code>sudo scrot 123.png</code></p>
+<p>截取的图片会以文件名123.png保存到当前目录</p>
+<p>其他命令：</p>
+<p>Usage : scrot [OPTIONS]… [FILE]<br>-h, –help 查看帮助<br>-v, –version 获取版本信息<br>-d, –delay NUM 延时NUM秒后截屏<br>-s, –select 鼠标选择一个区域后截屏<br>-u, –focused 截取当前活动窗口(可以配合 -d 延时后改变活动窗口) </p>
+<p><strong>注意</strong>：scrot只能在窗口存在时才能使用，当putty以ssh连接树莓派时，输入命令sudo scrot会报错 <code>giblib error: Can&#39;t open X display. It *is* running, yeah?</code></p>
 ]]></content>
       <tags>
         <tag>树莓派</tag>
@@ -1374,63 +1561,6 @@ ssd1306.drawToDisplay()
       </tags>
   </entry>
   <entry>
-    <title>树莓派如何关闭显示输出？</title>
-    <url>/posts/25aa1f481aea/</url>
-    <content><![CDATA[<h2 id="一、尝试"><a href="#一、尝试" class="headerlink" title="一、尝试"></a>一、尝试</h2><p>树莓派通过hdmi连接了一块1920*1080的屏幕，平时时竖屏放置，用来显示日历和其他一些信息，树莓派7*24小时运行, 导致屏幕一直处于工作状态，所以我打算只在一定的时间内进行显示输出</p>
-<p>在百度上搜索了如何休眠之类的方法，找到可以通过<code>xset</code>的相关命令使树莓派进入休眠或是唤醒</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// 强制进入休眠</span><br><span class="line">sudo xset dpms force off</span><br><span class="line">// 强制唤醒</span><br><span class="line">sudo xset dpms force on</span><br></pre></td></tr></table></figure>
-
-<p>但是在我尝试强制进入休眠时，屏幕只是短暂黑了下屏，再次恢复正常，并不行，不知道哪里出了问题，尝试重新写入系统镜像，用一个新系统试下</p>
-<p>新系统启动后屏幕变回了默认的横屏模式，神奇的事发生了，这时再执行强制进入休眠，竟然成功了，当鼠标移动可以正常唤醒，可是当我重启设置了启动时，旋转90deg时，休眠命令再次失效了，多次在横屏竖屏切换尝试了几次，竖屏下都不行，只有横屏下休眠命令可以正常工作，看来是个bug（似乎之前竖屏下，自动休眠就没有正常工作过，应该也是这个原因导致的）</p>
-<p>虽然在横屏模式下可以实现命令休眠，但是发现屏幕并没有熄灭，好像只是换了一个黑色的屏保，这点与预期有差距，我们是想让显示屏熄灭，进入待机状态</p>
-<p>之后又百度了很久，没有发现什么好的办法。只得转到google上继续查找，最终找到了turn off hdmi的相关命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// 关闭显示输出</span><br><span class="line">sudo vcgencmd display_power 0</span><br><span class="line">// 开启显示输出</span><br><span class="line">sudo vcgencmd display_power 1</span><br></pre></td></tr></table></figure>
-
-<p>运行关闭显示输出命令后，屏幕熄灭、进入待机状态，此时树莓派依然是正常工作状态，如果你通过vnc连接树莓派，会发现一切如常，说明这个命令是在硬件层面关闭了显示输出</p>
-<h2 id="二、定时任务"><a href="#二、定时任务" class="headerlink" title="二、定时任务"></a>二、定时任务</h2><p>编辑定时任务</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo crontab -e</span><br></pre></td></tr></table></figure>
-
-<p>添加</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line"># 每天7:30开启显示</span><br><span class="line">30 7 * * * vcgencmd display_power 1</span><br><span class="line"></span><br><span class="line"># 周一至周五每天8点关闭显示</span><br><span class="line">0 8 * * 1-5 vcgencmd display_power 0</span><br><span class="line"></span><br><span class="line"># 周一至周五每天19点开启显示</span><br><span class="line">0 19 * * 1-5 vcgencmd display_power 1</span><br><span class="line"></span><br><span class="line"># 每天0:30点关闭显示</span><br><span class="line">30 0 * * * vcgencmd display_power 0</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>树莓派</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>树莓派如何截屏</title>
-    <url>/posts/5ccd0e4749cf/</url>
-    <content><![CDATA[<h2 id="安装scrot"><a href="#安装scrot" class="headerlink" title="安装scrot"></a>安装scrot</h2><p>在终端里输入命令:</p>
-<p><code>scrot -v</code></p>
-<p>查看是否安装了scrot, 已经安装了scrot的会显示其版本信息</p>
-<img src="/posts/5ccd0e4749cf/QQ%E6%88%AA%E5%9B%BE20180308155232.jpg" class="">
-
-<p>没有安装的话，输入以下命令进行安装：</p>
-<p><code>sudo apt-get install scrot</code></p>
-<h2 id="查看scrot帮助"><a href="#查看scrot帮助" class="headerlink" title="查看scrot帮助"></a>查看scrot帮助</h2><p>安装完成后，输入命令</p>
-<p><code>scrot -h</code></p>
-<p>可以查看scrot的使用帮助</p>
-<img src="/posts/5ccd0e4749cf/QQ%E6%88%AA%E5%9B%BE20180308160435.jpg" class="">
-
-
-<p>4.scrot的常用命令</p>
-<p>截取整个窗口:</p>
-<p><code>sudo scrot</code></p>
-<p>效果与键盘上的截屏键Print Scr Sysrq相同</p>
-<p>默认保存在当前目录下</p>
-<p>默认文件名 2018-03-08-161715_1824x984_scrot.png</p>
-<p>自命名截图：</p>
-<p><code>sudo scrot 123.png</code></p>
-<p>截取的图片会以文件名123.png保存到当前目录</p>
-<p>其他命令：</p>
-<p>Usage : scrot [OPTIONS]… [FILE]<br>-h, –help 查看帮助<br>-v, –version 获取版本信息<br>-d, –delay NUM 延时NUM秒后截屏<br>-s, –select 鼠标选择一个区域后截屏<br>-u, –focused 截取当前活动窗口(可以配合 -d 延时后改变活动窗口) </p>
-<p><strong>注意</strong>：scrot只能在窗口存在时才能使用，当putty以ssh连接树莓派时，输入命令sudo scrot会报错 <code>giblib error: Can&#39;t open X display. It *is* running, yeah?</code></p>
-]]></content>
-      <tags>
-        <tag>树莓派</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>树莓派安装gammu</title>
     <url>/posts/4508ad670cba/</url>
     <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install gammu</span><br></pre></td></tr></table></figure>
@@ -1466,6 +1596,39 @@ ssd1306.drawToDisplay()
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">MongoDB shell version: 2.4.14</span><br><span class="line">connecting to: test</span><br><span class="line">Welcome to the MongoDB shell.</span><br><span class="line">For interactive help, type &quot;help&quot;.</span><br><span class="line">For more comprehensive documentation, see</span><br><span class="line">        http://docs.mongodb.org/</span><br><span class="line">Questions? Try the support group</span><br><span class="line">        http://groups.google.com/group/mongodb-user</span><br><span class="line">Server has startup warnings:</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten]</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten] ** NOTE: This is a 32 bit MongoDB binary.</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten] **       32 bit builds are limited to less than 2GB of data (or less with --journal).</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten] **       See http://dochub.mongodb.org/core/32bit</span><br><span class="line">Wed Jul 17 22:50:05.612 [initandlisten]</span><br><span class="line"><span class="meta prompt_">&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>MongoDB</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派屏幕旋转和触摸旋转</title>
+    <url>/posts/40c19e61f591/</url>
+    <content><![CDATA[<h2 id="一、屏幕"><a href="#一、屏幕" class="headerlink" title="一、屏幕"></a>一、屏幕</h2><p>这是一块<code>DFROBOT</code>产的5’’ 800x480 TFT 电容屏</p>
+<img src="/posts/40c19e61f591/FoQwMT9e2z_oup3m1X9coEFCH2Ct.jpg" class="">
+
+<p>默认是按长边方向显示的，如果竖屏使用的话，就需要调整屏幕方向和触摸方向</p>
+<h2 id="二、屏幕旋转"><a href="#二、屏幕旋转" class="headerlink" title="二、屏幕旋转"></a>二、屏幕旋转</h2><p>修改屏幕旋转可以修改启动配置文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim /boot/config.txt</span><br></pre></td></tr></table></figure>
+
+<p>添加</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 默认</span></span><br><span class="line">display_rotate=0</span><br><span class="line"><span class="comment"># 90deg</span></span><br><span class="line">display_rotate=1</span><br><span class="line"><span class="comment"># 180deg</span></span><br><span class="line">display_rotate=2</span><br><span class="line"><span class="comment"># 270deg</span></span><br><span class="line">display_rotate=3</span><br></pre></td></tr></table></figure>
+
+<p>可以根据需要添加旋转值（顺时针的）</p>
+<p>然后重启即可生效<code>sudo shutdown -r now</code></p>
+<h2 id="三、触摸旋转"><a href="#三、触摸旋转" class="headerlink" title="三、触摸旋转"></a>三、触摸旋转</h2><p>如果只是屏幕进行了旋转的话，触摸还是保持默认方向，就无法正常操作了，需要调整与屏幕方向一致才行</p>
+<p>编辑配置</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim /usr/share/X11/xorg.conf.d/40-libinput.conf</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line"># Match on all types of devices but joysticks</span><br><span class="line">#</span><br><span class="line"># If you want to configure your devices, do not copy this file.</span><br><span class="line"># Instead, use a config snippet that contains something like this:</span><br><span class="line">#</span><br><span class="line"># Section &quot;InputClass&quot;</span><br><span class="line">#   Identifier &quot;something or other&quot;</span><br><span class="line">#   MatchDriver &quot;libinput&quot;</span><br><span class="line">#</span><br><span class="line">#   MatchIsTouchpad &quot;on&quot;</span><br><span class="line">#   ... other Match directives ...</span><br><span class="line">#   Option &quot;someoption&quot; &quot;value&quot;</span><br><span class="line"># EndSection</span><br><span class="line">#</span><br><span class="line"># This applies the option any libinput device also matched by the other</span><br><span class="line"># directives. See the xorg.conf(5) man page for more info on</span><br><span class="line"># matching devices.</span><br><span class="line"></span><br><span class="line">Section &quot;InputClass&quot;</span><br><span class="line">        Identifier &quot;libinput pointer catchall&quot;</span><br><span class="line">        MatchIsPointer &quot;on&quot;</span><br><span class="line">        MatchDevicePath &quot;/dev/input/event*&quot;</span><br><span class="line">        Driver &quot;libinput&quot;</span><br><span class="line">EndSection</span><br><span class="line"></span><br><span class="line">Section &quot;InputClass&quot;</span><br><span class="line">        Identifier &quot;libinput keyboard catchall&quot;</span><br><span class="line">        MatchIsKeyboard &quot;on&quot;</span><br><span class="line">        MatchDevicePath &quot;/dev/input/event*&quot;</span><br><span class="line">        Driver &quot;libinput&quot;</span><br><span class="line">EndSection</span><br><span class="line"></span><br><span class="line">Section &quot;InputClass&quot;</span><br><span class="line">        Identifier &quot;libinput touchpad catchall&quot;</span><br><span class="line">        MatchIsTouchpad &quot;on&quot;</span><br><span class="line">        MatchDevicePath &quot;/dev/input/event*&quot;</span><br><span class="line">        Driver &quot;libinput&quot;</span><br><span class="line">EndSection</span><br><span class="line"></span><br><span class="line">Section &quot;InputClass&quot;</span><br><span class="line">        Identifier &quot;libinput touchscreen catchall&quot;</span><br><span class="line">        # 90deg</span><br><span class="line">        Option &quot;CalibrationMatrix&quot; &quot;0 1 0 -1 0 1 0 0 1&quot;</span><br><span class="line">        MatchIsTouchscreen &quot;on&quot;</span><br><span class="line">        MatchDevicePath &quot;/dev/input/event*&quot;</span><br><span class="line">        Driver &quot;libinput&quot;</span><br><span class="line">EndSection</span><br><span class="line"></span><br><span class="line">Section &quot;InputClass&quot;</span><br><span class="line">        Identifier &quot;libinput tablet catchall&quot;</span><br><span class="line">        MatchIsTablet &quot;on&quot;</span><br><span class="line">        MatchDevicePath &quot;/dev/input/event*&quot;</span><br><span class="line">        Driver &quot;libinput&quot;</span><br><span class="line">EndSection</span><br></pre></td></tr></table></figure>
+
+<p>在<code>libinput touchscreen catchall</code>部分添加一行<code>Option &quot;CalibrationMatrix&quot; &quot;0 1 0 -1 0 1 0 0 1&quot;</code></p>
+<p>注意：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line"># 90 deg</span><br><span class="line">Option &quot;CalibrationMatrix&quot; &quot;0 1 0 -1 0 1 0 0 1&quot;</span><br><span class="line"></span><br><span class="line"># 180 deg</span><br><span class="line">Option &quot;CalibrationMatrix&quot; &quot;-1 0 1 0 -1 1 0 0 1&quot;</span><br><span class="line"></span><br><span class="line"># 270 deg</span><br><span class="line">Option &quot;CalibrationMatrix&quot; &quot;0 -1 1 1 0 0 0 0 1&quot;</span><br></pre></td></tr></table></figure>
+
+<p>重启即可</p>
+<img src="/posts/40c19e61f591/IMG_20200823_123704.jpg" class="">
+]]></content>
+      <tags>
+        <tag>树莓派</tag>
+        <tag>屏幕</tag>
       </tags>
   </entry>
   <entry>
@@ -1530,6 +1693,38 @@ ssd1306.drawToDisplay()
 <p>输入 y 回车 继续即可</p>
 <h2 id="查看web站点"><a href="#查看web站点" class="headerlink" title="查看web站点"></a>查看web站点</h2><p>在浏览器内输入树莓派局域网IP，可以看到Apache的默认页面</p>
 <img src="/posts/32217327e163/2018-03-11-192347_830x386_scrot.png" class="">]]></content>
+      <tags>
+        <tag>树莓派</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派禁止休眠、保持屏幕常亮</title>
+    <url>/posts/9832c248a2df/</url>
+    <content><![CDATA[<h2 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo vi /etc/lightdm/lightdm.conf</span><br></pre></td></tr></table></figure>
+
+<p>找到<br><code>#xserver-command=X</code><br>修改为<br><code>xserver-command=X -s 0 -dpms</code></p>
+<p>保存后重启即可</p>
+<p>参考文章</p>
+<ul>
+<li><a href="https://blog.csdn.net/u011720560/article/details/78288128">树莓派禁止休眠、屏幕常亮</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>树莓派</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派鼠标空闲时隐藏光标</title>
+    <url>/posts/6f18ead3ddd8/</url>
+    <content><![CDATA[<h2 id="安装uncluter"><a href="#安装uncluter" class="headerlink" title="安装uncluter"></a>安装uncluter</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install unclutter</span><br></pre></td></tr></table></figure>
+
+<p>安装后，默认鼠标空闲2s后就会被隐藏</p>
+<p>参考文章:</p>
+<ul>
+<li><a href="https://debaday.debian.net/2007/03/27/unclutter-hide-the-mouse-cursor-after-a-period-of-inactivity/">unclutter: hide the mouse cursor after a period of inactivity</a></li>
+<li><a href="https://ubuntu-tutorials.com/2008/07/07/auto-hide-your-mouse-pointer-when-idle-with-unclutter/">Auto-Hide Your Mouse Pointer When Idle With “Unclutter”</a></li>
+</ul>
+]]></content>
       <tags>
         <tag>树莓派</tag>
       </tags>
@@ -1770,71 +1965,6 @@ ssd1306.drawToDisplay()
 ]]></content>
       <tags>
         <tag>树莓派</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>树莓派禁止休眠、保持屏幕常亮</title>
-    <url>/posts/9832c248a2df/</url>
-    <content><![CDATA[<h2 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo vi /etc/lightdm/lightdm.conf</span><br></pre></td></tr></table></figure>
-
-<p>找到<br><code>#xserver-command=X</code><br>修改为<br><code>xserver-command=X -s 0 -dpms</code></p>
-<p>保存后重启即可</p>
-<p>参考文章</p>
-<ul>
-<li><a href="https://blog.csdn.net/u011720560/article/details/78288128">树莓派禁止休眠、屏幕常亮</a></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>树莓派</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>树莓派鼠标空闲时隐藏光标</title>
-    <url>/posts/6f18ead3ddd8/</url>
-    <content><![CDATA[<h2 id="安装uncluter"><a href="#安装uncluter" class="headerlink" title="安装uncluter"></a>安装uncluter</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install unclutter</span><br></pre></td></tr></table></figure>
-
-<p>安装后，默认鼠标空闲2s后就会被隐藏</p>
-<p>参考文章:</p>
-<ul>
-<li><a href="https://debaday.debian.net/2007/03/27/unclutter-hide-the-mouse-cursor-after-a-period-of-inactivity/">unclutter: hide the mouse cursor after a period of inactivity</a></li>
-<li><a href="https://ubuntu-tutorials.com/2008/07/07/auto-hide-your-mouse-pointer-when-idle-with-unclutter/">Auto-Hide Your Mouse Pointer When Idle With “Unclutter”</a></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>树莓派</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>树莓派屏幕旋转和触摸旋转</title>
-    <url>/posts/40c19e61f591/</url>
-    <content><![CDATA[<h2 id="一、屏幕"><a href="#一、屏幕" class="headerlink" title="一、屏幕"></a>一、屏幕</h2><p>这是一块<code>DFROBOT</code>产的5’’ 800x480 TFT 电容屏</p>
-<img src="/posts/40c19e61f591/FoQwMT9e2z_oup3m1X9coEFCH2Ct.jpg" class="">
-
-<p>默认是按长边方向显示的，如果竖屏使用的话，就需要调整屏幕方向和触摸方向</p>
-<h2 id="二、屏幕旋转"><a href="#二、屏幕旋转" class="headerlink" title="二、屏幕旋转"></a>二、屏幕旋转</h2><p>修改屏幕旋转可以修改启动配置文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim /boot/config.txt</span><br></pre></td></tr></table></figure>
-
-<p>添加</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 默认</span></span><br><span class="line">display_rotate=0</span><br><span class="line"><span class="comment"># 90deg</span></span><br><span class="line">display_rotate=1</span><br><span class="line"><span class="comment"># 180deg</span></span><br><span class="line">display_rotate=2</span><br><span class="line"><span class="comment"># 270deg</span></span><br><span class="line">display_rotate=3</span><br></pre></td></tr></table></figure>
-
-<p>可以根据需要添加旋转值（顺时针的）</p>
-<p>然后重启即可生效<code>sudo shutdown -r now</code></p>
-<h2 id="三、触摸旋转"><a href="#三、触摸旋转" class="headerlink" title="三、触摸旋转"></a>三、触摸旋转</h2><p>如果只是屏幕进行了旋转的话，触摸还是保持默认方向，就无法正常操作了，需要调整与屏幕方向一致才行</p>
-<p>编辑配置</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim /usr/share/X11/xorg.conf.d/40-libinput.conf</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line"># Match on all types of devices but joysticks</span><br><span class="line">#</span><br><span class="line"># If you want to configure your devices, do not copy this file.</span><br><span class="line"># Instead, use a config snippet that contains something like this:</span><br><span class="line">#</span><br><span class="line"># Section &quot;InputClass&quot;</span><br><span class="line">#   Identifier &quot;something or other&quot;</span><br><span class="line">#   MatchDriver &quot;libinput&quot;</span><br><span class="line">#</span><br><span class="line">#   MatchIsTouchpad &quot;on&quot;</span><br><span class="line">#   ... other Match directives ...</span><br><span class="line">#   Option &quot;someoption&quot; &quot;value&quot;</span><br><span class="line"># EndSection</span><br><span class="line">#</span><br><span class="line"># This applies the option any libinput device also matched by the other</span><br><span class="line"># directives. See the xorg.conf(5) man page for more info on</span><br><span class="line"># matching devices.</span><br><span class="line"></span><br><span class="line">Section &quot;InputClass&quot;</span><br><span class="line">        Identifier &quot;libinput pointer catchall&quot;</span><br><span class="line">        MatchIsPointer &quot;on&quot;</span><br><span class="line">        MatchDevicePath &quot;/dev/input/event*&quot;</span><br><span class="line">        Driver &quot;libinput&quot;</span><br><span class="line">EndSection</span><br><span class="line"></span><br><span class="line">Section &quot;InputClass&quot;</span><br><span class="line">        Identifier &quot;libinput keyboard catchall&quot;</span><br><span class="line">        MatchIsKeyboard &quot;on&quot;</span><br><span class="line">        MatchDevicePath &quot;/dev/input/event*&quot;</span><br><span class="line">        Driver &quot;libinput&quot;</span><br><span class="line">EndSection</span><br><span class="line"></span><br><span class="line">Section &quot;InputClass&quot;</span><br><span class="line">        Identifier &quot;libinput touchpad catchall&quot;</span><br><span class="line">        MatchIsTouchpad &quot;on&quot;</span><br><span class="line">        MatchDevicePath &quot;/dev/input/event*&quot;</span><br><span class="line">        Driver &quot;libinput&quot;</span><br><span class="line">EndSection</span><br><span class="line"></span><br><span class="line">Section &quot;InputClass&quot;</span><br><span class="line">        Identifier &quot;libinput touchscreen catchall&quot;</span><br><span class="line">        # 90deg</span><br><span class="line">        Option &quot;CalibrationMatrix&quot; &quot;0 1 0 -1 0 1 0 0 1&quot;</span><br><span class="line">        MatchIsTouchscreen &quot;on&quot;</span><br><span class="line">        MatchDevicePath &quot;/dev/input/event*&quot;</span><br><span class="line">        Driver &quot;libinput&quot;</span><br><span class="line">EndSection</span><br><span class="line"></span><br><span class="line">Section &quot;InputClass&quot;</span><br><span class="line">        Identifier &quot;libinput tablet catchall&quot;</span><br><span class="line">        MatchIsTablet &quot;on&quot;</span><br><span class="line">        MatchDevicePath &quot;/dev/input/event*&quot;</span><br><span class="line">        Driver &quot;libinput&quot;</span><br><span class="line">EndSection</span><br></pre></td></tr></table></figure>
-
-<p>在<code>libinput touchscreen catchall</code>部分添加一行<code>Option &quot;CalibrationMatrix&quot; &quot;0 1 0 -1 0 1 0 0 1&quot;</code></p>
-<p>注意：</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line"># 90 deg</span><br><span class="line">Option &quot;CalibrationMatrix&quot; &quot;0 1 0 -1 0 1 0 0 1&quot;</span><br><span class="line"></span><br><span class="line"># 180 deg</span><br><span class="line">Option &quot;CalibrationMatrix&quot; &quot;-1 0 1 0 -1 1 0 0 1&quot;</span><br><span class="line"></span><br><span class="line"># 270 deg</span><br><span class="line">Option &quot;CalibrationMatrix&quot; &quot;0 -1 1 1 0 0 0 0 1&quot;</span><br></pre></td></tr></table></figure>
-
-<p>重启即可</p>
-<img src="/posts/40c19e61f591/IMG_20200823_123704.jpg" class="">
-]]></content>
-      <tags>
-        <tag>树莓派</tag>
-        <tag>屏幕</tag>
       </tags>
   </entry>
   <entry>

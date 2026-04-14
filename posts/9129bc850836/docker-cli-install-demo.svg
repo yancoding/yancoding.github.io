@@ -1,0 +1,33 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="760" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F1E7D8"/>
+      <stop offset="1" stop-color="#E4D5C0"/>
+    </linearGradient>
+    <linearGradient id="term" x1="150" y1="100" x2="1050" y2="660" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1B1D22"/>
+      <stop offset="1" stop-color="#101116"/>
+    </linearGradient>
+    <filter id="shadow" x="100" y="60" width="1000" height="660" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#715836" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="760" fill="url(#bg)"/>
+  <g filter="url(#shadow)">
+    <rect x="150" y="100" width="900" height="560" rx="28" fill="url(#term)"/>
+    <rect x="150" y="100" width="900" height="54" rx="28" fill="#2A2D34"/>
+    <rect x="150" y="128" width="900" height="26" fill="#2A2D34"/>
+    <circle cx="190" cy="127" r="9" fill="#FF5F57"/>
+    <circle cx="220" cy="127" r="9" fill="#FEBC2E"/>
+    <circle cx="250" cy="127" r="9" fill="#28C840"/>
+    <text x="600" y="133" text-anchor="middle" fill="#D6DAE3" font-size="20" font-family="Menlo, Monaco, Consolas, monospace">MacBook-Pro: ~</text>
+    <text x="190" y="210" fill="#8BE9FD" font-size="30" font-family="Menlo, Monaco, Consolas, monospace">$ brew install docker</text>
+    <text x="190" y="258" fill="#A6E3A1" font-size="28" font-family="Menlo, Monaco, Consolas, monospace">==&gt; Fetching docker</text>
+    <text x="190" y="300" fill="#A6E3A1" font-size="28" font-family="Menlo, Monaco, Consolas, monospace">==&gt; Pouring docker--29.3.0.arm64_bottle.tar.gz</text>
+    <text x="190" y="350" fill="#F9E2AF" font-size="28" font-family="Menlo, Monaco, Consolas, monospace">==&gt; Caveats</text>
+    <text x="190" y="392" fill="#D5D8E1" font-size="26" font-family="Menlo, Monaco, Consolas, monospace">This formula installs the Docker CLI only.</text>
+    <text x="190" y="462" fill="#8BE9FD" font-size="30" font-family="Menlo, Monaco, Consolas, monospace">$ docker --version</text>
+    <text x="190" y="512" fill="#CBA6F7" font-size="28" font-family="Menlo, Monaco, Consolas, monospace">Docker version 29.3.0, build xxxxxxx</text>
+    <text x="190" y="592" fill="#F38BA8" font-size="28" font-family="Menlo, Monaco, Consolas, monospace"># 这里仅安装命令行工具，不包含 Docker Desktop</text>
+  </g>
+</svg>
