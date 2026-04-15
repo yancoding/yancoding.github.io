@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="DiDf1n-FXAss2xQDKGBsVKOy6E257RvmU9T_N_UjE-A">
+  <meta name="baidu-site-verification" content="code-H3ICA3MrRW">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yancoding.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.11.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="限制某个接口服务的 QPS，本质上就是做限流。 但是实际项目里说“限制 QPS”，往往还不够准确。因为在真正落地时，通常还要先回答几个问题：  按什么维度限流 是单机服务还是多实例服务 是否允许突发流量 超限后是直接拒绝，还是排队等待  如果这些问题没有先想清楚，后面的实现方式也很容易选错。 这篇文章整理一下常见的限流方案，以及在实际项目中如何选择。 一、常见限流算法几种常见限流算法示意：   1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="接口QPS限制与限流方案">
+<meta property="og:url" content="https://yancoding.github.io/posts/dea51280e290/index.html">
+<meta property="og:site_name" content="yan blog">
+<meta property="og:description" content="限制某个接口服务的 QPS，本质上就是做限流。 但是实际项目里说“限制 QPS”，往往还不够准确。因为在真正落地时，通常还要先回答几个问题：  按什么维度限流 是单机服务还是多实例服务 是否允许突发流量 超限后是直接拒绝，还是排队等待  如果这些问题没有先想清楚，后面的实现方式也很容易选错。 这篇文章整理一下常见的限流方案，以及在实际项目中如何选择。 一、常见限流算法几种常见限流算法示意：   1">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yancoding.github.io/posts/dea51280e290/rate-limit-algorithms-demo.svg">
+<meta property="og:image" content="https://yancoding.github.io/posts/dea51280e290/node-fixed-window-demo.svg">
+<meta property="og:image" content="https://yancoding.github.io/posts/dea51280e290/distributed-rate-limit-demo.svg">
+<meta property="article:published_time" content="2026-04-15T02:40:00.000Z">
+<meta property="article:modified_time" content="2026-04-15T02:47:01.000Z">
+<meta property="article:author" content="yancoding">
+<meta property="article:tag" content="后端">
+<meta property="article:tag" content="限流">
+<meta property="article:tag" content="qps">
+<meta property="article:tag" content="nodejs">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yancoding.github.io/posts/dea51280e290/rate-limit-algorithms-demo.svg">
+
+
+<link rel="canonical" href="https://yancoding.github.io/posts/dea51280e290/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://yancoding.github.io/posts/dea51280e290/","path":"posts/dea51280e290/","title":"接口QPS限制与限流方案"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>接口QPS限制与限流方案 | yan blog</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">yan blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">45</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">51</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-demo"><a href="/demo/" rel="section"><i class="fa fa-rocket fa-fw"></i>Demo</a></li><li class="menu-item menu-item-component"><a href="/component/" rel="section"><i class="fa fa-th-large fa-fw"></i>Component</a></li><li class="menu-item menu-item-to-do-list"><a href="/to_do_list/" rel="section"><i class="fa fa-calendar fa-fw"></i>To Do List</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%B8%B8%E8%A7%81%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95"><span class="nav-text">一、常见限流算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%9B%BA%E5%AE%9A%E7%AA%97%E5%8F%A3%E9%99%90%E6%B5%81"><span class="nav-text">1. 固定窗口限流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E9%99%90%E6%B5%81"><span class="nav-text">2. 滑动窗口限流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%BB%A4%E7%89%8C%E6%A1%B6"><span class="nav-text">3. 令牌桶</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%BC%8F%E6%A1%B6"><span class="nav-text">4. 漏桶</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%AE%9E%E9%99%85%E9%A1%B9%E7%9B%AE%E4%B8%AD%EF%BC%8C%E5%85%88%E6%98%8E%E7%A1%AE%E2%80%9C%E6%8C%89%E4%BB%80%E4%B9%88%E7%BB%B4%E5%BA%A6%E9%99%90%E6%B5%81%E2%80%9D"><span class="nav-text">二、实际项目中，先明确“按什么维度限流”</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%8C%89%E6%8E%A5%E5%8F%A3%E6%95%B4%E4%BD%93%E9%99%90%E6%B5%81"><span class="nav-text">1. 按接口整体限流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%8C%89%E7%94%A8%E6%88%B7%E9%99%90%E6%B5%81"><span class="nav-text">2. 按用户限流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%8C%89-IP-%E9%99%90%E6%B5%81"><span class="nav-text">3. 按 IP 限流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%8C%89%E5%AE%A2%E6%88%B7%E7%AB%AF-ID-x2F-%E8%AE%BE%E5%A4%87-ID-%E9%99%90%E6%B5%81"><span class="nav-text">4. 按客户端 ID &#x2F; 设备 ID 限流</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E8%B6%85%E9%99%90%E5%90%8E%E6%80%8E%E4%B9%88%E5%A4%84%E7%90%86"><span class="nav-text">三、超限后怎么处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%9B%B4%E6%8E%A5%E6%8B%92%E7%BB%9D"><span class="nav-text">1. 直接拒绝</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%8E%92%E9%98%9F%E7%AD%89%E5%BE%85"><span class="nav-text">2. 排队等待</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E9%99%8D%E7%BA%A7"><span class="nav-text">3. 降级</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%8D%95%E6%9C%BA%E6%9C%8D%E5%8A%A1%E6%80%8E%E4%B9%88%E5%81%9A"><span class="nav-text">四、单机服务怎么做</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%A4%9A%E5%AE%9E%E4%BE%8B%E6%9C%8D%E5%8A%A1%E6%80%8E%E4%B9%88%E5%81%9A"><span class="nav-text">五、多实例服务怎么做</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Redis-%E9%99%90%E6%B5%81"><span class="nav-text">1. Redis 限流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%BD%91%E5%85%B3%E5%B1%82%E9%99%90%E6%B5%81"><span class="nav-text">2. 网关层限流</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81Nginx-%E4%B9%9F%E5%8F%AF%E4%BB%A5%E5%81%9A%E7%AE%80%E5%8D%95-QPS-%E9%99%90%E5%88%B6"><span class="nav-text">六、Nginx 也可以做简单 QPS 限制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E5%AE%9E%E9%99%85%E9%A1%B9%E7%9B%AE%E9%87%8C%E5%BA%94%E8%AF%A5%E6%80%8E%E4%B9%88%E9%80%89"><span class="nav-text">七、实际项目里应该怎么选</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE"><span class="nav-text">1. 简单项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%AD%A3%E5%BC%8F%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83"><span class="nav-text">2. 正式生产环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%9C%80%E5%B8%B8%E8%A7%81%E7%BB%84%E5%90%88"><span class="nav-text">3. 最常见组合</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E5%A6%82%E6%9E%9C%E6%98%AF-Node-js-%E6%9C%8D%E5%8A%A1%EF%BC%8C%E6%88%91%E4%BC%9A%E6%80%8E%E4%B9%88%E5%BB%BA%E8%AE%AE"><span class="nav-text">八、如果是 Node.js 服务，我会怎么建议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E5%AE%9E%E7%8E%B0"><span class="nav-text">最小实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E6%9C%80%E5%90%8E%E5%87%A0%E4%B8%AA%E5%85%B3%E9%94%AE%E7%82%B9"><span class="nav-text">九、最后几个关键点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E3%80%81%E5%B0%8F%E7%BB%93"><span class="nav-text">十、小结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yancoding"
+      src="/uploads/avatar.png">
+  <p class="site-author-name" itemprop="name">yancoding</p>
+  <div class="site-description" itemprop="description">yan blog</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">45</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yancoding" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yancoding" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/yancoding" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/posts/dea51280e290/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="yancoding">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yan blog">
+      <meta itemprop="description" content="yan blog">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="接口QPS限制与限流方案 | yan blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          接口QPS限制与限流方案
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-04-15 10:40:00 / 修改时间：10:47:01" itemprop="dateCreated datePublished" datetime="2026-04-15T10:40:00+08:00">2026-04-15</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>限制某个接口服务的 QPS，本质上就是做限流。</p>
+<p>但是实际项目里说“限制 QPS”，往往还不够准确。因为在真正落地时，通常还要先回答几个问题：</p>
+<ul>
+<li>按什么维度限流</li>
+<li>是单机服务还是多实例服务</li>
+<li>是否允许突发流量</li>
+<li>超限后是直接拒绝，还是排队等待</li>
+</ul>
+<p>如果这些问题没有先想清楚，后面的实现方式也很容易选错。</p>
+<p>这篇文章整理一下常见的限流方案，以及在实际项目中如何选择。</p>
+<h2 id="一、常见限流算法"><a href="#一、常见限流算法" class="headerlink" title="一、常见限流算法"></a>一、常见限流算法</h2><p>几种常见限流算法示意：</p>
+<img src="/posts/dea51280e290/rate-limit-algorithms-demo.svg" class="">
+
+<h3 id="1-固定窗口限流"><a href="#1-固定窗口限流" class="headerlink" title="1. 固定窗口限流"></a>1. 固定窗口限流</h3><p>固定窗口的思路很简单，就是按时间窗口统计请求数。</p>
+<p>例如：</p>
+<ul>
+<li>1 秒内最多允许 100 次请求</li>
+</ul>
+<p>实现方式通常是：</p>
+<ul>
+<li>记录当前秒的请求次数</li>
+<li>超过阈值就拒绝</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>实现简单</li>
+<li>适合快速上线</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>容易出现临界点突刺</li>
+</ul>
+<p>比如上一秒末尾来了 100 次请求，下一秒开头又来了 100 次请求，那么虽然每个窗口都没超限，但实际瞬时流量可能接近 200。</p>
+<p>适合场景：</p>
+<ul>
+<li>简单后台接口</li>
+<li>对限流精度要求不高的场景</li>
+</ul>
+<hr>
+<h3 id="2-滑动窗口限流"><a href="#2-滑动窗口限流" class="headerlink" title="2. 滑动窗口限流"></a>2. 滑动窗口限流</h3><p>滑动窗口可以理解为对固定窗口的优化。</p>
+<p>它不会只看一个大窗口，而是把大窗口拆成多个小格子，然后统计最近一段时间内的总请求数。</p>
+<p>例如：</p>
+<ul>
+<li>1 秒限 100 次</li>
+<li>拆成 10 个 100ms 小窗口</li>
+<li>每次请求时统计最近 10 个格子的总和</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>比固定窗口更平滑</li>
+<li>能有效减少临界点突刺</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>实现复杂度比固定窗口高一些</li>
+</ul>
+<p>适合场景：</p>
+<ul>
+<li>对流量波动比较敏感的接口</li>
+<li>希望限流更平滑的服务</li>
+</ul>
+<hr>
+<h3 id="3-令牌桶"><a href="#3-令牌桶" class="headerlink" title="3. 令牌桶"></a>3. 令牌桶</h3><p>令牌桶是实际项目里非常常见的一种方案。</p>
+<p>它的核心思路是：</p>
+<ul>
+<li>系统按固定速率往桶里放令牌</li>
+<li>请求来了先取令牌</li>
+<li>取到令牌才允许通过</li>
+</ul>
+<p>例如：</p>
+<ul>
+<li>每秒产生 100 个令牌</li>
+<li>桶最大容量 200</li>
+<li>每个请求消耗 1 个令牌</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>能限制平均 QPS</li>
+<li>同时允许一定程度的突发流量</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>需要维护桶状态</li>
+<li>实现复杂度比纯计数器略高</li>
+</ul>
+<p>适合场景：</p>
+<ul>
+<li>大多数常规接口限流</li>
+<li>既要控平均流量，又不想完全抹平突发流量的场景</li>
+</ul>
+<hr>
+<h3 id="4-漏桶"><a href="#4-漏桶" class="headerlink" title="4. 漏桶"></a>4. 漏桶</h3><p>漏桶的思路是把请求先放进桶里，再按固定速率流出处理。</p>
+<p>优点：</p>
+<ul>
+<li>输出速度非常平稳</li>
+<li>对后端服务的保护效果很直接</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>突发请求容易排队</li>
+<li>队列满了以后就会丢弃</li>
+<li>对实时 HTTP 接口不一定友好</li>
+</ul>
+<p>适合场景：</p>
+<ul>
+<li>需要平滑消费的系统</li>
+<li>更偏内部异步处理的链路</li>
+</ul>
+<h2 id="二、实际项目中，先明确“按什么维度限流”"><a href="#二、实际项目中，先明确“按什么维度限流”" class="headerlink" title="二、实际项目中，先明确“按什么维度限流”"></a>二、实际项目中，先明确“按什么维度限流”</h2><p>做限流时，真正关键的往往不是算法本身，而是限流维度。</p>
+<h3 id="1-按接口整体限流"><a href="#1-按接口整体限流" class="headerlink" title="1. 按接口整体限流"></a>1. 按接口整体限流</h3><p>例如：</p>
+<ul>
+<li><code>/api/order/create</code> 最大 100 QPS</li>
+</ul>
+<p>这种方式主要是保护服务总容量。</p>
+<h3 id="2-按用户限流"><a href="#2-按用户限流" class="headerlink" title="2. 按用户限流"></a>2. 按用户限流</h3><p>例如：</p>
+<ul>
+<li>每个用户每秒最多 5 次</li>
+</ul>
+<p>这种方式适合防止单个用户刷接口。</p>
+<h3 id="3-按-IP-限流"><a href="#3-按-IP-限流" class="headerlink" title="3. 按 IP 限流"></a>3. 按 IP 限流</h3><p>例如：</p>
+<ul>
+<li>每个 IP 每秒最多 20 次</li>
+</ul>
+<p>更适合未登录接口，比如公开查询接口、验证码接口。</p>
+<h3 id="4-按客户端-ID-x2F-设备-ID-限流"><a href="#4-按客户端-ID-x2F-设备-ID-限流" class="headerlink" title="4. 按客户端 ID &#x2F; 设备 ID 限流"></a>4. 按客户端 ID &#x2F; 设备 ID 限流</h3><p>例如：</p>
+<ul>
+<li>每台客户端每秒最多 3 次</li>
+</ul>
+<p>适合桌面客户端、设备端或者 IoT 场景。</p>
+<p>很多时候，一个系统不会只做一种维度，而是组合使用：</p>
+<ul>
+<li>网关层按 IP 或接口总量限流</li>
+<li>业务层按用户、设备、租户再做补充限流</li>
+</ul>
+<h2 id="三、超限后怎么处理"><a href="#三、超限后怎么处理" class="headerlink" title="三、超限后怎么处理"></a>三、超限后怎么处理</h2><p>常见策略一般有三种。</p>
+<h3 id="1-直接拒绝"><a href="#1-直接拒绝" class="headerlink" title="1. 直接拒绝"></a>1. 直接拒绝</h3><p>这是最常见的做法，通常返回：</p>
+<ul>
+<li>HTTP 429 Too Many Requests</li>
+</ul>
+<p>优点是实现简单，也符合大多数 HTTP 接口的预期。</p>
+<h3 id="2-排队等待"><a href="#2-排队等待" class="headerlink" title="2. 排队等待"></a>2. 排队等待</h3><p>这种方式更适合内部异步任务，不太适合普通实时接口。</p>
+<p>因为对大多数 HTTP 请求来说，用户更关心的是快速失败还是快速成功，而不是无限等待。</p>
+<h3 id="3-降级"><a href="#3-降级" class="headerlink" title="3. 降级"></a>3. 降级</h3><p>例如：</p>
+<ul>
+<li>返回缓存数据</li>
+<li>返回默认值</li>
+<li>返回简化结果</li>
+</ul>
+<p>这种方式适合一些“可以退而求其次”的接口。</p>
+<h2 id="四、单机服务怎么做"><a href="#四、单机服务怎么做" class="headerlink" title="四、单机服务怎么做"></a>四、单机服务怎么做</h2><p>如果当前只有一个服务实例，限流可以直接在应用内存中做。</p>
+<p>例如在 Node.js 服务里，最简单的方式就是用计数器做一个固定窗口限流。</p>
+<p>下面是一个“1 秒最多 10 次”的基础示例：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">express</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> count = <span class="number">0</span></span><br><span class="line"><span class="keyword">let</span> currentSecond = <span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Date</span>.<span class="title function_">now</span>() / <span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">use</span>(<span class="string">&#x27;/api/test&#x27;</span>, <span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> nowSecond = <span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Date</span>.<span class="title function_">now</span>() / <span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (nowSecond !== currentSecond) &#123;</span><br><span class="line">    currentSecond = nowSecond</span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  count++</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (count &gt; <span class="number">10</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> res.<span class="title function_">status</span>(<span class="number">429</span>).<span class="title function_">json</span>(&#123;</span><br><span class="line">      <span class="attr">code</span>: <span class="number">429</span>,</span><br><span class="line">      <span class="attr">message</span>: <span class="string">&#x27;请求过多，请稍后再试&#x27;</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">next</span>()</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/api/test&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.<span class="title function_">json</span>(&#123; <span class="attr">ok</span>: <span class="literal">true</span> &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">listen</span>(<span class="number">3000</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这个实现很基础，但对于单实例的小项目来说已经够用了。</p>
+<p>它本质上就是固定窗口限流。</p>
+<p>单机固定窗口限流示意：</p>
+<img src="/posts/dea51280e290/node-fixed-window-demo.svg" class="">
+
+<h2 id="五、多实例服务怎么做"><a href="#五、多实例服务怎么做" class="headerlink" title="五、多实例服务怎么做"></a>五、多实例服务怎么做</h2><p>如果接口服务已经部署成多个实例，就不能只靠本地内存了。</p>
+<p>原因很简单：</p>
+<ul>
+<li>每个实例都会各自统计请求数</li>
+<li>每台机器都可能各自放行一部分请求</li>
+<li>最终整体 QPS 仍然可能超限</li>
+</ul>
+<p>这时候常见的做法有三类：</p>
+<ul>
+<li>Redis 限流</li>
+<li>网关层限流</li>
+<li>Nginx &#x2F; Kong &#x2F; APISIX &#x2F; Envoy &#x2F; Spring Cloud Gateway 等统一入口限流</li>
+</ul>
+<h3 id="1-Redis-限流"><a href="#1-Redis-限流" class="headerlink" title="1. Redis 限流"></a>1. Redis 限流</h3><p>Redis 方案的核心是：</p>
+<ul>
+<li>所有实例共用一份计数或桶状态</li>
+</ul>
+<p>常见实现方式有：</p>
+<ul>
+<li><code>INCR</code> + <code>EXPIRE</code></li>
+<li>Lua 脚本保证原子性</li>
+<li>用 Redis 实现固定窗口、滑动窗口或令牌桶</li>
+</ul>
+<p>Redis 更适合：</p>
+<ul>
+<li>多实例部署</li>
+<li>需要统一限流状态</li>
+<li>业务层需要按用户、设备、租户细分规则</li>
+</ul>
+<h3 id="2-网关层限流"><a href="#2-网关层限流" class="headerlink" title="2. 网关层限流"></a>2. 网关层限流</h3><p>这是我更推荐的方式之一。</p>
+<p>优点很明显：</p>
+<ul>
+<li>不侵入业务代码</li>
+<li>所有请求都会先经过网关</li>
+<li>规则配置和监控更统一</li>
+</ul>
+<p>常见限流维度包括：</p>
+<ul>
+<li>整个接口</li>
+<li>IP</li>
+<li>用户 ID</li>
+<li>客户端 ID</li>
+<li>租户</li>
+<li>token</li>
+</ul>
+<p>网关层适合控整体流量和统一入口规则，业务层则适合处理更细的业务逻辑。</p>
+<p>多实例统一限流示意：</p>
+<img src="/posts/dea51280e290/distributed-rate-limit-demo.svg" class="">
+
+<h2 id="六、Nginx-也可以做简单-QPS-限制"><a href="#六、Nginx-也可以做简单-QPS-限制" class="headerlink" title="六、Nginx 也可以做简单 QPS 限制"></a>六、Nginx 也可以做简单 QPS 限制</h2><p>如果你的服务前面本身就有 Nginx，那么可以直接做一层基础限流。</p>
+<p>例如按 IP 限流：</p>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">    <span class="attribute">limit_req_zone</span> <span class="variable">$binary_remote_addr</span> zone=api_limit:<span class="number">10m</span> rate=10r/s;</span><br><span class="line"></span><br><span class="line">    <span class="section">server</span> &#123;</span><br><span class="line">        <span class="section">location</span> /api/test &#123;</span><br><span class="line">            <span class="attribute">limit_req</span> zone=api_limit burst=<span class="number">20</span> nodelay;</span><br><span class="line">            <span class="attribute">proxy_pass</span> http://backend;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这段配置的含义是：</p>
+<ul>
+<li>平均每秒 10 个请求</li>
+<li>允许一定突发流量，突发上限 20</li>
+<li>超过后开始限流</li>
+</ul>
+<p>这种方式适合：</p>
+<ul>
+<li>简单网关层防刷</li>
+<li>未登录接口保护</li>
+<li>低成本增加第一道流量防线</li>
+</ul>
+<h2 id="七、实际项目里应该怎么选"><a href="#七、实际项目里应该怎么选" class="headerlink" title="七、实际项目里应该怎么选"></a>七、实际项目里应该怎么选</h2><p>如果只看“能不能实现”，其实很多方式都能做。</p>
+<p>真正要考虑的是：</p>
+<ul>
+<li>部署架构</li>
+<li>业务复杂度</li>
+<li>是否有统一网关</li>
+<li>是否需要动态调整规则</li>
+<li>是否需要白名单</li>
+<li>是否需要区分普通用户和 VIP 用户</li>
+</ul>
+<h3 id="1-简单项目"><a href="#1-简单项目" class="headerlink" title="1. 简单项目"></a>1. 简单项目</h3><p>建议：</p>
+<ul>
+<li>单机服务：应用内存限流</li>
+<li>一两台机器：Redis 限流</li>
+</ul>
+<h3 id="2-正式生产环境"><a href="#2-正式生产环境" class="headerlink" title="2. 正式生产环境"></a>2. 正式生产环境</h3><p>建议：</p>
+<ul>
+<li>网关层限流为主</li>
+<li>业务层做补充</li>
+<li>核心接口再配合 Redis 或网关统一控制</li>
+</ul>
+<h3 id="3-最常见组合"><a href="#3-最常见组合" class="headerlink" title="3. 最常见组合"></a>3. 最常见组合</h3><p>我自己更倾向这种组合：</p>
+<ul>
+<li>网关层：控总量、控 IP</li>
+<li>业务层：控用户、控设备、控特殊规则</li>
+</ul>
+<p>这种分层方式比较清晰，也更容易维护。</p>
+<h2 id="八、如果是-Node-js-服务，我会怎么建议"><a href="#八、如果是-Node-js-服务，我会怎么建议" class="headerlink" title="八、如果是 Node.js 服务，我会怎么建议"></a>八、如果是 Node.js 服务，我会怎么建议</h2><p>如果你的服务本身是 Node.js，通常可以先按下面这个顺序考虑。</p>
+<h3 id="最小实现"><a href="#最小实现" class="headerlink" title="最小实现"></a>最小实现</h3><ul>
+<li>单实例：直接在代码里做固定窗口或令牌桶</li>
+<li>多实例：Redis + Lua 脚本</li>
+<li>如果前面有 Nginx：先让 Nginx 做第一层基础限流</li>
+</ul>
+<p>这样做的好处是：</p>
+<ul>
+<li>先用最小成本解决问题</li>
+<li>后面随着服务规模增长再逐步升级</li>
+</ul>
+<h2 id="九、最后几个关键点"><a href="#九、最后几个关键点" class="headerlink" title="九、最后几个关键点"></a>九、最后几个关键点</h2><p>做限流时，不要只盯着“QPS 限多少”这个数字。</p>
+<p>还有这些问题也很重要：</p>
+<ul>
+<li>限流维度是什么</li>
+<li>是单机还是多实例</li>
+<li>是否允许突发流量</li>
+<li>超限后是拒绝还是排队</li>
+<li>是否需要白名单</li>
+<li>是否要区分普通用户和 VIP 用户</li>
+<li>是否要支持动态调整阈值</li>
+</ul>
+<p>很多线上问题并不是“没有限流”，而是“限流规则设计得不对”。</p>
+<h2 id="十、小结"><a href="#十、小结" class="headerlink" title="十、小结"></a>十、小结</h2><p>如果只是想快速理解怎么限制一个接口服务的 QPS，可以先记住这几点：</p>
+<ul>
+<li>固定窗口简单，但有临界突刺问题</li>
+<li>滑动窗口更平滑</li>
+<li>令牌桶最常用，兼顾平均速率和突发流量</li>
+<li>漏桶更适合平滑消费</li>
+<li>单机服务可以先在内存里做</li>
+<li>多实例服务更适合 Redis 或网关统一限流</li>
+</ul>
+<p>如果是实际生产环境，我通常更建议：</p>
+<ul>
+<li>网关层控制总量和 IP</li>
+<li>业务层补充用户、设备、租户等细粒度规则</li>
+</ul>
+<p>这样整体会更稳，也更容易扩展。</p>
+<p>参考文章</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://expressjs.com/">Node.js&#x2F;Express</a></li>
+<li><a target="_blank" rel="noopener" href="https://redis.io/docs/latest/commands/incr/">Redis INCR</a></li>
+<li><a target="_blank" rel="noopener" href="https://nginx.org/en/docs/http/ngx_http_limit_req_module.html">Nginx limit_req</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%90%8E%E7%AB%AF/" rel="tag"># 后端</a>
+              <a href="/tags/%E9%99%90%E6%B5%81/" rel="tag"># 限流</a>
+              <a href="/tags/qps/" rel="tag"># qps</a>
+              <a href="/tags/nodejs/" rel="tag"># nodejs</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/9129bc850836/" rel="prev" title="mac下安装docker-cli">
+                  <i class="fa fa-chevron-left"></i> mac下安装docker-cli
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yancoding</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">63k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">58 分钟</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"yancoding","repo":"yancoding.github.io","client_id":"1b359b39687aefe1c256","client_secret":"d8596c4b7db905f1dfe61c5b836026f93a08646a","admin_user":"yancoding","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"8be11e4a426287ec27717d118fd7dc2c"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

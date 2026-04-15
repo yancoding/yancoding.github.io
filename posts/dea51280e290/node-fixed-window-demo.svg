@@ -1,0 +1,35 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1200" y2="760" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E7F1EC"/>
+      <stop offset="1" stop-color="#D4E5DB"/>
+    </linearGradient>
+    <linearGradient id="term2" x1="110" y1="80" x2="1090" y2="680" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#17191F"/>
+      <stop offset="1" stop-color="#0E1014"/>
+    </linearGradient>
+    <filter id="shadow2" x="70" y="50" width="1060" height="660" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#2E5B47" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="760" fill="url(#bg2)"/>
+  <g filter="url(#shadow2)">
+    <rect x="110" y="80" width="980" height="600" rx="28" fill="url(#term2)"/>
+    <rect x="110" y="80" width="980" height="52" rx="28" fill="#2A2D34"/>
+    <rect x="110" y="106" width="980" height="26" fill="#2A2D34"/>
+    <circle cx="148" cy="106" r="8" fill="#FF5F57"/>
+    <circle cx="176" cy="106" r="8" fill="#FEBC2E"/>
+    <circle cx="204" cy="106" r="8" fill="#28C840"/>
+    <text x="600" y="112" text-anchor="middle" fill="#D6DAE3" font-size="20" font-family="Menlo, Monaco, Consolas, monospace">node-service: ~/app</text>
+    <text x="155" y="184" fill="#8BE9FD" font-size="30" font-family="Menlo, Monaco, Consolas, monospace">$ curl http://localhost:3000/api/test</text>
+    <text x="155" y="236" fill="#A6E3A1" font-size="28" font-family="Menlo, Monaco, Consolas, monospace">{ "ok": true }</text>
+    <text x="155" y="308" fill="#CBA6F7" font-size="28" font-family="Menlo, Monaco, Consolas, monospace">固定窗口：当前 1 秒内计数 +1</text>
+    <rect x="155" y="348" width="320" height="180" rx="18" fill="#0E1116" stroke="#3A404B"/>
+    <text x="185" y="396" fill="#F9E2AF" font-size="26" font-family="Menlo, Monaco, Consolas, monospace">window: 2026-04-15 10:40:01</text>
+    <text x="185" y="446" fill="#D5D8E1" font-size="26" font-family="Menlo, Monaco, Consolas, monospace">count: 10 / 10</text>
+    <text x="185" y="496" fill="#F38BA8" font-size="26" font-family="Menlo, Monaco, Consolas, monospace">next request =&gt; 429</text>
+    <text x="560" y="404" fill="#D5D8E1" font-size="26" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">单机场景下可以直接在应用内存里做计数</text>
+    <text x="560" y="458" fill="#D5D8E1" font-size="26" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">窗口切换后重置计数，逻辑简单，上线成本低</text>
+    <text x="560" y="548" fill="#F38BA8" font-size="26" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">但多实例时不能只靠本地内存</text>
+  </g>
+</svg>
