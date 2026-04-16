@@ -88,7 +88,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">45</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">51</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-demo"><a href="/demo/" rel="section"><i class="fa fa-rocket fa-fw"></i>Demo</a></li><li class="menu-item menu-item-component"><a href="/component/" rel="section"><i class="fa fa-th-large fa-fw"></i>Component</a></li><li class="menu-item menu-item-to-do-list"><a href="/to_do_list/" rel="section"><i class="fa fa-calendar fa-fw"></i>To Do List</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">47</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">52</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-demo"><a href="/demo/" rel="section"><i class="fa fa-rocket fa-fw"></i>Demo</a></li><li class="menu-item menu-item-component"><a href="/component/" rel="section"><i class="fa fa-th-large fa-fw"></i>Component</a></li><li class="menu-item menu-item-to-do-list"><a href="/to_do_list/" rel="section"><i class="fa fa-calendar fa-fw"></i>To Do List</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -159,13 +159,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">52</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">45</span>
+        <span class="site-state-item-count">47</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -201,6 +201,154 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/posts/303bab8c0f3e/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="yancoding">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yan blog">
+      <meta itemprop="description" content="yan blog">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | yan blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/303bab8c0f3e/" class="post-title-link" itemprop="url">树莓派 UPS-18650</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-11-09 00:08:52" itemprop="dateCreated datePublished" datetime="2019-11-09T00:08:52+08:00">2019-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2020-05-05 14:31:18" itemprop="dateModified" datetime="2020-05-05T14:31:18+08:00">2020-05-05</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="配置时钟"><a href="#配置时钟" class="headerlink" title="配置时钟"></a>配置时钟</h2><p>启用i2c</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo raspi-config</span><br></pre></td></tr></table></figure>
+
+<p>在interfacing options 中选择启用i2c</p>
+<p>运行</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo i2cdetect -l</span><br></pre></td></tr></table></figure>
+
+<p>查看所有的i2c总线</p>
+<p>这里回显</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">i2c-1   i2c             bcm2835 I2C adapter                     I2C adapter</span><br></pre></td></tr></table></figure>
+
+<p>查看i2c上连接的设备</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo i2cdetect -y 1</span><br></pre></td></tr></table></figure>
+
+<p>回显</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f</span><br><span class="line">00:          -- -- -- -- -- -- -- -- -- -- -- -- --</span><br><span class="line">10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --</span><br><span class="line">20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --</span><br><span class="line">30: -- -- -- -- -- -- 36 -- -- -- -- -- -- -- -- --</span><br><span class="line">40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --</span><br><span class="line">50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --</span><br><span class="line">60: -- -- -- -- -- -- -- -- 68 -- -- -- -- -- -- --</span><br><span class="line">70: -- -- -- -- -- -- -- --</span><br></pre></td></tr></table></figure>
+
+<p>这里的0x36为MAX17040G的地址; 0x68为DS1307Z+的地址</p>
+<p>加载 i2c 模块</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo modprobe i2c-dev</span><br></pre></td></tr></table></figure>
+
+<p>切换到超级管理 <code>su</code></p>
+<p>在i2cx 新增一个设备, 名字为ds1307, 设备地址为 0x68</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> ds1307 0x68 &gt; /sys/class/i2c-adapter/i2c-1/new_device</span><br></pre></td></tr></table></figure>
+
+<p>查看我们的刚刚添加的硬件时钟的当前时间</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">hwclock -r</span><br></pre></td></tr></table></figure>
+
+<p>回显</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">2000-01-01 08:01:24.321813+0800</span><br></pre></td></tr></table></figure>
+
+<p>很显然这是刚添加的时钟, 还未同步正确的时间</p>
+<p>将系统时间写入到硬件时钟</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">hwclock -w</span><br></pre></td></tr></table></figure>
+
+<p>这时我们再次读取硬件时钟的话</p>
+<p>回显</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">2019-11-09 17:26:30.864206+0800</span><br></pre></td></tr></table></figure>
+
+<p>已经同步到系统时钟</p>
+<h2 id="同步硬件时钟到系统时钟"><a href="#同步硬件时钟到系统时钟" class="headerlink" title="同步硬件时钟到系统时钟"></a>同步硬件时钟到系统时钟</h2><p>当我们的树莓派断电后, 再次启动后, 如果没有网络的话, 她是不能正确同步系统时间的, 但我们的 UPS 上有一颗时钟芯片, 并且一直有纽扣电池供电, 并不会丢失我们上面设置好的日期时间, 所以我们需要在树莓派启动时将硬件时钟的时间写入到树莓派的系统时间.</p>
+<p>打开树莓派的启动文件rc.local</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">nano /etc/rc.local</span><br></pre></td></tr></table></figure>
+
+<p>在exit 0 前添加</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">modprobe i2c-dev</span><br><span class="line"><span class="built_in">echo</span> ds1307 0x68 &gt; /sys/class/i2c-adapter/i2c-1/new_device</span><br><span class="line">hwclock -r</span><br><span class="line">hwclock -s</span><br></pre></td></tr></table></figure>
+
+<p>重启在无网络的情况下可以测试系统时钟是否被正确同步</p>
+<h2 id="读取电量"><a href="#读取电量" class="headerlink" title="读取电量"></a>读取电量</h2><p>这里我们先简单跑一下板方提供的脚本</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"><span class="keyword">import</span> smbus</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">readVoltage</span>(<span class="params">bus</span>):</span><br><span class="line"></span><br><span class="line">        <span class="string">&quot;This function returns as float the voltage from the Raspi UPS Hat via the provided SMBus object&quot;</span></span><br><span class="line">        address = <span class="number">0x36</span></span><br><span class="line">        read = bus.read_word_data(address, <span class="number">2</span>)</span><br><span class="line">        swapped = struct.unpack(<span class="string">&quot;&lt;H&quot;</span>, struct.pack(<span class="string">&quot;&gt;H&quot;</span>, read))[<span class="number">0</span>]</span><br><span class="line">        voltage = swapped * <span class="number">1.25</span> /<span class="number">1000</span>/<span class="number">16</span></span><br><span class="line">        <span class="keyword">return</span> voltage</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">readCapacity</span>(<span class="params">bus</span>):</span><br><span class="line">        <span class="string">&quot;This function returns as a float the remaining capacity of the battery connected to the Raspi UPS Hat via the provided SMBus object&quot;</span></span><br><span class="line">        address = <span class="number">0x36</span></span><br><span class="line">        read = bus.read_word_data(address, <span class="number">4</span>)</span><br><span class="line">        swapped = struct.unpack(<span class="string">&quot;&lt;H&quot;</span>, struct.pack(<span class="string">&quot;&gt;H&quot;</span>, read))[<span class="number">0</span>]</span><br><span class="line">        capacity = swapped/<span class="number">256</span></span><br><span class="line">        <span class="keyword">return</span> capacity</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">bus = smbus.SMBus(<span class="number">1</span>)  <span class="comment"># 0 = /dev/i2c-0 (port I2C0), 1 = /dev/i2c-1 (port I2C1)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line"></span><br><span class="line"> <span class="built_in">print</span> <span class="string">&quot;++++++++++++++++++++&quot;</span></span><br><span class="line"> <span class="built_in">print</span> <span class="string">&quot;Voltage:%5.2fV&quot;</span> % readVoltage(bus)</span><br><span class="line"></span><br><span class="line"> <span class="built_in">print</span> <span class="string">&quot;Battery:%5i%%&quot;</span> % readCapacity(bus)</span><br><span class="line"></span><br><span class="line"> <span class="keyword">if</span> readCapacity(bus) == <span class="number">100</span>:</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span> <span class="string">&quot;Battery FULL&quot;</span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">if</span> readCapacity(bus) &lt; <span class="number">20</span>:</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span> <span class="string">&quot;Battery LOW&quot;</span></span><br><span class="line"> <span class="built_in">print</span> <span class="string">&quot;++++++++++++++++++++&quot;</span></span><br><span class="line"> time.sleep(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<p>回显</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">++++++++++++++++++++</span><br><span class="line">Voltage: 3.64V</span><br><span class="line">Battery:    8%</span><br><span class="line">Battery LOW</span><br><span class="line">++++++++++++++++++++</span><br></pre></td></tr></table></figure>
+
+<p>参考文章</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/likai-abc/p/9255039.html">树莓派UPS-18650，添加时钟</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -430,115 +578,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/posts/94d7489d7eb0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.png">
-      <meta itemprop="name" content="yancoding">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yan blog">
-      <meta itemprop="description" content="yan blog">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | yan blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/94d7489d7eb0/" class="post-title-link" itemprop="url">MongoDB笔记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-07-06 12:48:45" itemprop="dateCreated datePublished" datetime="2019-07-06T12:48:45+08:00">2019-07-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2019-07-17 23:02:00" itemprop="dateModified" datetime="2019-07-17T23:02:00+08:00">2019-07-17</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>742</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="安装MongoDB服务"><a href="#安装MongoDB服务" class="headerlink" title="安装MongoDB服务"></a>安装MongoDB服务</h2><p>这里下载的时MongoDB 4 Windows社区版本，4之后的版本跟之前的有很大的不同，不需要自行指定数据库和日志目录了，这里安装过程只修改了安装目录，从默认的c盘自定义为d盘，其他均为默认选项，一并安装了compass，这里大多人都不推荐安装compass，说是会卡住，这里安装确实看起来像是卡住了，但就如安装信息说的这里可能需要 a few minutes，事实上这里安装进度不变保持了10分钟左右就安装好了，所以不用太担心，只是网络原因，假死而已</p>
-<p>当然为了方便连接 MongoDB 实例，记得要将MongoDB安装目录下的bin目录添加到系统变量，这样我们就可以直接在shell 里直接输入 <code>mongo</code> 即可连接到MongoDB服务</p>
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h2 id="mongo"><a href="#mongo" class="headerlink" title="mongo"></a>mongo</h2><p>连接到本地的 MongoDB 实例，使用默认服务端口 <code>27017</code></p>
-<p>如果修改了本地 MongoDB 实例默认的服务端口，连接时我们也可以通过 <code>--port</code> 参数指定端口</p>
-<p>例如</p>
-<p><code>mongo --port 28015</code></p>
-<h3 id="show-dbs"><a href="#show-dbs" class="headerlink" title="show dbs"></a>show dbs</h3><p>查看所有的数据库</p>
-<h3 id="db"><a href="#db" class="headerlink" title="db"></a>db</h3><p>查看当前数据库</p>
-<h3 id="use-DATABASE-NAME"><a href="#use-DATABASE-NAME" class="headerlink" title="use DATABASE_NAME"></a>use DATABASE_NAME</h3><p>切换数据库（不论存在与否）</p>
-<h2 id="db-DATABASE-NAME-insert"><a href="#db-DATABASE-NAME-insert" class="headerlink" title="db.DATABASE_NAME.insert()"></a>db.DATABASE_NAME.insert()</h2><p>向 DATABASE_NAME 数据库插入数据</p>
-<p>例如</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">db.test.insert(&#123;&quot;description&quot;: &quot;这是一条测试数据&quot;&#125;)</span><br></pre></td></tr></table></figure>
-
-<p><strong>注：</strong> 该命令不需要切换数据库</p>
-<h3 id="db-dropDatabase"><a href="#db-dropDatabase" class="headerlink" title="db.dropDatabase()"></a>db.dropDatabase()</h3><p>删除当前数据库</p>
-<h3 id="db-createCollection-name-options"><a href="#db-createCollection-name-options" class="headerlink" title="db.createCollection(name[,options])"></a>db.createCollection(name[,options])</h3><p>在当前数据库创建集合 COLLECTION_NAME</p>
-<h3 id="db-COLLECTION-NAME-drop"><a href="#db-COLLECTION-NAME-drop" class="headerlink" title="db.COLLECTION_NAME.drop()"></a>db.COLLECTION_NAME.drop()</h3><p>在当前数据库删除集合 COLLECTION_NAME</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 </div>
@@ -562,14 +603,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">63k</span>
+    <span title="站点总字数">66k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">58 分钟</span>
+    <span title="站点阅读时长">1:01</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动

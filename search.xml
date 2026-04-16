@@ -244,6 +244,194 @@
       </tags>
   </entry>
   <entry>
+    <title>Shell重定向之`&gt;/dev/null 2&gt;&amp;1`</title>
+    <url>/posts/fd1f20631e6d/</url>
+    <content><![CDATA[<p>在看 shell 脚本时，经常会看到这样一段写法：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> &gt;/dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<p>很多人第一次看到会觉得有点绕，尤其是 <code>2&gt;&amp;1</code> 这部分，不太容易一眼看明白。</p>
+<p>这篇文章就专门整理一下它的含义，以及为什么顺序不能乱写。</p>
+<h2 id="一、这段写法到底是什么意思"><a href="#一、这段写法到底是什么意思" class="headerlink" title="一、这段写法到底是什么意思"></a>一、这段写法到底是什么意思</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> &gt;/dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<p>它表示：</p>
+<ul>
+<li>把标准输出重定向到 <code>/dev/null</code></li>
+<li>再把标准错误重定向到标准输出当前所在的位置</li>
+</ul>
+<p>最终效果就是：</p>
+<p><strong>正常输出和报错输出都会被丢弃，不在终端显示。</strong></p>
+<h2 id="二、先理解-3-个标准通道"><a href="#二、先理解-3-个标准通道" class="headerlink" title="二、先理解 3 个标准通道"></a>二、先理解 3 个标准通道</h2><p>在 Unix&#x2F;Linux 里，一个进程默认会带有 3 个标准通道，对应 3 个文件描述符：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">0 = stdin</span><br><span class="line">1 = stdout</span><br><span class="line">2 = stderr</span><br></pre></td></tr></table></figure>
+
+<p>分别表示：</p>
+<ul>
+<li><code>0</code>：标准输入，程序从哪里读数据</li>
+<li><code>1</code>：标准输出，程序正常结果输出到哪里</li>
+<li><code>2</code>：标准错误，程序报错信息输出到哪里</li>
+</ul>
+<p>后面提到的 <code>1&gt;</code>、<code>2&gt;</code>、<code>2&gt;&amp;1</code>，本质上都是在操作这些文件描述符。</p>
+<h2 id="三、-gt-dev-null-是什么意思"><a href="#三、-gt-dev-null-是什么意思" class="headerlink" title="三、&gt;/dev/null 是什么意思"></a>三、<code>&gt;/dev/null</code> 是什么意思</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> &gt;/dev/null</span><br></pre></td></tr></table></figure>
+
+<p>它等价于：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> 1&gt;/dev/null</span><br></pre></td></tr></table></figure>
+
+<p>意思是把标准输出重定向到 <code>/dev/null</code>。</p>
+<p>这里有两个点：</p>
+<ul>
+<li><code>&gt;</code> 表示输出重定向</li>
+<li><code>/dev/null</code> 是一个特殊设备文件，写进去的内容会被直接丢弃</li>
+</ul>
+<p>所以这条命令的效果是：</p>
+<ul>
+<li>正常输出不再显示</li>
+<li>错误输出仍然会显示在终端</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">ls</span> existing-file missing-file &gt;/dev/null</span><br></pre></td></tr></table></figure>
+
+<p>这时 <code>existing-file</code> 的正常输出会被丢弃，但如果 <code>missing-file</code> 不存在，报错信息还是会显示出来。</p>
+<h2 id="四、2-gt-amp-1-是什么意思"><a href="#四、2-gt-amp-1-是什么意思" class="headerlink" title="四、2&gt;&amp;1 是什么意思"></a>四、<code>2&gt;&amp;1</code> 是什么意思</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<p>它的含义是：</p>
+<p><strong>把标准错误重定向到文件描述符 1 当前所指向的位置。</strong></p>
+<p>拆开看会更清楚：</p>
+<ul>
+<li><code>2&gt;</code>：操作标准错误</li>
+<li><code>&amp;1</code>：表示引用文件描述符 <code>1</code></li>
+</ul>
+<p>注意这里的 <code>1</code> 不是文件名，而是文件描述符编号。</p>
+<p>也就是说：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> &gt;/dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<p>可以理解成：</p>
+<ol>
+<li>先把标准输出丢到 <code>/dev/null</code></li>
+<li>再让标准错误也跟着标准输出走</li>
+</ol>
+<p>所以最后标准输出和标准错误都会进入 <code>/dev/null</code>。</p>
+<h2 id="五、为什么-1-前面要加-amp"><a href="#五、为什么-1-前面要加-amp" class="headerlink" title="五、为什么 1 前面要加 &amp;"></a>五、为什么 <code>1</code> 前面要加 <code>&amp;</code></h2><p>因为 shell 需要区分：</p>
+<ul>
+<li>你写的是文件描述符</li>
+<li>还是普通文件名</li>
+</ul>
+<h3 id="不加-amp"><a href="#不加-amp" class="headerlink" title="不加 &amp;"></a>不加 <code>&amp;</code></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> 2&gt;1</span><br></pre></td></tr></table></figure>
+
+<p>这表示把标准错误写入一个名为 <code>1</code> 的文件。</p>
+<h3 id="加上-amp"><a href="#加上-amp" class="headerlink" title="加上 &amp;"></a>加上 <code>&amp;</code></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<p>这表示把标准错误重定向到文件描述符 <code>1</code>。</p>
+<p>所以 <code>&amp;</code> 的作用很简单，就是告诉 shell：</p>
+<p><strong>后面的数字不是文件名，而是文件描述符。</strong></p>
+<h2 id="六、为什么-1-可以省略"><a href="#六、为什么-1-可以省略" class="headerlink" title="六、为什么 1 可以省略"></a>六、为什么 <code>1</code> 可以省略</h2><p>在 shell 里：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&gt;file</span><br></pre></td></tr></table></figure>
+
+<p>默认就是：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1&gt;file</span><br></pre></td></tr></table></figure>
+
+<p>因为如果 <code>&gt;</code> 前面没有写编号，默认操作的就是标准输出。</p>
+<p>所以：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&gt;/dev/null</span><br></pre></td></tr></table></figure>
+
+<p>等价于：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1&gt;/dev/null</span><br></pre></td></tr></table></figure>
+
+<h2 id="七、顺序为什么很重要"><a href="#七、顺序为什么很重要" class="headerlink" title="七、顺序为什么很重要"></a>七、顺序为什么很重要</h2><p>很多人会把下面两种写法看成一样，其实它们不一样。</p>
+<h3 id="写法-A"><a href="#写法-A" class="headerlink" title="写法 A"></a>写法 A</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> &gt;/dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<p>执行顺序是：</p>
+<ol>
+<li>让 <code>1</code> 指向 <code>/dev/null</code></li>
+<li>让 <code>2</code> 指向 <code>1</code> 当前的位置，也就是 <code>/dev/null</code></li>
+</ol>
+<p>结果：</p>
+<ul>
+<li>标准输出被丢弃</li>
+<li>标准错误也被丢弃</li>
+</ul>
+<h3 id="写法-B"><a href="#写法-B" class="headerlink" title="写法 B"></a>写法 B</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> 2&gt;&amp;1 &gt;/dev/null</span><br></pre></td></tr></table></figure>
+
+<p>执行顺序是：</p>
+<ol>
+<li>先让 <code>2</code> 指向 <code>1</code> 当前的位置，此时 <code>1</code> 还是终端</li>
+<li>再把 <code>1</code> 重定向到 <code>/dev/null</code></li>
+</ol>
+<p>结果：</p>
+<ul>
+<li>标准输出被丢弃</li>
+<li>标准错误仍然输出到终端</li>
+</ul>
+<p>所以这两条命令不是一回事：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> &gt;/dev/null 2&gt;&amp;1</span><br><span class="line"><span class="built_in">command</span> 2&gt;&amp;1 &gt;/dev/null</span><br></pre></td></tr></table></figure>
+
+<p>重点就在于 shell 会从左到右依次处理重定向。</p>
+<h2 id="八、常见用法"><a href="#八、常见用法" class="headerlink" title="八、常见用法"></a>八、常见用法</h2><h3 id="1-只隐藏正常输出"><a href="#1-只隐藏正常输出" class="headerlink" title="1. 只隐藏正常输出"></a>1. 只隐藏正常输出</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> &gt;/dev/null</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-只隐藏错误输出"><a href="#2-只隐藏错误输出" class="headerlink" title="2. 只隐藏错误输出"></a>2. 只隐藏错误输出</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> 2&gt;/dev/null</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-同时隐藏正常输出和错误输出"><a href="#3-同时隐藏正常输出和错误输出" class="headerlink" title="3. 同时隐藏正常输出和错误输出"></a>3. 同时隐藏正常输出和错误输出</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> &gt;/dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-正常输出和错误输出都写入同一个文件"><a href="#4-正常输出和错误输出都写入同一个文件" class="headerlink" title="4. 正常输出和错误输出都写入同一个文件"></a>4. 正常输出和错误输出都写入同一个文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> &gt;all.log 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-正常输出写文件，错误仍然显示在终端"><a href="#5-正常输出写文件，错误仍然显示在终端" class="headerlink" title="5. 正常输出写文件，错误仍然显示在终端"></a>5. 正常输出写文件，错误仍然显示在终端</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> &gt;out.log</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-错误写文件，正常输出仍然显示在终端"><a href="#6-错误写文件，正常输出仍然显示在终端" class="headerlink" title="6. 错误写文件，正常输出仍然显示在终端"></a>6. 错误写文件，正常输出仍然显示在终端</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> 2&gt;err.log</span><br></pre></td></tr></table></figure>
+
+<h2 id="九、-dev-null-是什么"><a href="#九、-dev-null-是什么" class="headerlink" title="九、/dev/null 是什么"></a>九、<code>/dev/null</code> 是什么</h2><p><code>/dev/null</code> 是 Unix&#x2F;Linux 下的一个特殊设备文件，常被叫做“黑洞设备”。</p>
+<p>它的特点很简单：</p>
+<ul>
+<li>写进去的内容会被丢弃</li>
+<li>从里面通常读不到有意义的内容</li>
+</ul>
+<p>所以它特别适合拿来做静默执行，比如：</p>
+<ul>
+<li>不想看到命令的普通输出</li>
+<li>不想让脚本打印一堆无关信息</li>
+<li>想让某些命令安静执行</li>
+</ul>
+<h2 id="十、实际例子"><a href="#十、实际例子" class="headerlink" title="十、实际例子"></a>十、实际例子</h2><p>比如在脚本里，你可能会看到：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> venv/bin/activate &gt;/dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<p>它表示：</p>
+<ul>
+<li>执行 <code>venv/bin/activate</code></li>
+<li>不显示正常输出</li>
+<li>不显示错误输出</li>
+</ul>
+<p>不过这里也要注意一件事：</p>
+<p>如果激活失败，报错信息也会被隐藏掉。</p>
+<p>所以在排查问题时，通常要先把这类重定向去掉，不然看不到真实报错。</p>
+<h2 id="十一、还有一种更简写的写法"><a href="#十一、还有一种更简写的写法" class="headerlink" title="十一、还有一种更简写的写法"></a>十一、还有一种更简写的写法</h2><p>在 <code>bash</code> 和 <code>zsh</code> 里，经常还能看到：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> &amp;&gt;/dev/null</span><br></pre></td></tr></table></figure>
+
+<p>它通常等价于：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> &gt;/dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<p>不过如果考虑可读性和兼容性，很多时候还是传统写法更直观一些：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> &gt;/dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<h2 id="十二、小结"><a href="#十二、小结" class="headerlink" title="十二、小结"></a>十二、小结</h2><p><code>&gt;/dev/null 2&gt;&amp;1</code> 本质上就是 shell 重定向语法。</p>
+<p>它的含义可以概括成一句话：</p>
+<p><strong>先把标准输出重定向到 <code>/dev/null</code>，再把标准错误重定向到标准输出当前所在的位置，从而让正常输出和错误输出都被丢弃。</strong></p>
+<p>如果只想记住最关键的几条，可以直接记下面这个速记版：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">0 = stdin</span><br><span class="line">1 = stdout</span><br><span class="line">2 = stderr</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&gt;/dev/null      <span class="comment"># 等价于 1&gt;/dev/null，隐藏标准输出</span></span><br><span class="line">2&gt;/dev/null     <span class="comment"># 隐藏标准错误</span></span><br><span class="line">2&gt;&amp;1            <span class="comment"># 让标准错误跟随标准输出</span></span><br><span class="line">&gt;/dev/null 2&gt;&amp;1 <span class="comment"># 正常输出和错误输出都隐藏</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">2&gt;1   <span class="comment"># 写入名为 1 的文件</span></span><br><span class="line">2&gt;&amp;1  <span class="comment"># 重定向到文件描述符 1</span></span><br></pre></td></tr></table></figure>
+
+<p>参考文章</p>
+<ul>
+<li><a href="https://www.gnu.org/software/bash/manual/html_node/Redirections.html">Bash Reference Manual: Redirections</a></li>
+<li><a href="https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_07">The Open Group Base Specifications: Shell Command Language</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>shell</tag>
+        <tag>linux</tag>
+        <tag>重定向</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>centos 安装 nginx</title>
     <url>/posts/5e4523e458e0/</url>
     <content><![CDATA[<h2 id="1-系统版本"><a href="#1-系统版本" class="headerlink" title="1, 系统版本"></a>1, 系统版本</h2><p>当前安装的系统版本为：CentOS 7 x64 并且没有 SELinux</p>
@@ -833,6 +1021,49 @@
       </tags>
   </entry>
   <entry>
+    <title>ubuntu安装常用软件</title>
+    <url>/posts/52c229c39ea7/</url>
+    <content><![CDATA[<h2 id="安装vscode"><a href="#安装vscode" class="headerlink" title="安装vscode"></a>安装vscode</h2><h3 id="1-下载"><a href="#1-下载" class="headerlink" title="1.下载"></a>1.下载</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget -P Downloads/ https://vscode.cdn.azure.cn/stable/5763d909d5f12fe19f215cbfdd29a91c0fa9208a/code_1.45.1-1589445302_amd64.deb</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-安装"><a href="#2-安装" class="headerlink" title="2.安装"></a>2.安装</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd Downloads/</span><br><span class="line">sudo dpkg -i code_1.45.1-1589445302_amd64.deb</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-查看版本"><a href="#3-查看版本" class="headerlink" title="3.查看版本"></a>3.查看版本</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">code --version</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h2><p>安装nodejs不要使用<code>apt</code>,<code>apt</code>安装的版本较老，不是最新的</p>
+<p>目前nodejs官网长期稳定版本为 12.X</p>
+<p>这里采用官方提供的方式进行安装</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -</span><br><span class="line">sudo apt-get install -y nodejs</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后查看nodejs版本</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">node --version</span><br></pre></td></tr></table></figure>
+<p>回显</p>
+<p><code>v12.16.3</code></p>
+<p>其他版本的安装可查看官方提供的二进制安装说明 <a href="https://github.com/nodesource/distributions/blob/master/README.md#nodesource-nodejs-binary-distributions">NodeSource Node.js Binary Distributions</a></p>
+<h2 id="安装deno"><a href="#安装deno" class="headerlink" title="安装deno"></a>安装deno</h2><h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h3><p>deno官网的<a href="https://deno.land/#installation">这里</a>提供了linux下的安装方式</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo curl -fsSL https://deno.land/x/install/install.sh | sh</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-环境变量"><a href="#2-环境变量" class="headerlink" title="2.环境变量"></a>2.环境变量</h3><p>从安装完成的回显信息可以知道deno并没有自动配置环境变量，而是提示手动进行配置</p>
+<p>编辑<code>~.profile</code>文件<br>并添加</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">export DENO_INSTALL=&quot;/home/yan/.deno&quot;</span><br><span class="line">export PATH=&quot;$DENO_INSTALL/bin:$PATH&quot;</span><br></pre></td></tr></table></figure>
+
+<p>也就是deno提示手动配置的内容</p>
+<p>保存后重启</p>
+<p>重启后查看deno版本</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">deno --version</span><br></pre></td></tr></table></figure>
+
+<p>echo</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">deno 1.0.0</span><br><span class="line">v8 8.4.300</span><br><span class="line">typescript 3.9.2</span><br></pre></td></tr></table></figure>
+
+<p>en… deno 1.0.0 一个新的起点</p>
+<h2 id="安装chrome"><a href="#安装chrome" class="headerlink" title="安装chrome"></a>安装chrome</h2><h3 id="1-download"><a href="#1-download" class="headerlink" title="1.download"></a>1.download</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget -P ~/Downloads/ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-install"><a href="#2-install" class="headerlink" title="2.install"></a>2.install</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd Downloads/</span><br><span class="line">sudo dpkg -i google-chrome-stable_current_amd64.deb</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ubuntu下catimg的安装和使用</title>
     <url>/posts/ddae8e390a11/</url>
     <content><![CDATA[<p><code>catimg</code> 是一个可以直接在终端里显示图片的小工具，适合在纯命令行环境里快速预览图片，也可以拿来做一些有意思的终端展示。</p>
@@ -949,53 +1180,10 @@
 </ul>
 ]]></content>
       <tags>
-        <tag>ubuntu</tag>
         <tag>linux</tag>
+        <tag>ubuntu</tag>
         <tag>terminal</tag>
         <tag>catimg</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ubuntu安装常用软件</title>
-    <url>/posts/52c229c39ea7/</url>
-    <content><![CDATA[<h2 id="安装vscode"><a href="#安装vscode" class="headerlink" title="安装vscode"></a>安装vscode</h2><h3 id="1-下载"><a href="#1-下载" class="headerlink" title="1.下载"></a>1.下载</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget -P Downloads/ https://vscode.cdn.azure.cn/stable/5763d909d5f12fe19f215cbfdd29a91c0fa9208a/code_1.45.1-1589445302_amd64.deb</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-安装"><a href="#2-安装" class="headerlink" title="2.安装"></a>2.安装</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd Downloads/</span><br><span class="line">sudo dpkg -i code_1.45.1-1589445302_amd64.deb</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-查看版本"><a href="#3-查看版本" class="headerlink" title="3.查看版本"></a>3.查看版本</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">code --version</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h2><p>安装nodejs不要使用<code>apt</code>,<code>apt</code>安装的版本较老，不是最新的</p>
-<p>目前nodejs官网长期稳定版本为 12.X</p>
-<p>这里采用官方提供的方式进行安装</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -</span><br><span class="line">sudo apt-get install -y nodejs</span><br></pre></td></tr></table></figure>
-
-<p>安装完成后查看nodejs版本</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">node --version</span><br></pre></td></tr></table></figure>
-<p>回显</p>
-<p><code>v12.16.3</code></p>
-<p>其他版本的安装可查看官方提供的二进制安装说明 <a href="https://github.com/nodesource/distributions/blob/master/README.md#nodesource-nodejs-binary-distributions">NodeSource Node.js Binary Distributions</a></p>
-<h2 id="安装deno"><a href="#安装deno" class="headerlink" title="安装deno"></a>安装deno</h2><h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h3><p>deno官网的<a href="https://deno.land/#installation">这里</a>提供了linux下的安装方式</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo curl -fsSL https://deno.land/x/install/install.sh | sh</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-环境变量"><a href="#2-环境变量" class="headerlink" title="2.环境变量"></a>2.环境变量</h3><p>从安装完成的回显信息可以知道deno并没有自动配置环境变量，而是提示手动进行配置</p>
-<p>编辑<code>~.profile</code>文件<br>并添加</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">export DENO_INSTALL=&quot;/home/yan/.deno&quot;</span><br><span class="line">export PATH=&quot;$DENO_INSTALL/bin:$PATH&quot;</span><br></pre></td></tr></table></figure>
-
-<p>也就是deno提示手动配置的内容</p>
-<p>保存后重启</p>
-<p>重启后查看deno版本</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">deno --version</span><br></pre></td></tr></table></figure>
-
-<p>echo</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">deno 1.0.0</span><br><span class="line">v8 8.4.300</span><br><span class="line">typescript 3.9.2</span><br></pre></td></tr></table></figure>
-
-<p>en… deno 1.0.0 一个新的起点</p>
-<h2 id="安装chrome"><a href="#安装chrome" class="headerlink" title="安装chrome"></a>安装chrome</h2><h3 id="1-download"><a href="#1-download" class="headerlink" title="1.download"></a>1.download</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget -P ~/Downloads/ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-install"><a href="#2-install" class="headerlink" title="2.install"></a>2.install</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd Downloads/</span><br><span class="line">sudo dpkg -i google-chrome-stable_current_amd64.deb</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>ubuntu</tag>
       </tags>
   </entry>
   <entry>
@@ -1604,6 +1792,50 @@
       </tags>
   </entry>
   <entry>
+    <title>树莓派3B开箱</title>
+    <url>/posts/c9ac426b4a37/</url>
+    <content><![CDATA[<h2 id="开箱清单"><a href="#开箱清单" class="headerlink" title="开箱清单"></a>开箱清单</h2><ul>
+<li>树莓派3代B型</li>
+<li>2.5A带开关5V电源</li>
+<li>闪迪32G内存卡</li>
+<li>散热片一套</li>
+<li>铝合金外壳一个</li>
+</ul>
+<h2 id="开箱组装"><a href="#开箱组装" class="headerlink" title="开箱组装"></a>开箱组装</h2><h3 id="树莓派3代，B型，E14中国版"><a href="#树莓派3代，B型，E14中国版" class="headerlink" title="树莓派3代，B型，E14中国版"></a>树莓派3代，B型，E14中国版</h3><img src="/posts/c9ac426b4a37/IMG_20180110_143901.jpg" class="">
+
+<p>3B的外包装盒依然延续上一代简洁大方的特点，并突出板载WiFi和蓝牙功能</p>
+<h3 id="5V-2-5A电源"><a href="#5V-2-5A电源" class="headerlink" title="5V 2.5A电源"></a>5V 2.5A电源</h3><p>以前玩树莓派都是直接用手机电源，有些电源输出电流过小，会造成树莓派不稳定，树莓派3B推荐使用2.5A的电源（这个电源带开关，用起来还是挺方便的，不用频繁拔插电源，也延长了电源口的使用寿命，话说这次买的电源质量挺好的，做工很实）</p>
+<img src="/posts/c9ac426b4a37/IMG_20180110_143751.jpg" class="">
+
+<h3 id="闪迪32G-class10-内存卡"><a href="#闪迪32G-class10-内存卡" class="headerlink" title="闪迪32G class10 内存卡"></a>闪迪32G class10 内存卡</h3><p>树莓派内存卡一般用8 ~ 64G（那我为什么要用32G呢，当然是为了节约成本，这个性价比最高，太大了也没有多大的用途）</p>
+<img src="/posts/c9ac426b4a37/IMG_20180110_143936.jpg" class="">
+
+<h3 id="两铜一铝散热片"><a href="#两铜一铝散热片" class="headerlink" title="两铜一铝散热片"></a>两铜一铝散热片</h3><p>树莓派背面内存颗粒散热片还带有树莓派的logo，很不错</p>
+<img src="/posts/c9ac426b4a37/IMG_20180110_143924.jpg" class="">
+
+<h3 id="铝合金外壳"><a href="#铝合金外壳" class="headerlink" title="铝合金外壳"></a>铝合金外壳</h3><img src="/posts/c9ac426b4a37/IMG_20180110_144613.jpg" class="">
+
+<p>树莓派3已经发售很久了，可为什么现在才买呢，嗯嗯，原因就是它，金属质感的外表，无可挑剔的做工，简直完美</p>
+<h3 id="防静电包装"><a href="#防静电包装" class="headerlink" title="防静电包装"></a>防静电包装</h3><img src="/posts/c9ac426b4a37/IMG_20180110_144444.jpg" class="">
+<img src="/posts/c9ac426b4a37/IMG_20180110_144522.jpg" class="">
+
+<img src="/posts/c9ac426b4a37/IMG_20180110_144539.jpg" class="">
+
+<h3 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h3><img src="/posts/c9ac426b4a37/IMG_20180110_145536.jpg" class="">
+
+<h3 id="南桥和CPU"><a href="#南桥和CPU" class="headerlink" title="南桥和CPU"></a>南桥和CPU</h3><img src="/posts/c9ac426b4a37/IMG_20180110_145709.jpg" class="">
+
+<p>外壳的做工很好,板子只有一颗固定螺丝</p>
+<img src="/posts/c9ac426b4a37/IMG_20180110_150530.jpg" class="">
+
+<p>安装完成</p>
+<img src="/posts/c9ac426b4a37/IMG_20180110_150808.jpg" class="">
+]]></content>
+      <tags>
+        <tag>树莓派</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>树莓派EC20模块联网</title>
     <url>/posts/3c0ad28a2fa4/</url>
     <content><![CDATA[<h2 id="一、EC20模块"><a href="#一、EC20模块" class="headerlink" title="一、EC20模块"></a>一、EC20模块</h2><p>模块有两个usb接口，其中靠近SIM卡的是电源接口，如果没有接独立供电接口的话，可能会导致板子发热，不稳定</p>
@@ -1651,50 +1883,6 @@
       <tags>
         <tag>树莓派</tag>
         <tag>EC20模块</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>树莓派3B开箱</title>
-    <url>/posts/c9ac426b4a37/</url>
-    <content><![CDATA[<h2 id="开箱清单"><a href="#开箱清单" class="headerlink" title="开箱清单"></a>开箱清单</h2><ul>
-<li>树莓派3代B型</li>
-<li>2.5A带开关5V电源</li>
-<li>闪迪32G内存卡</li>
-<li>散热片一套</li>
-<li>铝合金外壳一个</li>
-</ul>
-<h2 id="开箱组装"><a href="#开箱组装" class="headerlink" title="开箱组装"></a>开箱组装</h2><h3 id="树莓派3代，B型，E14中国版"><a href="#树莓派3代，B型，E14中国版" class="headerlink" title="树莓派3代，B型，E14中国版"></a>树莓派3代，B型，E14中国版</h3><img src="/posts/c9ac426b4a37/IMG_20180110_143901.jpg" class="">
-
-<p>3B的外包装盒依然延续上一代简洁大方的特点，并突出板载WiFi和蓝牙功能</p>
-<h3 id="5V-2-5A电源"><a href="#5V-2-5A电源" class="headerlink" title="5V 2.5A电源"></a>5V 2.5A电源</h3><p>以前玩树莓派都是直接用手机电源，有些电源输出电流过小，会造成树莓派不稳定，树莓派3B推荐使用2.5A的电源（这个电源带开关，用起来还是挺方便的，不用频繁拔插电源，也延长了电源口的使用寿命，话说这次买的电源质量挺好的，做工很实）</p>
-<img src="/posts/c9ac426b4a37/IMG_20180110_143751.jpg" class="">
-
-<h3 id="闪迪32G-class10-内存卡"><a href="#闪迪32G-class10-内存卡" class="headerlink" title="闪迪32G class10 内存卡"></a>闪迪32G class10 内存卡</h3><p>树莓派内存卡一般用8 ~ 64G（那我为什么要用32G呢，当然是为了节约成本，这个性价比最高，太大了也没有多大的用途）</p>
-<img src="/posts/c9ac426b4a37/IMG_20180110_143936.jpg" class="">
-
-<h3 id="两铜一铝散热片"><a href="#两铜一铝散热片" class="headerlink" title="两铜一铝散热片"></a>两铜一铝散热片</h3><p>树莓派背面内存颗粒散热片还带有树莓派的logo，很不错</p>
-<img src="/posts/c9ac426b4a37/IMG_20180110_143924.jpg" class="">
-
-<h3 id="铝合金外壳"><a href="#铝合金外壳" class="headerlink" title="铝合金外壳"></a>铝合金外壳</h3><img src="/posts/c9ac426b4a37/IMG_20180110_144613.jpg" class="">
-
-<p>树莓派3已经发售很久了，可为什么现在才买呢，嗯嗯，原因就是它，金属质感的外表，无可挑剔的做工，简直完美</p>
-<h3 id="防静电包装"><a href="#防静电包装" class="headerlink" title="防静电包装"></a>防静电包装</h3><img src="/posts/c9ac426b4a37/IMG_20180110_144444.jpg" class="">
-<img src="/posts/c9ac426b4a37/IMG_20180110_144522.jpg" class="">
-
-<img src="/posts/c9ac426b4a37/IMG_20180110_144539.jpg" class="">
-
-<h3 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h3><img src="/posts/c9ac426b4a37/IMG_20180110_145536.jpg" class="">
-
-<h3 id="南桥和CPU"><a href="#南桥和CPU" class="headerlink" title="南桥和CPU"></a>南桥和CPU</h3><img src="/posts/c9ac426b4a37/IMG_20180110_145709.jpg" class="">
-
-<p>外壳的做工很好,板子只有一颗固定螺丝</p>
-<img src="/posts/c9ac426b4a37/IMG_20180110_150530.jpg" class="">
-
-<p>安装完成</p>
-<img src="/posts/c9ac426b4a37/IMG_20180110_150808.jpg" class="">
-]]></content>
-      <tags>
-        <tag>树莓派</tag>
       </tags>
   </entry>
   <entry>
@@ -2242,22 +2430,6 @@ ssd1306.drawToDisplay()
       </tags>
   </entry>
   <entry>
-    <title>树莓派鼠标空闲时隐藏光标</title>
-    <url>/posts/6f18ead3ddd8/</url>
-    <content><![CDATA[<h2 id="安装uncluter"><a href="#安装uncluter" class="headerlink" title="安装uncluter"></a>安装uncluter</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install unclutter</span><br></pre></td></tr></table></figure>
-
-<p>安装后，默认鼠标空闲2s后就会被隐藏</p>
-<p>参考文章:</p>
-<ul>
-<li><a href="https://debaday.debian.net/2007/03/27/unclutter-hide-the-mouse-cursor-after-a-period-of-inactivity/">unclutter: hide the mouse cursor after a period of inactivity</a></li>
-<li><a href="https://ubuntu-tutorials.com/2008/07/07/auto-hide-your-mouse-pointer-when-idle-with-unclutter/">Auto-Hide Your Mouse Pointer When Idle With “Unclutter”</a></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>树莓派</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>树莓派禁止休眠、保持屏幕常亮</title>
     <url>/posts/9832c248a2df/</url>
     <content><![CDATA[<h2 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo vi /etc/lightdm/lightdm.conf</span><br></pre></td></tr></table></figure>
@@ -2267,6 +2439,22 @@ ssd1306.drawToDisplay()
 <p>参考文章</p>
 <ul>
 <li><a href="https://blog.csdn.net/u011720560/article/details/78288128">树莓派禁止休眠、屏幕常亮</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>树莓派</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派鼠标空闲时隐藏光标</title>
+    <url>/posts/6f18ead3ddd8/</url>
+    <content><![CDATA[<h2 id="安装uncluter"><a href="#安装uncluter" class="headerlink" title="安装uncluter"></a>安装uncluter</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install unclutter</span><br></pre></td></tr></table></figure>
+
+<p>安装后，默认鼠标空闲2s后就会被隐藏</p>
+<p>参考文章:</p>
+<ul>
+<li><a href="https://debaday.debian.net/2007/03/27/unclutter-hide-the-mouse-cursor-after-a-period-of-inactivity/">unclutter: hide the mouse cursor after a period of inactivity</a></li>
+<li><a href="https://ubuntu-tutorials.com/2008/07/07/auto-hide-your-mouse-pointer-when-idle-with-unclutter/">Auto-Hide Your Mouse Pointer When Idle With “Unclutter”</a></li>
 </ul>
 ]]></content>
       <tags>

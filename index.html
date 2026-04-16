@@ -88,7 +88,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">45</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">51</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-demo"><a href="/demo/" rel="section"><i class="fa fa-rocket fa-fw"></i>Demo</a></li><li class="menu-item menu-item-component"><a href="/component/" rel="section"><i class="fa fa-th-large fa-fw"></i>Component</a></li><li class="menu-item menu-item-to-do-list"><a href="/to_do_list/" rel="section"><i class="fa fa-calendar fa-fw"></i>To Do List</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">47</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">52</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-demo"><a href="/demo/" rel="section"><i class="fa fa-rocket fa-fw"></i>Demo</a></li><li class="menu-item menu-item-component"><a href="/component/" rel="section"><i class="fa fa-th-large fa-fw"></i>Component</a></li><li class="menu-item menu-item-to-do-list"><a href="/to_do_list/" rel="section"><i class="fa fa-calendar fa-fw"></i>To Do List</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -159,13 +159,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">52</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">45</span>
+        <span class="site-state-item-count">47</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -201,6 +201,268 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/posts/fd1f20631e6d/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="yancoding">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yan blog">
+      <meta itemprop="description" content="yan blog">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | yan blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/fd1f20631e6d/" class="post-title-link" itemprop="url">Shell重定向之`>/dev/null 2>&1`</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-04-16 16:20:00 / 修改时间：15:04:44" itemprop="dateCreated datePublished" datetime="2026-04-16T16:20:00+08:00">2026-04-16</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在看 shell 脚本时，经常会看到这样一段写法：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> &gt;/dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<p>很多人第一次看到会觉得有点绕，尤其是 <code>2&gt;&amp;1</code> 这部分，不太容易一眼看明白。</p>
+<p>这篇文章就专门整理一下它的含义，以及为什么顺序不能乱写。</p>
+<h2 id="一、这段写法到底是什么意思"><a href="#一、这段写法到底是什么意思" class="headerlink" title="一、这段写法到底是什么意思"></a>一、这段写法到底是什么意思</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> &gt;/dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<p>它表示：</p>
+<ul>
+<li>把标准输出重定向到 <code>/dev/null</code></li>
+<li>再把标准错误重定向到标准输出当前所在的位置</li>
+</ul>
+<p>最终效果就是：</p>
+<p><strong>正常输出和报错输出都会被丢弃，不在终端显示。</strong></p>
+<h2 id="二、先理解-3-个标准通道"><a href="#二、先理解-3-个标准通道" class="headerlink" title="二、先理解 3 个标准通道"></a>二、先理解 3 个标准通道</h2><p>在 Unix&#x2F;Linux 里，一个进程默认会带有 3 个标准通道，对应 3 个文件描述符：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">0 = stdin</span><br><span class="line">1 = stdout</span><br><span class="line">2 = stderr</span><br></pre></td></tr></table></figure>
+
+<p>分别表示：</p>
+<ul>
+<li><code>0</code>：标准输入，程序从哪里读数据</li>
+<li><code>1</code>：标准输出，程序正常结果输出到哪里</li>
+<li><code>2</code>：标准错误，程序报错信息输出到哪里</li>
+</ul>
+<p>后面提到的 <code>1&gt;</code>、<code>2&gt;</code>、<code>2&gt;&amp;1</code>，本质上都是在操作这些文件描述符。</p>
+<h2 id="三、-gt-dev-null-是什么意思"><a href="#三、-gt-dev-null-是什么意思" class="headerlink" title="三、&gt;/dev/null 是什么意思"></a>三、<code>&gt;/dev/null</code> 是什么意思</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> &gt;/dev/null</span><br></pre></td></tr></table></figure>
+
+<p>它等价于：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> 1&gt;/dev/null</span><br></pre></td></tr></table></figure>
+
+<p>意思是把标准输出重定向到 <code>/dev/null</code>。</p>
+<p>这里有两个点：</p>
+<ul>
+<li><code>&gt;</code> 表示输出重定向</li>
+<li><code>/dev/null</code> 是一个特殊设备文件，写进去的内容会被直接丢弃</li>
+</ul>
+<p>所以这条命令的效果是：</p>
+<ul>
+<li>正常输出不再显示</li>
+<li>错误输出仍然会显示在终端</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">ls</span> existing-file missing-file &gt;/dev/null</span><br></pre></td></tr></table></figure>
+
+<p>这时 <code>existing-file</code> 的正常输出会被丢弃，但如果 <code>missing-file</code> 不存在，报错信息还是会显示出来。</p>
+<h2 id="四、2-gt-amp-1-是什么意思"><a href="#四、2-gt-amp-1-是什么意思" class="headerlink" title="四、2&gt;&amp;1 是什么意思"></a>四、<code>2&gt;&amp;1</code> 是什么意思</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<p>它的含义是：</p>
+<p><strong>把标准错误重定向到文件描述符 1 当前所指向的位置。</strong></p>
+<p>拆开看会更清楚：</p>
+<ul>
+<li><code>2&gt;</code>：操作标准错误</li>
+<li><code>&amp;1</code>：表示引用文件描述符 <code>1</code></li>
+</ul>
+<p>注意这里的 <code>1</code> 不是文件名，而是文件描述符编号。</p>
+<p>也就是说：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> &gt;/dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<p>可以理解成：</p>
+<ol>
+<li>先把标准输出丢到 <code>/dev/null</code></li>
+<li>再让标准错误也跟着标准输出走</li>
+</ol>
+<p>所以最后标准输出和标准错误都会进入 <code>/dev/null</code>。</p>
+<h2 id="五、为什么-1-前面要加-amp"><a href="#五、为什么-1-前面要加-amp" class="headerlink" title="五、为什么 1 前面要加 &amp;"></a>五、为什么 <code>1</code> 前面要加 <code>&amp;</code></h2><p>因为 shell 需要区分：</p>
+<ul>
+<li>你写的是文件描述符</li>
+<li>还是普通文件名</li>
+</ul>
+<h3 id="不加-amp"><a href="#不加-amp" class="headerlink" title="不加 &amp;"></a>不加 <code>&amp;</code></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> 2&gt;1</span><br></pre></td></tr></table></figure>
+
+<p>这表示把标准错误写入一个名为 <code>1</code> 的文件。</p>
+<h3 id="加上-amp"><a href="#加上-amp" class="headerlink" title="加上 &amp;"></a>加上 <code>&amp;</code></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<p>这表示把标准错误重定向到文件描述符 <code>1</code>。</p>
+<p>所以 <code>&amp;</code> 的作用很简单，就是告诉 shell：</p>
+<p><strong>后面的数字不是文件名，而是文件描述符。</strong></p>
+<h2 id="六、为什么-1-可以省略"><a href="#六、为什么-1-可以省略" class="headerlink" title="六、为什么 1 可以省略"></a>六、为什么 <code>1</code> 可以省略</h2><p>在 shell 里：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&gt;file</span><br></pre></td></tr></table></figure>
+
+<p>默认就是：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1&gt;file</span><br></pre></td></tr></table></figure>
+
+<p>因为如果 <code>&gt;</code> 前面没有写编号，默认操作的就是标准输出。</p>
+<p>所以：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&gt;/dev/null</span><br></pre></td></tr></table></figure>
+
+<p>等价于：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1&gt;/dev/null</span><br></pre></td></tr></table></figure>
+
+<h2 id="七、顺序为什么很重要"><a href="#七、顺序为什么很重要" class="headerlink" title="七、顺序为什么很重要"></a>七、顺序为什么很重要</h2><p>很多人会把下面两种写法看成一样，其实它们不一样。</p>
+<h3 id="写法-A"><a href="#写法-A" class="headerlink" title="写法 A"></a>写法 A</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> &gt;/dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<p>执行顺序是：</p>
+<ol>
+<li>让 <code>1</code> 指向 <code>/dev/null</code></li>
+<li>让 <code>2</code> 指向 <code>1</code> 当前的位置，也就是 <code>/dev/null</code></li>
+</ol>
+<p>结果：</p>
+<ul>
+<li>标准输出被丢弃</li>
+<li>标准错误也被丢弃</li>
+</ul>
+<h3 id="写法-B"><a href="#写法-B" class="headerlink" title="写法 B"></a>写法 B</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> 2&gt;&amp;1 &gt;/dev/null</span><br></pre></td></tr></table></figure>
+
+<p>执行顺序是：</p>
+<ol>
+<li>先让 <code>2</code> 指向 <code>1</code> 当前的位置，此时 <code>1</code> 还是终端</li>
+<li>再把 <code>1</code> 重定向到 <code>/dev/null</code></li>
+</ol>
+<p>结果：</p>
+<ul>
+<li>标准输出被丢弃</li>
+<li>标准错误仍然输出到终端</li>
+</ul>
+<p>所以这两条命令不是一回事：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> &gt;/dev/null 2&gt;&amp;1</span><br><span class="line"><span class="built_in">command</span> 2&gt;&amp;1 &gt;/dev/null</span><br></pre></td></tr></table></figure>
+
+<p>重点就在于 shell 会从左到右依次处理重定向。</p>
+<h2 id="八、常见用法"><a href="#八、常见用法" class="headerlink" title="八、常见用法"></a>八、常见用法</h2><h3 id="1-只隐藏正常输出"><a href="#1-只隐藏正常输出" class="headerlink" title="1. 只隐藏正常输出"></a>1. 只隐藏正常输出</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> &gt;/dev/null</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-只隐藏错误输出"><a href="#2-只隐藏错误输出" class="headerlink" title="2. 只隐藏错误输出"></a>2. 只隐藏错误输出</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> 2&gt;/dev/null</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-同时隐藏正常输出和错误输出"><a href="#3-同时隐藏正常输出和错误输出" class="headerlink" title="3. 同时隐藏正常输出和错误输出"></a>3. 同时隐藏正常输出和错误输出</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> &gt;/dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-正常输出和错误输出都写入同一个文件"><a href="#4-正常输出和错误输出都写入同一个文件" class="headerlink" title="4. 正常输出和错误输出都写入同一个文件"></a>4. 正常输出和错误输出都写入同一个文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> &gt;all.log 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-正常输出写文件，错误仍然显示在终端"><a href="#5-正常输出写文件，错误仍然显示在终端" class="headerlink" title="5. 正常输出写文件，错误仍然显示在终端"></a>5. 正常输出写文件，错误仍然显示在终端</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> &gt;out.log</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-错误写文件，正常输出仍然显示在终端"><a href="#6-错误写文件，正常输出仍然显示在终端" class="headerlink" title="6. 错误写文件，正常输出仍然显示在终端"></a>6. 错误写文件，正常输出仍然显示在终端</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> 2&gt;err.log</span><br></pre></td></tr></table></figure>
+
+<h2 id="九、-dev-null-是什么"><a href="#九、-dev-null-是什么" class="headerlink" title="九、/dev/null 是什么"></a>九、<code>/dev/null</code> 是什么</h2><p><code>/dev/null</code> 是 Unix&#x2F;Linux 下的一个特殊设备文件，常被叫做“黑洞设备”。</p>
+<p>它的特点很简单：</p>
+<ul>
+<li>写进去的内容会被丢弃</li>
+<li>从里面通常读不到有意义的内容</li>
+</ul>
+<p>所以它特别适合拿来做静默执行，比如：</p>
+<ul>
+<li>不想看到命令的普通输出</li>
+<li>不想让脚本打印一堆无关信息</li>
+<li>想让某些命令安静执行</li>
+</ul>
+<h2 id="十、实际例子"><a href="#十、实际例子" class="headerlink" title="十、实际例子"></a>十、实际例子</h2><p>比如在脚本里，你可能会看到：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> venv/bin/activate &gt;/dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<p>它表示：</p>
+<ul>
+<li>执行 <code>venv/bin/activate</code></li>
+<li>不显示正常输出</li>
+<li>不显示错误输出</li>
+</ul>
+<p>不过这里也要注意一件事：</p>
+<p>如果激活失败，报错信息也会被隐藏掉。</p>
+<p>所以在排查问题时，通常要先把这类重定向去掉，不然看不到真实报错。</p>
+<h2 id="十一、还有一种更简写的写法"><a href="#十一、还有一种更简写的写法" class="headerlink" title="十一、还有一种更简写的写法"></a>十一、还有一种更简写的写法</h2><p>在 <code>bash</code> 和 <code>zsh</code> 里，经常还能看到：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> &amp;&gt;/dev/null</span><br></pre></td></tr></table></figure>
+
+<p>它通常等价于：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> &gt;/dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<p>不过如果考虑可读性和兼容性，很多时候还是传统写法更直观一些：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> &gt;/dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<h2 id="十二、小结"><a href="#十二、小结" class="headerlink" title="十二、小结"></a>十二、小结</h2><p><code>&gt;/dev/null 2&gt;&amp;1</code> 本质上就是 shell 重定向语法。</p>
+<p>它的含义可以概括成一句话：</p>
+<p><strong>先把标准输出重定向到 <code>/dev/null</code>，再把标准错误重定向到标准输出当前所在的位置，从而让正常输出和错误输出都被丢弃。</strong></p>
+<p>如果只想记住最关键的几条，可以直接记下面这个速记版：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">0 = stdin</span><br><span class="line">1 = stdout</span><br><span class="line">2 = stderr</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&gt;/dev/null      <span class="comment"># 等价于 1&gt;/dev/null，隐藏标准输出</span></span><br><span class="line">2&gt;/dev/null     <span class="comment"># 隐藏标准错误</span></span><br><span class="line">2&gt;&amp;1            <span class="comment"># 让标准错误跟随标准输出</span></span><br><span class="line">&gt;/dev/null 2&gt;&amp;1 <span class="comment"># 正常输出和错误输出都隐藏</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">2&gt;1   <span class="comment"># 写入名为 1 的文件</span></span><br><span class="line">2&gt;&amp;1  <span class="comment"># 重定向到文件描述符 1</span></span><br></pre></td></tr></table></figure>
+
+<p>参考文章</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.gnu.org/software/bash/manual/html_node/Redirections.html">Bash Reference Manual: Redirections</a></li>
+<li><a target="_blank" rel="noopener" href="https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_07">The Open Group Base Specifications: Shell Command Language</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -785,204 +1047,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/posts/ddae8e390a11/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.png">
-      <meta itemprop="name" content="yancoding">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yan blog">
-      <meta itemprop="description" content="yan blog">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | yan blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/ddae8e390a11/" class="post-title-link" itemprop="url">ubuntu下catimg的安装和使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2026-04-09 11:20:00 / 修改时间：11:36:27" itemprop="dateCreated datePublished" datetime="2026-04-09T11:20:00+08:00">2026-04-09</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.4k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><code>catimg</code> 是一个可以直接在终端里显示图片的小工具，适合在纯命令行环境里快速预览图片，也可以拿来做一些有意思的终端展示。</p>
-<p>它支持常见图片格式，常用场景有：</p>
-<ul>
-<li>在服务器或终端环境快速预览图片</li>
-<li>在 SSH 环境下简单查看图片内容</li>
-<li>在终端里展示 PNG、JPG、GIF 等图片</li>
-</ul>
-<h2 id="一、安装-catimg"><a href="#一、安装-catimg" class="headerlink" title="一、安装 catimg"></a>一、安装 catimg</h2><h3 id="1-优先使用-apt-安装"><a href="#1-优先使用-apt-安装" class="headerlink" title="1. 优先使用 apt 安装"></a>1. 优先使用 apt 安装</h3><p>先更新软件包索引：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
-
-<p>安装 <code>catimg</code>：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install catimg</span><br></pre></td></tr></table></figure>
-
-<p>安装过程示意：</p>
-<img src="/posts/ddae8e390a11/install-catimg-demo.svg" class="">
-
-<p>安装完成后查看是否成功：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg -h</span><br></pre></td></tr></table></figure>
-
-<p>如果终端输出帮助信息，说明安装成功。</p>
-<h3 id="2-如果-apt-仓库里没有，再使用源码安装"><a href="#2-如果-apt-仓库里没有，再使用源码安装" class="headerlink" title="2. 如果 apt 仓库里没有，再使用源码安装"></a>2. 如果 apt 仓库里没有，再使用源码安装</h3><p>有些 Ubuntu 环境默认仓库里可能没有 <code>catimg</code>，这时可以从源码编译安装。</p>
-<p>先安装编译工具：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install git cmake build-essential</span><br></pre></td></tr></table></figure>
-
-<p>拉取源码：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/posva/catimg.git</span><br><span class="line"><span class="built_in">cd</span> catimg</span><br></pre></td></tr></table></figure>
-
-<p>编译并安装：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cmake .</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
-
-<p>安装完成后检查版本或帮助信息：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg -h</span><br></pre></td></tr></table></figure>
-
-<h2 id="二、基本使用"><a href="#二、基本使用" class="headerlink" title="二、基本使用"></a>二、基本使用</h2><p>最简单的用法就是直接指定一张图片：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg demo.png</span><br></pre></td></tr></table></figure>
-
-<p>如果终端支持 256 色，图片就会直接输出到当前终端窗口中。</p>
-<p>预览效果示意：</p>
-<img src="/posts/ddae8e390a11/catimg-preview-demo.svg" class="">
-
-<h2 id="三、常用参数"><a href="#三、常用参数" class="headerlink" title="三、常用参数"></a>三、常用参数</h2><h3 id="1-指定显示宽度"><a href="#1-指定显示宽度" class="headerlink" title="1. 指定显示宽度"></a>1. 指定显示宽度</h3><p>使用 <code>-w</code> 指定图片显示宽度：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg -w 80 demo.png</span><br></pre></td></tr></table></figure>
-
-<p>这里的 <code>80</code> 表示图片输出宽度。终端较窄时，手动指定宽度会更容易控制显示效果。</p>
-<h3 id="2-显示-GIF-并控制循环次数"><a href="#2-显示-GIF-并控制循环次数" class="headerlink" title="2. 显示 GIF 并控制循环次数"></a>2. 显示 GIF 并控制循环次数</h3><p><code>catimg</code> 支持 GIF，使用 <code>-l</code> 指定循环次数：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg -l 3 demo.gif</span><br></pre></td></tr></table></figure>
-
-<p>如果设置为负数，则表示一直循环：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg -l -1 demo.gif</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-指定分辨率模式"><a href="#3-指定分辨率模式" class="headerlink" title="3. 指定分辨率模式"></a>3. 指定分辨率模式</h3><p>可以通过 <code>-r</code> 指定分辨率模式：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg -r 1 demo.png</span><br></pre></td></tr></table></figure>
-
-<p>或者：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg -r 2 demo.png</span><br></pre></td></tr></table></figure>
-
-<p>一般来说：</p>
-<ul>
-<li><code>-r 1</code> 显示更保守</li>
-<li><code>-r 2</code> 显示更细一些</li>
-</ul>
-<p>可以根据自己的终端效果选择。</p>
-<h3 id="4-限制颜色转换"><a href="#4-限制颜色转换" class="headerlink" title="4. 限制颜色转换"></a>4. 限制颜色转换</h3><p>有些终端颜色支持较差，可以加上 <code>-c</code>：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg -c demo.png</span><br></pre></td></tr></table></figure>
-
-<p>这样可以让颜色映射更稳定一些。</p>
-<p>常用参数组合示意：</p>
-<img src="/posts/ddae8e390a11/catimg-options-demo.svg" class="">
-
-<h2 id="四、使用示例"><a href="#四、使用示例" class="headerlink" title="四、使用示例"></a>四、使用示例</h2><h3 id="1-预览当前目录中的图片"><a href="#1-预览当前目录中的图片" class="headerlink" title="1. 预览当前目录中的图片"></a>1. 预览当前目录中的图片</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg ./test.png</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-按指定宽度显示"><a href="#2-按指定宽度显示" class="headerlink" title="2. 按指定宽度显示"></a>2. 按指定宽度显示</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg -w 120 ./test.jpg</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-在-SSH-终端里查看图片"><a href="#3-在-SSH-终端里查看图片" class="headerlink" title="3. 在 SSH 终端里查看图片"></a>3. 在 SSH 终端里查看图片</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg -w 60 ./qrcode.png</span><br></pre></td></tr></table></figure>
-
-<p>如果只是想快速确认图片内容，比如二维码、截图、流程图缩略图，这种方式还是很方便的。</p>
-<h2 id="五、常见问题"><a href="#五、常见问题" class="headerlink" title="五、常见问题"></a>五、常见问题</h2><h3 id="1-终端显示效果很差"><a href="#1-终端显示效果很差" class="headerlink" title="1. 终端显示效果很差"></a>1. 终端显示效果很差</h3><p><code>catimg</code> 依赖终端的颜色能力，如果当前终端不支持 256 色，显示效果会比较一般。</p>
-<p>可以先检查终端类型：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$TERM</span></span><br></pre></td></tr></table></figure>
-
-<p>常见比较合适的终端有：</p>
-<ul>
-<li><code>xterm-256color</code></li>
-<li><code>screen-256color</code></li>
-<li><code>tmux-256color</code></li>
-</ul>
-<h3 id="2-图片太大，看不全"><a href="#2-图片太大，看不全" class="headerlink" title="2. 图片太大，看不全"></a>2. 图片太大，看不全</h3><p>可以直接用 <code>-w</code> 限制宽度：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg -w 50 big.png</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-命令不存在"><a href="#3-命令不存在" class="headerlink" title="3. 命令不存在"></a>3. 命令不存在</h3><p>如果提示：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catimg: <span class="built_in">command</span> not found</span><br></pre></td></tr></table></figure>
-
-<p>可以按下面几个方向检查：</p>
-<ul>
-<li>确认是否已经安装成功</li>
-<li>如果是源码安装，确认 <code>/usr/local/bin</code> 是否在 <code>PATH</code> 中</li>
-<li>重新打开一个终端再试</li>
-</ul>
-<p>查看命令路径：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">which</span> catimg</span><br></pre></td></tr></table></figure>
-
-<h2 id="六、小结"><a href="#六、小结" class="headerlink" title="六、小结"></a>六、小结</h2><p><code>catimg</code> 很适合在 Ubuntu 终端中快速查看图片，安装也比较简单。</p>
-<p>如果仓库中能直接安装，优先使用：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install catimg</span><br></pre></td></tr></table></figure>
-
-<p>如果仓库里没有，再使用源码编译安装即可。</p>
-<p>参考文章</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/posva/catimg">catimg GitHub</a></li>
-<li><a target="_blank" rel="noopener" href="https://manpages.ubuntu.com/manpages/focal/en/man1/catimg.1.html">Ubuntu manpage: catimg</a></li>
-<li><a target="_blank" rel="noopener" href="https://packages.ubuntu.com/">Ubuntu Packages Search</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 </div>
@@ -1006,14 +1072,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">63k</span>
+    <span title="站点总字数">66k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">58 分钟</span>
+    <span title="站点阅读时长">1:01</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
