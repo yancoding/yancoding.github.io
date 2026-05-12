@@ -1021,49 +1021,6 @@
       </tags>
   </entry>
   <entry>
-    <title>ubuntu安装常用软件</title>
-    <url>/posts/52c229c39ea7/</url>
-    <content><![CDATA[<h2 id="安装vscode"><a href="#安装vscode" class="headerlink" title="安装vscode"></a>安装vscode</h2><h3 id="1-下载"><a href="#1-下载" class="headerlink" title="1.下载"></a>1.下载</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget -P Downloads/ https://vscode.cdn.azure.cn/stable/5763d909d5f12fe19f215cbfdd29a91c0fa9208a/code_1.45.1-1589445302_amd64.deb</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-安装"><a href="#2-安装" class="headerlink" title="2.安装"></a>2.安装</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd Downloads/</span><br><span class="line">sudo dpkg -i code_1.45.1-1589445302_amd64.deb</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-查看版本"><a href="#3-查看版本" class="headerlink" title="3.查看版本"></a>3.查看版本</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">code --version</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h2><p>安装nodejs不要使用<code>apt</code>,<code>apt</code>安装的版本较老，不是最新的</p>
-<p>目前nodejs官网长期稳定版本为 12.X</p>
-<p>这里采用官方提供的方式进行安装</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -</span><br><span class="line">sudo apt-get install -y nodejs</span><br></pre></td></tr></table></figure>
-
-<p>安装完成后查看nodejs版本</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">node --version</span><br></pre></td></tr></table></figure>
-<p>回显</p>
-<p><code>v12.16.3</code></p>
-<p>其他版本的安装可查看官方提供的二进制安装说明 <a href="https://github.com/nodesource/distributions/blob/master/README.md#nodesource-nodejs-binary-distributions">NodeSource Node.js Binary Distributions</a></p>
-<h2 id="安装deno"><a href="#安装deno" class="headerlink" title="安装deno"></a>安装deno</h2><h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h3><p>deno官网的<a href="https://deno.land/#installation">这里</a>提供了linux下的安装方式</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo curl -fsSL https://deno.land/x/install/install.sh | sh</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-环境变量"><a href="#2-环境变量" class="headerlink" title="2.环境变量"></a>2.环境变量</h3><p>从安装完成的回显信息可以知道deno并没有自动配置环境变量，而是提示手动进行配置</p>
-<p>编辑<code>~.profile</code>文件<br>并添加</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">export DENO_INSTALL=&quot;/home/yan/.deno&quot;</span><br><span class="line">export PATH=&quot;$DENO_INSTALL/bin:$PATH&quot;</span><br></pre></td></tr></table></figure>
-
-<p>也就是deno提示手动配置的内容</p>
-<p>保存后重启</p>
-<p>重启后查看deno版本</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">deno --version</span><br></pre></td></tr></table></figure>
-
-<p>echo</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">deno 1.0.0</span><br><span class="line">v8 8.4.300</span><br><span class="line">typescript 3.9.2</span><br></pre></td></tr></table></figure>
-
-<p>en… deno 1.0.0 一个新的起点</p>
-<h2 id="安装chrome"><a href="#安装chrome" class="headerlink" title="安装chrome"></a>安装chrome</h2><h3 id="1-download"><a href="#1-download" class="headerlink" title="1.download"></a>1.download</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget -P ~/Downloads/ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-install"><a href="#2-install" class="headerlink" title="2.install"></a>2.install</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd Downloads/</span><br><span class="line">sudo dpkg -i google-chrome-stable_current_amd64.deb</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>ubuntu</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ubuntu下catimg的安装和使用</title>
     <url>/posts/ddae8e390a11/</url>
     <content><![CDATA[<p><code>catimg</code> 是一个可以直接在终端里显示图片的小工具，适合在纯命令行环境里快速预览图片，也可以拿来做一些有意思的终端展示。</p>
@@ -1184,6 +1141,185 @@
         <tag>ubuntu</tag>
         <tag>terminal</tag>
         <tag>catimg</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ubuntu下让ollama强制使用cpu推理</title>
+    <url>/posts/082d3464203c/</url>
+    <content><![CDATA[<p><code>Ollama</code> 默认会优先使用系统里可用的 GPU 来做推理。</p>
+<p>如果你的 Ubuntu 机器装了 NVIDIA 显卡，并且 Ollama 已经能正常调用 CUDA，那么直接执行 <code>ollama run</code> 时，通常会优先走 GPU。</p>
+<p>但有些场景下，我们反而希望它强制只用 CPU，比如：</p>
+<ul>
+<li>GPU 驱动不稳定，跑模型时容易报错</li>
+<li>想把 GPU 留给别的任务</li>
+<li>只是做功能测试，不关心推理速度</li>
+<li>服务器上的 GPU 显存比较紧张</li>
+</ul>
+<p>这篇文章记录一下，在 Ubuntu 下如何让 Ollama 强制使用 CPU 推理，而不是继续使用默认 GPU。</p>
+<h2 id="一、先说结论"><a href="#一、先说结论" class="headerlink" title="一、先说结论"></a>一、先说结论</h2><p>如果你只是想让某个模型在 Ubuntu + NVIDIA 的环境里临时改成 CPU 推理，不一定要去改服务环境变量。</p>
+<p>更直接的方式是把该模型的 <code>num_gpu</code> 设为 <code>0</code>，也就是不往 GPU 分配任何层。</p>
+<p>这篇文章保留两类方式：</p>
+<ul>
+<li>通过 API 调用时传 <code>num_gpu: 0</code></li>
+<li>在 <code>ollama run</code> 交互界面里执行 <code>/set parameter num_gpu 0</code></li>
+<li>通过 <code>systemd</code> 配置，让 Ollama 长期默认走 CPU</li>
+</ul>
+<h2 id="二、临时强制使用-CPU"><a href="#二、临时强制使用-CPU" class="headerlink" title="二、临时强制使用 CPU"></a>二、临时强制使用 CPU</h2><h3 id="1-在-API-调用里指定-num-gpu-0"><a href="#1-在-API-调用里指定-num-gpu-0" class="headerlink" title="1. 在 API 调用里指定 num_gpu: 0"></a>1. 在 API 调用里指定 <code>num_gpu: 0</code></h3><p>如果你是通过 Ollama 的 HTTP API 来加载模型，可以直接在请求里加上：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl localhost:11434/api/generate -d <span class="string">&#x27;&#123;&quot;model&quot;:&quot;llama3:latest&quot;,&quot;options&quot;:&#123;&quot;num_gpu&quot;:0&#125;&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果模型只是被加载进内存，常见返回会类似这样：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;model&quot;</span><span class="punctuation">:</span><span class="string">&quot;llama3:latest&quot;</span><span class="punctuation">,</span><span class="attr">&quot;created_at&quot;</span><span class="punctuation">:</span><span class="string">&quot;2024-09-25T10:06:21.362308925Z&quot;</span><span class="punctuation">,</span><span class="attr">&quot;response&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;done&quot;</span><span class="punctuation">:</span><span class="keyword">true</span><span class="punctuation">,</span><span class="attr">&quot;done_reason&quot;</span><span class="punctuation">:</span><span class="string">&quot;load&quot;</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>这表示模型已经按这次参数要求被加载好了。</p>
+<p>接着可以用：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ollama ps</span><br></pre></td></tr></table></figure>
+
+<p>查看当前处理器分配情况，例如：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">NAME                             ID              SIZE    PROCESSOR  UNTIL</span><br><span class="line">llama3:latest                    365c0bd3c000    4.3 GB  100% CPU   Forever</span><br><span class="line">qwen2:7b-instruct-q4_K_M         f10f702d139e    5.4 GB  100% GPU   Forever</span><br></pre></td></tr></table></figure>
+
+<p>这里最关键的是 <code>PROCESSOR</code> 一列。如果显示 <code>100% CPU</code>，说明当前这个模型实例没有使用 GPU 层。</p>
+<h3 id="2-在-CLI-里设置-num-gpu-0"><a href="#2-在-CLI-里设置-num-gpu-0" class="headerlink" title="2. 在 CLI 里设置 num_gpu 0"></a>2. 在 CLI 里设置 <code>num_gpu 0</code></h3><p>如果你平时更常用 <code>ollama run</code>，也可以直接在交互界面里设置参数。</p>
+<p>先启动模型：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ollama run llama3:latest</span><br></pre></td></tr></table></figure>
+
+<p>进入交互界面后执行：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">&gt;&gt;&gt; /set parameter num_gpu 0</span><br><span class="line">Set parameter &#x27;num_gpu&#x27; to &#x27;0&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>然后再正常提问：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">&gt;&gt;&gt; hello</span><br><span class="line">Hello! It&#x27;s nice to meet you. Is there something I can help you with, or would you like to chat?</span><br></pre></td></tr></table></figure>
+
+<p>退出后同样可以检查：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ollama ps</span><br></pre></td></tr></table></figure>
+
+<p>如果输出类似这样：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">NAME                             ID              SIZE    PROCESSOR  UNTIL</span><br><span class="line">llama3:latest                    365c0bd3c000    4.3 GB  100% CPU   Forever</span><br><span class="line">qwen2:7b-instruct-q4_K_M         f10f702d139e    5.4 GB  100% GPU   Forever</span><br></pre></td></tr></table></figure>
+
+<p>那就说明 <code>llama3:latest</code> 这一份实例已经切到了 CPU，而其他模型仍然可以继续走 GPU。</p>
+<h2 id="三、通过-systemd-长期固定走-CPU"><a href="#三、通过-systemd-长期固定走-CPU" class="headerlink" title="三、通过 systemd 长期固定走 CPU"></a>三、通过 systemd 长期固定走 CPU</h2><p>如果你的目标不是“只让某个模型临时走 CPU”，而是希望这台 Ubuntu 机器上的 Ollama 服务长期默认不用 NVIDIA GPU，那么还是应该改 <code>systemd</code> 配置。</p>
+<p>这种方式和前面的 <code>num_gpu 0</code> 不一样，它影响的是整个 <code>ollama</code> 服务的默认行为。</p>
+<h3 id="1-编辑-Ollama-服务-override"><a href="#1-编辑-Ollama-服务-override" class="headerlink" title="1. 编辑 Ollama 服务 override"></a>1. 编辑 Ollama 服务 override</h3><p>执行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo systemctl edit ollama</span><br></pre></td></tr></table></figure>
+
+<p>然后写入：</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="attr">Environment</span>=<span class="string">&quot;CUDA_VISIBLE_DEVICES=-1&quot;</span></span><br><span class="line"><span class="attr">Environment</span>=<span class="string">&quot;OLLAMA_LLM_LIBRARY=cpu_avx2&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>这里的含义是：</p>
+<ul>
+<li><code>CUDA_VISIBLE_DEVICES=-1</code>：让 Ollama 看不到 NVIDIA GPU</li>
+<li><code>OLLAMA_LLM_LIBRARY=cpu_avx2</code>：明确优先使用 CPU 的 AVX2 LLM 库</li>
+</ul>
+<p>如果你的 CPU 不支持 AVX2，也可以把它改成：</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">Environment</span>=<span class="string">&quot;OLLAMA_LLM_LIBRARY=cpu_avx&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>再不行就退到：</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">Environment</span>=<span class="string">&quot;OLLAMA_LLM_LIBRARY=cpu&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-重载并重启服务"><a href="#2-重载并重启服务" class="headerlink" title="2. 重载并重启服务"></a>2. 重载并重启服务</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart ollama</span><br><span class="line">sudo systemctl status ollama</span><br></pre></td></tr></table></figure>
+
+<p>这样之后，后续由这个 <code>ollama</code> 服务加载的模型，默认都会优先走 CPU。</p>
+<h2 id="四、怎么确认现在真的没有走-GPU"><a href="#四、怎么确认现在真的没有走-GPU" class="headerlink" title="四、怎么确认现在真的没有走 GPU"></a>四、怎么确认现在真的没有走 GPU</h2><h3 id="1-用-ollama-ps-看-PROCESSOR"><a href="#1-用-ollama-ps-看-PROCESSOR" class="headerlink" title="1. 用 ollama ps 看 PROCESSOR"></a>1. 用 <code>ollama ps</code> 看 <code>PROCESSOR</code></h3><p>这篇文章里最推荐的确认方式就是：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ollama ps</span><br></pre></td></tr></table></figure>
+
+<p>只要看到对应模型是：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">100% CPU</span><br></pre></td></tr></table></figure>
+
+<p>基本就能确认它这次没有走 GPU。</p>
+<h3 id="2-推理时再结合-nvidia-smi-观察"><a href="#2-推理时再结合-nvidia-smi-观察" class="headerlink" title="2. 推理时再结合 nvidia-smi 观察"></a>2. 推理时再结合 <code>nvidia-smi</code> 观察</h3><p>如果你的机器本来有 NVIDIA GPU，也可以在模型运行时另开一个终端观察：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nvidia-smi</span><br></pre></td></tr></table></figure>
+
+<p>如果没有看到 <code>ollama</code> 相关进程占用显存，通常就说明这次推理没有走 NVIDIA GPU。</p>
+<h2 id="五、几个容易踩坑的地方"><a href="#五、几个容易踩坑的地方" class="headerlink" title="五、几个容易踩坑的地方"></a>五、几个容易踩坑的地方</h2><h3 id="1-num-gpu-0-只对当前加载方式生效"><a href="#1-num-gpu-0-只对当前加载方式生效" class="headerlink" title="1. num_gpu 0 只对当前加载方式生效"></a>1. <code>num_gpu 0</code> 只对当前加载方式生效</h3><p>不管你是 API 里传：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;options&quot;</span><span class="punctuation">:</span><span class="punctuation">&#123;</span><span class="attr">&quot;num_gpu&quot;</span><span class="punctuation">:</span><span class="number">0</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>还是在 CLI 里执行：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">/set parameter num_gpu 0</span><br></pre></td></tr></table></figure>
+
+<p>它们本质上都是针对当前这次模型加载参数生效，不是把整个 Ollama 服务永久改成 CPU-only。</p>
+<h3 id="2-其他模型还是可以继续走-GPU"><a href="#2-其他模型还是可以继续走-GPU" class="headerlink" title="2. 其他模型还是可以继续走 GPU"></a>2. 其他模型还是可以继续走 GPU</h3><p>这也是前面两种 <code>num_gpu 0</code> 方式的一个优点。</p>
+<p>比如你让 <code>llama3:latest</code> 走 CPU，并不代表另外一个已经加载的 <code>qwen2:7b-instruct-q4_K_M</code> 也会自动切到 CPU。</p>
+<p>所以 <code>ollama ps</code> 里可能会同时出现：</p>
+<ul>
+<li>一个模型显示 <code>100% CPU</code></li>
+<li>另一个模型显示 <code>100% GPU</code></li>
+</ul>
+<h3 id="3-如果改的是-systemd，它影响的是整个服务"><a href="#3-如果改的是-systemd，它影响的是整个服务" class="headerlink" title="3. 如果改的是 systemd，它影响的是整个服务"></a>3. 如果改的是 systemd，它影响的是整个服务</h3><p>如果你用的是：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo systemctl edit ollama</span><br></pre></td></tr></table></figure>
+
+<p>那它就不是“只影响某个模型实例”了，而是会影响这个 <code>ollama</code> 服务后续加载出来的模型。</p>
+<p>所以这两类方案要分清：</p>
+<ul>
+<li><code>num_gpu 0</code>：适合临时、按模型控制</li>
+<li><code>systemd</code> override：适合长期、按服务控制</li>
+</ul>
+<h3 id="4-CPU-推理速度明显变慢"><a href="#4-CPU-推理速度明显变慢" class="headerlink" title="4. CPU 推理速度明显变慢"></a>4. CPU 推理速度明显变慢</h3><p>这属于正常现象。</p>
+<p>GPU 本来就是 Ollama 在 Linux 上更常见的高性能推理方式，强制切到 CPU 后，速度通常会明显下降，尤其是大模型。</p>
+<p>如果你只是临时排查问题，可以先用小一点的模型测试，例如：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ollama run qwen3:0.6b</span><br></pre></td></tr></table></figure>
+
+<p>或者：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ollama run gemma3:1b</span><br></pre></td></tr></table></figure>
+
+<h2 id="六、小结"><a href="#六、小结" class="headerlink" title="六、小结"></a>六、小结</h2><p>在 Ubuntu 下，如果你的场景是 NVIDIA 显卡环境下强制让 Ollama 走 CPU，可以分成两类：</p>
+<ol>
+<li>临时按模型控制：API 传 <code>options.num_gpu = 0</code>，或者 CLI 执行 <code>/set parameter num_gpu 0</code></li>
+<li>长期按服务控制：用 <code>systemd</code> override 配置 <code>CUDA_VISIBLE_DEVICES=-1</code></li>
+</ol>
+<p>前者更细粒度，适合临时测试；<br>后者更彻底，适合把整台机器上的 Ollama 默认固定成 CPU 推理。</p>
+<p>参考文章</p>
+<ul>
+<li><a href="https://docs.ollama.com/linux">Ollama Linux 文档</a></li>
+<li><a href="https://docs.ollama.com/gpu">Ollama Hardware support 文档</a></li>
+<li><a href="https://docs.ollama.com/troubleshooting">Ollama Troubleshooting 文档</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ubuntu</tag>
+        <tag>ollama</tag>
+        <tag>ai</tag>
+        <tag>llm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ubuntu安装常用软件</title>
+    <url>/posts/52c229c39ea7/</url>
+    <content><![CDATA[<h2 id="安装vscode"><a href="#安装vscode" class="headerlink" title="安装vscode"></a>安装vscode</h2><h3 id="1-下载"><a href="#1-下载" class="headerlink" title="1.下载"></a>1.下载</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget -P Downloads/ https://vscode.cdn.azure.cn/stable/5763d909d5f12fe19f215cbfdd29a91c0fa9208a/code_1.45.1-1589445302_amd64.deb</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-安装"><a href="#2-安装" class="headerlink" title="2.安装"></a>2.安装</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd Downloads/</span><br><span class="line">sudo dpkg -i code_1.45.1-1589445302_amd64.deb</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-查看版本"><a href="#3-查看版本" class="headerlink" title="3.查看版本"></a>3.查看版本</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">code --version</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h2><p>安装nodejs不要使用<code>apt</code>,<code>apt</code>安装的版本较老，不是最新的</p>
+<p>目前nodejs官网长期稳定版本为 12.X</p>
+<p>这里采用官方提供的方式进行安装</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -</span><br><span class="line">sudo apt-get install -y nodejs</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后查看nodejs版本</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">node --version</span><br></pre></td></tr></table></figure>
+<p>回显</p>
+<p><code>v12.16.3</code></p>
+<p>其他版本的安装可查看官方提供的二进制安装说明 <a href="https://github.com/nodesource/distributions/blob/master/README.md#nodesource-nodejs-binary-distributions">NodeSource Node.js Binary Distributions</a></p>
+<h2 id="安装deno"><a href="#安装deno" class="headerlink" title="安装deno"></a>安装deno</h2><h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h3><p>deno官网的<a href="https://deno.land/#installation">这里</a>提供了linux下的安装方式</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo curl -fsSL https://deno.land/x/install/install.sh | sh</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-环境变量"><a href="#2-环境变量" class="headerlink" title="2.环境变量"></a>2.环境变量</h3><p>从安装完成的回显信息可以知道deno并没有自动配置环境变量，而是提示手动进行配置</p>
+<p>编辑<code>~.profile</code>文件<br>并添加</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">export DENO_INSTALL=&quot;/home/yan/.deno&quot;</span><br><span class="line">export PATH=&quot;$DENO_INSTALL/bin:$PATH&quot;</span><br></pre></td></tr></table></figure>
+
+<p>也就是deno提示手动配置的内容</p>
+<p>保存后重启</p>
+<p>重启后查看deno版本</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">deno --version</span><br></pre></td></tr></table></figure>
+
+<p>echo</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">deno 1.0.0</span><br><span class="line">v8 8.4.300</span><br><span class="line">typescript 3.9.2</span><br></pre></td></tr></table></figure>
+
+<p>en… deno 1.0.0 一个新的起点</p>
+<h2 id="安装chrome"><a href="#安装chrome" class="headerlink" title="安装chrome"></a>安装chrome</h2><h3 id="1-download"><a href="#1-download" class="headerlink" title="1.download"></a>1.download</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget -P ~/Downloads/ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-install"><a href="#2-install" class="headerlink" title="2.install"></a>2.install</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd Downloads/</span><br><span class="line">sudo dpkg -i google-chrome-stable_current_amd64.deb</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>ubuntu</tag>
       </tags>
   </entry>
   <entry>
@@ -2446,22 +2582,6 @@ ssd1306.drawToDisplay()
       </tags>
   </entry>
   <entry>
-    <title>树莓派鼠标空闲时隐藏光标</title>
-    <url>/posts/6f18ead3ddd8/</url>
-    <content><![CDATA[<h2 id="安装uncluter"><a href="#安装uncluter" class="headerlink" title="安装uncluter"></a>安装uncluter</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install unclutter</span><br></pre></td></tr></table></figure>
-
-<p>安装后，默认鼠标空闲2s后就会被隐藏</p>
-<p>参考文章:</p>
-<ul>
-<li><a href="https://debaday.debian.net/2007/03/27/unclutter-hide-the-mouse-cursor-after-a-period-of-inactivity/">unclutter: hide the mouse cursor after a period of inactivity</a></li>
-<li><a href="https://ubuntu-tutorials.com/2008/07/07/auto-hide-your-mouse-pointer-when-idle-with-unclutter/">Auto-Hide Your Mouse Pointer When Idle With “Unclutter”</a></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>树莓派</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>第一次使用hexo</title>
     <url>/posts/95766e5c7a2f/</url>
     <content><![CDATA[<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><p>全局安装hexo命令行工具<br><code>npm install hexo-cli -g</code></p>
@@ -2477,6 +2597,22 @@ ssd1306.drawToDisplay()
 ]]></content>
       <tags>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派鼠标空闲时隐藏光标</title>
+    <url>/posts/6f18ead3ddd8/</url>
+    <content><![CDATA[<h2 id="安装uncluter"><a href="#安装uncluter" class="headerlink" title="安装uncluter"></a>安装uncluter</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install unclutter</span><br></pre></td></tr></table></figure>
+
+<p>安装后，默认鼠标空闲2s后就会被隐藏</p>
+<p>参考文章:</p>
+<ul>
+<li><a href="https://debaday.debian.net/2007/03/27/unclutter-hide-the-mouse-cursor-after-a-period-of-inactivity/">unclutter: hide the mouse cursor after a period of inactivity</a></li>
+<li><a href="https://ubuntu-tutorials.com/2008/07/07/auto-hide-your-mouse-pointer-when-idle-with-unclutter/">Auto-Hide Your Mouse Pointer When Idle With “Unclutter”</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>树莓派</tag>
       </tags>
   </entry>
   <entry>
