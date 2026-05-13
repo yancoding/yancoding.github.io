@@ -564,6 +564,127 @@
       </tags>
   </entry>
   <entry>
+    <title>git cherry-pick用法</title>
+    <url>/posts/ba1629db3c92/</url>
+    <content><![CDATA[<p><code>git cherry-pick</code> 用来把某一个提交，或者某几个指定提交，复制到当前分支上。</p>
+<p>它比较适合下面这些场景：</p>
+<ul>
+<li>线上分支修了一个 bug，想把这次修复同步到开发分支</li>
+<li>某个功能分支里只有一两个提交有用，不想整条分支都合并进来</li>
+<li>想把别的分支上的某次提交单独拿过来，而不是执行 <code>merge</code></li>
+</ul>
+<h2 id="一、先理解-cherry-pick-做了什么"><a href="#一、先理解-cherry-pick-做了什么" class="headerlink" title="一、先理解 cherry-pick 做了什么"></a>一、先理解 <code>cherry-pick</code> 做了什么</h2><p>假设现在有两个分支：</p>
+<ul>
+<li><code>main</code></li>
+<li><code>feature</code></li>
+</ul>
+<p><code>feature</code> 分支上有一个提交修复了接口错误，你现在在 <code>main</code> 分支，也想要这个修复。</p>
+<p>这时可以直接把那次提交挑过来：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout main</span><br><span class="line">git cherry-pick 提交ID</span><br></pre></td></tr></table></figure>
+
+<p>执行后，Git 会把那次提交的改动应用到当前分支，并在当前分支生成一个新的提交。</p>
+<p>要注意的是，这不是“移动”原提交，而是“复制一份改动内容”到当前分支，所以新生成的提交 ID 一般会和原来不同。</p>
+<p>下面这张图可以直观看一下这个过程：</p>
+<img src="/posts/ba1629db3c92/git-cherry-pick-flow.svg" class="">
+
+
+<h2 id="二、最常见的基本用法"><a href="#二、最常见的基本用法" class="headerlink" title="二、最常见的基本用法"></a>二、最常见的基本用法</h2><p>先查看提交记录：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">log</span> --oneline</span><br></pre></td></tr></table></figure>
+
+<p>假设你看到 <code>feature</code> 分支里有这样一条提交：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">a1b2c3d 修复订单接口参数错误</span><br></pre></td></tr></table></figure>
+
+<p>切换到目标分支后执行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout main</span><br><span class="line">git cherry-pick a1b2c3d</span><br></pre></td></tr></table></figure>
+
+<p>如果没有冲突，这次提交就会被应用到 <code>main</code> 分支。</p>
+<p>再执行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">log</span> --oneline</span><br></pre></td></tr></table></figure>
+
+<p>通常就能看到当前分支多出了一条内容相同、但提交 ID 不同的新提交。</p>
+<h2 id="三、一次挑选多个提交"><a href="#三、一次挑选多个提交" class="headerlink" title="三、一次挑选多个提交"></a>三、一次挑选多个提交</h2><h3 id="1-逐个写出多个提交-ID"><a href="#1-逐个写出多个提交-ID" class="headerlink" title="1. 逐个写出多个提交 ID"></a>1. 逐个写出多个提交 ID</h3><p>如果要挑多个不连续的提交，可以直接把提交 ID 都写上：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git cherry-pick a1b2c3d d4e5f6g h7i8j9k</span><br></pre></td></tr></table></figure>
+
+<p>Git 会按顺序依次应用这些提交。</p>
+<h3 id="2-挑选一段连续提交"><a href="#2-挑选一段连续提交" class="headerlink" title="2. 挑选一段连续提交"></a>2. 挑选一段连续提交</h3><p>如果这些提交是连续的，可以用范围：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git cherry-pick 起始提交ID^..结束提交ID</span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git cherry-pick a1b2c3d^..d4e5f6g</span><br></pre></td></tr></table></figure>
+
+<p>这里的意思是，把从 <code>a1b2c3d</code> 到 <code>d4e5f6g</code> 之间的提交都挑过来，并且包含起始提交。</p>
+<p>如果写成：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git cherry-pick a1b2c3d..d4e5f6g</span><br></pre></td></tr></table></figure>
+
+<p>那通常不包含 <code>a1b2c3d</code> 这次提交，这一点要特别注意。</p>
+<h2 id="四、只应用改动，先不自动提交"><a href="#四、只应用改动，先不自动提交" class="headerlink" title="四、只应用改动，先不自动提交"></a>四、只应用改动，先不自动提交</h2><p>有时候你想先把改动拿过来，再自己检查一下，或者和当前工作区里的其他修改一起提交，这时可以加 <code>-n</code> 参数：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git cherry-pick -n a1b2c3d</span><br></pre></td></tr></table></figure>
+
+<p><code>-n</code> 是 <code>--no-commit</code> 的简写。</p>
+<p>它会把改动应用到当前工作区和暂存区，但不会自动生成提交。</p>
+<p>这时你可以先查看状态：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+
+<p>确认没问题后再自己提交：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -m <span class="string">&quot;引入订单接口修复&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="五、发生冲突时怎么处理"><a href="#五、发生冲突时怎么处理" class="headerlink" title="五、发生冲突时怎么处理"></a>五、发生冲突时怎么处理</h2><p><code>cherry-pick</code> 和 <code>merge</code> 一样，也可能出现冲突。</p>
+<p>比如当前分支和目标提交都修改了同一段代码，执行后可能会看到冲突提示。</p>
+<p>这时处理步骤通常是：</p>
+<h3 id="1-查看冲突文件"><a href="#1-查看冲突文件" class="headerlink" title="1. 查看冲突文件"></a>1. 查看冲突文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-手动修改冲突内容"><a href="#2-手动修改冲突内容" class="headerlink" title="2. 手动修改冲突内容"></a>2. 手动修改冲突内容</h3><p>把冲突标记处理掉，保留你真正想要的代码。</p>
+<h3 id="3-标记冲突已解决"><a href="#3-标记冲突已解决" class="headerlink" title="3. 标记冲突已解决"></a>3. 标记冲突已解决</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add 冲突文件</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-继续执行"><a href="#4-继续执行" class="headerlink" title="4. 继续执行"></a>4. 继续执行</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git cherry-pick --<span class="built_in">continue</span></span><br></pre></td></tr></table></figure>
+
+<p>如果你处理中途发现这次挑选不要了，也可以取消：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git cherry-pick --abort</span><br></pre></td></tr></table></figure>
+
+<p>它会回到执行 <code>cherry-pick</code> 之前的状态。</p>
+<h2 id="六、和-merge-的区别"><a href="#六、和-merge-的区别" class="headerlink" title="六、和 merge 的区别"></a>六、和 <code>merge</code> 的区别</h2><p>很多人第一次接触 <code>git cherry-pick</code> 时，容易把它和 <code>merge</code> 混在一起。</p>
+<p>简单来说：</p>
+<ul>
+<li><code>git merge</code> 是把一个分支整体合并过来</li>
+<li><code>git cherry-pick</code> 是只拿指定提交过来</li>
+</ul>
+<p>如果你只想同步一个 bug 修复、一个小功能、一次配置调整，那么 <code>cherry-pick</code> 往往更直接。</p>
+<p>但如果你需要把一整条分支的历史完整合并，通常还是 <code>merge</code> 更合适。</p>
+<h2 id="七、常见使用场景"><a href="#七、常见使用场景" class="headerlink" title="七、常见使用场景"></a>七、常见使用场景</h2><img src="/posts/ba1629db3c92/git-cherry-pick-terminal.svg" class="">
+
+
+<h3 id="1-把线上-hotfix-同步回开发分支"><a href="#1-把线上-hotfix-同步回开发分支" class="headerlink" title="1. 把线上 hotfix 同步回开发分支"></a>1. 把线上 hotfix 同步回开发分支</h3><p>比如你在 <code>main</code> 分支紧急修了一个线上问题，但开发工作还在 <code>dev</code> 分支继续进行。</p>
+<p>这时可以切到 <code>dev</code>，把 <code>main</code> 上那次修复挑过来：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout dev</span><br><span class="line">git cherry-pick 修复提交ID</span><br></pre></td></tr></table></figure>
+
+<p>这样就不需要把整个 <code>main</code> 分支重新合并一遍。</p>
+<h3 id="2-只拿功能分支里的某一次提交"><a href="#2-只拿功能分支里的某一次提交" class="headerlink" title="2. 只拿功能分支里的某一次提交"></a>2. 只拿功能分支里的某一次提交</h3><p>有些功能分支提交很多，里面可能既有实验代码，也有真正需要的修改。</p>
+<p>如果当前只想引入其中某一个提交，<code>cherry-pick</code> 会比 <code>merge</code> 更省事。</p>
+<h3 id="3-补漏同步"><a href="#3-补漏同步" class="headerlink" title="3. 补漏同步"></a>3. 补漏同步</h3><p>有时两个分支长期并行开发，某个重要提交漏同步了，这时也可以直接用 <code>cherry-pick</code> 补过去。</p>
+<h2 id="八、常见问题"><a href="#八、常见问题" class="headerlink" title="八、常见问题"></a>八、常见问题</h2><h3 id="1-cherry-pick-后为什么提交-ID-变了？"><a href="#1-cherry-pick-后为什么提交-ID-变了？" class="headerlink" title="1. cherry-pick 后为什么提交 ID 变了？"></a>1. <code>cherry-pick</code> 后为什么提交 ID 变了？</h3><p>因为 Git 会在当前分支重新创建一个新提交。</p>
+<p>虽然改动内容可能一样，但它已经是另一条提交记录了，所以提交 ID 通常不同。</p>
+<h3 id="2-可以对已经-merge-过的提交再执行-cherry-pick-吗？"><a href="#2-可以对已经-merge-过的提交再执行-cherry-pick-吗？" class="headerlink" title="2. 可以对已经 merge 过的提交再执行 cherry-pick 吗？"></a>2. 可以对已经 merge 过的提交再执行 <code>cherry-pick</code> 吗？</h3><p>可以，但要小心重复改动。</p>
+<p>如果那部分代码其实已经在当前分支里了，再次执行可能会出现冲突，或者产生重复提交。</p>
+<p>执行前最好先用 <code>git log</code>、<code>git show</code> 看清楚目标提交内容。</p>
+<h3 id="3-cherry-pick-和-rebase-是不是一回事？"><a href="#3-cherry-pick-和-rebase-是不是一回事？" class="headerlink" title="3. cherry-pick 和 rebase 是不是一回事？"></a>3. <code>cherry-pick</code> 和 <code>rebase</code> 是不是一回事？</h3><p>不是。</p>
+<p><code>rebase</code> 主要是变更提交基底、整理提交历史；<br><code>cherry-pick</code> 主要是挑选指定提交并复制到当前分支。</p>
+<p>两者都可能改写历史，但使用目的不一样。</p>
+<h2 id="九、小结"><a href="#九、小结" class="headerlink" title="九、小结"></a>九、小结</h2><p><code>git cherry-pick</code> 最核心的作用，就是把指定提交复制到当前分支。</p>
+<p>最常用的几种写法：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git cherry-pick 提交ID</span><br><span class="line">git cherry-pick 提交ID1 提交ID2</span><br><span class="line">git cherry-pick 起始提交ID^..结束提交ID</span><br><span class="line">git cherry-pick -n 提交ID</span><br><span class="line">git cherry-pick --<span class="built_in">continue</span></span><br><span class="line">git cherry-pick --abort</span><br></pre></td></tr></table></figure>
+
+<p>如果你只想拿某几个提交，而不想整条分支都合并进来，这个命令会非常方便。</p>
+<p>参考文章</p>
+<ul>
+<li><a href="https://git-scm.com/docs/git-cherry-pick">git cherry-pick 官方文档</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>git</tag>
+        <tag>cherry-pick</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>git基本用法</title>
     <url>/posts/cc4fed488750/</url>
     <content><![CDATA[<h2 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h2><h3 id="Windows系统"><a href="#Windows系统" class="headerlink" title="Windows系统"></a>Windows系统</h3><p>在git官网下载安装即可</p>
@@ -1146,7 +1267,9 @@
   <entry>
     <title>ubuntu下让ollama强制使用cpu推理</title>
     <url>/posts/082d3464203c/</url>
-    <content><![CDATA[<p><code>Ollama</code> 默认会优先使用系统里可用的 GPU 来做推理。</p>
+    <content><![CDATA[<img src="/posts/082d3464203c/ollama-cpu-cover.svg" class="">
+
+<p><code>Ollama</code> 默认会优先使用系统里可用的 GPU 来做推理。</p>
 <p>如果你的 Ubuntu 机器装了 NVIDIA 显卡，并且 Ollama 已经能正常调用 CUDA，那么直接执行 <code>ollama run</code> 时，通常会优先走 GPU。</p>
 <p>但有些场景下，我们反而希望它强制只用 CPU，比如：</p>
 <ul>
@@ -2582,6 +2705,22 @@ ssd1306.drawToDisplay()
       </tags>
   </entry>
   <entry>
+    <title>树莓派鼠标空闲时隐藏光标</title>
+    <url>/posts/6f18ead3ddd8/</url>
+    <content><![CDATA[<h2 id="安装uncluter"><a href="#安装uncluter" class="headerlink" title="安装uncluter"></a>安装uncluter</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install unclutter</span><br></pre></td></tr></table></figure>
+
+<p>安装后，默认鼠标空闲2s后就会被隐藏</p>
+<p>参考文章:</p>
+<ul>
+<li><a href="https://debaday.debian.net/2007/03/27/unclutter-hide-the-mouse-cursor-after-a-period-of-inactivity/">unclutter: hide the mouse cursor after a period of inactivity</a></li>
+<li><a href="https://ubuntu-tutorials.com/2008/07/07/auto-hide-your-mouse-pointer-when-idle-with-unclutter/">Auto-Hide Your Mouse Pointer When Idle With “Unclutter”</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>树莓派</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>第一次使用hexo</title>
     <url>/posts/95766e5c7a2f/</url>
     <content><![CDATA[<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><p>全局安装hexo命令行工具<br><code>npm install hexo-cli -g</code></p>
@@ -2597,22 +2736,6 @@ ssd1306.drawToDisplay()
 ]]></content>
       <tags>
         <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>树莓派鼠标空闲时隐藏光标</title>
-    <url>/posts/6f18ead3ddd8/</url>
-    <content><![CDATA[<h2 id="安装uncluter"><a href="#安装uncluter" class="headerlink" title="安装uncluter"></a>安装uncluter</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install unclutter</span><br></pre></td></tr></table></figure>
-
-<p>安装后，默认鼠标空闲2s后就会被隐藏</p>
-<p>参考文章:</p>
-<ul>
-<li><a href="https://debaday.debian.net/2007/03/27/unclutter-hide-the-mouse-cursor-after-a-period-of-inactivity/">unclutter: hide the mouse cursor after a period of inactivity</a></li>
-<li><a href="https://ubuntu-tutorials.com/2008/07/07/auto-hide-your-mouse-pointer-when-idle-with-unclutter/">Auto-Hide Your Mouse Pointer When Idle With “Unclutter”</a></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>树莓派</tag>
       </tags>
   </entry>
   <entry>

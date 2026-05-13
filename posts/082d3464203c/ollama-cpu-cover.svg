@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Ubuntu 下让 Ollama 强制使用 CPU 推理</title>
+  <desc id="desc">A technical blog cover showing Ollama inference routed to CPU while GPU is bypassed.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#15171f"/>
+      <stop offset="48%" stop-color="#232033"/>
+      <stop offset="100%" stop-color="#0d332f"/>
+    </linearGradient>
+    <linearGradient id="cpu" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffb25f"/>
+      <stop offset="100%" stop-color="#e95420"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1c2230" stop-opacity="0.94"/>
+      <stop offset="100%" stop-color="#111722" stop-opacity="0.94"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#ffffff" stroke-opacity="0.045" stroke-width="1"/>
+    </pattern>
+    <style>
+      .sans { font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif; }
+      .mono { font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#grid)"/>
+  <circle cx="1370" cy="110" r="260" fill="#e95420" opacity="0.13"/>
+  <circle cx="150" cy="800" r="300" fill="#00d4a6" opacity="0.11"/>
+
+  <g transform="translate(116 108)">
+    <rect x="0" y="0" width="1368" height="684" rx="42" fill="url(#panel)" stroke="#ffffff" stroke-opacity="0.1" filter="url(#shadow)"/>
+    <path d="M0 132H1368" stroke="#ffffff" stroke-opacity="0.08"/>
+    <circle cx="58" cy="66" r="14" fill="#ff6b5f"/>
+    <circle cx="104" cy="66" r="14" fill="#ffcc4d"/>
+    <circle cx="150" cy="66" r="14" fill="#42d67d"/>
+    <text x="212" y="75" class="mono" font-size="28" fill="#8ea0b8">ollama cpu-only inference</text>
+
+    <g transform="translate(78 190)">
+      <text x="0" y="0" class="sans" font-size="68" font-weight="800" fill="#ffffff">Ubuntu 下让 Ollama</text>
+      <text x="0" y="88" class="sans" font-size="68" font-weight="800" fill="#ffffff">强制使用 CPU 推理</text>
+      <text x="0" y="156" class="sans" font-size="30" fill="#aebbd0">num_gpu = 0 / systemd override / CUDA_VISIBLE_DEVICES=-1</text>
+
+      <g transform="translate(0 234)">
+        <rect x="0" y="0" width="590" height="210" rx="22" fill="#0b111a" stroke="#2e3a4f"/>
+        <text x="34" y="50" class="mono" font-size="24" fill="#6de5bf">$ ollama ps</text>
+        <text x="34" y="96" class="mono" font-size="23" fill="#d9e4f2">llama3:latest</text>
+        <text x="294" y="96" class="mono" font-size="23" fill="#ffbd73">100% CPU</text>
+        <text x="34" y="142" class="mono" font-size="23" fill="#d9e4f2">qwen2:7b</text>
+        <text x="294" y="142" class="mono" font-size="23" fill="#7c8da8">GPU bypassed</text>
+      </g>
+    </g>
+
+    <g transform="translate(815 205)">
+      <g opacity="0.55">
+        <path d="M120 84H0" stroke="#7c8da8" stroke-width="9" stroke-linecap="round"/>
+        <path d="M388 84H268" stroke="#7c8da8" stroke-width="9" stroke-linecap="round"/>
+        <path d="M194 10V-70" stroke="#7c8da8" stroke-width="9" stroke-linecap="round"/>
+        <path d="M194 258V338" stroke="#7c8da8" stroke-width="9" stroke-linecap="round"/>
+      </g>
+
+      <rect x="88" y="-8" width="212" height="212" rx="32" fill="url(#cpu)" filter="url(#shadow)"/>
+      <rect x="127" y="31" width="134" height="134" rx="18" fill="#31180c" opacity="0.36"/>
+      <text x="194" y="94" text-anchor="middle" class="mono" font-size="44" font-weight="800" fill="#fff5e8">CPU</text>
+      <text x="194" y="132" text-anchor="middle" class="mono" font-size="18" fill="#ffe2c2">inference</text>
+
+      <g transform="translate(350 18)">
+        <rect x="0" y="0" width="210" height="168" rx="26" fill="#202938" stroke="#3b465b" stroke-width="2"/>
+        <path d="M38 62H172M38 98H172" stroke="#59667d" stroke-width="16" stroke-linecap="round"/>
+        <text x="105" y="144" text-anchor="middle" class="mono" font-size="27" font-weight="800" fill="#78869c">GPU</text>
+        <path d="M-8 184L218 -16" stroke="#ff6b5f" stroke-width="12" stroke-linecap="round"/>
+      </g>
+
+      <path d="M-20 310C96 264 226 264 348 310" fill="none" stroke="#00d4a6" stroke-width="10" stroke-linecap="round"/>
+      <path d="M326 282L371 314L318 336" fill="none" stroke="#00d4a6" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <g transform="translate(54 384)">
+        <rect x="0" y="0" width="480" height="90" rx="18" fill="#0c151d" stroke="#213247"/>
+        <text x="34" y="57" class="mono" font-size="26" fill="#d9e4f2">options: { num_gpu: 0 }</text>
+      </g>
+    </g>
+  </g>
+
+  <text x="118" y="846" class="sans" font-size="25" fill="#8fa0b7">codingyan blog · Ubuntu · Ollama · LLM</text>
+</svg>

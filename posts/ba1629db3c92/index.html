@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="DiDf1n-FXAss2xQDKGBsVKOy6E257RvmU9T_N_UjE-A">
+  <meta name="baidu-site-verification" content="code-H3ICA3MrRW">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yancoding.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.11.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="git cherry-pick 用来把某一个提交，或者某几个指定提交，复制到当前分支上。 它比较适合下面这些场景：  线上分支修了一个 bug，想把这次修复同步到开发分支 某个功能分支里只有一两个提交有用，不想整条分支都合并进来 想把别的分支上的某次提交单独拿过来，而不是执行 merge  一、先理解 cherry-pick 做了什么假设现在有两个分支：  main feature  featur">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git cherry-pick用法">
+<meta property="og:url" content="https://yancoding.github.io/posts/ba1629db3c92/index.html">
+<meta property="og:site_name" content="yan blog">
+<meta property="og:description" content="git cherry-pick 用来把某一个提交，或者某几个指定提交，复制到当前分支上。 它比较适合下面这些场景：  线上分支修了一个 bug，想把这次修复同步到开发分支 某个功能分支里只有一两个提交有用，不想整条分支都合并进来 想把别的分支上的某次提交单独拿过来，而不是执行 merge  一、先理解 cherry-pick 做了什么假设现在有两个分支：  main feature  featur">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yancoding.github.io/posts/ba1629db3c92/git-cherry-pick-flow.svg">
+<meta property="og:image" content="https://yancoding.github.io/posts/ba1629db3c92/git-cherry-pick-terminal.svg">
+<meta property="article:published_time" content="2026-05-13T01:40:11.000Z">
+<meta property="article:modified_time" content="2026-05-13T08:15:41.000Z">
+<meta property="article:author" content="yancoding">
+<meta property="article:tag" content="git">
+<meta property="article:tag" content="cherry-pick">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yancoding.github.io/posts/ba1629db3c92/git-cherry-pick-flow.svg">
+
+
+<link rel="canonical" href="https://yancoding.github.io/posts/ba1629db3c92/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://yancoding.github.io/posts/ba1629db3c92/","path":"posts/ba1629db3c92/","title":"git cherry-pick用法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>git cherry-pick用法 | yan blog</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">yan blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">51</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">54</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-demo"><a href="/demo/" rel="section"><i class="fa fa-rocket fa-fw"></i>Demo</a></li><li class="menu-item menu-item-component"><a href="/component/" rel="section"><i class="fa fa-th-large fa-fw"></i>Component</a></li><li class="menu-item menu-item-to-do-list"><a href="/to_do_list/" rel="section"><i class="fa fa-calendar fa-fw"></i>To Do List</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%85%88%E7%90%86%E8%A7%A3-cherry-pick-%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88"><span class="nav-text">一、先理解 cherry-pick 做了什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%9C%80%E5%B8%B8%E8%A7%81%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="nav-text">二、最常见的基本用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E4%B8%80%E6%AC%A1%E6%8C%91%E9%80%89%E5%A4%9A%E4%B8%AA%E6%8F%90%E4%BA%A4"><span class="nav-text">三、一次挑选多个提交</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E9%80%90%E4%B8%AA%E5%86%99%E5%87%BA%E5%A4%9A%E4%B8%AA%E6%8F%90%E4%BA%A4-ID"><span class="nav-text">1. 逐个写出多个提交 ID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%8C%91%E9%80%89%E4%B8%80%E6%AE%B5%E8%BF%9E%E7%BB%AD%E6%8F%90%E4%BA%A4"><span class="nav-text">2. 挑选一段连续提交</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%8F%AA%E5%BA%94%E7%94%A8%E6%94%B9%E5%8A%A8%EF%BC%8C%E5%85%88%E4%B8%8D%E8%87%AA%E5%8A%A8%E6%8F%90%E4%BA%A4"><span class="nav-text">四、只应用改动，先不自动提交</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%8F%91%E7%94%9F%E5%86%B2%E7%AA%81%E6%97%B6%E6%80%8E%E4%B9%88%E5%A4%84%E7%90%86"><span class="nav-text">五、发生冲突时怎么处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%9F%A5%E7%9C%8B%E5%86%B2%E7%AA%81%E6%96%87%E4%BB%B6"><span class="nav-text">1. 查看冲突文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%89%8B%E5%8A%A8%E4%BF%AE%E6%94%B9%E5%86%B2%E7%AA%81%E5%86%85%E5%AE%B9"><span class="nav-text">2. 手动修改冲突内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%A0%87%E8%AE%B0%E5%86%B2%E7%AA%81%E5%B7%B2%E8%A7%A3%E5%86%B3"><span class="nav-text">3. 标记冲突已解决</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E7%BB%A7%E7%BB%AD%E6%89%A7%E8%A1%8C"><span class="nav-text">4. 继续执行</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E5%92%8C-merge-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-text">六、和 merge 的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E5%B8%B8%E8%A7%81%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-text">七、常见使用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%8A%8A%E7%BA%BF%E4%B8%8A-hotfix-%E5%90%8C%E6%AD%A5%E5%9B%9E%E5%BC%80%E5%8F%91%E5%88%86%E6%94%AF"><span class="nav-text">1. 把线上 hotfix 同步回开发分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%8F%AA%E6%8B%BF%E5%8A%9F%E8%83%BD%E5%88%86%E6%94%AF%E9%87%8C%E7%9A%84%E6%9F%90%E4%B8%80%E6%AC%A1%E6%8F%90%E4%BA%A4"><span class="nav-text">2. 只拿功能分支里的某一次提交</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%A1%A5%E6%BC%8F%E5%90%8C%E6%AD%A5"><span class="nav-text">3. 补漏同步</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="nav-text">八、常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-cherry-pick-%E5%90%8E%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8F%90%E4%BA%A4-ID-%E5%8F%98%E4%BA%86%EF%BC%9F"><span class="nav-text">1. cherry-pick 后为什么提交 ID 变了？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%8F%AF%E4%BB%A5%E5%AF%B9%E5%B7%B2%E7%BB%8F-merge-%E8%BF%87%E7%9A%84%E6%8F%90%E4%BA%A4%E5%86%8D%E6%89%A7%E8%A1%8C-cherry-pick-%E5%90%97%EF%BC%9F"><span class="nav-text">2. 可以对已经 merge 过的提交再执行 cherry-pick 吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-cherry-pick-%E5%92%8C-rebase-%E6%98%AF%E4%B8%8D%E6%98%AF%E4%B8%80%E5%9B%9E%E4%BA%8B%EF%BC%9F"><span class="nav-text">3. cherry-pick 和 rebase 是不是一回事？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E5%B0%8F%E7%BB%93"><span class="nav-text">九、小结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yancoding"
+      src="/uploads/avatar.png">
+  <p class="site-author-name" itemprop="name">yancoding</p>
+  <div class="site-description" itemprop="description">yan blog</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yancoding" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yancoding" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/yancoding" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yancoding.github.io/posts/ba1629db3c92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="yancoding">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yan blog">
+      <meta itemprop="description" content="yan blog">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="git cherry-pick用法 | yan blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          git cherry-pick用法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-05-13 09:40:11 / 修改时间：16:15:41" itemprop="dateCreated datePublished" datetime="2026-05-13T09:40:11+08:00">2026-05-13</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><code>git cherry-pick</code> 用来把某一个提交，或者某几个指定提交，复制到当前分支上。</p>
+<p>它比较适合下面这些场景：</p>
+<ul>
+<li>线上分支修了一个 bug，想把这次修复同步到开发分支</li>
+<li>某个功能分支里只有一两个提交有用，不想整条分支都合并进来</li>
+<li>想把别的分支上的某次提交单独拿过来，而不是执行 <code>merge</code></li>
+</ul>
+<h2 id="一、先理解-cherry-pick-做了什么"><a href="#一、先理解-cherry-pick-做了什么" class="headerlink" title="一、先理解 cherry-pick 做了什么"></a>一、先理解 <code>cherry-pick</code> 做了什么</h2><p>假设现在有两个分支：</p>
+<ul>
+<li><code>main</code></li>
+<li><code>feature</code></li>
+</ul>
+<p><code>feature</code> 分支上有一个提交修复了接口错误，你现在在 <code>main</code> 分支，也想要这个修复。</p>
+<p>这时可以直接把那次提交挑过来：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout main</span><br><span class="line">git cherry-pick 提交ID</span><br></pre></td></tr></table></figure>
+
+<p>执行后，Git 会把那次提交的改动应用到当前分支，并在当前分支生成一个新的提交。</p>
+<p>要注意的是，这不是“移动”原提交，而是“复制一份改动内容”到当前分支，所以新生成的提交 ID 一般会和原来不同。</p>
+<p>下面这张图可以直观看一下这个过程：</p>
+<img src="/posts/ba1629db3c92/git-cherry-pick-flow.svg" class="">
+
+
+<h2 id="二、最常见的基本用法"><a href="#二、最常见的基本用法" class="headerlink" title="二、最常见的基本用法"></a>二、最常见的基本用法</h2><p>先查看提交记录：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">log</span> --oneline</span><br></pre></td></tr></table></figure>
+
+<p>假设你看到 <code>feature</code> 分支里有这样一条提交：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">a1b2c3d 修复订单接口参数错误</span><br></pre></td></tr></table></figure>
+
+<p>切换到目标分支后执行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout main</span><br><span class="line">git cherry-pick a1b2c3d</span><br></pre></td></tr></table></figure>
+
+<p>如果没有冲突，这次提交就会被应用到 <code>main</code> 分支。</p>
+<p>再执行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">log</span> --oneline</span><br></pre></td></tr></table></figure>
+
+<p>通常就能看到当前分支多出了一条内容相同、但提交 ID 不同的新提交。</p>
+<h2 id="三、一次挑选多个提交"><a href="#三、一次挑选多个提交" class="headerlink" title="三、一次挑选多个提交"></a>三、一次挑选多个提交</h2><h3 id="1-逐个写出多个提交-ID"><a href="#1-逐个写出多个提交-ID" class="headerlink" title="1. 逐个写出多个提交 ID"></a>1. 逐个写出多个提交 ID</h3><p>如果要挑多个不连续的提交，可以直接把提交 ID 都写上：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git cherry-pick a1b2c3d d4e5f6g h7i8j9k</span><br></pre></td></tr></table></figure>
+
+<p>Git 会按顺序依次应用这些提交。</p>
+<h3 id="2-挑选一段连续提交"><a href="#2-挑选一段连续提交" class="headerlink" title="2. 挑选一段连续提交"></a>2. 挑选一段连续提交</h3><p>如果这些提交是连续的，可以用范围：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git cherry-pick 起始提交ID^..结束提交ID</span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git cherry-pick a1b2c3d^..d4e5f6g</span><br></pre></td></tr></table></figure>
+
+<p>这里的意思是，把从 <code>a1b2c3d</code> 到 <code>d4e5f6g</code> 之间的提交都挑过来，并且包含起始提交。</p>
+<p>如果写成：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git cherry-pick a1b2c3d..d4e5f6g</span><br></pre></td></tr></table></figure>
+
+<p>那通常不包含 <code>a1b2c3d</code> 这次提交，这一点要特别注意。</p>
+<h2 id="四、只应用改动，先不自动提交"><a href="#四、只应用改动，先不自动提交" class="headerlink" title="四、只应用改动，先不自动提交"></a>四、只应用改动，先不自动提交</h2><p>有时候你想先把改动拿过来，再自己检查一下，或者和当前工作区里的其他修改一起提交，这时可以加 <code>-n</code> 参数：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git cherry-pick -n a1b2c3d</span><br></pre></td></tr></table></figure>
+
+<p><code>-n</code> 是 <code>--no-commit</code> 的简写。</p>
+<p>它会把改动应用到当前工作区和暂存区，但不会自动生成提交。</p>
+<p>这时你可以先查看状态：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+
+<p>确认没问题后再自己提交：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -m <span class="string">&quot;引入订单接口修复&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="五、发生冲突时怎么处理"><a href="#五、发生冲突时怎么处理" class="headerlink" title="五、发生冲突时怎么处理"></a>五、发生冲突时怎么处理</h2><p><code>cherry-pick</code> 和 <code>merge</code> 一样，也可能出现冲突。</p>
+<p>比如当前分支和目标提交都修改了同一段代码，执行后可能会看到冲突提示。</p>
+<p>这时处理步骤通常是：</p>
+<h3 id="1-查看冲突文件"><a href="#1-查看冲突文件" class="headerlink" title="1. 查看冲突文件"></a>1. 查看冲突文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-手动修改冲突内容"><a href="#2-手动修改冲突内容" class="headerlink" title="2. 手动修改冲突内容"></a>2. 手动修改冲突内容</h3><p>把冲突标记处理掉，保留你真正想要的代码。</p>
+<h3 id="3-标记冲突已解决"><a href="#3-标记冲突已解决" class="headerlink" title="3. 标记冲突已解决"></a>3. 标记冲突已解决</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add 冲突文件</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-继续执行"><a href="#4-继续执行" class="headerlink" title="4. 继续执行"></a>4. 继续执行</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git cherry-pick --<span class="built_in">continue</span></span><br></pre></td></tr></table></figure>
+
+<p>如果你处理中途发现这次挑选不要了，也可以取消：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git cherry-pick --abort</span><br></pre></td></tr></table></figure>
+
+<p>它会回到执行 <code>cherry-pick</code> 之前的状态。</p>
+<h2 id="六、和-merge-的区别"><a href="#六、和-merge-的区别" class="headerlink" title="六、和 merge 的区别"></a>六、和 <code>merge</code> 的区别</h2><p>很多人第一次接触 <code>git cherry-pick</code> 时，容易把它和 <code>merge</code> 混在一起。</p>
+<p>简单来说：</p>
+<ul>
+<li><code>git merge</code> 是把一个分支整体合并过来</li>
+<li><code>git cherry-pick</code> 是只拿指定提交过来</li>
+</ul>
+<p>如果你只想同步一个 bug 修复、一个小功能、一次配置调整，那么 <code>cherry-pick</code> 往往更直接。</p>
+<p>但如果你需要把一整条分支的历史完整合并，通常还是 <code>merge</code> 更合适。</p>
+<h2 id="七、常见使用场景"><a href="#七、常见使用场景" class="headerlink" title="七、常见使用场景"></a>七、常见使用场景</h2><img src="/posts/ba1629db3c92/git-cherry-pick-terminal.svg" class="">
+
+
+<h3 id="1-把线上-hotfix-同步回开发分支"><a href="#1-把线上-hotfix-同步回开发分支" class="headerlink" title="1. 把线上 hotfix 同步回开发分支"></a>1. 把线上 hotfix 同步回开发分支</h3><p>比如你在 <code>main</code> 分支紧急修了一个线上问题，但开发工作还在 <code>dev</code> 分支继续进行。</p>
+<p>这时可以切到 <code>dev</code>，把 <code>main</code> 上那次修复挑过来：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout dev</span><br><span class="line">git cherry-pick 修复提交ID</span><br></pre></td></tr></table></figure>
+
+<p>这样就不需要把整个 <code>main</code> 分支重新合并一遍。</p>
+<h3 id="2-只拿功能分支里的某一次提交"><a href="#2-只拿功能分支里的某一次提交" class="headerlink" title="2. 只拿功能分支里的某一次提交"></a>2. 只拿功能分支里的某一次提交</h3><p>有些功能分支提交很多，里面可能既有实验代码，也有真正需要的修改。</p>
+<p>如果当前只想引入其中某一个提交，<code>cherry-pick</code> 会比 <code>merge</code> 更省事。</p>
+<h3 id="3-补漏同步"><a href="#3-补漏同步" class="headerlink" title="3. 补漏同步"></a>3. 补漏同步</h3><p>有时两个分支长期并行开发，某个重要提交漏同步了，这时也可以直接用 <code>cherry-pick</code> 补过去。</p>
+<h2 id="八、常见问题"><a href="#八、常见问题" class="headerlink" title="八、常见问题"></a>八、常见问题</h2><h3 id="1-cherry-pick-后为什么提交-ID-变了？"><a href="#1-cherry-pick-后为什么提交-ID-变了？" class="headerlink" title="1. cherry-pick 后为什么提交 ID 变了？"></a>1. <code>cherry-pick</code> 后为什么提交 ID 变了？</h3><p>因为 Git 会在当前分支重新创建一个新提交。</p>
+<p>虽然改动内容可能一样，但它已经是另一条提交记录了，所以提交 ID 通常不同。</p>
+<h3 id="2-可以对已经-merge-过的提交再执行-cherry-pick-吗？"><a href="#2-可以对已经-merge-过的提交再执行-cherry-pick-吗？" class="headerlink" title="2. 可以对已经 merge 过的提交再执行 cherry-pick 吗？"></a>2. 可以对已经 merge 过的提交再执行 <code>cherry-pick</code> 吗？</h3><p>可以，但要小心重复改动。</p>
+<p>如果那部分代码其实已经在当前分支里了，再次执行可能会出现冲突，或者产生重复提交。</p>
+<p>执行前最好先用 <code>git log</code>、<code>git show</code> 看清楚目标提交内容。</p>
+<h3 id="3-cherry-pick-和-rebase-是不是一回事？"><a href="#3-cherry-pick-和-rebase-是不是一回事？" class="headerlink" title="3. cherry-pick 和 rebase 是不是一回事？"></a>3. <code>cherry-pick</code> 和 <code>rebase</code> 是不是一回事？</h3><p>不是。</p>
+<p><code>rebase</code> 主要是变更提交基底、整理提交历史；<br><code>cherry-pick</code> 主要是挑选指定提交并复制到当前分支。</p>
+<p>两者都可能改写历史，但使用目的不一样。</p>
+<h2 id="九、小结"><a href="#九、小结" class="headerlink" title="九、小结"></a>九、小结</h2><p><code>git cherry-pick</code> 最核心的作用，就是把指定提交复制到当前分支。</p>
+<p>最常用的几种写法：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git cherry-pick 提交ID</span><br><span class="line">git cherry-pick 提交ID1 提交ID2</span><br><span class="line">git cherry-pick 起始提交ID^..结束提交ID</span><br><span class="line">git cherry-pick -n 提交ID</span><br><span class="line">git cherry-pick --<span class="built_in">continue</span></span><br><span class="line">git cherry-pick --abort</span><br></pre></td></tr></table></figure>
+
+<p>如果你只想拿某几个提交，而不想整条分支都合并进来，这个命令会非常方便。</p>
+<p>参考文章</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://git-scm.com/docs/git-cherry-pick">git cherry-pick 官方文档</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/git/" rel="tag"># git</a>
+              <a href="/tags/cherry-pick/" rel="tag"># cherry-pick</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/082d3464203c/" rel="prev" title="ubuntu下让ollama强制使用cpu推理">
+                  <i class="fa fa-chevron-left"></i> ubuntu下让ollama强制使用cpu推理
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yancoding</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">72k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">1:05</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"yancoding","repo":"yancoding.github.io","client_id":"1b359b39687aefe1c256","client_secret":"d8596c4b7db905f1dfe61c5b836026f93a08646a","admin_user":"yancoding","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"c0c360b5ada2a7e395583a4b111a098c"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
